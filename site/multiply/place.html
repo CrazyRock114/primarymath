@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数位表里的算理 · 竖式为什么这么算</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">乘除的结构</a><a href="dive.html">数位表里的算理</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱四 · 关系 · 多位数乘一位数 / 两位数乘两位数</span>
+  <h1>竖式为什么这么算<br>因为它<strong style="color:var(--brand);font-weight:inherit">本来就是这么回事</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 「必须从个位算起」，孩子只是照做</a></li>
+<li><a href="#l2">02 溯源：算式在数什么</a></li>
+<li><a href="#l3">03 亲自数一遍 3 × 24</a></li>
+<li><a href="#l4">04 两位数乘两位数：四个部分</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>「必须从个位算起」，孩子只是照做</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师强调了三遍「<strong>竖式要从个位算起</strong>」。孩子记住了，考试也对。<br>
+    可你问：<strong>「如果从十位开始算，会怎么样？」</strong>他答不上来。<br>
+    他在做一件<strong>自己不知道为什么必须做的事</strong>——所以换个题型就崩。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">竖式不是一套「规定好的步骤」，它<strong>是把一件事画得紧凑一点而已</strong>。</p>
+  <p>
+    <span class="m">3 × 24</span> 用加法算，是 <span class="m">24+24+24</span>。<br>
+    这三行 24 叠起来，如果<strong>把相同计数单位的小棒并到一起</strong>，<br>
+    就自然排成了竖式的样子 —— <em class="hl">竖式 = 合并同单位小棒后的紧凑写法</em>。<br>
+    <strong>方向、进位，全都由此决定，不是我规定的。</strong>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：算式在数什么</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    记住这条就够了：<br><br>
+    <em class="hl"><strong>24 = 2 个十 + 4 个一</strong>（这是数位制，见<a href="../pillar/number.html">支柱一</a>）</em><br><br>
+    那么 <span class="m">3 × 24</span> 就是「<strong>3 组这样的分解</strong>」：<br>
+    · 3 × <strong>2 个十</strong> = <strong>6 个十</strong><br>
+    · 3 × <strong>4 个一</strong> = <strong>12 个一</strong><br>
+    · 12 个一装不满 10 个一 → <strong>满 10 进 1</strong>：1 个十 + 2 个一<br>
+    · 6 个十 + 1 个十 = <strong>7 个十</strong>，加上 2 个一 → <strong>72</strong><br><br>
+    <strong>竖式里的每一列，就是这张表里的一类小棒。</strong>
+  </p>
+</div>
+
+<div class="demo" id="pm-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动因数，看数位表怎么拆</div>
+  <p class="demo-hint">换不同的因数组合。留意<b>个位装不下时是怎么进位的</b>。</p>
+  <div class="demo-stage"><div id="pm-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>第一个因数</label><input type="range" id="pm-a" min="2" max="9" value="3"><span class="val" id="pm-av"></span>
+    <label>第二个因数</label><input type="range" id="pm-b" min="12" max="39" value="24"><span class="val" id="pm-bv"></span>
+  </div>
+  <div class="demo-out" id="pm-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>为什么方向不能反</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">进位<strong>只能往左传</strong>，所以必须从右往左算。</p>
+  <p>
+    个位满 10，多的那 1 个十<strong>只有十位能装下</strong>，而十位在<strong>左边</strong>。<br>
+    如果先算十位：十位算完写了个 8，可个位待会儿要进 2 过来 —— <em class="hl">十位到底该写几？</em><br>
+    <strong>它没法回头改。所以不是「规定从个位起」，是「只能从个位起」。</strong>
+  </p>
+</div>
+
+<div class="demo" id="cy-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换计算方向，看哪条路走得通</div>
+  <p class="demo-hint">同样的 <b>4 × 26</b>，两个方向各走一遍。</p>
+  <div class="demo-stage"><div id="cy-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>计算方向</label>
+    <select id="cy-mode" class="btn" style="padding:7px 12px">
+      <option value="1" selected>从个位算起</option>
+      <option value="0">从十位算起（试试看）</option>
+    </select>
+  </div>
+  <div class="demo-out" id="cy-out"></div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>两位数乘两位数：四个部分</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    <span class="m">23 × 14</span>，孩子会竖式，答案是 322，但对不对说不清。
+    换成 <span class="m">48 × 35</span>，中间的 20、5、14 全部混在一起就错了。
+    <strong>他记的是笔顺，不是结构。</strong>
+  </p>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    两位数是<strong>两个计数单位</strong>：<br>
+    <span class="m">23 = 20 + 3</span>，<span class="m">14 = 10 + 4</span><br>
+    所以乘起来是<strong>四块</strong>：<br>
+    <em class="hl"><span class="m">23 × 14 = 20×10 + 20×4 + 3×10 + 3×4 = 200 + 80 + 30 + 12 = 322</span></em><br><br>
+    竖式上写成 <span class="m">92</span> 和 <span class="m">23</span> 两行，<strong>就是在合并这四块</strong>：
+    20×4=80 和 3×10=30 都是「几个十」，合到一起是 110，即 92+23 的进位来源。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>口诀版本（课本上写的那句）：</strong></p>
+  <p style="margin:0;font-size:15.5px">
+    「<strong>先算两位数的个位，再算两位数的十位（注意末位对齐十位），最后加</strong>」<br>
+    ——注意，这句口诀<strong>只说了怎么做，没说为什么</strong>。<br>
+    补上结构就清楚了：<strong>因为第二个因数由 10 和 4 两部分组成，所以要分两次乘；十位那次要往上错一位，因为 10 本身就是一个十。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「这个数是<strong>几个十加几个一</strong>？分别乘，再加起来。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做两位数乘法出错时，别让他检查进位。让他<strong>回到这句话</strong>重新分解一遍。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b2-place">
+  <h3 style="margin-top:0">数位表里的算理 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版三年级上册「多位数乘一位数」、
+  四年级上册「三位数乘两位数」、三年级下册「两位数乘两位数」三个单元的共同算理。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="dive.html">上一节：乘法是加法的打包</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="divide.html">除法是乘法的解构</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b2-place"]={title:"数位表里的算理 · 5 题",qs:[
+{stem:"为什么竖式乘法<strong>必须从个位算起</strong>？",
+ opts:["课本上规定的","因为进位只能往左传，十位在左边；先算十位的话，个位要进过来时无法回头改","因为个位比十位重要","因为从右往左比较快"],
+ answer:"B",why:"进位<strong>是往高位传的</strong>。先算十位时，个位尚未算完，十位不知道最后要写几。这不是规定，是<strong>依赖顺序决定的</strong>。",
+ miss:"不是「规定」。<b>进位是往左边传的</b>，左边还不知道右边要进几过来，所以只能先算右边。",
+ kidSay:"你先想：个位满十了，那一个十要送给谁？送给左边的十位。所以得先知道个位有多少。"},
+{stem:"<span class='m'>3 × 24</span> 的算理是什么？",
+ opts:["3 份，每份 24 个","24 = 2 个十 + 4 个一；3×2 个十 = 6 个十，3×4 个一 = 12 个一，满十进一","3 加 24","24 乘以 3 就是 24"],
+ answer:"B",why:"<strong>24 是 2 个十 + 4 个一</strong>。分开乘：6 个十、12 个一；12 个一满 10 进 1 → 6+1=7 个十，2 个一 → <strong>72</strong>。竖式每一列就是这张表的一类小棒。",
+ miss:"先把 24 <b>拆成 2 个十 + 4 个一</b>，然后分别乘。竖式就是这么来的。",
+ kidSay:"24 里面有几个十、几个一？先拆开，再分别乘 3。"},
+{stem:"<span class='m'>23 × 14</span> 可以拆成哪四部分相加？",
+ opts:["23+14","20×10 + 20×4 + 3×10 + 3×4","20×14 + 3×14","23×10 + 23×4"],
+ answer:"B",why:"因为 <strong>23 = 20+3，14 = 10+4</strong>，展开就是四个乘积：200+80+30+12 = <strong>322</strong>。竖式的两行（28、23）就是在合并这四块。",
+ miss:"先把两个因数<strong>各自拆成「几个十 + 几个一」</strong>，交叉相乘，一共四块，加起来就是答案。",
+ kidSay:"23 是 20 加 3，14 是 10 加 4。那就乘四次：20×10、20×4、3×10、3×4。"},
+{stem:"孩子会写竖式，但说不清「为什么从个位起」。最该给他看的是：",
+ opts:["更多竖式练习","把数位表和小棒画出来，让他看见「合并同计数单位」的过程","背进位口诀","让他记住规则"],
+ answer:"B",why:"竖式是「<strong>把相同计数单位的小棒并到一起</strong>」的紧凑写法。看见了这个过程，方向和进位<strong>全都是自然结果</strong>，不需要背。",
+ miss:"光练竖式只会让他更熟练地<strong>做自己不理解的事</b>。要让他看见小棒合并。",
+ kidSay:"别背规则了。我给你画小棒，你自己看看为什么要这么摆。"},
+{stem:"下面哪一句是真正解释「满十进一」的？",
+ opts:["因为老师说要进位","因为个位最多只能表示 9，多的那一组十只能加到十位上","因为十位比个位大","因为这样算得快"],
+ answer:"B",why:"<strong>个位只能装 0-9</strong>。装不下的那些，<strong>它们本质是「十」，只能记到十位</strong>。进位是数位制的必然结果。",
+ miss:"问一句：<b>个位为什么装不下？</b>因为个位只表示 1-9。多的那些是「十」，得记到十位去。",
+ kidSay:"个位只能数到 9，第 10 个怎么办？它其实是 1 个十，那就写进十位里去。"}
+]};
+</script>
+<script src="../assets/js/multiply.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

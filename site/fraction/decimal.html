@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数的意义 · 小数点就是位值制</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">分数与小数</a><a href="decimal.html">小数的意义</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 小数的意义和性质 · 四年级下册</span>
+  <h1>小数点<br>它就是<strong style="color:var(--brand);font-weight:inherit">位值制往右细分</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 12.3 和 123，差 100 倍</a></li>
+<li><a href="#l2">02 溯源：小数是分数的另一扇门</a></li>
+<li><a href="#l3">03 小数与分数：同一条数轴</a></li>
+<li><a href="#l4">04 移动小数点 = 换计数单位</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>12.3 和 123，差 10 倍</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子认识 1、2、3，可看到 <span class="m">12.3</span> 就有点慌。
+    他把小数点当成<strong>一个多余的符号</strong>，不知道它在做什么。
+    「<strong>小数点移动一位就变十倍</strong>」他背下来了，但换个说法就不会。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">小数点<strong>不是多余的符号，它标明了「往右开始换单位」</strong>。</p>
+  <p>
+    回到<a href="../pillar/number.html">支柱一</a>的位值制：<strong>每一位乘它自己代表的数量</strong>。
+    <span class="m">123</span> 是 1 个百 + 2 个十 + 3 个一。<br>
+    <em class="hl">小数点只是告诉你：从这里往右，计数单位开始变小</em> —— 十分位、百分位、千分位……<br>
+    <strong>小数不是新东西，是位值制继续往右延伸。</strong>
+  </p>
+</div>
+
+<div class="demo" id="pt-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动小数点，看每个数字的「身份」</div>
+  <p class="demo-hint">同样的 1、2、3，换个小数点位置，值就变了。盯住<strong>每个数字下面的位值标签</strong>。</p>
+  <div class="demo-stage"><div id="pt-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>小数点位置</label><input type="range" id="pt-d" min="0" max="3" value="1"><span class="val">2</span>
+    <label>数字</label>
+    <select id="pt-mode" class="btn" style="padding:7px 12px">
+      <option value="1" selected>12.3</option>
+      <option value="0">123</option>
+    </select>
+  </div>
+  <div class="demo-out" id="pt-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：小数是分数的另一扇门</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    人类为了让「数」能表示更精细的数量，做了<strong>两次扩容</strong>：<br><br>
+    <strong>第一次：给整数加小数点 —— 往下细分。</strong><br>
+    当「个」这个单位太大（比一粒米还大）时，就在右边加小数点，
+    <strong>把一个单位继续切十份</strong>。0.1 米就是十分之一米。切十份不够就切百分、千分。<br><br>
+    <strong>第二次：跳出十进制 —— 分数。</strong><br>
+    但现实中不只有「十等分」。分给 3 个人、7 个人怎么办？十进制够不着，
+    就换<strong>任意等分</strong> —— 这就是分数。<br><br>
+    <em class="hl"><strong>小数和分数，是同一个需求的两种解法。</strong></em>
+  </p>
+</div>
+
+<div class="note">
+  <b>十进制为什么是「十等分」？</b>因为人只有<strong>十根手指</strong>。
+  数东西习惯十进制，量东西也就习惯十份一档。<br>
+  <strong>所以「0.1」本质上是「十分之一」——它同时是十进制的小数，也是分数。</strong>
+</div>
+
+<h2 id="l3"><span class="num">03</span>小数与分数：同一条数轴</h2>
+
+<p>
+  <span class="m">0.75</span> 和 <span class="m">3/4</span> 长得完全不一样，
+  可它们<strong>在数轴上是同一个点</strong>。
+  孩子常常以为这是两个不同的数——<em class="hl">其实只是同一个数的两种写法</em>。
+</p>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>常见互化，看懂就够了：</strong></p>
+  <table style="width:100%;border-collapse:collapse;font-size:15.5px">
+    <tbody>
+      <tr><td style="padding:9px 8px;border-bottom:1px solid var(--line-soft)"><span class="m">1/2 = 0.5</span></td><td style="padding:9px 8px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft)">分母的质因数只含 2 和 5 → 有限位</td></tr>
+      <tr><td style="padding:9px 8px;border-bottom:1px solid var(--line-soft)"><span class="m">1/4 = 0.25</span></td><td style="padding:9px 8px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft)">分母的质因数只含 2 和 5</td></tr>
+      <tr><td style="padding:9px 8px"><span class="m">1/3 = 0.333…</span></td><td style="padding:9px 8px;color:var(--ink-soft)">分母含 3、7 等其他质因数 → <strong>除不尽，要循环</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>判据很简单：把分数化成以 10 为底的写法。</strong>
+    分母只含 2 和 5 → 能化干净；含别的质因数 → 化不尽。
+    <em>为什么是 2 和 5？因为 10 = 2 × 5。</em>
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>移动小数点 = 换计数单位</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">小数点移动一位，值就差 10 倍。这不是规定，是<strong>换了一位计数单位</strong>。</p>
+  <p>
+    <span class="m">0.35</span> 的 3 在<strong>百分位</strong>，表示 3 个 0.01。<br>
+    小数点<strong>左移</strong>一位 → 3 跑到<strong>十分位</strong>，变成 3 个 0.1 → <strong>变大 10 倍</strong>。<br>
+    小数点<strong>右移</strong>一位 → 3 跑到<strong>千分位</strong>，变成 3 个 0.001 → <strong>变小 10 倍</strong>。<br>
+    <em class="hl">一个数字没变，只是「站在哪一位」变了。</em>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 记号型理解</div>
+    <p>「小数点往左移，数变大。」</p>
+    <p>后果：<strong>遇到带单位的算就错</strong>——单位没跟着变，值就全错了。孩子不知道自己漏了哪一步。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model model-good model-h">✓ 单位型理解</div>
+    <p>「小数点移一位，就是<strong>换了个计数单位</strong>。」</p>
+    <p>结果：<strong>单位会跟着一起动</strong>，孩子会自动检查「数字变大了，单位是不是也要变」。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「小数点移了，<strong>单位跟着移了吗？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做单位换算出错时，问这一句。九成的「小数点错位」都是单位没跟着动。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b3-decimal">
+  <h3 style="margin-top:0">小数的意义 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版四年级下册「小数的意义和性质」、
+  三年级下册「小数的初步认识」两个单元。交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="common.html">上一节：为什么必须先通分</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="factor.html">因数与倍数</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b3-decimal"]={title:"小数的意义 · 5 题",qs:[
+{stem:"<span class='m'>12.3</span> 中的 3 表示什么？",
+ opts:["3 个","3 个 0.1","3 个 0.01","3 个 10"],
+ answer:"B",why:"3 在<strong>十分位</strong>上，表示 <strong>3 个 0.1（十分之一）</strong>。这是位值制在小数部分的延伸，和整数部分「2 个十、1 个百」是同一条规则。",
+ miss:"小数点<strong>往右，单位开始变小</strong>。第一位是十分位，所以 3 表示 3 个 0.1。",
+ kidSay:"小数点后面第一位是十分位。这个 3 站在十分位上，所以是 3 个十分之一。"},
+{stem:"小数点向右移动一位，数值会：",
+ opts:["变大 10 倍","变小 10 倍","不变","变成原来的 100 倍"],
+ answer:"B",why:"<span class='m'>0.35</span> 的 3 在<strong>百分位</strong>；小数点右移一位后，3 到了<strong>千分位</strong>，从「3 个 0.01」变成「3 个 0.001」→ <strong>变小 10 倍</strong>。数字没变，只是站的位置变了。",
+ miss:"小数点<strong>往右 = 单位变得更小 = 值变小</strong>。往左才变大。",
+ kidSay:"往右移，单位从百分位变千分位，每份更小了，所以总数也变小。"},
+{stem:"<span class='m'>1/3</span> 化成小数是多少？为什么化不尽？",
+ opts:["0.3","0.333…（循环），因为分母含 3，不是 2 和 5 的倍数","0.34","无法化"],
+ answer:"B",why:"<strong>10 = 2 × 5</strong>。分母只由 2 和 5 构成，才能化成有限小数。<span class='m'>1/3</span> 的分母是 3，含其他质因数，所以<strong>除不尽，会循环</strong>。",
+ miss:"记住判据：<strong>分母只含 2 和 5 → 化得尽</strong>。3 不在里面，所以会循环。",
+ kidSay:"因为十进制是十等分、十百等分。分母是 3，三等分没法用十进制表达，所以会除不尽。"},
+{stem:"<span class='m'>0.75</span> 和 <span class='m'>3/4</span> 的关系是：",
+ opts:["两个不同的数","同一个数的两种写法，在数轴上是同一个点","大小差 10 倍","没有关系"],
+ answer:"B",why:"<span class='m'>0.75 = 75/100 = 3/4</span>。它们<strong>指向数轴上同一个位置</strong>。<strong>小数是分数以 10 为底的写法</strong>，不是两种不同的数。",
+ miss:"<strong>小数和分数是同一个数的两种写法</strong>。0.75 就是 3/4，它们在数轴上重合。",
+ kidSay:"0.75 就是 75 个 0.01，换成分数就是 75/100，化简就是 3/4。是同一个数。"},
+{stem:"孩子做「5.2 米 = ? 厘米」时算错。小数点移动最容易出的错是：",
+ opts:["算错乘法","只移动了数字，忘了单位也跟着换","忘了进位","符号错"],
+ answer:"B",why:"数字变大了 100 倍，但单位<strong>从「米」换成了「厘米」，也变小了 100 倍</strong>。两边必须同时变，<strong>倍数相同才不会错</strong>。",
+ miss:"数字和<strong>单位要一起动</strong>。数字乘 100，单位也得变成小 100 倍的那个（米→厘米）。",
+ kidSay:"你数字变大了 100 倍，可单位也要跟着换。5.2 米是多少厘米？两边一起算。"}
+]};
+</script>
+<script src="../assets/js/fraction.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

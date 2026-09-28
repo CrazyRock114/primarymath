@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小数的加减乘除 · 数相乘，单位也相乘</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">运算规则</a><a href="decimal.html">小数的加减乘除</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱五 · 规则 · 四下「小数加减」+ 五上「小数乘法」「小数除法」</span>
+  <h1>小数运算<br>数相乘，<strong style="color:var(--warn);font-weight:inherit">单位也相乘</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 小数点错位，九成孩子栽在这里</a></li>
+<li><a href="#l2">02 加减：对齐就是同质规则</a></li>
+<li><a href="#l3">03 乘法：0.3 × 0.2 为什么等于 0.06</a></li>
+<li><a href="#l4">04 除法：转化成整数算</a></li>
+<li><a href="#l5">05 四则运算顺序</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>小数点错位，九成孩子栽在这里</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子最容易犯的三个错：<br>
+    · <span class="m">3.21 + 4.5 = 7.71</span>（末位对齐了）<br>
+    · <span class="m">0.3 × 0.2 = 0.06</span> 写成 <span class="m">0.6</span>（小数位数没相加）<br>
+    · <span class="m err-ex">5.2 米 = 52 厘米</span>（数字对了，单位忘了换）<br>
+    <strong>三个错，根子是同一个：他没在跟「单位」打交道。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">小数运算和整数运算<strong>没有区别</strong>，区别只在「计数单位」。</p>
+  <p>
+    整数算的是「几个一」，小数算的是「几个 0.1」「几个 0.01」……<br>
+    <em class="hl">只要死死盯住单位，小数运算就是整数运算的翻版。</em>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>加减：对齐就是同质规则</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    <strong>为什么末位对齐在整数里对，在小数里就错？</strong><br>
+    整数末位对齐 → 个位对个位 → <em class="hl">天然同一个单位</em>，可以直接加。<br>
+    小数末位对齐 → 百分位对十分位 → <em class="hl">单位不同，不能加</em>。<br><br>
+    所以小数必须<strong>对齐小数点</strong>，让每一列都是同一个单位。<br>
+    <strong>这不是新规定，就是同质规则（单位统一才能合并）在小数里的样子。</strong>
+  </p>
+</div>
+
+<div class="demo" id="align-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换对齐方式</div>
+  <p class="demo-hint">把 <b>3.215</b> 和 <b>1.4</b> 竖起来。拖动看每一列的单位标签。</p>
+  <div class="demo-stage"><div id="align-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>对齐方式</label><input type="range" id="align-r" min="0" max="1" value="0"><span class="val" id="align-rv"></span>
+  </div>
+  <div class="demo-out" id="align-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>乘法：0.3 × 0.2 为什么等于 0.06</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师讲「<strong>两个因数的小数位数相加，就是积的小数位数</strong>」。
+    孩子记成了口诀，做 <span class="m">0.3 × 0.2</span> 时写成 <span class="m">0.06</span> —— 对了，但<strong>他不知道为什么</strong>。<br>
+    一遇到 <span class="m">0.5 × 0.4 = 0.20</span> 能不能写成 <span class="m">0.2</span>，他就不确定了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">积的小数位数不是「规定」，是<strong>单位相乘的结果</strong>。</p>
+  <p>
+    <span class="m">0.3</span> 是 <strong>3 个 0.1</strong>，<span class="m">0.2</span> 是 <strong>2 个 0.1</strong>。<br>
+    3 个 0.1 乘 2 个 0.1 = <em class="hl">6 个 0.1 × 0.1</em> = <strong>6 个 0.01</strong>。<br>
+    6 个 0.01 = <strong>0.06</strong>。<br><br>
+    <strong>0.1 × 0.1 = 0.01</strong> —— 两个计数单位相乘。<br>
+    所以<em class="hl">小数位数 = 两个因数小数位数之和</em>是<strong>算出来的</strong>，不是背下来的。
+  </p>
+</div>
+
+<div class="demo" id="dm-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动看交叉相乘</div>
+  <p class="demo-hint">每个 0.1 乘每个 0.1 = 一个 0.01。数一数一共多少个。</p>
+  <div class="demo-stage"><div id="dm-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>第一个因数</label><input type="range" id="dm-a" min="1" max="9" value="3"><span class="val" id="dm-av"></span>
+    <label>第二个</label><input type="range" id="dm-b" min="1" max="9" value="2"><span class="val" id="dm-bv"></span>
+  </div>
+  <div class="demo-out" id="dm-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 背位数型</div>
+    <p>「小数位数相加」——<strong>只管位数，不管数</strong>。</p>
+    <p>后果：<span class="m">0.5 × 0.4 = 0.20</span> 算出来最后<strong>去掉末尾的 0</strong> 才是 0.2，这一步<strong>没人教过他为什么</strong>。位数够而数值不对的错，全军覆没。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 单位型</div>
+    <p>「先<strong>当整数算</strong>，再数出积有几个<strong>百分之一</strong>。」</p>
+    <p>结果：位数自然定，末尾 0 自然能去——因为<strong>0.20 就是 2 个百分之一，多写的 0 没有实体</strong>。</p>
+  </div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>除法：转化成整数算</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">小数除法<strong>不是新运算</strong>，是「把计数单位换大再算」。</p>
+  <p>
+    <span class="m">7.2 ÷ 0.3</span> 不可能真的用 0.3 去除 —— <strong>除数太小了</strong>。<br>
+    做法：<em class="hl">把两个数的单位同时换大</em>：<span class="m">7.2 ÷ 0.3 = 72 ÷ 3 = 24</span><br>
+    因为<strong>分子分母的单位同时变大 10 倍，商不变</strong>（这就是<a href="../fraction/common.html">分数的基本性质</a>）。<br><br>
+    <strong>「除数是小数就挪小数点」不是规定，是单位换算。</strong>
+  </p>
+</div>
+
+<div class="note">
+  <b>商的小数点该怎么点：</b>看<strong>除数和被除数的小数位数</strong>。<br>
+  规则很简单：<strong>先当整数除，再把商的小数点向左移「被除数比除数多出的位数」位。</strong><br>
+  <span class="m">7.2 ÷ 0.3</span>：被除数 1 位，除数 1 位，差 0 位 → 商是整数 <strong>24</strong> ✓<br>
+  <span class="m">4.2 ÷ 0.6</span>：1 位 − 1 位 = 0 → 42÷6 = <strong>7</strong> ✓
+</div>
+
+<h2 id="l5"><span class="num">05</span>四则运算顺序</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「先乘除后加减」孩子背得出。可 <span class="m">24 ÷ 6 × 2</span> 算成 8 一大堆。
+    「先算括号里的」也背得出，可 <span class="m">36 + 24 × 2</span> 他算成了 <span class="m">120</span>——把 36+24 一起算了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">运算顺序不是三条并列规定，是<strong>一条：先做「更紧的」</strong>。</p>
+  <p>
+    <strong>括号</strong>把运算「勒紧」→ 最先做<br>
+    <strong>乘除</strong>比<strong>加减</strong>紧 → 先做乘除<br><br>
+    <em class="hl">一条规则：谁绑得紧，谁先做。</em><br>
+    知道这一条，就不用背三条规定了。
+  </p>
+</div>
+
+<div class="demo" id="or-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换四道题看三层顺序</div>
+  <p class="demo-hint">看哪一步被<strong>点亮</strong>（本题用到了哪条）。</p>
+  <div class="demo-stage"><div id="or-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>题目</label>
+    <select id="or-mode" class="btn" style="padding:7px 12px">
+      <option value="0">36 + 24 × 2</option>
+      <option value="1" selected>(36 + 24) × 2</option>
+      <option value="2">36 ÷ 2 + 24</option>
+      <option value="3">[(36 + 24) × 2] ÷ 5</option>
+    </select>
+  </div>
+  <div class="demo-out" id="or-out"></div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>先问单位对不对，再动笔。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    小数运算九成的错都是单位没对齐。孩子动笔前先扫一眼小数点，比算完检查更有效。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b4-decimal">
+  <h3 style="margin-top:0">小数的加减乘除 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版四年级下册「小数的加法和减法」、
+  四下「四则运算」、五上「小数乘法」「小数除法」四个单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="law.html">上一节：五条运算定律</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="vertical.html">大数竖式进阶</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b4-decimal"]={title:"小数的加减乘除 · 5 题",qs:[
+{stem:"<span class='m'>0.3 × 0.2 = 0.06</span>，积为什么有两位小数？",
+ opts:["因为小数位数相加是规定","0.3 是 3 个 0.1，0.2 是 2 个 0.1，相乘得 6 个 0.1×0.1 = 6 个 0.01 = 0.06，单位相乘决定了位数","因为结果小于 1","因为要补零"],
+ answer:"B",why:"<strong>计数单位相乘</strong>：0.1 × 0.1 = 0.01。3 个 0.1 乘 2 个 0.1 = <strong>6 个 0.01</strong>。小数位数是<strong>算出来的</strong>，不是规定的。",
+ miss:"<strong>单位也要相乘</strong>。0.1 乘 0.1 得到 0.01，所以 3 个 0.1 乘 2 个 0.1 就是 6 个 0.01。",
+ kidSay:"0.1 乘 0.1 等于多少？等于 0.01。所以这里的单位是百分之一，数一数有几个。"},
+{stem:"小数加减法必须<strong>对齐小数点</strong>，最根本的原因是：",
+ opts:["老师规定","对齐后每一列才是同一个计数单位，单位相同才能合并（同质规则）","为了写整齐","小数点很重要"],
+ answer:"B",why:"整数末位对齐是对的（个位对个位同单位）；小数末位对齐会让百分位碰十分位，<strong>单位不同不能加</strong>。这正是<a href='../pillar/rule.html'>同质规则</a>。",
+ miss:"<strong>对齐是为了让单位一样</strong>。单位一样才能合并——这和小数点加减是同一条规则。",
+ kidSay:"对齐的时候，每一列的单位得一样。单位不一样，是不能加的。"},
+{stem:"<span class='m'>7.2 ÷ 0.3</span>，正确的做法是：",
+ opts:["直接用 0.3 去除","把两个数同时换成更大的单位：72 ÷ 3 = 24，分子分母单位同时变大，商不变","把被除数缩小","用竖式一位一位除"],
+ answer:"B",why:"除数 0.3 太小没法直接除。<strong>把分子分母的单位同时变大 10 倍</strong>：<span class='m'>7.2÷0.3 = 72÷3 = 24</span>。这就是<strong>分数的基本性质</strong>——商不变。",
+ miss:"<strong>分子分母的单位同时变大，商就不变</strong>。7.2 和 0.3 都变成 10 倍，7.2÷0.3 变成 72÷3。",
+ kidSay:"0.3 太小除不了。把两个数同时乘 10，变成 72 除以 3，商还是一样。"},
+{stem:"<span class='m'>24 ÷ 6 × 2</span> 应该怎么算？",
+ opts:["24 ÷ (6×2) = 2","(24÷6)×2 = 8","24 ÷ 6 = 4，再 ÷ 2 = 2","先算 24×2"],
+ answer:"B",why:"<strong>乘除同级，从左往右依次算</strong>：24 ÷ 6 = 4，4 × 2 = 8。<strong>只有加减或乘除不同级时，才需要「先乘除后加减」。</strong>",
+ miss:"<strong>乘除是同一级</strong>，要<strong>从左往右</strong>算：24÷6=4，4×2=8。",
+ kidSay:"乘和除是同一级。就像走路，从左往右一步步来：先 24 除以 6，再乘 2。"},
+{stem:"运算顺序的真正规律是什么？",
+ opts:["三条并列规定：先括号、再乘除、后加减","一条：先做「绑得更紧」的运算","先算大的数","从右往左算"],
+ answer:"B",why:"<strong>括号把运算勒紧 → 最先做；乘除比加减紧 → 先做乘除。</strong>知道「谁紧谁先」这一条，就不需要背三条规定了。",
+ miss:"<b>谁绑得紧，谁先做</b>。括号最紧，然后乘除，最后加减。就这一条。",
+ kidSay:"不用背三条。看看哪个运算被「勒得更紧」，紧的那个先算。"}
+]};
+</script>
+<script src="../assets/js/rule.js"></script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

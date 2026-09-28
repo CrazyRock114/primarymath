@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>推理 · 排除法</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 二年级下册</span>
+  <h1>推理<br>从最确定的那句话切进去</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子把所有可能全试一遍</a></li>
+<li><a href="#l2">02 溯源：先找「一定」的那句</a></li>
+<li><a href="#l3">03 排除法的三个动作</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子把所有可能全试一遍</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「小明、小红、小华各拿一个球，分别是红、黄、绿。小红拿黄球。小明不拿红也不拿黄。小华不拿绿。谁拿什么？」
+    孩子会把 <strong>3 × 3 × 3 = 27 种</strong>全试出来，试试停停试半天。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">27 种里，<strong>只有 1 种是对的</strong>。但你不需要知道有 27 种。</p>
+  <p>
+    孩子的问题在于<strong>从最弱的条件开始试</strong>（「小明不拿红也不拿黄」只是排除，不是确定）。
+    真正高效的顺序是<em class="hl">从最确定的那句入手</em>：<br><br>
+    「小红拿黄球」——<strong>这是确定的</strong>，先落子。<br>
+    黄被占了，「小明不拿黄」<strong>自动满足</strong>，问题从 3×3×3 缩到 2×2。<br>
+    「小明不拿红」→ 小明只能拿绿。<br>
+    剩下的给小华 —— 全程<strong>没有试错</strong>。
+  </p>
+</div>
+
+<div class="demo" id="tl-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：一条一条加线索，看范围怎么缩小</div>
+  <p class="demo-hint">注意每加一条<strong>确定的</strong>线索，有几个人的球就<strong>立刻</strong>定下来了。</p>
+  <div class="demo-stage"><div id="tl-vis"></div></div>
+  <div class="demo-out" id="tl-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：先找「一定」的那句</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    推理的本质是<strong>做减法</strong>，不是做加法。<br>
+    孩子以为「多知道一点＝多一种可能」，其实正好相反：<em class="hl">每确定一个位置，其他位置的可能性就少一批</em>。<br>
+    所以正确的策略是：<strong>优先用确定的信息，把空间压到最小，再处理不确定的。</strong>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 全枚举型</div>
+    <p>「把所有可能都试一遍，总有一个对的。」</p>
+    <p>后果：<strong>慢，而且无法判断自己漏没漏</strong>。人数一多直接崩。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 排除型</div>
+    <p>「先把<strong>一定</strong>的定下来，再用它排除别人。」</p>
+    <p>结果：<strong>每一步都能说清理由</strong>，而且能<strong>回头自检</strong>——每条线索都用上了吗？</p>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>排除法的三个动作</h2>
+
+<div class="card">
+  <ol style="padding-left:22px;line-height:2.2;margin:0">
+    <li><strong>定</strong>：先落下「一定是」的那一条</li>
+    <li><strong>排</strong>：用它把同一个人能拿的东西砍掉一半</li>
+    <li><strong>补</strong>：<strong>最后剩下的那个，就是答案</strong></li>
+  </ol>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「哪一句是<strong>一定</strong>的？先说它。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子要开始枚举时，立刻叫停，问这一句。
+    他会发现：每次都有「一定」的那一句，根本不需要枚举。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="gl-tuili">
+  <h3 style="margin-top:0">推理 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「推理」是人教版二年级下册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="paipei.html">上一节：搭配</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="jihe.html">集合</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-tuili"]={title:"推理 · 5 题",qs:[
+{stem:"小明、小红、小华拿红黄绿三个球，小红拿黄球，小明不拿红也不拿黄。谁拿绿球？",
+ opts:["小明","小红","小华","无法确定"],
+ answer:"A",why:"小红已定黄。剩下红、绿两球。小明不拿红（也不拿黄），所以小明只能拿<strong>绿</strong>，小华拿<strong>红</strong>。",
+ miss:"先落定<strong>小红=黄</strong>。黄被占了，小明只剩红和绿，又不能拿红——<b>小明只能拿绿</b>。",
+ kidSay:"小红拿黄是一定的，先定下来。剩下红绿两个球，小明不能拿红，那他只能拿绿。"},
+{stem:"下面哪种线索应该<b>最先</b>使用？",
+ opts:["「小红不拿绿」这种排除性线索","「小红拿黄球」这种直接确定的线索","随便哪条都行","哪条都难用"],
+ answer:"B",why:"<strong>确定的信息能直接压缩搜索空间</strong>，排除性的信息只能砍掉一部分。先用确定线索，范围立刻缩小一半以上。",
+ miss:"排除的线索只是<strong>少一个可能</strong>，确定的线索是<strong>直接落子</strong>。先用能定下来的。",
+ kidSay:"先找那句话是「一定」的，一句话就能定一个人，其他人一排除就出来了。"},
+{stem:"推理题的正确解法，本质上是在做什么？",
+ opts:["做加法，把所有可能加起来","做减法，每确定一个就排除掉其他可能","把所有排列都列一遍","随机试三次"],
+ answer:"B",why:"推理是<strong>不断缩小可能性空间</strong>的过程。确定一个位置，其他人可拿的东西立刻减少。这是「做减法」。",
+ miss:"推理不是加法，是<strong>减法</strong>。每定一个人，其他人的可能性就少一批。",
+ kidSay:"每确定一个人，其他人的选择就少一点。是在排除，不是在堆。"},
+{stem:"推理做完之后，怎么检查自己有没有漏用条件？",
+ opts:["看答案对不对就行","把每条线索都回头核对一遍，看有没有哪条被闲置","再算一遍","请老师批改"],
+ answer:"B",why:"<strong>每条线索都该被用上</strong>。如果做完还有某条线索完全没派上用场，通常说明推理有漏洞，或者题目本身有多解。",
+ miss:"做完回头<strong>把线索一条条核一遍</strong>。哪条没用上，多半有地方错了。",
+ kidSay:"做完再把每句话看一遍。有没有哪句话你根本没用到？那就要小心了。"},
+{stem:"甲、乙、丙分别学钢琴、画画、下棋。乙学钢琴，丙学下棋。谁学画画？",
+ opts:["甲","乙","丙","条件不足"],
+ answer:"A",why:"乙钢琴、丙下棋都已确定，<strong>剩下的画画只能归甲</strong>。这就是<strong>从最确定的那句入手</strong>——不用把所有可能性都试一遍。",
+ miss:"先把<strong>确定的</strong>落下来：乙钢琴、丙下棋。剩下的位置只能给甲。",
+ kidSay:"乙拿钢琴、丙拿下棋，都是一定的。那画画不就只剩甲了吗。"}]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

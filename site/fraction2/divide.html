@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数除法 · 为什么是乘倒数</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">分数乘除与方程</a><a href="divide.html">分数除法</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 六年级上册「分数除法」</span>
+  <h1>为什么除以一个数<br>= 乘<strong style="color:var(--warn);font-weight:inherit">它的倒数</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 背了一整年，还是不懂</a></li>
+<li><a href="#l2">02 先搞清分数除法是什么意思</a></li>
+<li><a href="#l3">03 溯源：它和 B4 的小数除法是同一条规则</a></li>
+<li><a href="#l4">04 为什么要「乘倒数」而不是「除以」</a></li>
+<li><a href="#l5">05 乘和除，同一个模型的两个方向</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>背了一整年，还是不懂</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「除以一个数（0 除外），等于乘这个数的倒数。」——这句话孩子<strong>背了整整一年</strong>。<br>
+    可你问：<strong>「为什么是乘倒数，不是除以倒数？」</strong>他答不上来。<br>
+    <span class="m">3/4 ÷ 1/2</span> 和 <span class="m">3/4 × 1/2</span> 完全是两个答案，
+    他<strong>凭什么知道要用哪一个</strong>？<strong>不知道，就只能赌</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">因为<strong>除法的目的，是让「乘积」保持不变</strong>。</p>
+  <p>
+    <span class="m">3/4 ÷ 1/2</span> 的意思是「<strong>3/4 里面装着几个 1/2</strong>」，答案要满足：
+    <span class="m">1.5 × 1/2 = 3/4</span>。<br><br>
+    试 <strong>? = 2</strong>：<span class="m">2 × 1/2 = 1</span>，不满足。<br>
+    试 <strong>? = 1.5</strong>：<span class="m">1.5 × 1/2 = 0.75 = 3/4</span> ✓ <em class="hl">就是这个</em>。<br><br>
+    <strong>所以 1.5 就是商。</strong>而 <strong>1.5 正是 1/2 的倒数</strong>。<br>
+    <em class="hl">「乘倒数」不是规定，是<strong>让乘积不变的必然选择</strong>。</em>
+  </p>
+</div>
+
+<div class="demo" id="fd-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：两个视角切换看</div>
+  <p class="demo-hint">先看<strong>「意义」视角</strong>（装了几个），再看<strong>「为什么」视角</strong>（为什么乘倒数）。</p>
+  <div class="demo-stage"><div id="fd-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>视角</label>
+    <select id="fd-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 意义：3/4 里面装着几个 1/2</option>
+      <option value="1">② 原理：为什么要乘倒数</option>
+    </select>
+  </div>
+  <div class="demo-out" id="fd-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>先搞清分数除法是什么意思</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    分数除法有<strong>两种意思</strong>，而课本往往只教一种，导致孩子混成一团：<br><br>
+    <strong>① 平均分：<span class="m">4/5 ÷ 2</span></strong> → 把 4/5 <strong>平均分成 2 份</strong>，每份几？<br>
+    <strong>② 包含除：<span class="m">4/5 ÷ 1/2</span></strong> → 4/5 里面<strong>装着几个</strong> 1/2？<br><br>
+    <em class="hl">第 ① 种可以化成一个乘法（乘 1/2），第 ② 种是真正的分数除法。</em><br>
+    孩子把两者混为一谈，是除法算不明白的<strong>根因之一</strong>。
+  </p>
+</div>
+
+<div class="note">
+  <b>怎么分清：看除数后面是什么。</b><br>
+  · 除以一个<strong>具体的数</strong>（<span class="m">2</span>、<span class="m">3</span>）→ 平均分，<strong>除以它</strong>就对了<br>
+  · 除以一个<strong>分数</strong>（<span class="m">1/2</span>、<span class="m">3/4</span>）→ 包含除，要<strong>乘倒数</strong><br>
+  <span style="color:var(--brand)"><strong>一句话：除以分数，就翻个身乘倒数。</strong></span>
+</div>
+
+<h2 id="l3"><span class="num">03</span>溯源：它和 B4 的小数除法是同一条规则</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    回到<a href="../rule/decimal.html">B4 小数除法</a>：<br>
+    <span class="m">7.2 ÷ 0.3</span> 的做法是「<strong>把两个数的单位同时换大</strong>」→ <span class="m">72 ÷ 3 = 24</span>。<br>
+    为什么商不变？因为<strong>分子分母同时变大 10 倍，比值没变</strong>。<br><br>
+    现在看分数除法：<span class="m">3/4 ÷ 1/2</span>。<br>
+    我们要的是「让 <strong>3/4 这个整体保持不变</strong>」，把「每份的量」换一下：<br>
+    · 每份从 <strong>1/2</strong> 换成 <strong>2</strong>（分母从 2 变成 1，即「变大」）<br>
+    · 为了让总量仍是 3/4，<strong>份数必须变小</strong>：从 1.5 份变成 0.75 份<br><br>
+    <em class="hl"><strong>单位变大了，份数就必须变小</strong>——这就是「乘倒数」在做的事。</em><br>
+    <strong>小数除法和分数除法，是同一条「让比值不变」的不同单位换算。</strong>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 规则背书型</div>
+    <p>「除以一个数等于乘它的倒数。」——<strong>当结论记住</strong>。</p>
+    <p>后果：只知道「要乘倒数」，不知道为什么；<strong>遇到「<span class='m'>a ÷ b = a × (1/b)</span>」这种变形就卡住</strong>，因为它不长得像「除法」。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 守恒型</div>
+    <p>「<strong>除法是让被除数保持不变的单位换算</strong>。」</p>
+    <p>结果：<strong>任何除法变形都能自己推</strong>——乘倒数、除以倒数化成分数、约分、通分，<strong>全是同一件事</strong>。</p>
+  </div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>为什么要「乘倒数」而不是「除以」</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">因为<strong>「乘倒数」和「除以它」是同一件事</strong>，只是写法不同。</p>
+  <p>
+    除以 <span class="m">1/2</span> ？——就是问「<strong>要几份 1/2 才够 3/4</strong>」。<br>
+    而「<strong>几份</strong>」这个问题，在乘法里就是「<strong>乘以几</strong>」。<br>
+    <em class="hl">要把 3/4 拆成若干个 1/2，拆几份？→ 乘以份数。→ 乘 1.5。</em><br>
+    <strong>所以「除以」在乘法里天然要变成「乘」。</strong>
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>三种写法，同一个意思：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><span class="m">a ÷ b</span>　——「a 里有几个 b」</li>
+    <li><span class="m">a × (1/b)</span>　——「拆成几份」，<strong>份数就是 1/b</strong></li>
+    <li><span class="m">a × b⁻¹</span>　——用负指数，初中写法</li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>孩子认不出 <span class="m">a × (1/b)</span> 就是 <span class="m">a ÷ b</span>，是因为只背了形式没理解「几份」。</strong>
+  </p>
+</div>
+
+<h2 id="l5"><span class="num">05</span>乘和除，同一个模型的两个方向</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>B2 讲过的模型，这里是它的完整体现：</strong></p>
+  <div class="models" style="margin:0">
+    <div class="model model-good">
+      <div class="model-h">乘法 = 打包</div>
+      <p><span class="m">2/3 × 3/4</span><br>
+        分母相乘 = <strong>切得更细</strong>（3 份 → 12 份）<br>
+        分子相乘 = <strong>取其中几份</strong>（2 × 3 = 6 份）<br>
+        → 面积模型，<strong>数格子</strong></p>
+    </div>
+    <div class="model model-good">
+      <div class="model-h">除法 = 拆包</div>
+      <p><span class="m">3/4 ÷ 1/2</span><br>
+        问「<strong>装着几个</strong>」<br>
+        把每份的量换一下（1/2 → 2）<br>
+        → <strong>份数自动反向变化</strong></p>
+    </div>
+  </div>
+  <p style="margin-top:16px;margin-bottom:0">
+    <strong>乘法是「几份取几份」，除法是「装了几个」。</strong>两个问题都在问<em class="hl">同一个数量关系</em>，
+    只是方向不同 —— 这就是<a href="../pillar/structure.html">结构柱</a>说的「乘法是加法的打包，除法是乘法的解构」。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>要几份？——除法就是问份数，除以分数就乘倒数。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子算分数除法时先别套公式，问一句：<strong>「这里要几份才算够？」</strong>
+    份数是乘出来的——<em>这就是乘倒数的来源</em>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b5-divide">
+  <h3 style="margin-top:0">分数除法 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版六年级上册「分数除法」单元。
+  承接本站<a href="../rule/decimal.html">B4 小数除法</a>的「单位换算」主线。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="multiply.html">上一节：分数乘法</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="equation.html">方程与比例</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b5-divide"]={title:"分数除法 · 5 题",qs:[
+{stem:"<span class='m'>a ÷ b = a × (1/b)</span>，这个变形成立的根因是：",
+ opts:["规定","除法是问「装了几份」，而「几份」在乘法里就是「乘以几」","为了简化计算","为了让式子好看"],
+ answer:"B",why:"<strong>除法的意义是「a 里面装着几个 b」</strong>，而「几份」这个问题在乘法里就是「乘以份数」。所以 <span class='m'>a÷b</span> 中的份数是 <span class='m'>1/b</span>，写成乘法就是 <span class='m'>a×(1/b)</span>。<strong>不是规定，是意义决定的</strong>。",
+ miss:"<strong>除法问的是「几份」</strong>，而「几份」就是乘法里的「乘以几」。所以自然变成乘。",
+ kidSay:"a 除以 b，问的是要几份 b。几份 = 乘以几。所以就是 a 乘以 1/b。"},
+{stem:"<span class='m'>3/4 ÷ 1/2</span>，正确做法和<strong>依据</strong>是：",
+ opts:["3/4 × 2 = 1.5，因为除以一个分数等于乘它的倒数","3/4 × 1/2 = 3/8，因为乘以除数","3/4 ÷ 2 = 3/8，因为要变小","3/4 + 1/2 = 5/4"],
+ answer:"A",why:"<strong>除以 <span class='m'>1/2</span> = 乘 <span class='m'>1/2</span> 的倒数 <span class='m'>2</span></strong>，所以 <span class='m'>3/4 × 2 = 1.5</span>。验证：<span class='m'>1.5 × 1/2 = 0.75 = 3/4</span> ✓ <strong>乘积保持不变</strong>。",
+ miss:"<strong>除以分数就乘它的倒数</strong>。1/2 的倒数是 2，所以 3/4 × 2 = 1.5。验算：1.5×1/2=3/4 对上了。",
+ kidSay:"除以 1/2 就是乘它的倒数 2。3/4 乘 2 等于 1.5。验算一下 1.5 乘 1/2 是不是回到 3/4。"},
+{stem:"分数除法 <span class='m'>4/5 ÷ 2</span> 和 <span class='m'>4/5 ÷ 1/2</span> 的算法不同，原因是：",
+ opts:["前者除以整数，后者除以分数","前者是平均分（可以直接除），后者是包含除（要乘倒数）","前者简单，后者难","没有区别"],
+ answer:"B",why:"<span class='m'>4/5 ÷ 2</span> 是<strong>平均分</strong>，除以 2 就对了；<span class='m'>4/5 ÷ 1/2</span> 是<strong>包含除</strong>，问「装着几个 1/2」，要<strong>乘倒数</strong>（乘 2）。<strong>分清两种意义是关键</strong>。",
+ miss:"<strong>除以整数是平均分，除以分数是包含除</strong>。前者直接除，后者要乘倒数。",
+ kidSay:"除以一个数是把东西平均分；除以一个分数是问「里面有几个」。两种意义，算法不同。"},
+{stem:"<span class='m'>7.2 ÷ 0.3 = 72 ÷ 3</span>（把两数同时换成更大单位，商不变）和 <span class='m'>3/4 ÷ 1/2 = 3/4 × 2</span>（乘倒数），<b>它们讲的是同一件事吗？</b>",
+ opts:["不是，毫无关系","是：都是为了让「比值不变」而做的单位换算","是：都是乘除互逆","不知道"],
+ answer:"B",why:"小数除法是<strong>把分子分母的单位同时换大</strong>；分数除法乘倒数是<strong>把每份的量换一下、份数反向变化</strong>。两者都在<strong>保持整体量与份数的关系不变</strong>，是同一条「让比值守恒」的规则。",
+ miss:"<strong>都是「换单位，但比值不变」</strong>。7.2÷0.3 换大单位商不变，3/4÷1/2 换大每份量份数变小，同一个道理。",
+ kidSay:"一个是把两边都换成大的单位，一个是把每份换大、份数变小。都是为了那个比值不变。"},
+{stem:"孩子会做 <span class='m'>a ÷ b</span>，但看到 <span class='m'>a × (1/b)</span> 认不出是同一件事。最该补的是：",
+ opts:["多练这种变形","理解「除法 = 几份」这个意义，知道份数就是 1/b，认出它只是写法不同","背更多公式","用计算器"],
+ answer:"B",why:"<span class='m'>a÷b</span>、<span class='m'>a×(1/b)</span>、<span class='m'>a×b⁻¹</span> 是<strong>同一个意思的三种写法</strong>。理解了「几份 = 1/b」，形式一变他就认得出来。<strong>抓意义，不背形式</strong>。",
+ miss:"不是公式问题，是<strong>没理解「除法 = 几份」</strong>。理解了份数就是 1/b，形式换了他也认得。",
+ kidSay:"a 除以 b 就是问要几份 b。1/b 正是那个份数。写成 a 乘 1/b，意思完全一样。"}
+]};
+</script>
+<script src="../assets/js/frac2.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

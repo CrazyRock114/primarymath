@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么分数必须先通分</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">分数与小数</a><a href="common.html">为什么必须通分</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 分数的意义和性质 · 五年级下册</span>
+  <h1>为什么分数必须先通分<br>因为<strong style="color:var(--warn);font-weight:inherit">单位不一样，不能加</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 通分背了一百遍，还是不会</a></li>
+<li><a href="#l2">02 溯源：它和小数点对齐是同一条规则</a></li>
+<li><a href="#l3">03 三条规则，一个道理</a></li>
+<li><a href="#l4">04 分数意义与性质：把分数摊平</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>通分背了一百遍，还是不会</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师教：异分母分数相加，<strong>先通分，再加减</strong>。孩子背得滚瓜烂熟。<br>
+    可你问：<strong>「为什么不直接加？」</strong>他说「因为要通分」。
+    再问「<strong>通分是在干什么</strong>？」他答不上来。<br>
+    换个分母（比如 <span class="m">1/4 + 1/7</span>），他不敢通，因为不知道通到哪儿。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">通分不是技巧，是<strong>换单位</strong>——和整数加法「末位对齐」是<strong>同一条规则</strong>。</p>
+  <p>
+    <span class="m">1/2 + 1/3</span> 为什么不能直接加？<br>
+    因为 <strong><span class="m">1/2</span> 是「二分之一」，<span class="m">1/3</span> 是「三分之一」</strong> —— <em class="hl">单位不一样</em>。<br>
+    这就像 <strong>3 个苹果 + 2 只猫</strong>，能加吗？<strong>不能</strong>。<br><br>
+    通分做的事：<strong>把二分之一和三分之一，都换成六分之一</strong> —— 换成同一个单位了，就能合并了。
+  </p>
+</div>
+
+<div class="demo" id="cd-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：先试不换单位，再换单位</div>
+  <p class="demo-hint">切换按钮。留意<strong>两个圆的分法不一样时，为什么没法直接合并</strong>。</p>
+  <div class="demo-stage"><div id="cd-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>分母</label><input type="range" id="cd-b" min="3" max="6" value="3"><span class="val">3</span>
+    <label>状态</label>
+    <select id="cd-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>不换单位（错误做法）</option>
+      <option value="1">通分之后（正确做法）</option>
+    </select>
+  </div>
+  <div class="demo-out" id="cd-out"></div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>单位一样吗？不一样，先换单位再算。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做题卡住时别提示「通分」。就问一句单位。<br>
+    答不上来他自己就会去通分——<strong>因为他知道为什么要通</strong>。
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：它和小数点对齐是同一条规则</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    回头看<a href="../pillar/rule.html">支柱五「规则」</a>，其中第一条是<strong>同质规则</strong>：<br><br>
+    <em class="hl"><strong>唯有计数单位统一，方能执行合并。</strong></em><br><br>
+    这条规则在小学里出现<strong>三次</strong>，全都是同一个道理：
+    <br>
+    · <strong>整数加减</strong>：个位对个位 → 单位天然相同，直接加<br>
+    · <strong>小数加减</strong>：小数点对齐 → 每一列单位相同，才可以加<br>
+    · <strong>分数加减</strong>：通分 → 单位统一了，才可以加<br><br>
+    <strong>三次是同一条规则的三种长相。</strong>孩子学三次，是因为他不知道它们是一回事。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>用一张表看清这三次：</strong></p>
+  <table style="width:100%;border-collapse:collapse;font-size:15px">
+    <tbody>
+      <tr><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft);white-space:nowrap"><strong>整数</strong></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)">末位对齐</td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft)">个位对个位，天生同单位</td></tr>
+      <tr><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft);white-space:nowrap"><strong>小数</strong></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)">小数点对齐</td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft)">十分位对十分位，同单位</td></tr>
+      <tr><td style="padding:10px 8px;white-space:nowrap"><strong>分数</strong></td><td style="padding:10px 8px">先通分</td><td style="padding:10px 8px;color:var(--ink-soft)">二分之一 = N/六分之一，同单位</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="l3"><span class="num">03</span>三条规则，一个道理</h2>
+
+<div class="card">
+  <ol style="padding-left:22px;line-height:2.2;margin:0">
+    <li><strong>同质规则</strong>：单位统一，才能合并<br>
+      <span style="color:var(--ink-soft);font-size:14.5px">→ 整数末位对齐、小数点对齐、分数通分</span></li>
+    <li><strong>平衡规则</strong>：两边等价，才成立<br>
+      <span style="color:var(--ink-soft);font-size:14.5px">→ 等式性质、移项、去分母</span></li>
+    <li><strong>转化守恒</strong>：换个形状，本质不变<br>
+      <span style="color:var(--ink-soft);font-size:14.5px">→ 割补、数形结合、化归</span></li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    小学阶段几乎所有看起来毫不相关的运算规则，背后<strong>只站着这三条</strong>。
+    记住它们，规则就可以<strong>现场推导</strong>，不用背。
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>分数意义与性质：把分数摊平</h2>
+
+<div class="demo" id="ax-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动分子分母，看数轴上的位置</div>
+  <p class="demo-hint">同一个点，<b>分数和小数两种写法</b>——这是理解分数性质的关键。</p>
+  <div class="demo-stage"><div id="ax-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>分子</label><input type="range" id="ax-m" min="1" max="9" value="3"><span class="val">3</span>
+    <label>分母</label><input type="range" id="ax-d" min="2" max="8" value="4"><span class="val">4</span>
+  </div>
+  <div class="demo-out" id="ax-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 背性质型</div>
+    <p>「分数的基本性质：分子分母同时乘或除以相同的数（0 除外），分数的大小不变。」</p>
+    <p>后果：能背，但<strong>不知道它为什么成立</strong>。变式一来（化成最简分数、分数小数互化）全废。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 摊薄型</div>
+    <p>「<strong>把 1 切得更细</strong>：1/2 切成 2 个 1/4，1/4 切成 4 个 1/8。<strong>总长度没变。</strong>」</p>
+    <p>结果：<strong>分子分母同时变大</strong>就是切得更细，同时变小就是切得更粗。<strong>大小当然不变</strong>——因为总量没动。</p>
+  </div>
+</div>
+
+<div class="note">
+  <b>两条性质其实是一件事的正反两面：</b><br>
+  <strong>分数的基本性质</strong>（同时乘除）= 把单位换细或换粗<br>
+  <strong>商不变的性质</strong>（被除数和除数同时乘除）= 分子分母同时变<br>
+  <span style="color:var(--brand)"><strong>因为分数本来就是「除法」的另一种写法</strong>——分子是被除数，分母是除数。</span>
+  <br>所以课本上把它们分开讲，孩子就觉得是两回事；讲成一件事，就通了。
+</div>
+
+<div class="quiz" data-quiz="b3-common">
+  <h3 style="margin-top:0">为什么必须通分 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版五年级下册「分数的意义和性质」单元，
+  并串联本站<a href="../pillar/rule.html">支柱五「规则」</a>的「同质规则」。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="born.html">上一节：分数从哪里来</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="decimal.html">小数的意义</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b3-common"]={title:"为什么必须通分 · 5 题",qs:[
+{stem:"<span class='m'>1/2 + 1/3</span> 为什么不能直接相加？",
+ opts:["因为分子分母不一样大","因为「二分之一」和「三分之一」是两种不同的计数单位，单位不同不能合并","因为分母必须是偶数","因为通分更快"],
+ answer:"B",why:"<span class='m'>1/2</span> 是「二分之一」，<span class='m'>1/3</span> 是「三分之一」——<strong>单位不同</strong>。就像 3 个苹果 + 2 只猫不能加。<strong>必须先换成同一个单位</strong>。",
+ miss:"问一句：<strong>这两个数的单位一样吗？</strong>二分之一和三分之一，单位不同不能合并。",
+ kidSay:"一半加三分之一，可不是一个 1/2 加一个 1/3 就行。先把它们都换成六分之一。"},
+{stem:"「同质规则」在小学里出现了三次，是哪三次？",
+ opts:["加法、减法、乘法","整数末位对齐、小数点对齐、分数通分","数、量、形","进位、借位、退位"],
+ answer:"B",why:"三次都是<strong>「唯有计数单位统一，方能执行合并」</strong>。整数个位对个位、小数点对齐、分数通分，<strong>是同一条规则的三种样子</strong>。",
+ miss:"想想<strong>加法</strong>：整数、小数、分数，加法都要求「单位一样才能加」。这是一条规则。",
+ kidSay:"整数加法要对齐，小数加法要对齐，分数加法要通分——<b>三次都在干同一件事：让单位一样</b>。"},
+{stem:"分数的基本性质说「分子分母同时乘或除以相同的数，分数大小不变」。<b>为什么不变？</b>",
+ opts:["因为规定","因为分子分母同时变，等于把「切得同样细」，总量没变","因为分数不能算","因为约分很难"],
+ answer:"B",why:"<span class='m'>1/2</span> 切成 2 个 <span class='m'>1/4</span>，再切成 4 个 <span class='m'>1/8</span>——<strong>每一份都变小了，但份数同比例变大，总长度没变</strong>。所以分数值不变。",
+ miss:"<strong>把一块饼切得更细</strong>。每份变小了，但份数变多，总量没变——所以还是原来那么大。",
+ kidSay:"分子分母同时乘 2，就是把每份切成原来一半，份数变两倍。饼还是那么多饼。"},
+{stem:"「分数的基本性质」和「商不变的性质」看起来是两回事，其实是同一件事，因为：",
+ opts:["名字不同","分数本来就是「除法」的另一种写法，分子就是被除数、分母就是除数","都是老师规定的","都是要背的"],
+ answer:"B",why:"<span class='m'>1/2</span> 就是「1 除以 2」。分子分母同时乘除 = <strong>被除数除数同时乘除</strong>。<strong>两个性质在数学上是同一件事</strong>，只是表达角度不同。",
+ miss:"想想 <span class='m'>1/2</span> 是什么的另一种写法？——是「1 除以 2」。那分子分母就是被除数和除数。",
+ kidSay:"分数 1/2 就是 1 除以 2。所以分数性质和商不变的性质，说的根本是同一件事。"},
+{stem:"孩子会背「先通分再相加」，但换个分母就不敢通。最该给他补的是：",
+ opts:["更多通分练习","通分是在换单位——把两个分数换成同一个计数单位","通分口诀","多做题"],
+ answer:"B",why:"补练习只会让他更熟练地<strong>做自己不理解的事</strong>。一旦理解<strong>「单位不同不能加」</strong>，他知道要通成<strong>什么单位</strong>——就是两个分母的最小公倍数，问题自然解决。",
+ miss:"他不是不会算，是<strong>不知道为什么要通</strong>。补上「单位不同不能加」这一句，他自己就知道通到什么。",
+ kidSay:"两个数的单位不一样，不能加。那通分就是把它们换成同一个单位——换成什么单位呢？"}
+]};
+</script>
+<script src="../assets/js/fraction.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

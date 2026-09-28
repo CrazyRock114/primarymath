@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>植树问题 · 边界条件</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 五年级上册</span>
+  <h1>植树问题<br>整条马路只差一棵树</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 20 米种 5 棵，孩子答 5 还是 6？</a></li>
+<li><a href="#l2">02 溯源：先数坑，别数树</a></li>
+<li><a href="#l3">03 四种情况，只差在两端</a></li>
+<li><a href="#l4">04 同一个道理，换个马甲又来了</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>20 米种 5 棵，孩子答 5 还是 6？</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「一条 20 米长的小路，每隔 5 米种一棵树，两端都种，问一共几棵？」
+    20÷5 = 4，很多孩子答「4 棵」。<br>
+    画出来一看，明明是 <strong>5 棵</strong>。<br>
+    <strong>孩子没错，是数错了对象</strong>——他数的是「间隔」，不是「树」。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">坑的个数和树的个数，本来就<strong>不是一回事</strong>。</p>
+  <p>
+    20 米长、每隔 5 米，路上会出现 <strong>4 个间隔</strong>（5-10、10-15、15-20，加上头一段 0-5）。<br>
+    但<em class="hl">坑有 4 个，树却有 5 棵</em>——因为两端的坑上也要种树。<br>
+    <strong>所以「两端都种」时，棵数 = 间隔数 + 1。</strong>多出来的那 1 棵，就是头尾那两棵。
+  </p>
+</div>
+
+<div class="demo" id="zs-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：切换「两端种不种」</div>
+  <p class="demo-hint">灰色横线是<strong>间隔</strong>，小树是<strong>棵数</strong>。拖动滑块切换，看看树的数量怎么变。</p>
+  <div class="demo-stage"><div id="zs-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>全长</label><input type="range" id="zs-len" min="20" max="100" value="20"><span class="val">20</span>米
+    <label>间隔</label><input type="range" id="zs-gap" min="2" max="10" value="5"><span class="val">5</span>米
+  </div>
+  <div class="demo-ctrl" style="margin-top:10px">
+    <label>情况</label>
+    <select id="zs-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>两端都种</option>
+      <option value="1">只种一端</option>
+      <option value="2">两端都不种</option>
+      <option value="3">围成一圈</option>
+    </select>
+    <span class="val" id="zs-modev"></span>
+  </div>
+  <div class="demo-out" id="zs-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：先数坑，别数树</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    假设一条 100 米的路，每 10 米种一棵树。<br>
+    <strong>你数树，会数 11 棵。</strong>那 11 棵是怎么来的？<br>
+    因为 100 ÷ 10 = 10，这 10 是<strong>「10 段路」</strong>，<strong>不是「10 棵树」</strong>。<br>
+    每一段路的<em class="hl">起点</em>上有一棵树，加上最后终点的那一棵，正好 11 棵。<br>
+    <strong>解题第一步永远是：先算间隔数，再问「两头要不要多种一棵树」。</strong>
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>「<b>先数坑，再数树</b>」三问：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li>这题求的是<strong>几棵树</strong>，还是<strong>几个间隔</strong>？——<span style="color:var(--warn)">看问题，别看算式</span></li>
+    <li>是<strong>一段直线</strong>，还是<strong>一个圆</strong>？——<span style="color:var(--warn)">圆没有头尾</span></li>
+    <li>两端<strong>种不种</strong>？</li>
+  </ol>
+</div>
+
+<h2 id="l3"><span class="num">03</span>四种情况，只差在两端</h2>
+
+<div class="card" style="padding:0;overflow:hidden">
+<table style="width:100%;border-collapse:collapse;font-size:15.5px">
+<thead><tr style="background:var(--bg-tint)">
+<th style="text-align:left;padding:12px 16px;font-size:13px;color:var(--ink-soft)">情况</th>
+<th style="text-align:left;padding:12px 16px;font-size:13px;color:var(--ink-soft)">公式</th>
+<th style="text-align:left;padding:12px 16px;font-size:13px;color:var(--ink-soft)">直觉解释</th>
+</tr></thead>
+<tbody>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>两端都种</strong></td><td style="padding:11px 16px">间隔数 + 1</td><td style="padding:11px 16px;color:var(--ink-soft)">每段起点有树，末尾多一棵树</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>只种一端</strong></td><td style="padding:11px 16px">间隔数</td><td style="padding:11px 16px;color:var(--ink-soft)">一端种，另一端不种</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>两端都不种</strong></td><td style="padding:11px 16px">间隔数 − 1</td><td style="padding:11px 16px;color:var(--ink-soft)">两头空着，少了两棵</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>围成一圈</strong></td><td style="padding:11px 16px">间隔数 × 2</td><td style="padding:11px 16px;color:var(--ink-soft)">每个坑两侧各站一棵</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 背公式型理解</div>
+    <p>「植树问题 = 间隔 + 1」——不管题目怎么变，都往 +1 上写。</p>
+    <p>后果：题目一改条件就错，而且<strong>不知道自己错在哪</strong>。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 画图型理解</div>
+    <p>「先画一遍，<strong>数一数有几棵树</strong>，再回头找规律。」</p>
+    <p>结果：条件一变，他会<strong>重新画一遍</strong>，而不是套公式。题目永远骗不过他。</p>
+  </div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>同一个道理，换个马甲又来了</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「一根木头锯成 5 段，需要锯几次？」「小红从一楼到三楼要走几层楼梯？」
+    「一口钟 6 点敲 6 下，敲 12 下要几分钟？」<br>
+    <strong>都是同一个「间隔」问题，只是换了衣服。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">抓住<strong>「头尾算不算」</strong>，这一类题就通了。</p>
+  <p>
+    · <strong>锯木头</strong>：锯 5 段要锯 <strong>4</strong> 次（头尾不锯，间隔数 = 段数 − 1）<br>
+    · <strong>爬楼梯</strong>：1 楼到 3 楼走 <strong>2</strong> 层（不算起点那层）<br>
+    · <strong>敲钟</strong>：6 点敲 6 下，<strong>6 下之间有 5 个间隔</strong>，每个间隔 12 秒，共 60 秒
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「先算间隔数，再问：<strong>两头算不算？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子下次做「敲钟」「爬楼梯」时，你问一句「头尾算不算」，
+    他就会发现：<strong>这些题跟植树其实是同一道题</strong>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="gl-zhishu">
+  <h3 style="margin-top:0">植树问题 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「植树问题」是人教版五年级上册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="jitu.html">上一节：鸡兔同笼</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="zhaocipin.html">找次品</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-zhishu"]={title:"植树问题 · 5 题",qs:[
+{stem:"一条 20 米长的小路，每隔 5 米种一棵树，两端都种。一共几棵？",
+ opts:["4 棵","5 棵","6 棵","8 棵"],
+ answer:"B",why:"20÷5 = 4 是<strong>间隔数</strong>。两端都种时，每个坑上都有树，加上末尾多出的一棵，<strong>棵数 = 间隔数 + 1 = 5 棵</strong>。",
+ miss:"20÷5=4 算的是<strong>间隔数</strong>，不是棵数。两端都种，要<b>+1</b>。",
+ kidSay:"你算出 4，那是几段路、几个坑，不是几棵树。两头也种树，得再加 1 棵。"},
+{stem:"一根木头锯成 5 段，需要锯几次？",
+ opts:["4 次","5 次","6 次","看木头粗细"],
+ answer:"A",why:"锯 5 段，中间有 <strong>4 个切口</strong>。这和「两端都不种」的植树问题一样，<strong>间隔数 = 段数 − 1</strong>。头尾不需要锯。",
+ miss:"锯的时候<strong>只锯中间那些分界处</strong>。5 段之间有 4 个界，所以锯 4 次。",
+ kidSay:"锯木头只在中间切。切成 5 段，中间要切几刀？——4 刀。"},
+{stem:"一个圆形花坛，周长 36 米，每隔 4 米种一棵柳树。一共几棵？",
+ opts:["8 棵","9 棵","10 棵","11 棵"],
+ answer:"B",why:"36÷4 = 9 个间隔。<strong>围成一圈时</strong>，每个间隔两侧都能种树，<strong>棵数 = 间隔数 = 9 棵</strong>。圆没有「最后一棵」，因为最后一棵和第一棵挨着。",
+ miss:"圆<strong>没有头尾</strong>，不用 +1 也不用 −1。<b>棵数 = 间隔数</b>。",
+ kidSay:"如果是圆形的，最后一棵和第一棵是挨着的，所以不用多加那一棵。"},
+{stem:"小明从 1 楼走到 3 楼，走了几层楼梯？",
+ opts:["2 层","3 层","4 层","看楼层高度"],
+ answer:"A",why:"1 楼到 2 楼走 1 层，2 楼到 3 楼走 1 层，一共 <strong>2 层</strong>。因为「1 楼」是起点，<strong>起点本身不算一层楼梯</strong>——这又是「只种一端」。",
+ miss:"1 楼是<strong>起点</strong>，起点本身不算楼梯层数。<b>层数 = 楼层数 − 1</b>。",
+ kidSay:"起点那一层不算，你是从 1 楼走到 2 楼，再到 3 楼，中间只走了两层楼梯。"},
+{stem:"一口钟 6 点敲 6 下，间隔 12 秒。那么 12 点敲 12 下，需要多少秒？",
+ opts:["132 秒","144 秒","156 秒","120 秒"],
+ answer:"A",why:"敲 6 下之间有 <strong>5 个间隔</strong>。12 秒 × 5 = 60 秒（一个周期）。敲 12 下有 <strong>11 个间隔</strong>，11 × 12 = <strong>132 秒</strong>。",
+ miss:"关键是<strong>间隔数 = 下数 − 1</strong>。6 下有 5 个间隔，12 下就有 11 个间隔，不是 12 个。",
+ kidSay:"敲 6 下中间隔了 5 次。敲 12 下就是 11 个间隔，乘 12 秒就好。"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

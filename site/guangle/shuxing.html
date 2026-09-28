@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数与形 · 数形结合</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 六年级上册</span>
+  <h1>数与形<br>数出来的和画出来的，是<strong style="color:var(--brand);font-weight:inherit">同一件事</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子能数出前 5 个，却说不出规律</a></li>
+<li><a href="#l2">02 溯源：把数字画出来</a></li>
+<li><a href="#l3">03 「至少一个」怎么用</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子能数出前 5 个，却说不出规律</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「用小圆点摆三角形：第 1 层摆 1 个点，第 2 层摆 2 个，第 3 层摆 3 个……摆到第 10 层一共要几个点？」
+    孩子会数前几个：1、3、6、10、15……数到第 10 个就开始烦了。
+    问「规律是什么」，他说不出。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">他缺的<strong>不是观察力，是把「数」翻译成「形」的能力</strong>。</p>
+  <p>
+    数字 1、3、6、10、15 是一条<em class="hl">无法直接看见的线</em>。
+    可一旦<strong>把它画出来</strong>——<br>
+    摆 1 层只有 1 个点；摆 2 层，<strong>多了一整行 2 个</strong>；摆 3 层，又多一整行 3 个……<br>
+    图形一出现，规律<strong>自己跳出来</strong>：<span class="m">3 = 1+2，6 = 1+2+3，10 = 1+2+3+4</span>。<br>
+    <strong>这不是找规律题，这是「翻译」题。</strong>
+  </p>
+</div>
+
+<div class="demo" id="sx-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：拖动方格大小，看三角形数量怎么长</div>
+  <p class="demo-hint">每个直角三角形的斜边各不相同，所以它们是<strong>不重复</strong>的。数一数规律。</p>
+  <div class="demo-stage"><div id="sx-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>方格大小</label><input type="range" id="sx-r" min="1" max="7" value="4"><span class="val" id="sx-rv"></span>
+  </div>
+  <div class="demo-out" id="sx-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：把数字画出来</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    「数形结合」是这个专栏反复强调的方法——见
+    <a href="../pillar/structure.html">结构柱</a>。<br>
+    它的力量在于：<strong>「形」能被眼睛直接看见，「数」不能</strong>。<br>
+    一画出来，规律、边界、重复、遗漏，全都<em class="hl">自己浮现</em>。<br>
+    所以孩子做题卡住时，老师的建议永远是：<strong>「画个图试试」</strong>——
+    不是敷衍你，是真的<strong>换一种感官去理解</strong>。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 硬找规律型</div>
+    <p>「数字的规律就是 1、3、6、10、15，每次多几个记不住，就干脆当成<strong>每次加 3</strong>，那第 100 个就是 100×3 = 300。」</p>
+    <p>后果：换个摆法（改成摆正方形）就完全不会，因为<strong>他数的不是结构，是数字表面</strong>。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 翻译型</div>
+    <p>「<strong>把它画出来，看多出来的是哪一行</strong>。」</p>
+    <p>结果：三角形是「1+2+3+…」，正方形是「1+3+5+…」，<strong>每个图形有它自己的加法</strong>，一眼就对上了。</p>
+  </div>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>常见图形的加法（画一画就记住）：</strong></p>
+  <ul style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>三角形数</strong>：1+2+3+…+n = <span class="m">n(n+1)/2</span></li>
+    <li><strong>正方形数</strong>（点阵里数正方形）：1+4+9+…+n²</li>
+    <li><strong>连着数</strong>：1+2+3+…+n（<strong>高斯的故事</strong>，1 到 100 相加）</li>
+    <li><strong>握手/比赛</strong>：1+2+…+(n−1) = <span class="m">n(n−1)/2</span></li>
+  </ul>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「这个数字长<strong>什么样</strong>？画出来看看。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做「找规律」卡住时，别让他继续背下一项。让他<strong>用小棒或方格纸摆一次</strong>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="gl-sx">
+  <h3 style="margin-top:0">数与形 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「数与形」是人教版六年级上册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="zhaocipin.html">上一节：找次品</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="gezi.html">鸽巢问题</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-sx"]={title:"数与形 · 5 题",qs:[
+{stem:"摆三角形点阵：第 1 层 1 个点，第 2 层 2 个，第 3 层 3 个……总数的变化规律是：",
+ opts:["每次乘 3","1+2+3+… 依次累加","每次加 3","没有规律"],
+ answer:"B",why:"画出来就会看到：<strong>第 n 层比第 n−1 层多出来的，是一整行 n 个点</strong>。所以总数是 <strong>1+2+3+…+n</strong>，也就是 <span class='m'>n(n+1)/2</span>。这比硬记「每次加几」更能解释图形本身。",
+ miss:"「每次加 3」只是<strong>表面</strong>。把图形画出来，你会看到<strong>多出来的是一整行</strong>，所以是 1+2+3+… 累加。",
+ kidSay:"别只记「每次多几个」。摆出来看，第 3 层比第 2 层多了一整行，是 3 个点；第 4 层又多 4 个点。"},
+{stem:"1+2+3+…+100 等于多少？",
+ opts:["5050","4950","10000","4951"],
+ answer:"A",why:"高斯小时候用过的办法：<strong>首尾配对</strong>。1+100=101，2+99=101……共 <strong>50 对</strong>，50 × 101 = <strong>5050</strong>。",
+ miss:"别一个一个加。<b>首尾配对</b>：1 和 100 配、2 和 99 配……每一对都是 101，一共 50 对。",
+ kidSay:"把第一个和最后一个配起来：1 加 100 等于 101。第二个和倒数第二个配，也是 101。这样的对子有 50 对。"},
+{stem:"4 个班，每两个班之间要打一场篮球赛，一共要打几场？",
+ opts:["4 场","5 场","6 场","8 场"],
+ answer:"C",why:"每个班要和另外 3 个班打，4×3 = 12 次，但每场比赛<strong>两个班都算到了</strong>，要除以 2：12÷2 = <strong>6 场</strong>。也可以看成 1+2+3 = 6。",
+ miss:"每个班打 3 场，4 个班一共 12 次<b>计数</b>。可一场比赛里两个班都被算了，要除以 2。",
+ kidSay:"第一个班和另外 3 个打，是 3 场；第二个班不用再和第一个打了，只和剩下 2 个打……加起来 3+2+1=6。"},
+{stem:"「数与形」这个方法，最核心的思路是：",
+ opts:["遇到算不出来的就猜","把抽象的「数」画成看得见的「形」，用眼睛直接看出规律","多画几遍就记住了","考试的时候用"],
+ answer:"B",why:"数字是一条<strong>看不见的线</strong>，画出来就变成<strong>看得见的结构</strong>。规律、重复、遗漏、边界，都会<strong>自己浮现</strong>。",
+ miss:"不是「多画几遍就记住」。<b>是换一种方式理解</b>——数字看不见，画出来就能看见了。",
+ kidSay:"数字本身是一条线，你看不见。画出来，它就变成图形了，规律自己就跳出来了。"},
+{stem:"下面哪种做法最能体现数形结合？",
+ opts:["题目难算就列方程","把文字关系画成线段图，再看谁和谁有关系","多背几个公式","把数字从大到小排一遍"],
+ answer:"B",why:"画线段图就是把<strong>抽象的数量关系变成看得见的长短</strong>。「谁是谁的 2 倍」画出来就是<strong>一条线是另一条的两倍长</strong>，不用背乘法口诀。",
+ miss:"列方程是工具，<b>画图才是理解</b>。把「A 是 B 的 2 倍」画成两条线，长短关系一眼就明白了。",
+ kidSay:"先别列式。把「谁是谁的几倍」画成两条线，长短一看就知道乘还是除了。"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

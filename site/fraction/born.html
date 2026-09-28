@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数从哪里来 · 整体与平均分</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">分数与小数</a><a href="born.html">分数从哪里来</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 分数与小数层 · 三年级上册</span>
+  <h1>分数从哪里来<br>两个条件，<strong style="color:var(--warn);font-weight:inherit">缺一个都不成立</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子会说「二分之一」，但不知道它是什么</a></li>
+<li><a href="#l2">02 溯源：分数是「整体」被切开的结果</a></li>
+<li><a href="#l3">03 真分数与假分数：看图就知道</a></li>
+<li><a href="#l4">04 分数不是更难的数</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子会说「二分之一」，但不知道它是什么</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师问「把一块饼分成 2 份，每份是几分之几？」孩子喊「二分之一」，声音很大。<br>
+    再问「分成 3 大块 2 小块，大的那块是几分之几？」他愣住了——<br>
+    <strong>他背的是「分了几份」这个说法，不是分数真正依赖的条件。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">分数成立需要<strong>两个</strong>条件，孩子常常只记住一个。</p>
+  <p>
+    <strong>① 必须有「1 个整体」。</strong>没有整体，「一半」无从谈起。<br>
+    <strong>② 必须「平均」分。</strong>分成 3 大块 2 小块，<em class="hl">那块大的不是 2/3，也不是 1/2</em>。<br><br>
+    只记住①的孩子，会把「一半」当成「随便切一块」；只记住②的孩子，会以为「分数就是分母」。<br>
+    <strong>两条都抓住，分数才是分数。</strong>
+  </p>
+</div>
+
+<div class="demo" id="bd-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动分子分母，换形状</div>
+  <p class="demo-hint">切换饼/长条/三角形，看<strong>整体形状变了，分数的意义不变</strong>——这正是分数的通用性。</p>
+  <div class="demo-stage"><div id="bd-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>平均分</label><input type="range" id="bd-d" min="2" max="8" value="4"><span class="val" id="bd-dv"></span>份
+    <label>取</label><input type="range" id="bd-n" min="1" max="8" value="1"><span class="val" id="bd-nv"></span>份
+  </div>
+  <div class="demo-ctrl" style="margin-top:8px">
+    <label>整体</label>
+    <select id="bd-shape" class="btn" style="padding:7px 12px">
+      <option value="0" selected>一个圆（饼）</option>
+      <option value="1">一个长条</option>
+      <option value="2">一个三角形</option>
+    </select>
+  </div>
+  <div class="demo-out" id="bd-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：分数是「整体」被切开的结果</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    分数和<a href="../pillar/number.html">整数</a>有一个根本区别：<br><br>
+    <strong>整数天生自带单位</strong>——3 个苹果，3 就是 3，不依赖别的东西。<br>
+    <strong>分数必须依附于整体</strong>——<em class="hl">1/2 这个数，单独拿出来没有意义</em>，
+    必须说「<strong>半个什么</strong>」：半个苹果、半个饼、半个圆。<br><br>
+    所以分母「2」不是「有 2 个东西」，而是<strong>「被切成了 2 份」这件事本身</strong>。
+  </p>
+</div>
+
+<div class="note">
+  <b>所以「2 个苹果的一半」和「100 个苹果的一半」数量完全不同，但都是 1/2。</b><br>
+  <strong>分数记录的是「整体被切分的比例」，不是「有多少个」。</strong><br>
+  这也解释了为什么分数能<strong>大于 1</strong>——只要整体的数量够大就行。
+</div>
+
+<h2 id="l3"><span class="num">03</span>真分数与假分数：看图就知道</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「什么是真分数？」——孩子答「分子比分母小的」。
+    背对了。可换成 <span class="m">5/4</span>、<span class="m">7/3</span>，他要想半天，
+    <strong>不知道它们代表多少</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">真假分数的区别<strong>在图上一眼可见</strong>，不用背定义。</p>
+  <p>
+    <strong>真分数</strong>：分子比分母小 → 图<em class="hl">装不满</em>一个圆 → <strong>一定小于 1</strong><br>
+    <strong>假分数</strong>：分子大于等于分母 → 图<em class="hl">装满了还多出来</em> → <strong>一定大于等于 1</strong><br>
+    假分数还可以拆成<strong>带分数</strong>：<span class="m">7/3 = 2 又 1/3</span>。
+  </p>
+</div>
+
+<div class="demo" id="kd-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动分子分母，看图怎么变</div>
+  <p class="demo-hint">把分子拖到<strong>超过</strong>分母，看看多个圆是怎么出现的。</p>
+  <div class="demo-stage"><div id="kd-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>分子</label><input type="range" id="kd-n" min="1" max="13" value="7"><span class="val" id="kd-nv"></span>
+    <label>分母</label><input type="range" id="kd-d" min="2" max="6" value="3"><span class="val" id="kd-dv"></span>
+  </div>
+  <div class="demo-out" id="kd-out"></div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>分数不是更难的数</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">分数不是「整数不够用了才用」，是<strong>功能更强的数</strong>。</p>
+  <p>
+    孩子被告知「整数用完了才用分数」，于是觉得分数是<strong>次一等的、勉强的</strong>。<br>
+    恰恰相反 —— 是<strong>现实逼人类发明了分数</strong>。分给 3 个人、7 个人、
+    电池剩 3/5，一根绳子用了 2/3 米……<em class="hl">整数根本没法表达这些</em>。<br>
+    <strong>分数是十进制够不着时开的另一扇门。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>平均</strong>分了吗？分的<strong>是谁</strong>？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做题问「这是几分之几」，连问这两句。缺哪句，他就补哪句。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b3-born">
+  <h3 style="margin-top:0">分数从哪里来 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版三年级上册「分数的初步认识」单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="common.html">为什么必须先通分</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b3-born"]={title:"分数从哪里来 · 5 题",qs:[
+{stem:"分数成立需要两个条件，它们是：",
+ opts:["分子和分母","有一个确定的「1 个整体」，并且平均分","数字够大","分母是 2 或 3"],
+ answer:"B",why:"<strong>① 有整体</strong>——没有整体，「一半」无从谈起；<strong>② 平均分</strong>——分成 3 大块 2 小块，那块大的既不是 2/3 也不是 1/2。两条缺一不可。",
+ miss:"<strong>整体</strong>和<strong>平均</strong>，两条都要有。只记「分了几份」是不够的。",
+ kidSay:"先问：这个东西是 1 个吗？再问：是整整齐齐分的吗？两个都对，才叫分数。"},
+{stem:"「半个苹果」和「半个 100 个苹果」都是 1/2，但数量差别巨大。这说明分数表示的是：",
+ opts:["有多少个东西","整体被切分的比例","苹果的重量","切了多少刀"],
+ answer:"B",why:"分数记录的是<strong>「整体被切分的比例」</strong>，不是「有多少个」。所以 1/2 单独拿出来没有意义，必须依附于整体。",
+ miss:"分数<strong>离不开「整体」</strong>。它说的是「切了多大比例」，不是「有几个」。",
+ kidSay:"半个苹果和半个一百个苹果，都是「一半」这个比例。分数记的是比例，不记个数。"},
+{stem:"<span class='m'>7/3</span> 是真分数还是假分数？为什么？",
+ opts:["真分数，分子小","假分数，分子比分母大，图装满了还多，可以写成 2 又 1/3","真分数，因为有 3 个","无法判断"],
+ answer:"B",why:"7 > 3，<strong>分子大于分母</strong>，一个圆装满了还多 → <strong>假分数</strong>，一定 ≥ 1。<span class='m'>7/3 = 2 又 1/3</span>（带分数）。",
+ miss:"<strong>看图</strong>：一个圆装 3 份要 3 份才满，7 份早就装满了还多。<b>分子大就是假分数</b>。",
+ kidSay:"分母 3 表示要 3 份才装满一个圆，分子 7 早就装满了还多 4 份——这就是假分数。"},
+{stem:"孩子说「分数是整数用完之后才用的」。<b>这句话错在哪？</b>",
+ opts:["分数比整数简单","是现实逼人类发明了分数，分给 3 人、7 人整数根本没法表达","分数不重要","分数要背口诀"],
+ answer:"B",why:"分数<strong>是功能更强的数</strong>，不是次一等的替补。分给 3 个人、绳子用掉 2/3 米，<strong>整数根本表达不了</strong>。",
+ miss:"不是「整数不够用才用」。<strong>是现实世界逼人类发明了它</strong>——不然怎么表达「用掉 2/3」？",
+ kidSay:"一根绳子用掉了 2/3，用整数怎么说？说不出来吧？所以分数不是凑合，是必需的。"},
+{stem:"下面哪种情况<strong>不能</strong>说是「几分之几」？",
+ opts:["把一个饼平均分成 4 份，取 3 份","把一根绳子平均分成 5 份，取 2 份","把 6 块糖分成 2 大块 4 小块，取 1 大块","把一个圆平均分成 3 份，取 2 份"],
+ answer:"C",why:"<strong>没有平均分</strong>，那就不是「几分之几」。分成 2 大 4 小，最大那块<em class='hl'>不等于 1/2</em>，因为整体没有被等分。",
+ miss:"要能说「几分之几」，<strong>必须先平均分</strong>。2 大 4 小怎么能说成 1/2 呢？",
+ kidSay:"你得先分得一样大，才能说是几分之几。2 大 4 小不算平均分。"}
+]};
+</script>
+<script src="../assets/js/fraction.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

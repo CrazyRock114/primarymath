@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支柱一 · 数 —— 到底有多少？</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a>
+    <a href="number.html">数</a>
+    <a href="quantity.html">量</a>
+    <a href="shape.html">形</a>
+    <a href="relation.html">关系</a>
+    <a href="rule.html">规则</a>
+    <a href="structure.html">结构</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一</span>
+  <h1>数<br>回答的问题是：到底有多少？</h1>
+</header>
+
+<div class="toc">
+  <div class="toc-h">本节内容</div>
+  <ol>
+    <li><a href="#l1">01 数字是人类的「数量代码」</a></li>
+    <li><a href="#l2">02 位值制：为什么 5 在不同位置意思不同</a></li>
+    <li><a href="#l3">03 什么时候数字不够用了</a></li>
+    <li><a href="#l4">04 负数：先有基准，才有正负</a></li>
+    <li><a href="#quiz">练一练：孩子真的懂了吗</a></li>
+  </ol>
+</div>
+
+<!-- ================= 01 ================= -->
+<h2 id="l1"><span class="num">01</span>数字是人类的「数量代码」</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子会数到十以后，很多家长以为「数数」这件事就结束了。
+    结果三年级学竖式加减、五年级学小数，他开始频繁出错 —— 不是算错，是<strong>对数字本身没有感觉</strong>。
+    26 个苹果，他不知道「26」是一个整体，还是两个分开的 2 和 6。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">数字不是天生的，是人类为了「记数量」造出来的工具。</p>
+  <p>
+    你能想象没有数字的世界吗？部落里要清点羊，只能在木头上刻痕；刻满了换一根木头。
+    问题是——<strong>怎么快速知道「比上次多了还是少了」</strong>？
+    数字就是为回答这个问题而生的。它是一套<em class="hl">通用代码</em>：
+    一旦大家都认这套代码，五个部落的人就能互相报数量了。
+  </p>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    所以「数」<strong>是数学的第一块基石</strong>，不是数学的第一个知识点。
+    在「数」出现之前，人只有「很多」「很少」这种模糊感受。
+    有了数，人类才能精确地问出：到底有多少？
+  </p>
+</div>
+
+<!-- ================= 02 ================= -->
+<h2 id="l2"><span class="num">02</span>位值制：为什么 5 在不同位置意思不同</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子认识 5，也认识 500，数字卡片拿在手上都认得。
+    可一问「这里面的 5 是几个 5？」就懵了。
+    他记住了<strong>每个数字的读法</strong>，却没建立<strong>数字和位置的关系</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">数字本身没有大小，位置才有大小。</p>
+  <p>
+    5 这个符号永远是 5 个。它不会自己变大变小。
+    真正决定「这个 5 值多少」的，是<strong>它站在哪个位置上</strong>。
+    位值制就是这条规则：<em class="hl">同一个数字，位置越靠左，每个代表的数量就乘 10</em>。
+  </p>
+</div>
+
+<div class="demo" id="pv-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：拖动滑块</div>
+  <p class="demo-hint">下面这个数是四位数。拖动任意一位，看看同一个数字换了位置之后，值会怎么变。</p>
+  <div class="demo-stage"><div id="pv-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>千位</label><input type="range" min="0" max="9" value="0"><span class="val">0</span>
+    <label>百位</label><input type="range" min="0" max="9" value="1"><span class="val">1</span>
+    <label>十位</label><input type="range" min="0" max="9" value="5"><span class="val">5</span>
+    <label>个位</label><input type="range" min="0" max="9" value="0"><span class="val">0</span>
+  </div>
+  <div class="demo-out" id="pv-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 死记型理解</div>
+    <p>「500 是五百，505 是五百零五。」这是把每个数当一个<strong>独立的词条</strong>背下来。</p>
+    <p>结果：数的数量是无限的，背不完；题型一变就不认识。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 结构型理解</div>
+    <p>「每一位都是一个<strong>位置</strong>，乘上它自己代表的数量。」</p>
+    <p>结果：5×100 + 0×10 + 5×1 = 505。任何一个多位数都能<strong>现算</strong>出来，不用背。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「这个数里的 5，是几个 5？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子答「5 个」的时候，往下追一句：<strong>「那它站在哪一位上？」</strong>
+    答对这一句，位值制就通了。
+  </p>
+</div>
+
+<!-- ================= 03 ================= -->
+<h2 id="l3"><span class="num">03</span>什么时候数字不够用了</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师问「谁能把一个苹果平均分给 2 个人？」
+    孩子举手喊「半个！」—— 声音很大，但他不知道自己喊的是什么。
+    到了分数单元，一看到 <span class="m">1/3</span>、<span class="m">2/5</span> 就开始混。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">分数不是「更难的数」，是<strong>功能更强的数</strong>。</p>
+  <p>
+    孩子觉得分数难，是因为被告知「整数用完了，退而求其次才用分数」。
+    恰恰相反 —— 是<strong>现实世界逼人类发明了分数</strong>。
+    一个苹果分给 2 个人（<span class="m">1/2</span>）、一块地要分给 7 个人（<span class="m">1/7</span>）、
+    电池剩 <span class="m">3/5</span> —— 整数根本没法表达这些。
+  </p>
+</div>
+
+<p>人类为了让「数」能表示更精细的数量，做了两次扩容：</p>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>第一次：给整数加小数点 —— 往下细分</strong></p>
+  <p style="margin-bottom:0;color:var(--ink-soft)">
+    当「个」这个单位太大（比一棵树、一粒米还大）时，就在右边加小数点，
+    <strong>把一个单位继续切十份</strong>。0.1 米就是十分之一米。切十份不够就切百分、千分……
+    <strong>十进制本身就是位值制往下延伸的结果</strong>。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>第二次：跳出十进制 —— 分数</strong></p>
+  <p style="margin-bottom:0;color:var(--ink-soft)">
+    但现实中不只有「十等分」。分给 3 个人、7 个人、12 个人怎么办？
+    十进制够不着，就换<strong>任意等分</strong> —— 这就是分数。
+    <strong>分数是十进制够不着时开的另一扇门</strong>，不是「整数用完的替补」。
+  </p>
+</div>
+
+<div class="demo" id="line-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：把 0 和 1 之间的数轴越切越细</div>
+  <p class="demo-hint">数轴不是一串孤零零的点，它是一条<strong>可以无限细分</strong>的线。拖动看每一层出现了什么数。</p>
+  <div class="demo-stage"><div id="line-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>细分</label><input type="range" id="line-range" min="0" max="5" value="0"><span class="val" id="line-val"></span>
+  </div>
+  <div class="demo-out" id="line-out"></div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「分数不是更难的数，是更强大的数。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    说完立刻接一个动作：<strong>拿一个苹果，真的切开</strong>。
+    孩子手上有了「一半」这个实物，后面 <span class="m">3/4</span>、<span class="m">1/8</span> 才有落点。
+  </p>
+</div>
+
+<!-- ================= 04 ================= -->
+<h2 id="l4"><span class="num">04</span>负数：先有基准，才有正负</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师写出 <span class="m">-3</span>，孩子问「负三是几个？」—— 答不上来。
+    他脑子里没有负的东西，于是认定「负三不是数」。
+    到了初中，负号一出现，整个代数就塌了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">「负」不是坏，也不是少，是<strong>反方向</strong>。</p>
+  <p>
+    没有基准，就没有方向，也就没有正负。
+    人类先定了一个<strong>基准</strong>（比如冰点是 0℃、海平面是 0 米、地面是 0 米），
+    往一边走记正，往另一边走记负。<em class="hl">正负是被基准定义出来的</em>。
+  </p>
+</div>
+
+<div class="demo" id="temp-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：拖动温度</div>
+  <p class="demo-hint">这是一个温度计。注意看 <b>0 在哪</b>，再看正数和负数分别落在哪一侧。</p>
+  <div class="demo-stage"><div id="temp-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>温度</label><input type="range" id="temp-range" min="-20" max="20" value="-6"><span class="val" id="temp-val"></span>
+  </div>
+  <div class="demo-out" id="temp-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 「负」= 少 / 坏</div>
+    <p>「负 3 就是比 3 少」——这个理解在<strong>乘法</strong>里立刻会出错：<br>
+      <span class="m">(-3) × 2</span> 会变成 -6 吗？<br>
+      按「少」的模型，负负得正这一关根本过不去。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 「负」= 反方向</div>
+    <p>「往反方向走 3 步」——<br>
+      <span class="m">-3</span> 乘 2，就是<strong>往反方向走 6 步</strong>。<br>
+      两个「反」叠在一起，方向就回来了 → <strong>正</strong>。负负得正不需要背。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「负号说的是方向，不是好坏。」</p>
+</div>
+
+<!-- ================= 练习 ================= -->
+<h2 id="quiz"><span class="num">✓</span>练一练：孩子真的懂了吗</h2>
+
+<p>答错不扣分。每一题答错时，下面会给<strong>一句你该直接念给孩子的话</strong>——那比讲道理有用。</p>
+
+<div class="quiz" data-quiz="pillar-number"></div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创重写。教学思路（痛点 → 纠偏 → 溯源 → 认知替换 → 落地动作）
+  参考自微信公众号「<a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU0NjAxOTQ2Mw%3D%3D&action=getalbum&album_id=4402543889857855491&subscene=1" target="_blank" rel="noopener">青木数学陪学手册 · 小学数学底层逻辑</a>」专栏中
+  《小学数学的底层逻辑1：数，是数学世界的语言》《从自然数到分数：孩子数学理解中最重要的一次升级》《一个用了十几年的「－」号，难道只表示减法？》等篇目的论证路径。
+  交互图示为本站自制。
+</div>
+
+<footer class="foot">
+  <p style="margin:0">小学数学底层逻辑 · 支柱一「数」　|　<a href="../index.html">回到首页</a>　|　下一站：<a href="quantity.html">支柱二 · 量</a></p>
+</footer>
+
+</div>
+
+<script>
+/* ===================== 题库 ===================== */
+window.QUIZES = window.QUIZES || {};
+window.QUIZES["pillar-number"] = {
+  title: "支柱一 · 数 —— 5 题",
+  qs: [
+    {
+      stem: "数 <span class='m'>407</span> 里，数字 <b>4</b> 代表多少？",
+      opts: ["4 个", "40 个", "400 个", "4000 个"],
+      answer: "C",
+      why: "4 站在<b>百位</b>上，百位上每一个单位是 100，所以 4 代表 400。",
+      miss: "先把位值说清楚：<b>位值制</b>的意思是「同一位置的单位越靠左翻一倍」。百位上 1 个就是 100。",
+      kidSay: "这个 4 站在哪一位上？站在百位，那它就是 4 个百。"
+    },
+    {
+      stem: "孩子说：「我能背出 1 到 10000 的每一个数，所以我懂数了。」<b>这位孩子缺的是什么？</b>",
+      opts: ["练习量不够", "位值制的结构理解", "计算速度", "记忆力"],
+      answer: "B",
+      why: "死记型理解只能覆盖背过的部分。<b>位值制</b>是一套可迁移的规则：只要知道每位乘多少，任何数都能现算。",
+      miss: "想想题型一变会怎样 —— 死记的数一旦没背过就废了，<b>位值制</b>却能算出任何一个数。",
+      kidSay: "如果我不背，换成 7 853 这个数，你还能说出来吗？"
+    },
+    {
+      stem: "哪个说法能真正帮孩子理解分数？",
+      opts: [
+        "分数是整数用完之后的替代品",
+        "分数比整数更高级，所以更难",
+        "现实里要分的份数不是十份，分不出来，才有了分数",
+        "分数就是几个几分之几的加法"
+      ],
+      answer: "C",
+      why: "分数的产生是<b>现实需求驱动</b>的：要分给 3 个、7 个、12 个人，十进制够不着，才需要任意等分。",
+      miss: "别把分数说成「整数不够用了才用」。<b>先问：现实里要分几份？</b>是 3 份、7 份，那就是分数的用武之地。",
+      kidSay: "一块饼要分给 7 个人，每人分到几分之几？为什么不是 0.1？"
+    },
+    {
+      stem: "为什么温度计要先定「0 是冰点」，才能说「-6 度」？",
+      opts: [
+        "为了让数字看起来整齐",
+        "因为冰点是最冷的",
+        "没有基准就没有方向，没有方向就分不出正负",
+        "因为温度总是负的"
+      ],
+      answer: "C",
+      why: "正负是<strong>相对基准的方向</strong>。先有 0 这条分界线，往暖的一侧记正，往冷的一侧记负。",
+      miss: "「负」不等于「少」也不等于「坏」。<b>负 = 反方向</b>。要问的是：往哪边是反的？基准在哪？",
+      kidSay: "如果冰点不是 0，而是 5 度，那 3 度会变成正的还是负的？"
+    },
+    {
+      stem: "爸爸让小明背 <span class='m'>7 × 8 = 56</span>，小明一直背不下来。爸爸换了个说法：<b>「7 份 8 个的方块，一共多少个方块？」</b>这样问更好在哪？",
+      opts: [
+        "口诀太长，念起来简单",
+        "把乘法还原成「几份几个」，孩子能看见，不用死记",
+        "这样算得更快",
+        "让孩子觉得乘法很简单"
+      ],
+      answer: "B",
+      why: "乘法表是<strong>结论</strong>，不是<strong>理解</strong>。「几份几个」是结论背后的结构，理解了它，口诀自己会浮出来。",
+      miss: "口诀是别人总结好的答案。<b>先让孩子看见「几份几个」的结构</b>，口诀就只是给这个结构起了个短名字。",
+      kidSay: "你不用背口诀。你先告诉我：7 × 8 到底是几份？每份几个方块？"
+    }
+  ]
+};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

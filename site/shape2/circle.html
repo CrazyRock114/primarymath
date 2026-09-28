@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>圆与立体图形 · 滚一圈就知道 3.14</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">图形的认识</a><a href="circle.html">圆与立体图形</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三 · 形 · 六上「圆」+ 一上「认识图形」+ 一下「图形的拼组」+ 观察物体</span>
+  <h1>圆<br><strong style="color:var(--brand);font-weight:inherit">滚一圈</strong>，你就知道 3.14 是哪来的</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 3.14 从哪来？孩子只当它是个规定</a></li>
+<li><a href="#l2">02 圆是唯一「一条线 + 一个点」就能定的图形</a></li>
+<li><a href="#l3">03 认识图形（一）：平面和立体的第一次见面</a></li>
+<li><a href="#l4">04 图形拼组和观察物体</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>3.14 从哪来？孩子只当它是个规定</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师给公式：<span class="m">C = πd</span>，<span class="m">S = πr²</span>。孩子会用。<br>
+    可你问「<strong>π 是什么？为什么是 3.14？</strong>」他说「老师说的」「规定」。<br>
+    <strong>他不是不会用，是从来没想过这个数是从哪儿来的。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">π 不是规定，是<strong>「圆周长 ÷ 直径」的实测值</strong>。</p>
+  <p>
+    拿一根绳子绑个轮子，在地上<strong>滚一圈</strong>，量出滚过的长度，<strong>除以直径</strong>。<br>
+    无论多大的圆，这个比值<strong>永远是 3.14159……</strong>。<br>
+    <em class="hl">π 是一个<strong>被测量出来的常数</strong>，不是被规定出来的数字。</em>
+  </p>
+</div>
+
+<div class="demo" id="ci-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：两个视角看圆</div>
+  <p class="demo-hint">先看「圆由什么决定」，再切到「滚一圈」。</p>
+  <div class="demo-stage"><div id="ci-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>半径</label><input type="range" id="ci-r" min="1" max="10" value="4"><span class="val" id="ci-rv"></span>
+    <label>视角</label>
+    <select id="ci-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 圆由什么决定</option>
+      <option value="1">② 滚一圈，周长 3.14d</option>
+    </select>
+  </div>
+  <div class="demo-out" id="ci-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>圆是唯一「一条线 + 一个点」就能定的图形</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    认识一个图形，需要<strong>几个条件</strong>？<br>
+    · <strong>三角形</strong>：3 条边都定 → 形状定（3 个数据）<br>
+    · <strong>长方形</strong>：长 + 宽 → 定（2 个数据）<br>
+    · <strong>圆</strong>：圆心 + 半径 → 定（<strong>只要 2 个数据</strong>）<br><br>
+    <em class="hl">圆是<strong>最经济</strong>的图形——<strong>一条线（半径）+ 一个点（圆心）</strong>就够了。</em><br>
+    因为「圆上所有点到圆心都一样远」<strong>这一个性质，就锁死了整个形状</strong>。
+  </p>
+</div>
+
+<div class="note">
+  <b>圆的对称性（小学只要求感受，不要求证明）：</b><br>
+  圆是<strong>唯一有无数条对称轴的图形</strong>（任何一条直径都是它的对称轴）。<br>
+  正方形只有 4 条，等边三角形 3 条，矩形 2 条。<strong>圆的特殊性就来自这个「无穷多」</strong>。
+</div>
+
+<h2 id="l3"><span class="num">03</span>认识图形（一）：平面和立体的第一次见面</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    低年级孩子分不清<strong>「平面图形」和「立体图形」</strong>。他看球是圆的、看长方体也是「方」的。<br>
+    更麻烦的是：<strong>他不知道「平面」和「立体」是两个不同的维度</strong>，不是「胖的和瘦的」。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">平面图形是<strong>「一个面」</strong>，立体图形是<strong>「很多个面围起来的」</strong>。</p>
+  <p>
+    <strong>平面图形</strong>：长方形、三角形、圆……<strong>只有 1 个面，摊平了</strong>。<br>
+    <strong>立体图形</strong>：正方体、圆柱、球……<strong>有多个面，能立起来占地方</strong>。<br><br>
+    <em class="hl"><strong>看一个东西是平面还是立体，就看它「有没有厚度」</strong>——能不能立起来。</em><br>
+    硬币薄薄一片，看上去像平面图形，<strong>可它是「立体」吗？</strong>是——因为它有厚度，占空间。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>小学要认识的立体图形（5 种）：</strong></p>
+  <p style="margin:0;color:var(--ink-soft)">
+    长方体（正方体是特殊的）、圆柱、球、<strong>圆锥</strong>。低年级先认前几种。<br>
+    <span style="color:var(--warn)"><strong>这五个里面，圆柱和圆锥是「滚」出来的图形</strong>——一个立着能滚，一个躺着能滚，这个「滚」是它们和长方体最大的区别。</span>
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>图形拼组和观察物体</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">「七巧板」「拼图形」的真正价值，<strong>不是记住能拼出什么，是练「空间旋转」</strong>。</p>
+  <p>
+    同样的两块三角形，<strong>换个位置</strong>就能拼成正方形、长方形、平行四边形。<br>
+    孩子必须<strong>在脑子里把这块转一下</strong>——<strong>这就是空间想象力的训练</strong>。<br><br>
+    <em class="hl">低年级不用教「七巧板怎么拼」，<strong>只要让他「拼出一两种，并意识到同一个形状要旋转才能用」</strong>，空间感就在长了。</em>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 位置型理解</div>
+    <p>「这块<strong>只能放在这</strong>，不能动。」</p>
+    <p>后果：<strong>换个朝向就不认得</strong>，无法在脑中构建图形。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 旋转型理解</div>
+    <p>「这块<strong>可以转一转</strong>，转到合适的角度就能用。」</p>
+    <p>结果：<strong>能在脑中构建图形</strong>，这是后面学立体图形的基础。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>它不一定要放这儿——转一下试试看？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子拼图形卡住时，别让他换新的。让他<strong>把手里那块转一转、翻一翻</strong>——空间感就是这么练出来的。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b6-circle">
+  <h3 style="margin-top:0">圆与立体图形 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版六年级上册「圆」、一年级上册「认识图形（一）」、
+  一年级下册「图形的拼组」、二年级上册及五年级上册「观察物体」共 5 个单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="polygon.html">上一节：三角形与四边形</a>　|　<a href="../index.html">回到首页</a>　|　B6 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b6-circle"]={title:"圆与立体图形 · 5 题",qs:[
+{stem:"π 是什么？为什么是 3.14？",
+ opts:["老师规定的常数","圆周长 ÷ 直径 的比值，滚一圈量出来永远是 3.14159……","圆的面积","最大的圆"],
+ answer:"B",why:"<strong>π = 圆周长 ÷ 直径</strong>。拿绳子量圆的周长，除以直径，<strong>无论多大的圆都是 3.14159……</strong>。<strong>π 是被测量出来的常数，不是被规定的</strong>。",
+ miss:"<strong>π 是「周长 ÷ 直径」量出来的</strong>。滚一圈量一量，3.14 就出来了，不是规定。",
+ kidSay:"拿个轮子在地上滚一圈，量出滚了多远，除以轮子的直径。永远都是 3.14 左右。"},
+{stem:"认识一个图形，<strong>圆需要几个条件</strong>？为什么最少？",
+ opts:["3 个（3 条边）","2 个（圆心 + 半径），因为「到圆心都一样远」这一个性质就锁死了整个形状","4 个","1 个（半径）就够了"],
+ answer:"B",why:"<strong>圆心 + 半径 = 2 个数据</strong>就完全确定了一个圆。因为「圆上所有点到圆心距离相等」<strong>这一个性质，锁死了所有可能性</strong>——圆是所有图形里最「经济」的。",
+ miss:"<strong>圆只要 2 个数据：圆心和半径</strong>。因为「所有点离圆心一样远」这一个性质就全定死了。",
+ kidSay:"别的图形要 3 条边、4 条边，圆只要「一个点（圆心）+ 一条线（半径）」就全定了。"},
+{stem:"判断一个图形是「平面」还是「立体」，<b>最准确的标准是：</b>",
+ opts:["看它长得胖还是瘦","看它有没有厚度、能不能立起来占空间","看它的边数","看它是不是圆的"],
+ answer:"B",why:"<strong>平面图形只有 1 个面，摊平了</strong>；<strong>立体图形由多个面围成，能立起来占空间</strong>。用「有没有厚度」判断最准——<strong>硬币是「圆」但它是立体图形</strong>，因为有厚度。",
+ miss:"<strong>看有没有厚度</strong>。硬币是圆的，可它有厚度，所以是立体图形。",
+ kidSay:"不是看胖瘦。能不能立起来占地方——有厚度就是立体。"},
+{stem:"拼图形时，<strong>低年级真正要练的核心能力</strong>是：",
+ opts:["记住七巧板哪几块能拼什么","在脑中把图形「转一转」的空间想象能力","记图形名称","数边数"],
+ answer:"B",why:"<strong>拼图的价值不在记住结果，在练空间旋转</strong>。同样的形状换个位置就得转一下——<strong>孩子必须能在脑中构建图形</strong>。这是后面学立体图形的基础。",
+ miss:"<strong>拼图是为了练「转一转」的本领</strong>。别让他背能拼什么，让他意识到「同一个形状要旋转才能用」。",
+ kidSay:"这块不用扔掉，转一下看看能不能用上。练的就是在脑子里转图形。"},
+{stem:"下面哪个说法<strong>错误</strong>？",
+ opts:["直角是 90°","三角形是「三边定形」，不会变形","圆有无数条对称轴","正方形是圆的一种特殊形状"],
+ answer:"D",why:"<strong>正方形和圆是完全不同的图形</strong>。正方形有 4 条边 4 个直角，圆没有边、没有角。正方形是<strong>「四边形家族」</strong>里最特殊的一个，但和圆没有关系。",
+ miss:"<strong>正方形不是圆的特例</strong>。它是四边形里最特殊的那个，和圆是两回事。",
+ kidSay:"正方形有边有角，圆没有边没有角。正方形是正方形，不是圆的变形。"}
+]};
+</script>
+<script src="../assets/js/geometry.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

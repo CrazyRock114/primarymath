@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>组合图形的面积 · 切不动就补</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">图形的测量</a><a href="combo.html">组合图形的面积</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三 · 形 · 五上「多边形的面积」+ 三上「测量」</span>
+  <h1>组合图形<br>不会的图形，<strong style="color:var(--brand);font-weight:inherit">切不动就补</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 阴影面积：孩子一看到就不动</a></li>
+<li><a href="#l2">02 溯源：面积公式是数格子的快捷方式</a></li>
+<li><a href="#l3">03 两把武器：分割法与添补法</a></li>
+<li><a href="#l4">04 梯形：为什么要除以 2</a></li>
+<li><a href="#l5">05 测量：算出来的和量出来的为什么不一样</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>阴影面积：孩子一看到就不动</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「求这个 L 形（8×5 缺 3×2）的面积。」<br>
+    孩子翻遍课本找公式——<strong>没有 L 形的面积公式</strong>。他不写。<br>
+    <strong>他不是不会算长方形，是不知道「怎么把不会的变成会的」。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">所有「不会的图形」，都能<strong>化归成已经会的图形</strong>。</p>
+  <p>
+    这是<a href="../pillar/shape.html">「形」柱</a>的核心主张：<strong>割补转化</strong>。<br>
+    遇到没学过的图形，<strong>不要找公式，要找「怎么拆」</strong>——<br>
+    <em class="hl">切一刀（分割法），或者补一块（添补法），化成学过的形状。</em><br>
+    <strong>化归是几何的核心能力，比记公式有用一万倍。</strong>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：面积公式是数格子的快捷方式</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    <strong>面积最原始的定义就是「数格子」</strong>（见 <a href="../pillar/quantity.html">支柱二「量」</a>）。<br>
+    <span class="m">长 × 宽</span>、<span class="m">底 × 高</span>，都只是<strong>「不用一格一格数」的快捷方式</strong>。<br><br>
+    所以遇到不会的图形，<strong>最可靠的做法是回到数格子</strong>——<br>
+    <em class="hl">数格子永远能算出来，只是慢。数出来之后再想「能不能用公式代替数」。</em>
+  </p>
+</div>
+
+<div class="demo" id="cb-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：一个 L 形，三种算法</div>
+  <p class="demo-hint">切换三种做法，<b>结果都是 34</b>，但思路完全不同。</p>
+  <div class="demo-stage"><div id="cb-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>方法</label>
+    <select id="cb-mode" class="btn" style="padding:7px 12px">
+      <option value="2" selected>① 数格子（最原始）</option>
+      <option value="0">② 分割法：切一刀再算</option>
+      <option value="1">③ 添补法：补成大的再减</option>
+    </select>
+  </div>
+  <div class="demo-out" id="cb-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>两把武器：分割法与添补法</h2>
+
+<div class="models">
+  <div class="model model-good">
+    <div class="model-h">✓ 分割法（切）</div>
+    <p>把图形<strong>切成几个学过的图形</strong>，分别算，<strong>加起来</strong>。</p>
+    <p>适合：缺口<strong>能用直线切齐</strong>的时候。<br>
+      <span style="color:var(--brand)"><strong>口诀：切成几块，加起来。</strong></span></p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 添补法（补）</div>
+    <p>把图形<strong>补成一个大图形</strong>，先算大的，<strong>再减掉多的</strong>。</p>
+    <p>适合：<strong>切不齐</strong>，但补一整块很方便的时候。<br>
+      <span style="color:var(--brand)"><strong>口诀：补成大的，减掉多的。</strong></span></p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>切不动，就补一块试试？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子卡在阴影面积时，别教他新方法。问这一句。
+    <strong>他要么切，要么补——两条路都能走通。</strong>
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>梯形：为什么要除以 2</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">梯形面积公式里的 <span class="m">÷2</span>，不是规定——<strong>是「我用了两个梯形」</strong>。</p>
+  <p>
+    梯形没法像长方形那样「几行乘几列」数格子，因为它<strong>每排的格子数都不一样</strong>。<br>
+    怎么办？<strong>复制一个，错位一拼，就成了平行四边形</strong>。<br>
+    <em class="hl">平行四边形面积 = (上底 + 下底) × 高 = 梯形的 2 倍</em> → 所以要 ÷2。<br>
+    <strong>「÷2」是我借了两个，得还回去一个。</strong>
+  </p>
+</div>
+
+<div class="demo" id="tp-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：看梯形怎么拼成平行四边形</div>
+  <p class="demo-hint">切换视角。注意<strong>拼完之后底变成了「上底 + 下底」</strong>。</p>
+  <div class="demo-stage"><div id="tp-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>视角</label>
+    <select id="tp-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 先认清四个要素</option>
+      <option value="1">② 复制一个拼成平行四边形</option>
+    </select>
+  </div>
+  <div class="demo-out" id="tp-out"></div>
+</div>
+
+<div class="note">
+  <b>梯形的「腰」是干扰项。</b>孩子常用腰去算面积——<strong>错</strong>。<br>
+  腰是斜的，<strong>斜边长度和面积没有关系</strong>。梯形的面积只由<strong>上底、下底、高</strong>三个量决定。<br>
+  <span style="color:var(--warn)"><strong>「三条边定形」在梯形不成立</strong>——因为梯形要「四边」，四边不定形。</span>
+</div>
+
+<h2 id="l5"><span class="num">05</span>测量：算出来的和量出来的为什么不一样</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师量教室黑板：算出 4 米 × 1.2 米 = 4.8 平方米。<br>
+    学生拿卷尺去量，量出来 4.8 平方米吗？<strong>差一点</strong>。孩子困惑了：<strong>到底是公式错还是我量错？</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">数学是<strong>理想模型</strong>，现实是<strong>有误差的</strong>。两者都对。</p>
+  <p>
+    公式假设黑板是<strong>绝对的长方形</strong>——四条边都直、都平行、都垂直。<br>
+    可现实里黑板<em class="hl">边稍微歪一点、框有点弧、表面不平</em>。<br>
+    <strong>所以量出来的和算出来的，永远差一点——这不叫错，叫「误差」。</strong><br><br>
+    <span style="color:var(--brand)"><strong>公式给的是「理想值」，测量给的是「实际值」。</strong>数学课学公式，实践课用公式——两个都对，用途不同。</span>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>算出来的是理想值，量出来的是实际值，都对。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子因为「量出来和算的不一样」而怀疑公式时，这句话能<strong>把困惑转成理解</strong>——
+    顺便也建立了「数学模型 vs 现实」的边界感，这个观念到初中物理会再用。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b7-combo">
+  <h3 style="margin-top:0">组合图形的面积 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版五年级上册「多边形的面积」、三年级上册「测量」两个单元。
+  承接本站<a href="../pillar/shape.html">形柱</a>的「割补转化」主线。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="solid.html">立体：表面积与体积</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b7-combo"]={title:"组合图形的面积 · 5 题",qs:[
+{stem:"遇到 L 形这种没学过公式的图形，最该做的是：",
+ opts:["找公式，课本上没有就没法了","化归：切一刀（分割法）或补一块（添补法），变成学过的图形",
+  "数格子数到天荒地老","背一个「L 形面积公式」"],
+ answer:"B",why:"<strong>所有不会的图形都能化归成会的图形</strong>。这是几何的核心能力，比记公式有用一万倍。<strong>不要找公式，要找「怎么拆」。</strong>",
+ miss:"<strong>不要找公式，要找怎么拆。</strong>要么切成两块，要么补成大的，两条路都能算出结果。",
+ kidSay:"没有 L 形公式，但你可以切一刀分成两个长方形，或者补成一个大的再减掉。"},
+{stem:"分割法和添补法的区别是：",
+ opts:["分割法是切成几块加起来；添补法是补成大的再减掉多的","没有区别","分割法只能用于凸图形","添补法更简单"],
+ answer:"A",why:"<strong>分割法（切）</strong>把图形切成几个学过的图形，分别算再<strong>加</strong>；<strong>添补法（补）</strong>补成大图形，先算大的再<strong>减</strong>掉多的。<strong>殊途同归，选容易算的那条。</strong>",
+ miss:"<strong>切 = 分开算再加起来；补 = 先算大的再减掉。</strong>哪条容易走哪条，结果一样。",
+ kidSay:"切法是分开算再加，补法是先算整个再减掉多的。哪个简单用哪个。"},
+{stem:"梯形面积公式 <span class='m'>(上底+下底)×高÷2</span>，<strong>÷2 的真正原因</strong>是：",
+ opts:["因为规定要除以 2","因为两个同样的梯形拼成了平行四边形，平行四边形面积是梯形的 2 倍，所以要还回去一半",
+  "因为梯形是半个平行四边形（课本定义）","为了让结果好看"],
+ answer:"B",why:"<strong>复制一个梯形错位拼接，得到平行四边形</strong>，它的底是（上底+下底），面积是梯形的 <strong>2 倍</strong>。所以梯形面积要 ÷2。<strong>÷2 是「借了两个还得回去一个」，不是规定。</strong>",
+ miss:"<strong>拼一个一样的梯形上去</strong>，就变成平行四边形了。那个是梯形的 2 倍，所以要除以 2。",
+ kidSay:"拿一个一模一样的梯形，错位拼上去，就变成平行四边形了。那个是它的两倍，所以要还回去一半。"},
+{stem:"梯形的面积计算中，「腰」（斜边）的作用是什么？",
+ opts:["用来算面积","用来算周长，但对面积没有影响——面积只由上底、下底、高决定","用来判断是不是梯形","用来求高"],
+ answer:"B",why:"<strong>梯形面积只由上底、下底、高三个量决定</strong>。腰是斜边，<strong>斜边长度和面积没有关系</strong>——它只影响周长。用腰算面积是常见错误。",
+ miss:"<strong>腰只管周长，不管面积。</strong>面积只由上底、下底、高决定。斜边再长，面积也不变。",
+ kidSay:"算梯形面积别用腰。腰是斜的，只影响周长。面积看的是上底、下底和高。"},
+{stem:"用公式算出教室黑板 4.8 平方米，实地量却是 4.75 平方米。<b>怎么理解？</b>",
+ opts:["公式错了","数学是理想模型（假设绝对长方形），现实有测量误差，两个都对，用途不同","孩子量错了，不用管","应该改公式"],
+ answer:"B",why:"<strong>公式假设黑板是绝对的长方形</strong>，现实中边会歪、表面会不平。<strong>算出来的是「理想值」，量出来的是「实际值」</strong>——这是数学与现实的边界，不是错误。",
+ miss:"<strong>数学是理想模型</strong>，现实有误差。两个都对：算的是理想值，量的是实际值。",
+ kidSay:"公式假设它是个完美的长方形，可真上的黑板边有点歪。所以差一点很正常，不算错。"}
+]};
+</script>
+<script src="../assets/js/measure.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

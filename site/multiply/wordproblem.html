@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>乘除解决问题 · 从读题到列式</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">乘除的结构</a><a href="wordproblem.html">乘除解决问题</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱四 · 关系 · 解决问题（二下 / 三下）</span>
+  <h1>乘除解决问题<br>会算没用，<strong style="color:var(--brand);font-weight:inherit">看见关系才有用</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 算对了，答案却是错的</a></li>
+<li><a href="#l2">02 溯源：所有应用题都在画线段图</a></li>
+<li><a href="#l3">03 一共 / 每份 / 份数：三者的关系</a></li>
+<li><a href="#l4">04 走完三步，列式自己出来</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>算对了，答案却是错的</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「鸡兔同笼」算出兔的个数，最后答成鸡的数量——<strong>过程完全正确，只错在答非所问</strong>。<br>
+    这类错误在小学非常普遍，而且<strong>比算错更隐蔽</strong>，因为孩子觉得自己会做。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">列式前少了一步：<strong>确认问号问的是谁</strong>。</p>
+  <p>
+    读题三遍（见<a href="../pillar/relation.html">关系柱</a>）：找数量 → 找关系 → <strong>看问号问谁</strong>。<br>
+    第三遍最容易被跳过，因为它「看起来不重要」。<br>
+    <em class="hl">但正是这一步决定了「你算出来的量」和「题目要的量」是不是同一个。</em>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：所有应用题都在画线段图</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    无论题目写成什么样——买铅笔、分苹果、坐车、装水——<strong>本质上都在描述线段的长短关系</strong>。<br>
+    · 3 份，每份 7 个 → 一条线是另一条的 3 倍长<br>
+    · 18 平均分给 3 人 → 3 条<strong>等长</strong>的线<br>
+    · 小红是小明的 2 倍 → 小红的线是 2 倍长<br><br>
+    <em class="hl">只要把「谁是谁的几倍」「一共几个」「平均分成几份」画成线，问题就自己解开了。</em>
+  </p>
+</div>
+
+<div class="demo" id="sg-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换问题，看线段图怎么变</div>
+  <p class="demo-hint">注意下层那条被切成几段，<b>以及商和乘的对应关系</b>。</p>
+  <div class="demo-stage"><div id="sg-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>问题</label>
+    <select id="sg-mode" class="btn" style="padding:7px 12px">
+      <option value="0">求几倍量（用乘法）</option>
+      <option value="1" selected>求 1 倍量（用除法）</option>
+    </select>
+  </div>
+  <div class="demo-out" id="sg-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>一共 / 每份 / 份数：三者的关系</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>这三个量，乘除法就是它们之间的「翻译器」：</strong></p>
+  <table style="width:100%;border-collapse:collapse;font-size:15.5px">
+    <tbody>
+      <tr><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)"><strong>求一共</strong></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)"><span class="m">每份 × 份数</span></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft)">4 个 3 = 3 × 4 = 12</td></tr>
+      <tr><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)"><strong>求份数</strong></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)"><span class="m">一共 ÷ 每份</span></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft)">12 ÷ 3 = 4</td></tr>
+      <tr><td style="padding:10px 8px"><strong>求每份</strong></td><td style="padding:10px 8px"><span class="m">一共 ÷ 份数</span></td><td style="padding:10px 8px;color:var(--ink-soft)">12 ÷ 4 = 3</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>三个量，任意知道两个，就能求第三个。</strong>
+    乘法和除法就是这两种转换的开关。
+  </p>
+</div>
+
+<div class="note">
+  <b>这就是为什么孩子要死记「乘法是求几个几，除法是求平均」：</b>
+  他记的是<strong>题型名字</strong>，不是<strong>量的关系</strong>。
+  换成「一共」「每份」「份数」这三个词，题目不管怎么包装，他都认得。
+</div>
+
+<h2 id="l4"><span class="num">04</span>走完三步，列式自己出来</h2>
+
+<div class="card">
+  <ol style="padding-left:22px;line-height:2.2;margin:0">
+    <li><strong>圈数量</strong>：把题目里所有的量圈出来，标上名字</li>
+    <li><strong>画关系</strong>：谁是 1 倍量？谁是几倍量？一共几个？平均分成几份？</li>
+    <li><strong>对问号</strong>：<strong>问的是谁？</strong>算出来的量，必须是这个「谁」</li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;color:var(--ink-soft)">
+    <strong>第三步是「答非所问」的唯一防线。</strong>做完题再看一眼最后一句，10 秒钟的事。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>谁是 1 倍量？题目问的是谁？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做题卡住时，连问两句。乘除自动就定了，而且<strong>答的是对的那个量</strong>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b2-word">
+  <h3 style="margin-top:0">乘除解决问题 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版二年级下册「解决问题」、三年级下册「解决问题」两个单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="longdivision.html">上一节：竖式与试商</a>　|　<a href="../index.html">回到首页</a>　|　B2 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b2-word"]={title:"乘除解决问题 · 5 题",qs:[
+{stem:"「一共 / 每份 / 份数」这三个量中，知道任意两个，可以求第三个。<b>求「每份」用什么运算？</b>",
+ opts:["乘法","除法","加减法","不确定"],
+ answer:"B",why:"求每份用 <span class='m'>一共 ÷ 份数</span>。求一共用 <span class='m'>每份 × 份数</span>，求份数用 <span class='m'>一共 ÷ 每份</span>。三者是「乘除转换」的关系。",
+ miss:"求<strong>每份</strong>用除法：12 个平均分 4 份，12 ÷ 4 = 3。",
+ kidSay:"一共 12 个，分成 4 份，一份是几？用 12 除以 4。"},
+{stem:"小明有 18 张卡片，小红的卡片数是小明的 3 倍。小红有多少张？<b>正确的解题入口是：</b>",
+ opts:["直接算 18 × 3","先确认谁是 1 倍量（小明），再判断求几倍量用乘法","先算 18 ÷ 3","画一个圆形"],
+ answer:"B",why:"<strong>小明是 1 倍量</strong>，求小红的（几倍量）<strong>往外扩，用乘法</strong>：18 × 3 = 54 张。<br>如果不知道谁是 1 倍量，就会混淆乘除。",
+ miss:"先<strong>确认谁是 1 倍量</strong>。小明是 1 倍量，求小红的几倍量就是往外扩，用乘法 18×3=54。",
+ kidSay:"谁是 1 倍量？是小明。求小红的量就是往外扩，用乘法。"},
+{stem:"鸡兔同笼算出兔的个数，最后答成鸡的数量。<b>漏掉的是：</b>",
+ opts:["第一遍：找数量","第二遍：找关系","第三遍：看问号问谁","验算"],
+ answer:"C",why:"这是「算对了但答错对象」。第三遍「看问号问谁」专门用来确认「<strong>算出来的量 == 题目要的量</strong>」，是答非所问的唯一防线。",
+ miss:"过程都对，说明<strong>算没问题</strong>。那问题一定出在「<strong>题目问的是谁</strong>」这一步被跳过了。",
+ kidSay:"算完别急着写。再看最后一句：它问的是鸡还是兔？你算出来的是谁的数？"},
+{stem:"「求每份」和「求份数」都用除法。<b>孩子怎么区分？</b>",
+ opts:["背口诀","看问题求的是「一个有多少」还是「有几个」——单位不一样","看数字大小","没有区别"],
+ answer:"B",why:"<span class='m'>一共 ÷ 份数 = 每份</span>（单位：个/份），<span class='m'>一共 ÷ 每份 = 份数</span>（单位：份）。<strong>商带着不同的单位，答案就完全不同</strong>。看单位比看运算更准。",
+ miss:"<strong>看单位</strong>。问「每份几个」，商是「个」；问「能分几份」，商是「份」。",
+ kidSay:"你算出来的这个数，是「几个一」，还是「几份」？单位不一样，答案就反过来了。"},
+{stem:"所有应用题，本质上都可以画成线段图。这样做最大的好处是：",
+ opts:["图好看","把抽象的文字关系变成直观的长短关系，乘除自动确定，不用靠题型名字","可以少写字","老师喜欢"],
+ answer:"B",who:"B",why:"线段图<strong>把「谁是谁的几倍」「一共几个」「平均分几份」变成看得见的长短</strong>。乘除法是长短关系的自然结果，不靠记忆。",
+ miss:"画图不是为了好看，是为了<strong>把关系变成看得见的东西</strong>。关系一目了然，乘除就定了。",
+ kidSay:"别急着列式。先画两条线，看清楚谁长谁短、是谁的多少倍，再决定用乘还是除。"}
+]};
+</script>
+<script src="../assets/js/multiply.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

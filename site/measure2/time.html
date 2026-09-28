@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>时间 · 唯一打破十进制的量</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav><a href="../index.html">首页</a><a href="index.html">量的单位</a><a href="time.html">时间</a></nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱二 · 量 · 一上「认识钟表」+ 一下「认识时间」+ 三上「时分秒」+ 三下「年月日」</span>
+  <h1>时间<br>它是<strong style="color:var(--warn);font-weight:inherit">唯一用 60 进制</strong>的量</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子的时间算术为什么特别容易错</a></li>
+<li><a href="#l2">02 溯源：为什么偏偏是 60</a></li>
+<li><a href="#l3">03 60 进制的换算陷阱</a></li>
+<li><a href="#l4">04 年月日：为什么这个月有 28/29/30/31 天</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子的时间算术为什么特别容易错</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「1 小时 = 60 分 = 3600 秒」孩子背得出。<br>
+    可问「<strong>100 分钟是多少小时多少分？</strong>」他答 1 小时 10 分。<br>
+    <strong>他用十进制去算了</strong>——100 ÷ 10 = 10，写成 1 小时 10 分。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">时间是小学里<strong>唯一不遵守「满十进一」</strong>的量。</p>
+  <p>
+    孩子从一年级起学的<strong>全部是十进制</strong>——数数、长度、质量、人民币，满 10 进 1。<br>
+    可时间<em class="hl">是满 60 进 1</em>：60 秒 = 1 分，60 分 = 1 时。<br><br>
+    <strong>这不是孩子记性问题</strong>——是<strong>大脑里那套「满十进一」的自动化反应</strong>在时间上<strong>失效了</strong>。<br>
+    所以必须<strong>显式提醒</strong>：「这题是 60 进制，不要按 10 算。」
+  </p>
+</div>
+
+<div class="demo" id="ck-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：看时钟怎么用 60 个小格</div>
+  <p class="demo-hint">拖动小时和分钟。注意表盘上一共 <b>60 格</b>，不是 100 格。</p>
+  <div class="demo-stage"><div id="ck-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>小时</label><input type="range" id="ck-r" min="1" max="12" value="3">
+    <label>分</label><input type="range" id="ck-mode" min="0" max="59" value="20">
+    <span class="val" id="ck-rv"></span>
+  </div>
+  <div class="demo-out" id="ck-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：为什么偏偏是 60</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    60 进制不是随便定的。古人发现：<br>
+    · <strong>12 个月</strong>一轮（一年的月份）<br>
+    · <strong>5×12 = 60</strong>，能被 2、3、4、5、6、10 整除<br>
+    · 所以<strong>「12 进位」不够用，得再分一轮，12×5 = 60</strong><br><br>
+    <em class="hl">选 60 的理由是：<strong>它能同时被 2、3、4、5、6、10 整除</strong>，方便分。</em><br>
+    和十进制的理由一样——<strong>十进制能整除 2、5；六十进制能整除 2、3、4、5、6、10</strong>。<br>
+    <strong>单位选哪个，只看「方便不够」。</strong>这也是单位是「约定」而非「规定」的铁证。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>60 进制的换算陷阱</h2>
+
+<div class="card" style="padding:0;overflow:hidden">
+<table style="width:100%;border-collapse:collapse;font-size:15px">
+<thead><tr style="background:var(--bg-tint)">
+<th style="text-align:left;padding:11px 16px;font-size:13px;color:var(--ink-soft)">进制</th>
+<th style="text-align:left;padding:11px 16px;font-size:13px;color:var(--ink-soft)">用在哪</th>
+<th style="text-align:left;padding:11px 16px;font-size:13px;color:var(--ink-soft)">进率</th>
+</tr></thead>
+<tbody>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 16px"><strong>十进制</strong></td><td style="padding:10px 16px;color:var(--ink-soft)">数数、长度、质量、人民币、面积</td><td style="padding:10px 16px;font-weight:700;color:#2f6b52">满 10 进 1</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 16px"><strong>六十进制</strong></td><td style="padding:10px 16px;color:var(--ink-soft)">时间（时、分、秒）</td><td style="padding:10px 16px;font-weight:700;color:#c4622d">满 60 进 1</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <b>常见错误速查：</b><br>
+  ❌ 100 秒 = 10 分（<b>错</b>，应是 1 分 40 秒）<br>
+  ❌ 90 分 = 9 时（<b>错</b>，应是 1 时 30 分）<br>
+  ❌ 2 时 = 120 分 → 120 分又变回 2 时（<b>对</b>，因为 60 进 1）<br>
+  <span style="color:var(--brand)"><strong>记忆法：只背「60 进制」这一条，其余全按位值制算。</strong></span>
+</div>
+
+<h2 id="l4"><span class="num">04</span>年月日：为什么这个月有 28/29/30/31 天</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">月份天数<strong>不是规定，是天文观测的结果</strong>。</p>
+  <p>
+    地球绕太阳一圈约 <strong>365.2422 天</strong>，为了凑成整数方便记，
+    就设<strong>大月 31 天（1、3、5、7、8、10、12）</strong>、<strong>小月 30 天</strong>，
+    <strong>二月只有 28 天</strong>。<br>
+    <em class="hl">平年 28 天是「凑整」剩下的零头</em>；<strong>闰年多一天（29 天）</strong>，
+    因为四年闰一次，把零头补回来（每 4 年多 1 天，正好补上多出来的 0.2422×4 ≈ 0.97 天）。<br><br>
+    <strong>所以「二月少一天」不是特殊照顾，是数学上的补丁。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>这题是时间，别按满十进一算。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做时间换算出错时，先别讲道理。<strong>先提醒进制</strong>——多数错在这一句提醒就能避免。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b9-time">
+  <h3 style="margin-top:0">时间 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版一年级上册「认识钟表」、一年级下册「认识时间」、
+  三年级上册「时、分、秒」、三年级下册「年、月、日」共 4 个单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="mass.html">人民币与质量</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b9-time"]={title:"时间 · 5 题",qs:[
+{stem:"<span class='m'>100 分钟</span> 等于：", opts:["1 小时 10 分","1 小时 40 分","10 小时","1 小时 00 分"],
+ answer:"B",why:"<strong>时间是 60 进制</strong>。100 ÷ 60 = 1 余 40 → <strong>1 小时 40 分</strong>。孩子容易按十进制算成 1 小时 10 分。",
+ miss:"<strong>时间满 60 进 1</strong>。100 ÷ 60 = 1 余 40，所以是 1 小时 40 分。",
+ kidSay:"这题是时间，按 60 算。100 除以 60 余 40，所以是 1 小时 40 分。"},
+{stem:"人类选 60 进制（而不是 10 进制）来记时间，最主要的理由是：",
+ opts:["60 比 10 大","60 能被 2、3、4、5、6、10 整除，方便分","60 看起来更好看","古人不识字"],
+ answer:"B",why:"<strong>单位选哪个只看「方便不够」。</strong>十进制能整除 2 和 5；六十进制能整除 2、3、4、5、6、10，<strong>分起来更方便</strong>。这正是「单位是约定而非规定」的铁证。",
+ miss:"<strong>因为 60 能同时被 2、3、4、5、6、10 整除</strong>，分起来方便。选进制只看方不方便。",
+ kidSay:"60 的好处是它能被 2、3、4、5、6、10 都整除，分起来比 10 方便。"},
+{stem:"平年二月为什么只有 28 天？<b>最接近本质的解释是：</b>",
+ opts:["二月天数规定是 28 天","地球绕太阳一圈约 365.2422 天，为了凑成整数方便记，剩下的零头放在二月",
+  "因为二月冷","因为二月只有 28 个工作日"],
+ answer:"B",why:"<strong>平年 365 天是「凑整」的结果</strong>，零头 0.2422 天被放进二月。所以二月少一天不是特殊照顾，是<strong>数学上的补丁</strong>；闰年加一天，是为了每 4 年把这零头补回来。",
+ miss:"<strong>一年其实是 365.2422 天</strong>，为了记整数，把多出来的零头放进了二月。",
+ kidSay:"地球转一圈不是整 365 天，多的那 0.24 天被塞进二月了。闰年加一天，是为了把这个零头补回来。"},
+{stem:"孩子做 <span class='m'>90 分 = ? 时 ? 分</span> 时算成 9 时，<b>最有效的纠正方式是：</b>",
+ opts:["告诉他 90 除以 10","先提醒「时间是 60 进制」，再让他重算","背口诀","多做题"],
+ answer:"B",why:"<strong>他不是不会算，是用错了进制。</strong>先<strong>显式提醒进制</strong>，他立刻就会用正确的方式算：90 ÷ 60 = 1 余 30。",
+ miss:"<strong>他用的是十进制</strong>。只要先提醒一句「时间是 60 进制」，他就会重新算了。",
+ kidSay:"停一下——时间是 60 进制，不是 10 进制。90 除以 60 看还剩多少。"},
+{stem:"下面哪个说法<strong>正确</strong>？",
+ opts:["时间也是十进制，满 10 进 1","时间是六十进制，满 60 进 1；数数是十进制，满 10 进 1",
+  "时间用 12 进制，满 12 进 1","时间用什么进制都行"],
+ answer:"B",why:"<strong>时间是小学阶段唯一打破十进制的量</strong>。秒→分、分→时都是满 60 进 1；而数、长度、质量、面积全是十进制。",
+ miss:"<strong>时间是 60 进制，其他大多是 10 进制。</strong>这是小学唯一需要「换一套进制」的地方。",
+ kidSay:"数数满十进一，时间满六十进一。小学里就时间不一样，别的都是十进制。"}
+]};
+</script>
+<script src="../assets/js/final.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

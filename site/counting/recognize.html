@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数的认识 · 位值制一直在延伸</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav><a href="../index.html">首页</a><a href="index.html">数的认识</a><a href="recognize.html">位值制延伸</a></nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 一上/一下/二下/四上「数的认识」</span>
+  <h1>数的认识<br>从 1 到千万亿，<strong style="color:var(--brand);font-weight:inherit">位值制从来没变过</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子读「10000」读成「一零零零零」</a></li>
+<li><a href="#l2">02 溯源：「万」不是新单位，是打包</a></li>
+<li><a href="#l3">03 四位一组，从右往左读</a></li>
+<li><a href="#l4">04 0 的三种角色</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子读「10000」读成「一零零零零」</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「10000」孩子<strong>一个数一个数地读</strong>：「一 万 零 零 零 零」——不对，是「一万」。<br>
+    「100000000」他彻底读不出来了，<strong>因为数位太多，眼睛会数乱</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">「万」和「亿」<strong>不是新的计数单位，是打包</strong>。</p>
+  <p>
+    <span class="m">1 万 = 10 个千</span>，<span class="m">1 亿 = 10 个千万</span>。<br>
+    <em class="hl">它们只是把「四个一位级单位」打包成一组，方便读而已。</em><br><br>
+    孩子读大数错的<strong>唯一原因</strong>：<strong>没有从右往左四位一组</strong>。<br>
+    只要分成组，<span class="m">100000000</span> 立刻变成「1 亿」，<strong>一个数都没有</strong>。
+  </p>
+</div>
+
+<div class="demo" id="bn-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换大数，看怎么读</div>
+  <p class="demo-hint">盯住下方的<strong>单位标签</strong>——每一位都标着它代表多少。</p>
+  <div class="demo-stage"><div id="bn-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>数</label>
+    <select id="bn-mode" class="btn" style="padding:7px 12px">
+      <option value="0">407（三位数）</option>
+      <option value="1">10000（五位数）</option>
+      <option value="2" selected>100000000（九位数）</option>
+      <option value="3">3050700（中间有零）</option>
+    </select>
+  </div>
+  <div class="demo-out" id="bn-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：「万」不是新单位，是打包</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    人类最早只有 <strong>一、十、百、千</strong> 四个单位（一位级）。<br>
+    写到 <span class="m">10000</span> 时发现：<strong>要写四个 0，太累、容易数错</strong>。<br>
+    于是<strong>造了「万」——它等于 10 个千</strong>，一次打包。<br><br>
+    <em class="hl">同理「亿」= 10 个万。</em><br>
+    <strong>所以每加一个大单位，都是「上一级打包十份」。规则从头到尾只有一个。</strong>
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>四位一组，从右往左读</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>读大数的标准动作：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>从右往左</strong>，每 <strong>4 位一组</strong>（千 百 十 个）</li>
+    <li>每组的<strong>末位是「个、十、百、千」</strong>；高一组就用<strong>「万、亿」</strong>收尾</li>
+    <li><strong>组首的 0、以及整组全为 0 时都跳过不读</strong>（比如 1004 读「一千零四」）；<em class="hl">组内中间的 0 要读出来</em>（比如 305 读「三百零五」）</li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>记忆法：从右往左，每 4 个切一刀。切出来的每一段，内部照常读，段尾加「万」或「亿」。</strong>
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>0 的三种角色</h2>
+
+<div class="models">
+  <div class="model model-good">
+    <div class="model-h">占位 0</div>
+    <p><span class="m">407</span> 里的 <span class="m">0</span>——<strong>十位上没有人，但这一位不能空</strong>，否则 4 跑到百位，就变成 47 了。</p>
+    <p><strong>0 的作用是「保持位置」。</strong></p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">组间的 0</div>
+    <p><span class="m">10000</span> 里的三个 <span class="m">0</span>——<strong>这一组全是 0，整个跳过不读</strong>，所以读「一万」不是「一零零零零」。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">组内的 0</div>
+    <p><span class="m">3050700</span> 的 <span class="m">305</span> 中间那个 <span class="m">0</span>——<strong>不能跳</strong>，要读「三百零五」。</p>
+    <p><em class="hl">组间的 0 跳过，组内的 0 要读。</em></p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>从右往左，四位切一刀。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子读大数卡住时，别教他新口诀。让他<strong>拿笔从右往左每四位划一道</strong>——
+    划完他自己就会读了。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b1-recognize">
+  <h3 style="margin-top:0">数的认识 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版一年级上册「1-5/6-10/11-20 各数的认识」、
+  一年级下册「100 以内数的认识」、二年级下册「万以内数的认识」、四年级上册「大数的认识」共 7 个单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="carry.html">进位与退位</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b1-recognize"]={title:"数的认识 · 5 题",qs:[
+{stem:"<span class='m'>10000</span> 为什么读作「一万」而不是「一零零零零」？<b>最本质的原因是：</b>",
+ opts:["口语习惯","因为「万」是 10 个千打包成一组，这一组全是 0 所以整个跳过",
+  "因为 0 不读","因为要简化"],
+ answer:"B",why:"<strong>「万」是 10 个千的打包单位</strong>。读数时<strong>从右往左四位一组</strong>，万位这一组是「0000」全为 0，<strong>整组跳过不读</strong>，所以是「一万」。",
+ miss:"<strong>四位一组</strong>。10000 分成「1 | 0000」，后面那组全是 0，<strong>整组跳过</strong>，所以读一万。",
+ kidSay:"从右边数四个位切一刀。前面是 1，后面四个 0 是空的一组，直接跳过，所以是一万。"},
+{stem:"<span class='m'>3050700</span> 读作「三百零五万零七百」。中间的 0 <b>为什么不能跳过不读？</b>",
+ opts:["所有的 0 都要读","因为这个 0 在「万」这一组<strong>内部</strong>，组内的 0 不跳，组间的 0 才跳",
+  "因为它比较重要","因为要凑字数"],
+ answer:"B",why:"<strong>组间的 0 跳过（整组为空），组内的 0 要读。</strong><span class='m'>3050700</span> 分成「305 | 0700」：<span class='m'>305</span> 组的 0<strong>要读</strong>（三百零五）；<span class='m'>0700</span> 组以 0 开头，是<strong>组间的 0，跳过</strong>（只读零七百）。",
+ miss:"<strong>分清是组内还是组间</strong>。305 里的 0 在组内，要读；0700 开头的 0 是整组为空，跳过。",
+ kidSay:"从右往左四位一组：305 | 0700。305 组的 0 要读出来；0700 组开头的 0 后面还有数，那个 0 跳过。"},
+{stem:"<span class='m'>407</span> 中间的 0 的作用是什么？",
+ opts:["没有作用","占位：保持十位的位置，否则 4 会跑到百位变成 47","表示 0 个十","表示空"],
+ answer:"B",why:"<strong>0 在这里的作用是「占位」，保持数位位置。</strong>如果十位不写 0，<span class='m'>47</span> 的 4 就在十位，读作 47，<em class='hl'>数值完全不同</em>。",
+ miss:"<strong>0 是用来占位的</strong>。407 里的 0 让 4 待在该在的位上。不写这个 0，407 就变成 47 了。",
+ kidSay:"这个 0 是占位的——它告诉别人「十位没有人」。去掉它，407 就变成 47 了。"},
+{stem:"孩子读大数读不出来时，<b>最有效的教学动作是：</b>",
+ opts:["再教一遍读法口诀","让他拿笔从右往左每四位划一道，先分组再读","多读几个例子","先学乘法口诀"],
+ answer:"B",why:"<strong>读大数难是因为数位多、眼睛会数乱。</strong><em class='hl'>先分组，把「大数」拆成几个「小段」</em>，每段就回到了熟悉的三位读法。<strong>分组是能力，口诀只是辅助。</strong>",
+ miss:"<strong>先分组，再读数</strong>。拿笔从右往左四位划一刀，大数就变成了几个熟悉的三位数。",
+ kidSay:"不用背口诀。从右往左每四个位划一刀，划完每一段你都会读。"},
+{stem:"「万」和「亿」这两个单位，本质上是什么？",
+ opts:["全新的计量单位","把 4 个一位级单位（千百十个）打包成一组，每上一级打包十份",
+  "比千大 10 倍的单位","量纲更高级的单位"],
+ answer:"B",why:"<strong>「万」= 10 个千，「亿」= 10 个万</strong>。它们<em class='hl'>不是新单位，是打包</em>。这样规定是为了让数位写起来、读起来更方便。",
+ miss:"<strong>「万」是 10 个千打成的一包。</strong>「亿」是 10 个万。它们不是新东西，是打包。",
+ kidSay:"万不是新单位，就是把 4 个位（千百万十）打包起来，每包再往上一级打包 10 份。"}
+]};
+</script>
+<script src="../assets/js/final.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

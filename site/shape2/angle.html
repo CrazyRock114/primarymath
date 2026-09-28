@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>角 · 它是「旋转了多少」</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">图形的认识</a><a href="angle.html">角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三 · 形 · 二上「角的初步认识」+ 四上「角的度量」</span>
+  <h1>角<br>它不是「两条线的交点」，<strong style="color:var(--brand);font-weight:inherit">是旋转了多少</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 角画得越大越好？孩子搞错了根本</a></li>
+<li><a href="#l2">02 溯源：角是「量」出来的</a></li>
+<li><a href="#l3">03 量角器怎么用，三步</a></li>
+<li><a href="#l4">04 直角、锐角、钝角</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>角画得越大越好？孩子搞错了根本</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    低年级孩子<strong>「角的大小」经常判断错</strong>。他以为：<strong>画得越长、开口越大，角就越大</strong>。<br>
+    结果：一个 30° 的锐角，他因为两条边画得很长，就判断「这是个大角」。<br>
+    <strong>他不是不会看角，是脑子里没有「角的大小 ≠ 边长」这个结构。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">角的大小<strong>只由「张开的程度」决定，和边长完全无关</strong>。</p>
+  <p>
+    这是小学几何最核心的一个观念。把它说透，孩子就不会再「看边长判角大小」了。<br>
+    <em class="hl">边像尺子的长短（随便定），角像开口的度数（唯一标准）。</em>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：角是「量」出来的</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    人类怎么表示「转了多少」？<strong>发明了单位——度（°）。</strong><br><br>
+    <strong>把一整圈定为 360°</strong>（不管你信不信，这是一个约定，不是一个发现）。<br>
+    转动 <strong>90°</strong> 正好是四分之一圈 → <strong>直角</strong>。<br>
+    转动 <strong>180°</strong> 正好是半圈 → 边和边在同一直线上 → <strong>平角</strong>。<br><br>
+    <em class="hl">所以角和「度」是<strong>绑定</strong>的——角不是一个「图形」，是一个<strong>量</strong>。</em>
+    这就像长度是量、质量是量一样：<strong>角是和「量」同一类的东西。</strong>
+  </p>
+</div>
+
+<div class="demo" id="ag-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：三个视角看角</div>
+  <p class="demo-hint">切换视角：分类 / 边长对比 / 旋转量。感受「边长变了，角没变」。</p>
+  <div class="demo-stage"><div id="ag-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>角度</label><input type="range" id="ag-r" min="10" max="180" value="45"><span class="val" id="ag-rv"></span>
+    <label>视角</label>
+    <select id="ag-type" class="btn" style="padding:7px 12px">
+      <option value="0">① 分类（锐角/直角/钝角）</option>
+      <option value="1" selected>② 边长变了，角变不变？</option>
+      <option value="2">③ 角 = 旋转量</option>
+    </select>
+  </div>
+  <div class="demo-out" id="ag-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 边长型理解</div>
+    <p>「边越长、画得越大 → 角就越大。」</p>
+    <p>后果：<strong>永远靠「看」而不是「量」</strong>，换个画法就判断错。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 旋转量型理解</div>
+    <p>「角就是<strong>转过的度数</strong>，边只是两条有起点的线。」</p>
+    <p>结果：<strong>用度数判断，永远不会错</strong>，而且能推广到任意图形。</p>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>量角器怎么用，三步</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>用量角器量角（家长最容易讲不清的地方）：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>顶点对中心</strong>：量角器的<strong>中心点</strong>对准角的<strong>顶点</strong></li>
+    <li><strong>零线对一边</strong>：量角器的 <span class="m">0 刻度线</span>贴着角的<strong>一条边</strong></li>
+    <li><strong>读另一边</strong>：看另一条边<strong>对着几度</strong>，<strong>内圈还是外圈别读错</strong></li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>记忆口诀：顶点对中心，零线对一边，再看另一边。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>角的大小和边长没关系，只看张开多少度。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子判断角的大小出错时，别告诉他答案。用<strong>同一个角度</strong>画三条边长完全不同的角，问他「哪个角大」。
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>直角、锐角、钝角</h2>
+
+<div class="card">
+  <table style="width:100%;border-collapse:collapse;font-size:15.5px">
+    <tbody>
+      <tr><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)"><strong>锐角</strong></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)">大于 0° 且小于 90°</td></tr>
+      <tr><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)"><strong>直角</strong></td><td style="padding:10px 8px;border-bottom:1px solid var(--line-soft)">正好 90°（量角器上有一个「直角」标记）</td></tr>
+      <tr><td style="padding:10px 8px"><strong>钝角</strong></td><td style="padding:10px 8px">大于 90° 且小于 180°</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>为什么直角要「特殊对待」？</strong>因为<strong>90° = 四分之一圈</strong>，是一个<strong>对称的整分数</strong>，是几何里最「稳定」的角度——长方形、正方形的角全是直角。直角也是<strong>尺子画得最准的角</strong>（不用量角器，两条边互相垂直即可）。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b6-angle">
+  <h3 style="margin-top:0">角 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版二年级上册「角的初步认识」、四年级上册「角的度量」两个单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="polygon.html">三角形与四边形</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b6-angle"]={title:"角 · 5 题",qs:[
+{stem:"两个角，边长完全一样，但一个开口大、一个开口小。<b>哪个角大？</b>",
+ opts:["边长一样，角一样大","看开口的大小，开口大的角大","看画得高不高","一样大，因为边一样长"],
+ answer:"B",why:"<strong>角的大小只由「张开的程度」（度数）决定，与边长完全无关</strong>。这是小学几何最核心的观念。",
+ miss:"<strong>边长不代表角的大小</strong>，要看「张开多少度」。开口大的那个角大。",
+ kidSay:"角的大小只看张开多少度，边长短根本没关系。"},
+{stem:"角这个概念，本质上是一个什么？",
+ opts:["两条线的交点","旋转的量（转过了多少度）","一段有长度的线","一个图形的名字"],
+ answer:"B",why:"<strong>角 = 从一条边转到另一条边转过的角度</strong>，有 1 个顶点、2 条边。它和长度、质量一样，是<strong>一个「量」</strong>，不是一个静态图形。",
+ miss:"<strong>角是「转了多少」</strong>，就像长度是「多长」。它是一个量，不是一条线。",
+ kidSay:"角就是转过的角度。转 90 度是直角，转 45 度是锐角。边只是画角用的两条线。"},
+{stem:"为什么直角（90°）要「特殊对待」，用尺子一画就能画准？",
+ opts:["因为它最好看","因为 90° = 四分之一圈，是一个对称的整分数；两条边互相垂直即可，不用量角器","因为它是最大的角","因为课本规定的"],
+ answer:"B",why:"<strong>90° = 1/4 圈</strong>，是<strong>对称的整分数</strong>。所以只要两条边互相垂直，不用量角器就能画准——这是直角最实用的地方（画长方形、正方形全靠它）。",
+ miss:"<strong>90 度正好是四分之一圈</strong>。所以只要两条边互相垂直，不用量角器就能画准。",
+ kidSay:"直角是四分之一圈，是个整分数。所以用尺子画两条垂直的线就行，不用量角器。"},
+{stem:"用量角器量角，三步的正确顺序是：",
+ opts:["零线对中心、顶点对一边、读另一边","中心对顶点、零线对一边、读另一边","读另一边、中心对顶点、零线对一边","随便对，读数就行"],
+ answer:"B",why:"<strong>顶点对中心 → 零线对一边 → 读另一边</strong>。口诀：「顶点对中心，零线对一边，再看另一边。」",
+ miss:"<strong>顶点对中心，零线对一边，再看另一边。</strong>这是量角器的标准三步。",
+ kidSay:"量角器中心对着角的顶点，0 线贴着角的一条边，然后看另一边对着几度。"},
+{stem:"孩子会用量角器，但判断「一个角是锐角还是钝角」经常错。最该补的是：",
+ opts:["多练量角","抓住「90° 是分界：小于 90 是锐角，等于 90 是直角，大于 90 小于 180 是钝角」这个标准，用度数判断而不是凭感觉",
+  "背角的分类定义","用计算器"],
+ answer:"B",why:"<strong>90° 是分界线</strong>。用<strong>度数</strong>判断而不是「看起来大不大」，就永远不会错。孩子凭感觉判断时，图形画大画小都会影响。",
+ miss:"<strong>用度数判断，不用「看起来」。</strong>小于 90 是锐角，大于 90 小于 180 是钝角。",
+ kidSay:"别用眼睛看，用度数看。小于 90 是锐角，等于 90 是直角，超过 90 不到 180 是钝角。"}
+]};
+</script>
+<script src="../assets/js/geometry.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

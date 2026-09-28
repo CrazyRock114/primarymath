@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大数竖式进阶 · 三位数乘两位数与除数是两位数</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">运算规则</a><a href="vertical.html">大数竖式进阶</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱五 · 规则 · 四上「三位数乘两位数」「除数是两位数的除法」</span>
+  <h1>大数竖式<br>难点<strong style="color:var(--warn);font-weight:inherit">只有两处</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 算理已讲过，这里只讲两处难点</a></li>
+<li><a href="#l2">02 难点一：末位为什么要对齐十位</a></li>
+<li><a href="#l3">03 难点二：两位数除数怎么试商</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>算理已讲过，这里只讲两处难点</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    <span class="m">234 × 45</span>，孩子算出来 <span class="m">2106</span>，漏了十位上的 4。
+    <span class="m">96 ÷ 24</span>，孩子试商试了半天，试到商 5 时<strong>乘积超过了被除数</strong>，不知道该怎么办。<br>
+    <strong>两处都卡住：一个是「对位」，一个是「试商」。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">算理在<a href="../multiply/place.html">上一批已经讲透了</a>，这里不重复，只解决两个具体卡点。</p>
+  <p>
+    <strong>已经确立的：</strong>竖式 = 合并同计数单位；从个位起算（因为进位往左传）；除法从高位起（因为要先看总量）。<br>
+    <strong>本节要补的：</strong>两位数乘两位数的<strong>部分积对位</strong>，和<strong>两位数除数的试商范围</strong>。
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>难点一：末位为什么要对齐十位</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    <span class="m">45 = 4 个十 + 5 个一</span>。所以 <span class="m">234 × 45</span> 要拆成<strong>两块</strong>：<br>
+    <em class="hl"><span class="m">234×5 + 234×4×10</span></em><br><br>
+    <span class="m">234 × 4 = 936</span> 表示「<strong>40 个 234</strong>」，
+    而 <strong>40 个 234 的末位落在十位</strong> —— 因为 10 × 234 = 2340。<br>
+    <strong>所以第二个部分积要左移一位。不是「好看」，是它代表的数量决定的。</strong>
+  </p>
+</div>
+
+<div class="demo" id="bm-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：一步步看竖式怎么长出来</div>
+  <p class="demo-hint">切换步骤。盯住<strong>第二个部分积的位置</strong>。</p>
+  <div class="demo-stage"><div id="bm-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>进行到</label>
+    <select id="bm-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>第 0 步：只看题目</option>
+      <option value="1">第 1 步：× 个位</option>
+      <option value="2">第 2 步：× 十位（注意对位）</option>
+      <option value="3">第 3 步：两行相加</option>
+    </select>
+  </div>
+  <div class="demo-out" id="bm-out"></div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「用<strong>十位</strong>去乘，末位就对<strong>十位</strong>。」</p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>难点二：两位数除数怎么试商</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子说「<strong>除数是 24，口诀表里没有 24，我试不出来</strong>」——
+    于是干脆逐个试，试到崩溃。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">不需要新的口诀，<strong>用乘法口诀倒着查</strong>就行。</p>
+  <p>
+    商的个位可能是几？<strong>先定范围，再在这个范围里试</strong>。<br>
+    <span class="m">96 ÷ 24</span>：商的个位肯定<strong>小于 5</strong>（因为 5 × 24 = 120 > 96）。
+    于是在 1、2、3、4 里试：<span class="m">24×4 = 96</span> → 商是 <strong>4</strong>。<br><br>
+    <em class="hl"><strong>试商范围 ≈ 除数「去掉个位后」到「个位+1」。</strong>24 去掉个位是 2、个位加 1 是 5，
+    所以先在 2~5 里试；再靠乘积是否超过被除数收窄到 4。这样比「1~9 全试」省一大半。</em>
+  </p>
+</div>
+
+<div class="demo" id="d2-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：换几道题看试商范围</div>
+  <p class="demo-hint">上方绿色的框是<strong>商的个位可能的取值</strong>，正确的那一个被高亮。</p>
+  <div class="demo-stage"><div id="d2-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>题目</label>
+    <select id="d2-sel" class="btn" style="padding:7px 12px">
+      <option value="0">96 ÷ 24</option>
+      <option value="1">72 ÷ 18</option>
+      <option value="2" selected>144 ÷ 12</option>
+      <option value="3">85 ÷ 17</option>
+      <option value="4">91 ÷ 13</option>
+    </select>
+  </div>
+  <div class="demo-out" id="d2-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 试到对为止</div>
+    <p>「先试一个商，不对就加一（或减一）再试。」</p>
+    <p>后果：<strong>没有范围，就是无限试</strong>。而且孩子<strong>不知道该往哪个方向调</strong>。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model model-h">✓ 范围型</div>
+    <p>「<strong>先定范围，再在范围里试</strong>，然后乘一次验一验。」</p>
+    <p>结果：<strong>试商范围极小</strong>，且<strong>每一步都可检验</strong>，不会越试越乱。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>先算范围，再试商，最后乘一次验一验。</strong>」</p>
+</div>
+
+<div class="quiz" data-quiz="b4-vertical">
+  <h3 style="margin-top:0">大数竖式 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版四年级上册「三位数乘两位数」「除数是两位数的除法」两个单元。
+  算理部分已在<a href="../multiply/place.html">数位表里的算理</a>中讲透，本页只补两处具体难点。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="decimal.html">上一节：小数的加减乘除</a>　|　<a href="../index.html">回到首页</a>　|　B4 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b4-vertical"]={title:"大数竖式 · 5 题",qs:[
+{stem:"<span class='m'>234 × 45</span> 的竖式中，第二个部分积 <span class='m'>234×4=936</span> 为什么要末位对齐十位？",
+ opts:["为了好看","因为 4 在十位上，它表示 40 个 234，而 40×234=2340，末位落在十位","因为 936 比 1170 小","因为要留进位的位置"],
+ answer:"B",why:"<strong>部分积要对齐它代表的计数单位</strong>。用十位 4 去乘，表示「40 个 234」= 2340，末位在十位。<strong>对齐的是位置，不是排版</strong>。",
+ miss:"<strong>4 在十位，代表的是 40 个 234</strong>。40×234=2340，所以末位要对十位。",
+ kidSay:"你用十位的 4 去除，表示 40 个 234。40 个 234 是 2340，它的末位就在十位上。"},
+{stem:"<span class='m'>96 ÷ 24</span> 试商时，商的个位可能的取值范围是：",
+ opts:["0 到 9","1 到 4（因为 5×24=120 已经超过 96）","只能是 4","可以是任何一位数"],
+ answer:"B",why:"<strong>试商要满足「乘积不超过被除数」</strong>：5×24=120 > 96，所以商不能 ≥5。范围缩小到 <strong>1~4</strong>，<strong>再逐一试</strong>，试商就变成了 4。",
+ miss:"<strong>先定范围</strong>：商的个位不能超过 4，因为 5 乘 24 已经超了。在 1~4 里试就行。",
+ kidSay:"别乱试。先想 5 乘 24 是多少，已经超过 96 了，所以商肯定不到 5。在 1 到 4 里试。"},
+{stem:"除数是 24，口诀表里没有「二十四」这个口诀。试商怎么办？",
+ opts:["放弃，试不出来","用乘法口诀倒着查：24×4=96 正好，所以商是 4","背两位数除法口诀","从 1 开始试到 9"],
+ answer:"B",why:"<strong>不需要新口诀</strong>。除数是两位数时，把它<strong>拆成 20 + 4</strong>，<span class='m'>24×4 = 20×4 + 4×4 = 80+16 = 96</span>，用的是 <strong>20 和 4 的口诀</strong>。同时定范围，<strong>只需试 1~4 次</strong>。",
+ miss:"<strong>用乘法倒着查</strong>。把 24 拆成 20+4，用你会的口诀算 24×4 是多少，一试就知道。",
+ kidSay:"口诀表里没有 24，但 20×4 和 4×4 你会算。加起来就是 24×4。"},
+{stem:"孩子说「除数是两位数，我试商只能一个个试，太慢了所以我不试商」。<b>问题出在哪？</b>",
+ opts:["他太粗心","试商前应该先定范围，把 1~9 缩到通常只有 3~4 个可能，再逐个试并乘一次验一验",
+  "两位数除数不需要试商","应该用计算器"],
+ answer:"B",why:"<strong>关键步骤是「定范围」</strong>。商的个位受除数大小限制，<strong>通常只有 3~4 个候选</strong>。定范围 + 乘法验算，试商其实比看起来快得多。",
+ miss:"<strong>不是 1 到 9 挨个试</strong>。除数是 24，商就不可能太大，先缩到 1~4，再试。",
+ kidSay:"别一个个试。先看除数多大，商就不可能超过多少，范围一小就快了。"},
+{stem:"在 <span class='m'>234 × 45</span> 的竖式中，把 <span class='m'>234 × 5 = 1170</span> 和 <span class='m'>234 × 4 = 936</span> 相加，中间过程正确的读法是：",
+ opts:["1170 + 936","1170 + 9360（因为第二行表示 40 个 234）","117 + 936","1170 - 9360"],
+ answer:"B",why:"第二行 <span class='m'>936</span> 写在<strong>十位</strong>上，它表示 <strong>9360</strong>。所以实际是 <span class='m'>1170 + 9360 = 10530</span>。<strong>对位即改变了数值</strong>。",
+ miss:"<strong>第二行写的位置代表它左移了一位</strong>。936 在十位上，等于 9360，不是 936。",
+ kidSay:"第二行是写在十位上的，所以要当成 9360 来加，不是 936。"}
+]};
+</script>
+<script src="../assets/js/rule.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

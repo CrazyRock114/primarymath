@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分数的加减 · 通分是为了换单位</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">分数乘除与方程</a><a href="addsub.html">分数的加减</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 五年级下册「分数的加法和减法」</span>
+  <h1>分数加减<br>通分<strong style="color:var(--brand);font-weight:inherit">只是为了换单位</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 会算，但不知道为什么要通分</a></li>
+<li><a href="#l2">02 溯源：同质规则的第三次出现</a></li>
+<li><a href="#l3">03 动手：换单位之后就能合并</a></li>
+<li><a href="#l4">04 减法里的「借」是什么</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>会算，但不知道为什么要通分</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师教「<strong>先通分，再加减，最后约分</strong>」。孩子流程背得熟。<br>
+    可你问「<strong>不通分会怎样？</strong>」他说「会算错」——<strong>不是错，是根本不能算</strong>。<br>
+    换成 <span class="m">7/12 + 5/18</span>，<strong>通分到几分之几</strong>？他不敢动手。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">通分不是「通到分母的最小公倍数」，是<strong>「换成同一个单位」</strong>。</p>
+  <p>
+    <span class="m">1/2 + 1/3</span>：<strong>「二分之一」和「三分之一」是两种单位</strong>，不能直接加。<br>
+    通分的目标只有一个：<em class="hl">让两个分数的<b>分母一样</b></em>——因为<strong>分母就是计数单位</strong>。<br>
+    <span class="m">7/12 + 5/18</span> → 12 和 18 的最小公倍数是 36 → <span class="m">21/36 + 10/36 = 31/36</span>。<br><br>
+    <strong>通分后还要约分，是另一个理由</strong>：把 31/36 和 21/36 都写成最简的「31/36」「7/12」形式（见<a href="../fraction/common.html">分数的基本性质</a>）。<strong>约分是简化，不是必需。</strong>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：同质规则的第三次出现</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    <a href="../pillar/rule.html">支柱五</a>的<strong>同质规则</strong>：<em class="hl">唯有计数单位统一，方能执行合并。</em><br><br>
+    这条规则在小学里出现<strong>三次</strong>：<br>
+    1. <strong>整数加减</strong>：个位对个位，天生同单位<br>
+    2. <strong>小数加减</strong>：小数点对齐，每列同单位<br>
+    3. <strong>分数加减</strong>：通分，分母同单位<br><br>
+    <strong>三次是同一条规则的三种长相。</strong>孩子学三次，是因为他不知道它们是一回事。
+  </p>
+</div>
+
+<div class="demo" id="fa-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换看「没通分」和「通分后」</div>
+  <p class="demo-hint">盯住每一条长条<strong>被分成几份</strong>——份数就是分母，单位就是分母。</p>
+  <div class="demo-stage"><div id="fa-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>状态</label>
+    <select id="fa-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 不通分（不能算）</option>
+      <option value="1">② 通分之后（可以合并）</option>
+    </select>
+  </div>
+  <div class="demo-out" id="fa-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>动手：换单位之后就能合并</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>异分母分数加减，完整四步：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>通分</strong>：把两个分母换成<strong>同一个单位</strong>（最小公倍数）</li>
+    <li><strong>加（或减）分子</strong>：此时分母相同，<strong>直接合并同单位</strong></li>
+    <li><strong>结果化简</strong>：能约分就约分，能带分数就化成带分数</li>
+    <li><strong>写成最简分数</strong>：作为最终答案</li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>只有第 1 步是「技巧」，后面三步都是「同单位合并」。</strong>孩子卡在第 1 步，是因为不知道<strong>通分的目标是换单位</strong>。
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>减法里的「借」是什么</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    <span class="m">1 - 3/5</span>，孩子写成 <span class="m">2/5</span>。<br>
+    他以为「1 可以看成 5 个 1/5，取走 3 个剩 2 个」——<strong>可 1 不是 5/5 吗？</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim"><strong>先统一单位再减</strong>，不需要任何「借位」的技巧。</p>
+  <p>
+    <span class="m">1 - 3/5</span>：把 1 写成 <span class="m">5/5</span>（换成 1/5 为单位），<br>
+    <span class="m">5/5 - 3/5 = 2/5</span>。<br>
+    <em class="hl">结果碰巧是 2/5，<strong>但这是因为 1 恰好是 5 个 1/5</strong>。</em><br>
+    换成 <span class="m">1 - 3/7</span>：1 写成 <span class="m">7/7</span>，<span class="m">7/7 - 3/7 = 4/7</span>。<br>
+    <strong>没有「借」，只是把 1 换成了合适的单位。</strong>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 凑整型理解</div>
+    <p>「1 里面偷出 1 给分数，1-1=0，再补回来。」</p>
+    <p>后果：<strong>多了一整套「借还」的口诀</strong>，而且<strong>只在分数是 1/5 时碰巧对</strong>。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 统一单位型</div>
+    <p>「<strong>把 1 写成 n/n</strong>，然后直接减。」</p>
+    <p>结果：<strong>任何分母都通吃</strong>，不用记「借」的口诀。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>1 就写成 n/n，减法就变简单了。</strong>」</p>
+</div>
+
+<div class="quiz" data-quiz="b5-addsub">
+  <h3 style="margin-top:0">分数的加减 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版五年级下册「分数的加法和减法」单元。
+  承接本站<a href="../pillar/rule.html">支柱五「规则」</a>的「同质规则」主线。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="multiply.html">分数乘法</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b5-addsub"]={title:"分数的加减 · 5 题",qs:[
+{stem:"异分母分数加减法，<strong>通分的真正目的是：</strong>",
+ opts:["通到分母的最小公倍数（技巧）","把两个分数换成同一个计数单位，单位相同才能合并","让分子变大","让结果更简单"],
+ answer:"B",why:"<strong>分母就是计数单位</strong>。<span class='m'>1/2+1/3</span> 的「二分之一」和「三分之一」单位不同，不能加。通分<strong>唯一目的就是换单位</strong>，通到最小公倍数只是最省事的选法。",
+ miss:"<strong>单位不同不能加</strong>。通分就是为了让两个数的分母一样——单位一样才能合并。",
+ kidSay:"二分之一和三分之一是两个单位，不能加。先换成同一个单位，再加。"},
+{stem:"小数点对齐、整数末位对齐、分数通分，这三件事：",
+ opts:["是三套不同的规定","都是同一条「同质规则」：单位统一才能合并","是三种不同的计算方法","没有共同点"],
+ answer:"B",why:"<strong>同质规则</strong>——单位统一才能合并。整数个位对个位、小数点对齐、分数通分，<strong>是同一条规则的三种长相</strong>。孩子学三次，是因为不知道它们是一回事。",
+ miss:"<strong>都是「单位一样才能合并」</strong>。整数、小数、分数，加法都在做同一件事。",
+ kidSay:"不管整数小数还是分数，加法前都得让单位一样。这就是同一条规则。"},
+{stem:"<span class='m'>1 - 3/5 = 2/5</span>，这个结果<strong>真正的来由</strong>是：",
+ opts:["从 1 里借了 1，再补回来","把 1 写成 5/5（换成 1/5 为单位），再直接减","3/5 减 1 再取反","碰巧"],
+ answer:"B",why:"<strong>把 1 统一成 <span class='m'>5/5</span></strong>，然后 <span class='m'>5/5 - 3/5 = 2/5</span>。<em class='hl'>结果碰巧是 2/5，但这是因为 1 恰好等于 5 个 1/5</em>。换成 <span class='m'>1-3/7</span> 就要写成 7/7，结果是 4/7。",
+ miss:"<strong>没有「借位」技巧</strong>。就是把 1 换成合适的分母（n/n），再直接减。",
+ kidSay:"1 写成 5/5，减去 3/5 就是 2/5。要写 1-3/7，就把 1 写成 7/7，结果是 4/7。"},
+{stem:"<span class='m'>7/12 + 5/18</span>，应该通分成什么？为什么？",
+ opts:["通到 12，因为分母不变","通到 36（12 和 18 的最小公倍数），换成同一个单位才能相加","通到 18，分子不变","随便通，分母一样就行"],
+ answer:"B",why:"<strong>12 = 2²×3，18 = 2×3²，最小公倍数是 2²×3² = 36</strong>。通到 36 → <span class='m'>21/36 + 10/36 = 31/36</span>。<strong>36 是「36 份之一」这个单位，两个分数都用它表示才能加</strong>。",
+ miss:"<strong>通到能让两个分母一样的最小数</strong>。12 和 18 最小公倍数是 36。",
+ kidSay:"通分的标准是分母要一样且尽量小。12 和 18 的最小公倍数是 36。"},
+{stem:"分数加减法算出 <span class='m'>48/60</span> 后约分成 <span class='m'>4/5</span>，这个「约分」和「通分」的关系是：",
+ opts:["是相反的操作，目的不同","通分是为了能算，约分是为了写简洁（同一个数的两种写法）","约分改变了数值","通分才是必需的，约分是多余的"],
+ answer:"B",why:"<strong>通分</strong>（换单位，为了能算）和<strong>约分</strong>（换单位，为了简洁）是<strong>同一个操作的两个方向</strong>——都是把同一个数<strong>写成不同分母的样子</strong>，数值不变。",
+ miss:"<strong>通分是让单位一致（为了算），约分是让写法简洁（为了写）</strong>。都是同一件事的两个方向。",
+ kidSay:"通分是换成好算的单位，约分是换成好写的单位。都是同一个数换写法。"}
+]};
+</script>
+<script src="../assets/js/frac2.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

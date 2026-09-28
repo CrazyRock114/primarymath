@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图形的运动 · 平移、旋转、放大缩小</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">位置与运动</a><a href="movement.html">图形的运动</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三 · 形 · 位置与运动层 · 二下/五下「图形的变换」</span>
+  <h1>图形的运动<br>判断一个变换，<strong style="color:var(--brand);font-weight:inherit">看什么没变</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子说「转过去就不像了」</a></li>
+<li><a href="#l2">02 溯源：为什么要有「变换」这个概念</a></li>
+<li><a href="#l3">03 四种变换，各保留什么</a></li>
+<li><a href="#l4">04 平移要看两样：方向和格数</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子说「转过去就不像了」</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    一个直角三角形<strong>转了 90°</strong>，孩子说「<strong>这还是三角形吗？</strong>」<br>
+    一个正方形<strong>倾斜了</strong>，孩子说「它不是正方形了，是菱形」。<br>
+    <strong>他不知道「形状本身」和「摆放的样子」是可以分开的。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">图形有<strong>两个层次</strong>：<strong>它是什么</strong>，和<strong>它现在怎么放着</strong>。</p>
+  <p>
+    <strong>形状</strong>是它<strong>本来是谁</strong>——边、角、长度关系。<br>
+    <strong>位置和方向</strong>是它<strong>现在怎么摆</strong>——可以被改变。<br><br>
+    <em class="hl">平移、旋转、放大缩小、轴对称，全都是<strong>只改「怎么放」，不改「是什么」</strong>。</em><br>
+    <strong>所以这些变换出来的图形，和原来<strong>是同一个图形</strong>，不是新图形。</strong>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：为什么要有「变换」这个概念</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    现实里，「同一个东西换个位置」到处都是：<br>
+    电梯上下（<strong>平移</strong>）、风车转动（<strong>旋转</strong>）、照镜子（<strong>轴对称</strong>）、
+    放大镜（<strong>放大缩小</strong>）、翻书页（<strong>翻转</strong>）。<br><br>
+    <strong>如果「换个位置就是新图形」，我们会天天见到一堆假的新东西。</strong><br>
+    <em class="hl">「变换」这个概念，就是<strong>把「形状」和「摆放」分开</strong>，让同一个东西可以被追踪。</em>
+  </p>
+</div>
+
+<div class="demo" id="mv-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：四种变换，切换看</div>
+  <p class="demo-hint">注意每个变换下，<b>绿色是没变的，橙色是变了的</b>。</p>
+  <div class="demo-stage"><div id="mv-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>变换</label>
+    <select id="mv-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>平移</option>
+      <option value="1">旋转</option>
+      <option value="2">放大缩小</option>
+      <option value="3">轴对称</option>
+    </select>
+    <label>幅度</label><input type="range" id="mv-amt" min="10" max="80" value="45"><span class="val" id="mv-amtv"></span>
+  </div>
+  <div class="demo-out" id="mv-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>四种变换，各保留什么</h2>
+
+<div class="card" style="padding:0;overflow:hidden">
+<table style="width:100%;border-collapse:collapse;font-size:15px">
+<thead><tr style="background:var(--bg-tint)">
+<th style="text-align:left;padding:11px 15px;font-size:13px;color:var(--ink-soft)">变换</th>
+<th style="text-align:left;padding:11px 15px;font-size:13px;color:var(--ink-soft)">不变</th>
+<th style="text-align:left;padding:11px 15px;font-size:13px;color:var(--ink-soft)">改变</th>
+</tr></thead>
+<tbody>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 15px"><strong>平移</strong></td><td style="padding:10px 15px;color:var(--ink-soft)">形状、大小、方向</td><td style="padding:10px 15px">位置</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 15px"><strong>旋转</strong></td><td style="padding:10px 15px;color:var(--ink-soft)">形状、大小</td><td style="padding:10px 15px">位置、方向</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 15px"><strong>放大缩小</strong></td><td style="padding:10px 15px;color:var(--ink-soft)">形状、方向</td><td style="padding:10px 15px">大小</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 15px"><strong>轴对称</strong></td><td style="padding:10px 15px;color:var(--ink-soft)">形状、大小</td><td style="padding:10px 15px">方向翻转</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 静态型理解</div>
+    <p>「<strong>这个样子</strong>就是三角形/正方形。」</p>
+    <p>后果：<strong>一动就不认</strong>。转一下、斜一下，认知就崩塌。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model model-h" style="display:none"></div>
+    <div class="model model-good">
+      <div class="model-h">✓ 动态型理解</div>
+      <p>「<strong>形状</strong>是它的身份，<strong>位置方向</strong>是它的姿态。」</p>
+      <p>结果：<strong>怎么动都是同一个图形</strong>，因为身份没变。</p>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  <b>为什么空间能力特别重要：</b><br>
+  「形」柱反复强调的<strong>空间洞察力</strong>，<strong>全靠这些变换练出来</strong>。<br>
+  孩子能在脑中「转」一个图形、想象「折起来」是什么样子，<strong>是初中立体几何、乃至将来学三视图的底子</strong>。
+</div>
+
+<h2 id="l4"><span class="num">04</span>平移要看两样：方向和格数</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">平移要交代<strong>两样</strong>：<strong>往哪个方向</strong>，<strong>移几格</strong>。</p>
+  <p>
+    只说「移过去了」<strong>等于没说</strong>——<em class="hl">必须说「向右 3 格」「向下 2 格」</em>。<br>
+    <strong>格数是离原点多远，方向是往哪儿走</strong>，两个都清楚，这个平移才算描述完整。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>形状是身份，位置方向是姿态。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子因为「转了就不像三角形」而困惑时，这句话能<strong>把混淆的两个层次拆开</strong>——
+    他以后看任何图形题，都会先问「这是在说它的形状，还是在说它怎么放」。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b8-move">
+  <h3 style="margin-top:0">图形的运动 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版二年级下册「图形与变换」、五年级下册「图形的变换」两个单元。
+  承接本站<a href="../pillar/shape.html">形柱</a>的「空间洞察力」主线。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="position.html">上一节：位置</a>　|　<a href="../index.html">回到首页</a>　|　B8 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b8-move"]={title:"图形的运动 · 5 题",qs:[
+{stem:"一个直角三角形<strong>转了 90 度</strong>，它还是三角形吗？",
+ opts:["不是，方向变了就不像了","是，因为它的形状（边、角）没变，只是摆放的姿态变了","要看得像才是","只在平面图里才是"],
+ answer:"B",why:"<strong>三角形是「形状」的属性，旋转只改「姿态」</strong>。边还是三条、角还是三个直角，<strong>身份没变，所以还是同一个图形</strong>。",
+ miss:"<strong>形状是身份，位置方向是姿态。</strong>转了一下，身份没变，所以还是三角形。",
+ kidSay:"转过去只是换了摆放的样子，它的三条边三个角都没变，还是三角形。"},
+{stem:"正方形<strong>倾斜</strong>了一点，孩子说「它不是正方形了，是菱形」。<b>怎么纠正？</b>",
+ opts:["告诉他倾斜后还是正方形","让孩子自己转一转，看它还能不能转回原来那个位置","背定义","用尺子量一量"],
+ answer:"B",why:"<strong>形状和摆放要分开</strong>。正方形<strong>倾斜 45°</strong> 后，<b>它的边长和角都还在</b>，只是换了个姿态。真正的菱形是<strong>四边相等但角不是直角</strong>——<strong>倾斜的正方形角还是 90°，和菱形不同</strong>。",
+ miss:"<strong>倾斜只是换了姿态，角还是 90 度。</strong>菱形的角不是 90 度，是斜的。这两个不一样。",
+ kidSay:"你量量它的角，还是不是 90 度？是的话它就是正方形，只是歪着放。"},
+{stem:"四种变换中，<strong>「方向」保持不变</strong>的是：",
+ opts:["平移和旋转","放大缩小","只有轴对称","都不是"],
+ answer:"B",why:"<strong>平移</strong>只改位置，方向不变；<strong>旋转</strong>改方向；<strong>轴对称</strong>把方向翻转；只有<strong>放大缩小</strong>——<strong>形状和方向都不变，只改大小</strong>。",
+ miss:"<strong>平移</strong>是只挪位置、不转向；<strong>放大缩小</strong>是变大变小、方向不变。旋转和轴对称都会改方向。",
+ kidSay:"平移和放大缩小都不转向。旋转和对称都会转方向。"},
+{stem:"描述一个平移，必须说清<strong>哪两样</strong>？",
+ opts:["颜色和大小","方向（往哪儿）和格数（移多远）","形状和方向","起点和终点"],
+ answer:"B",why:"<strong>「向右 3 格」</strong>才是完整的平移描述——<strong>方向</strong>说往哪儿走，<strong>格数</strong>说走多远。只说「移过去了」<em class='hl'>等于没说</em>。",
+ miss:"<strong>方向和格数</strong>两样。「向右 3 格」才是完整的。只说「移过去了」，别人不知道你移到哪。",
+ kidSay:"要说清楚：<strong>往哪边，移几格</strong>。只说「移过去了」，那可不止一种移法。"},
+{stem:"学习图形的运动，最重要的能力收获是：",
+ opts:["记住几种变换的名字","在脑中让图形动起来（旋转、翻转想象）——这是空间想象力的训练",
+  "会画漂亮图形","记住公式"],
+ answer:"B",why:"<strong>能在脑中「转」一个图形、想象「折起来」是什么样子</strong>，是<strong>空间洞察力</strong>的核心。这是初中立体几何、三视图的底子，比记变换名字有价值得多。",
+ miss:"<strong>重点不是记名字，是脑子能「转」图形</strong>。将来学立体几何、三视图，全靠这个。",
+ kidSay:"重要的不是你记住了几个名字，是<strong>你脑子里能把图形转一转、折一折</strong>。"}
+]};
+</script>
+<script src="../assets/js/position.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>位置 · 从「上下前后」到数对</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">位置与运动</a><a href="position.html">位置</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三 · 形 · 位置与运动层 · 一上/一下/三下/四下/六上</span>
+  <h1>位置<br>为什么是 <span class="m">(列, 行)</span>，<strong style="color:var(--brand);font-weight:inherit">不能写成 (行, 列)</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子分不清「第几列」和「第几行」</a></li>
+<li><a href="#l2">02 溯源：位置 = 有序的两个索引</a></li>
+<li><a href="#l3">03 数对：和位值制是同一个结构</a></li>
+<li><a href="#l4">04 方向与距离：再多加一个条件</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子分不清「第几列」和「第几行」</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「小明站的位置是 (3, 5)。」老师在图上一点，孩子立刻找到了。<br>
+    可你让他<strong>自己写</strong>「红点在第 5 行第 3 列」的位置，<strong>他写成了 (5, 3)</strong>。<br>
+    <strong>他不是不会数格子，是不知道「列在前、行在后」这个顺序是固定的。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">数对是一个<strong>「有顺序的坐标」</strong>，顺序错了就是另一个位置。</p>
+  <p>
+    <strong>数对的顺序永远是：先列（左右），后行（上下）。</strong><br>
+    <em class="hl">(3, 5) 说的是「第 3 列、第 5 行」——先往左右数，再往上下数。</em><br>
+    <strong>顺序定死，是为了让两人不用「再问一遍」就能对上同一个点。</strong>
+  </p>
+</div>
+
+<div class="demo" id="pd-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动看数对怎么变</div>
+  <p class="demo-hint">看蓝色高亮（列）和橙色高亮（行）的<strong>交点</strong>，那就是红点的位置。</p>
+  <div class="demo-stage"><div id="pd-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>列</label><input type="range" id="pd-col" min="1" max="8" value="3"><span class="val" id="pd-colv"></span>
+    <label>行</label><input type="range" id="pd-row" min="1" max="6" value="5"><span class="val" id="pd-rowv"></span>
+  </div>
+  <div class="demo-out" id="pd-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：位置 = 有序的两个索引</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    人类要精确指向平面上的一个点，需要<strong>两个信息</strong>：<br>
+    <strong>① 横向在哪（列）</strong>　<strong>② 纵向在哪（行）</strong><br><br>
+    只给一个不够——「第 3 个」可能是「从左数第 3 个」，也可能是「从上数第 3 个」。<br>
+    <em class="hl">两个信息必须<strong>按固定顺序</strong>给出，才不会歧义——这就是数对。</em>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">数对和位值制，<strong>是同一个结构</strong>。</p>
+  <p>
+    <strong>位值制</strong>：数字 <span class="m">3</span> 在 <span class="m">405</span> 里表示什么？——看它<strong>站在哪一位</strong>。<br>
+    <strong>数对</strong>：点 <span class="m">(3, 5)</span> 在哪里？——看它的<strong>列号和行号</strong>。<br><br>
+    <em class="hl"><strong>两者都是「位置由有序索引确定」</strong>。数字 3 自己没有大小，位置给了它意义；坐标自己也没有大小，位置给了它意义。</em>
+  </p>
+</div>
+
+<div class="demo" id="tg-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：两张不同大小的网格</div>
+  <p class="demo-hint">红点的<strong>数对一样</strong>，但<strong>离原点的实际距离完全不同</strong>。</p>
+  <div class="demo-stage"><div id="tg-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>格子大小</label><input type="range" id="tg-cell" min="26" max="52" value="40"><span class="val" id="tg-cellv"></span>
+  </div>
+  <div class="demo-out" id="tg-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 距离型理解</div>
+    <p>「位置 = 离原点有多远。」</p>
+    <p>后果：<strong>换一张格子大小不同的图就不认了</strong>，因为他量的是距离，不是「第几格」。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 索引型理解</div>
+    <p>「位置 = <strong>第几列、第几行</strong>。」</p>
+    <p>结果：<strong>任何尺度的图都认得</strong>，因为数对锁的是序数，不是距离。</p>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>数对：和位值制是同一个结构</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>两个「位置系统」的对照：</strong></p>
+  <table style="width:100%;border-collapse:collapse;font-size:15px">
+    <tbody>
+      <tr><td style="padding:9px 8px;border-bottom:1px solid var(--line-soft);white-space:nowrap"><strong>位值制</strong></td><td style="padding:9px 8px;border-bottom:1px solid var(--line-soft)">数字的位置 → <span class="m">个、十、百、千</span></td></tr>
+      <tr><td style="padding:9px 8px;white-space:nowrap"><strong>数对</strong></td><td style="padding:9px 8px">点的位置 → <span class="m">列、行</span></td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>共同点：</strong>都要<strong>一个固定的顺序</strong>（个位在右、数对列在前），
+    否则<strong>两个人会指到不同的东西</strong>。<br>
+    <em class="hl">顺序是「约定」，约定一旦固定，任何人都能准确传达位置。</em>
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>方向与距离：再多加一个条件</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim"><strong>位置 = 两个条件（哪一行、哪一列）</strong>；<strong>方向和距离 = 三个条件</strong>。</p>
+  <p>
+    「小明在学校的<strong>东北方向</strong>，离家<strong>500 米</strong>。」<br>
+    这里给的是<strong>方向</strong>（相当于第几个区间）+ <strong>距离</strong>（精确到米），
+    <em class="hl">比数对更精确——但同样需要「一个固定的参照系」（家在哪里、朝哪边算北）。</em><br><br>
+    <strong>所以数对、方向、距离，本质都是「用约定的规则精确描述位置」，只是精细程度不同。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>先说列，再说行——顺序不能换。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子把 (3,5) 写成 (5,3) 时，别告诉他答案。
+    让他<strong>在图上找 (5,3)</strong>，看是不是同一个点——<strong>他自己会发现顺序不能乱</strong>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b8-position">
+  <h3 style="margin-top:0">位置 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版一年级上册/下册「位置」、三年级下册/四年级下册「位置与方向」、
+  六年级上册「位置」共 6 个单元。承接本站<a href="../pillar/number.html">支柱一「数」</a>的位值制主线。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="movement.html">图形的运动</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b8-position"]={title:"位置 · 5 题",qs:[
+{stem:"小红在第 4 列第 2 行，她的数对是：",
+ opts:["(4, 2)","(2, 4)","4+2","第 6 个"],
+ answer:"A",why:"<strong>数对永远先写列、后写行</strong>。第 4 列第 2 行 → (4, 2)。<strong>(2, 4) 是第 2 列第 4 行，是另一个位置。</strong>",
+ miss:"<strong>先列后行</strong>。第 4 列第 2 行，就写 (4, 2)。写成 (2,4) 那是另一个点了。",
+ kidSay:"数对的规矩是：<strong>先说第几列，再说第几行</strong>。不能倒着说。"},
+{stem:"在格子大小不同的两张图上，某个点的数对都是 (3, 5)，但这个点在图上的位置<strong>看起来不一样</strong>。<b>怎么解释？</b>",
+ opts:["有一张图画错了","数对锁的是「第几列、第几行」这个序数，不是离原点的实际距离","两的点其实是不同的点","数对会随图变化"],
+ answer:"B",why:"<strong>数对是「索引」不是「距离」</strong>。同一个「第 3 列第 5 行」，格子画多大它都在那儿，但<strong>离原点的实际距离可以不同</strong>。",
+ miss:"<strong>数对说的是「第几列第几行」，不是「离多远」。</strong>格子大小变了，实际距离当然变，但位置序号没变。",
+ kidSay:"数对数的是格子序号，不是尺子量出来的距离。格子画大画小，序号不变。"},
+{stem:"数对和位值制，本质上是<strong>同一个结构</strong>。相似之处是：",
+ opts:["都要用到 0","都要按一个固定顺序，「谁在前谁在后」不能乱，否则含义就变了","都是四年级学的","都需要用尺子量"],
+ answer:"B",why:"<strong>都是「位置由有序索引确定」</strong>。位值制里个位在右十位在左，数对里列在前行在后——<strong>顺序固定，两个人才能对上同一个东西</strong>。",
+ miss:"<strong>都是靠「固定顺序」来消除歧义</strong>。个位在右，列在前，顺序乱了含义就变了。",
+ kidSay:"405 里的 3 在十位，(3,5) 的 3 是第 3 列。都要先说清在哪个位置，意思才唯一。"},
+{stem:"「家在学校的东北方向 500 米」。这里用了几个信息来描述位置？",
+ opts:["1 个（方向）","2 个（方向和距离）","3 个（方向、距离、参照点）","没有信息"],
+ answer:"C",why:"<strong>方向（东北）+ 距离（500 米）+ 参照系（以家/学校为原点，朝哪边算北）</strong>。<strong>和数对比一下：数对只给「第几列第几行」两个条件，方向距离更精细，但同样需要一个约定好的参照。</strong>",
+ miss:"<strong>方向 + 距离 + 参照点</strong>，三个信息。方向要和距离一起给，还要约定从哪边算起。",
+ kidSay:"光说东北方向不知道多远，光说 500 米不知道往哪走。两个一起说，还得先说清从哪儿算。"},
+{stem:"孩子把「第 5 行第 3 列」写成 (5, 3)。<b>最有效的纠正是：</b>",
+ opts:["告诉他正确答案是 (3, 5)","让他在图上找 (5, 3) 和 (3, 5)，看是不是同一个点","背口诀：先列后行","多写几遍就不会错"],
+ answer:"B",why:"<strong>让他自己发现 (5,3) 和 (3,5) 不是同一个点</strong>——<b>顺序错了，位置完全不同</b>。比直接给答案更有效，因为他<strong>看到后果了</strong>。",
+ miss:"<strong>让他自己在图上找一下。</strong>你问：「(5,3) 在哪儿？」他找出来会发现跟原来的点不一样。",
+ kidSay:"你去找找 (5,3) 在哪儿，跟小红站的地方是同一个点吗？"}
+]};
+</script>
+<script src="../assets/js/position.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

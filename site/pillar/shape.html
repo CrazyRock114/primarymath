@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支柱三 · 形 —— 它是什么模样？</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="number.html">数</a><a href="quantity.html">量</a>
+    <a href="shape.html">形</a><a href="relation.html">关系</a><a href="rule.html">规则</a><a href="structure.html">结构</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三</span>
+  <h1>形<br>回答的问题是：它是什么模样？</h1>
+</header>
+
+<div class="note">
+  <b>关于本页：</b>「形」是六大支柱中，原参考专栏唯一没有写出的一篇（只发了 1、2、4、5、6）。
+  本页由本站依据该专栏的整体框架（见<a href="../index.html">首页四层架构</a>）自行补全，观点与论证路径为原创。
+</div>
+
+<div class="toc">
+  <div class="toc-h">本节内容</div>
+  <ol>
+    <li><a href="#l1">01 形不是画出来的，是逼出来的</a></li>
+    <li><a href="#l2">02 点、线、面、体：四个层级</a></li>
+    <li><a href="#l3">03 高为什么总在外面：孩子真正卡住的地方</a></li>
+    <li><a href="#l4">04 割补：所有面积公式同一个母题</a></li>
+    <li><a href="#quiz">练一练</a></li>
+  </ol>
+</div>
+
+<h2 id="l1"><span class="num">01</span>形不是画出来的，是逼出来的</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「三角形的高」是小学几何的分水岭。孩子在锐角三角形上画得挺好，
+    换到<strong>钝角三角形</strong>，线画到图形外面去了，他整个人是懵的 ——
+    他会说：<strong>「高怎么会跑到三角形外面？」</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">几何不是背图形，是回答<strong>「怎么把现实问题说清楚」</strong>。</p>
+  <p>
+    人类最初关心「形」，不是为了审美，是为了<strong>生存和 disputes</strong>：
+    房子怎么搭才不塌？尼罗河退水后田界怎么重划才不打架？道路怎么修最省事？<br>
+    这些问题逼着人类发明了一套<strong>精确描述形状和空间</strong>的工具。
+    所以几何的本质不是「认识漂亮图形」，而是<em class="hl">在混乱的现实里划出确定的边界</em>。
+  </p>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    看古代埃及人怎么丈量土地。他们会拉一根<strong>绳子</strong>，两端各打一个结，绳长固定。
+    这样，不管地怎么歪，用这根绳子量出来的<strong>永远一致</strong>，谁也不能赖账。<br>
+    <strong>几何的起点是「保证一致」，不是「画得好看」。</strong>
+    这也是为什么几何课本第一课是「两点确定一条直线」—— 它讲的是<strong>确定的边界</strong>。
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>点、线、面、体：四个层级</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">点、线、面、体是<strong>四个递进的抽象层级</strong>，不是四种并列的东西。</p>
+  <p>
+    每往上一层，就<strong>丢掉一些信息、多抓住一些确定性</strong>：
+  </p>
+  <ul style="padding-left:22px;line-height:2;margin:14px 0 0">
+    <li><strong>点</strong>：只回答「在哪」，不回答「多大」。信息最少，确定性最高。</li>
+    <li><strong>线</strong>：加上了长度和方向。「这条边有多长、朝哪边」。</li>
+    <li><strong>面</strong>：加上了「铺开」这个性质。<em class="hl">面积的大小，取决于「用多小的格子去铺」</em>。</li>
+    <li><strong>体</strong>：再加一个维度。所以体积的「底」必须是<strong>面</strong>。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>为什么面积要「平方」，体积要「立方」？</strong></p>
+  <p style="margin:0;color:var(--ink-soft)">
+    因为面积是<strong>两个方向</strong>同时铺开的结果（长 × 宽 = 平铺两次），
+    体积是<strong>三个方向</strong>同时铺开的结果（长 × 宽 × 高 = 铺三次）。
+    单位跟着维度走：<span class="m">平方厘米</span>是<strong>二维</strong>的单位，<span class="m">立方厘米</span>是<strong>三维</strong>的单位。<br>
+    <span class="hl">孩子记住「为什么」之后，就再也不会把周长、面积、体积的公式记混。</span>
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>高为什么总在外面：孩子真正卡住的地方</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子会背定义：「从<strong>顶点</strong>出发，<strong>垂直</strong>于<strong>对边</strong>的线段叫高。」
+    口诀背得溜，一画就废。
+    钝角三角形的高画在图形外面，平行四边形的高可能落在底边的延长线上，他全不接受。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">高不在图形里面，是因为<strong>孩子把「高」当成了「一段线」</strong>。</p>
+  <p>
+    高真正的主体，不是那条线，而是<em class="hl">一对互相垂直的约束关系</em>：
+    <br>① 高必须<strong>从顶点出发</strong>（不是随便一个点）<br>
+    ② 高必须<strong>垂直于底所在的直线</strong>（不是「垂直于这个图形」）<br><br>
+    抓住这两条，图形爱长哪儿就长哪儿，高该在哪儿就在哪儿。
+    <strong>线跑到图形外面，是因为「垂直」的定义本来就不要求落在线段内。</strong>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 画段型理解</div>
+    <p>「高是一条<strong>在图形里面</strong>的线段。」</p>
+    <p>结果：只要高落在线段外，孩子就认为「这个三角形没有高」或「图画错了」。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 约束型理解</div>
+    <p>「从<strong>顶点</strong>出发，找到<strong>垂直</strong>于底边所在直线的那条线。」</p>
+    <p>结果：<strong>落点在线段内还是在线段延长线上，都无所谓</strong>，
+      因为底边<strong>所在的直线</strong>是无限延伸的。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「高不是一条线，是一个<strong>垂直</strong>关系。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    画钝角三角形的高之前，先让孩子<strong>把底边所在的直线想象成无限长的铁轨</strong>。
+    「垂直」是垂直于这条铁轨，不是垂直于铁轨上画的那一小段。
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>割补：所有面积公式同一个母题</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    长方形 <span class="m">长×宽</span>、平行四边形 <span class="m">底×高</span>、三角形 <span class="m">底×高÷2</span>、梯形 <span class="m">(上底+下底)×高÷2</span>……
+    四个公式四套死记，孩子换个问法就乱套。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">它们<strong>本来就是同一件事</strong>，只是被切了几刀。</p>
+  <p>
+    所有平面图形的面积公式，都可以用同一个动作得到：<em class="hl">剪一刀、平移，拼成规则图形</em>。
+    这个动作叫<strong>割补转化</strong>，它背后是一条铁律 —— <strong>剪拼不改变面积</strong>。<br>
+    所以不用背四个公式，只要记住：<strong>能拼成什么形状，面积就等于那个形状的面积。</strong>
+  </p>
+</div>
+
+<div class="demo" id="shear-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：把平行四边形剪成三角形</div>
+  <p class="demo-hint">拖动滑块，想象你<b>拿剪刀沿高所在的方向剪下一块</b>，把它平移到右边。</p>
+  <div class="demo-stage"><div id="shear-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>剪切</label><input type="range" id="shear-r" min="0" max="100" value="0"><span class="val" id="shear-rv"></span>
+  </div>
+  <div class="demo-out" id="shear-out"></div>
+</div>
+
+<div class="note">
+  <b>用剪拼理解三角形面积：</b>把两个<strong>完全一样的三角形</strong>拼成一个平行四边形，
+  面积<strong>翻了一倍</strong>。所以原来的三角形面积 =
+  <span class="m">底×高÷2</span>。<br>
+  这个「÷2」不是规定，是<strong>「我刚才拼的时候用掉了两个」</strong>。孩子亲眼拼过一次，这句话就再也忘不掉了。
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「公式不是背出来的，是<strong>剪出来</strong>的。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    拿张纸当场剪一次，比讲十遍「转化思想」有用。以后遇到不会的面积，
+    孩子的第一反应会是「<strong>能不能剪一刀拼一下？</strong>」而不是「这个公式我没背」。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="pillar-shape">
+  <h3 style="margin-top:0">支柱三 · 形 —— 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为<strong>本站原创补全</strong>——原参考专栏「青木数学陪学手册 · 小学数学底层逻辑」
+  （<a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU0NjAxOTQ2Mw%3D%3D&action=getalbum&album_id=4402543889857855491&subscene=1" target="_blank" rel="noopener">合集</a>）
+  的六大支柱中未包含「形」一篇，本页依据该专栏的整体框架自行撰写。
+  散点层可参照其《孩子画「高」总出错？不是没记住了，是空间结构没启动》的论证方向。交互图示为本站自制。
+</div>
+
+<footer class="foot">
+  <p style="margin:0">小学数学底层逻辑 · 支柱三「形」　|　<a href="../index.html">回到首页</a>　|　下一站：<a href="relation.html">支柱四 · 关系</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES = window.QUIZES || {};
+window.QUIZES["pillar-shape"] = {
+  title: "支柱三 · 形 —— 5 题",
+  qs: [
+    { stem: "孩子说「高跑到三角形外面了，这不可能」。<b>他卡住的根本是：</b>", opts: ["画图技术不好", "把「高」当成了一段线，而不是「从顶点垂直于底边所在直线」这个关系", "没背熟定义", "题目出错了"],
+      answer: "B", why: "高是<strong>一对约束</strong>：从顶点出发 + 垂直于底边<strong>所在的直线</strong>。直线是无限延伸的，落点在线段外完全正常。",
+      miss: "别让孩子去记「高在哪」。<b>只要抓住两条：从顶点出发、垂直于底边所在的直线</b>，画到哪儿都对。",
+      kidSay: "高不是画在里面的线，是「从顶点出发、垂直于底边那条线」的关系。底边那条线可以想成很长的铁轨。" },
+    { stem: "为什么面积的单位是「平方厘米」，体积是「立方厘米」？", opts: ["因为约定好的", "面积是二维铺开的单位，体积是三维铺开的单位", "因为体积比面积大", "因为厘米本身是方的"],
+      answer: "B", why: "面积向<strong>两个方向</strong>铺（长×宽），体积向<strong>三个方向</strong>铺（长×宽×高）。单位跟着维度数走。",
+      miss: "记住「<b>单位里的『方』和『立方』，就是在数维度</b>」。知道为什么，就不会把三个公式记混。",
+      kidSay: "平方是往两个方向铺，立方是往三个方向铺。你铺了几个方向，单位就该写几方。" },
+    { stem: "三角形面积公式里那个 <span class='m'>÷2</span>，最本质的解释是：", opts: ["老师规定要除以 2", "两个一样的三角形能拼成平行四边形，面积正好翻倍", "因为三角形只有三条边", "因为底和高都不完整"],
+      answer: "B", why: "<span class='m'>÷2</span> 不是规定，是<strong>「我拼的时候用掉了两个」</strong>。亲眼拼一次，比背十遍定义牢。",
+      miss: "别背 ÷2。<b>拿张纸剪两个一样的三角形，拼成平行四边形</b>，孩子自己就会发现为什么要除以 2。",
+      kidSay: "我们把两个一样的三角形拼一下看看 —— 拼出来是平行四边形，那原来的三角形当然要还回去一半。" },
+    { stem: "四个面积公式（长方形、平行四边形、三角形、梯形）之间的关系是：", opts: ["四套互不相关的死记公式", "都能通过剪拼转化，由同一条「剪拼不改变面积」的规律得到", "长方形最重要，其他是补充", "只有三角形需要推导"],
+      answer: "B", why: "它们是<strong>同一个母题的不同切法</strong>。记住「能拼成什么形状，面积就等于那个形状的面积」，一个公式都不用死背。",
+      miss: "别把四个公式当四件事记。<b>它们全是同一件事：剪一刀、平移、拼成规则图形。</b>",
+      kidSay: "别背了。拿张纸试试：能不能把它剪一刀，拼成一个你会算的图形？" },
+    { stem: "几何学习的真正起点，<b>最接近下面哪一个</b>？", opts: ["画得好看", "保证描述和测量的一致性，让纠纷能被判定", "记住所有图形的名称", "做对所有计算题"],
+      answer: "B", why: "古埃及用固定长度的绳丈量土地，本质是<strong>「保证一致」</strong>。「两点确定一条直线」讲的是确定的边界，不是美观。",
+      miss: "几何不是美术课。它解决的是<strong>「怎么把一件事说清楚、量准，不产生分歧」</strong>。",
+      kidSay: "古人为什么要用一根固定长度的绳子量地？不是为了好看，是为了<strong>谁量都一样</strong>，这样分地才不吵架。" }
+  ]
+};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

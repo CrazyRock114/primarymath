@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>鸡兔同笼 · 假设法</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 四年级下册</span>
+  <h1>鸡兔同笼<br>不是算术题，是<strong style="color:var(--warn);font-weight:inherit">假设法</strong>的第一课</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子卡在哪：不是算不动，是不敢下手</a></li>
+<li><a href="#l2">02 溯源：我们换一个更好骗的世界</a></li>
+<li><a href="#l3">03 假设法的四步</a></li>
+<li><a href="#l4">04 反过来：什么时候该假设全是兔</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子卡在哪：不是算不动，是不敢下手</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「笼子里有鸡和兔，一共 20 个头，56 条腿。鸡兔各几只？」
+    孩子盯着题发愣十分钟。<strong>不是算不动，是不知道从哪下手</strong>——
+    他会列方程，但方程解不出来（小学还没学）；他试了两次，发现要试很多次，就放弃了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">这道题考的不是算术，是<strong>「把复杂情况骗成简单情况」的胆量</strong>。</p>
+  <p>
+    孩子之所以卡住，是因为他脑子里只有一条路：<em class="hl">真的去想鸡有几只</em>。
+    这条路要走很远。<br>
+    真正省力的做法是——<strong>先假装这个世界比实际简单</strong>，算出结果，再看差多少、差在哪。
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：我们换一个更好骗的世界</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    假设法的思路，是数学里最古老的一招：<strong>把未知换成已知，把困难换成容易</strong>。<br>
+    20 只鸡有 40 条腿，可实际有 56 条，<strong>多了 16 条</strong>。<br>
+    16 是哪来的？<em class="hl">因为每把一只鸡换成兔，腿就从 2 条变成 4 条，正好多 2 条。</em><br>
+    所以「多出来的 16 条腿」不是腿，是<strong>「有多少只鸡被换成了兔」</strong>的证据。16÷2 = 8，只换了 8 只。<br>
+    20 只动物里有 8 只兔，剩下的 12 只就是鸡。
+  </p>
+</div>
+
+<div class="demo" id="jt-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：先猜一个答案，看差多少</div>
+  <p class="demo-hint">拖动滑块猜「有几只兔」，看腿数比实际多还是少。<b>别急着算，先猜。</b></p>
+  <div class="demo-stage"><div id="jt-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>动物总数</label><input type="range" id="jt-head" min="3" max="30" value="20"><span class="val">20</span>
+    <label>腿总数</label><input type="range" id="jt-foot" min="6" max="120" value="56"><span class="val">56</span>
+  </div>
+  <div class="demo-ctrl" style="margin-top:10px">
+    <label>我猜兔有</label><input type="range" id="jt-guess" min="0" max="20" value="5"><span class="val">5</span>只
+  </div>
+  <div class="demo-out" id="jt-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>假设法的四步</h2>
+
+<div class="card">
+  <ol style="padding-left:22px;line-height:2.2;margin:0">
+    <li><strong>假设</strong>：假装全是鸡（腿最少的那种）</li>
+    <li><strong>算</strong>：20 × 2 = 40 条腿</li>
+    <li><strong>比</strong>：实际 56 条，比假设<strong>多 16 条</strong></li>
+    <li><strong>调</strong>：每换 1 只，多 2 条腿 → 16 ÷ 2 = 8 只兔</li>
+  </ol>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 试算型理解</div>
+    <p>一只一只试：1 只兔 → 19×2+4 = 42 条，不对；2 只 → 18×2+8 = 44 条，还是不对……</p>
+    <p>后果：动物一多就崩溃，而且<strong>永远不知道自己为什么对</strong>。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 假设型理解</div>
+    <p>先定一个<strong>起点</strong>，再看<strong>差了多少</strong>，最后算<strong>一次调整几步</strong>。</p>
+    <p>后果：动物再多也是<strong>一步算完</strong>，而且他知道为什么。</p>
+  </div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>反过来：什么时候该假设全是兔</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子学会了「假设全是鸡」，遇到「20 个头，100 条腿」照样懵——
+    因为假设全是鸡算出 40 条，比实际的 100 条<strong>少</strong>，越调越不够。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">假设要往「腿少」或「腿多」的一边倒，<strong>看哪个方向更好算</strong>。</p>
+  <p>
+    如果实际腿数<strong>比全鸡还多</strong>（鸡不可能有那么多腿），
+    那就反着来：<strong>假设全是兔</strong>。<br>
+    20 × 4 = 80 条腿，比 100 少 20 条。每换 1 只兔成鸡，<strong>少 2 条</strong>，20÷2 = 10 只鸡。<br>
+    <strong>无论哪边好算，就假设哪边。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「先假装全是<strong>腿少</strong>的那种，再看差多少。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做错时别急着说答案，问一句：<strong>「你先假设成什么？算出来是多了还是少了？」</strong>
+    让他自己发现该往哪边假设。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="gl-jitu">
+  <h3 style="margin-top:0">鸡兔同笼 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「鸡兔同笼」是人教版四年级下册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="youhua.html">上一节：优化</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="zhishu.html">植树问题</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-jitu"]={title:"鸡兔同笼 · 5 题",qs:[
+{stem:"鸡兔同笼，共 20 个头、56 条腿。用假设法第一步应该假设什么？",
+ opts:["假设全是鸡","假设全是兔","假设鸡比兔多","不用假设，直接列式"],
+ answer:"A",why:"假设要选<strong>腿最少</strong>的那种，起点低才好往上加。全是鸡时 20×2=40 条腿，比实际 56 少 16 条，差值是正的，往上调即可。",
+ miss:"别一上来就假设全是兔。<b>先试腿少的那边</b>，差值方向才对得上。",
+ kidSay:"我们先假装这 20 只全是鸡，算算看腿有多少条。"},
+{stem:"已知鸡兔共 20 只，腿共 56 条。鸡有多少只？",
+ opts:["8 只","12 只","14 只","16 只"],
+ answer:"B",why:"假设全鸡：20×2=40 条，比实际<strong>少 16 条</strong>。每换 1 只鸡成兔多 2 条腿，所以兔 = 16÷2 = <strong>8 只</strong>，鸡 = 20−8 = <strong>12 只</strong>。",
+ miss:"兔是 8 只，鸡是 <b>20 − 8 = 12 只</b>。别把两个数搞反了。",
+ kidSay:"兔算出来是 8 只，那鸡呢？总共 20 只，鸡就是 20 减 8 等于 12 只。"},
+{stem:"「20 个头、100 条腿」用假设法应该怎么开始？",
+ opts:["假设全是鸡","假设全是兔","随便假设","这题无解"],
+ answer:"B",why:"假设全鸡得 20×2=40 条，比实际 100 <strong>少很多</strong>，说明鸡不可能这么多腿。这时该反着假设<strong>全是兔</strong>：20×4=80，比 100 少 20，每只兔换鸡少 2 条腿，20÷2=10 只鸡。",
+ miss:"关键是<strong>方向</strong>。实际腿比全鸡还多，说明该往「腿多」那边假设——<b>假设全是兔</b>。",
+ kidSay:"如果假装全是鸡，腿只有 40 条，比实际少太多了。这说明假设的方向反了，应该假装全是兔。"},
+{stem:"为什么假设法只换算一次就够了，不像试算要反复试很多次？",
+ opts:["因为题目数字简单","因为「差值」直接等于「调整步数×每步变化量」，一次除法就算清了","因为答案是整数","因为有计算器"],
+ answer:"B",why:"试算是<strong>一次次逼近</strong>，假设法是<strong>一步算出总差值</strong>，再除以每步的变化量。这是本质区别：不是算得快，是<strong>换了个角度</strong>。",
+ miss:"试算是<strong>瞎猜</strong>，一次一次靠近。假设法是先知道差多少，再一步除出来。<b>一次就够</b>，因为差值本身就是线索。",
+ kidSay:"试算是猜几次，假设法是算一次。差别就在这——差值本身就是答案的线索。"},
+{stem:"假设法最核心的思路，可以迁移到下列哪类问题？",
+ opts:["只适用于鸡兔同笼","所有「有一个未知的量被混在一起」的问题，如工程问题、盈亏问题","只有 animal 计数题","只有小学题目"],
+ answer:"B",why:"凡是<strong>「两类事物混在一起，其中一类个数未知」</strong>的问题，都可以用「先假设全是某一类，再看差多少」解决。工程问题、盈亏问题、浓度问题都是同一个套路。",
+ miss:"别把鸡兔同笼当成一个孤立的题型。<b>凡是「两类混在一起」的题，都能用这套办法</b>。",
+ kidSay:"以后遇到「两类东西混在一起」的题，都先问一句：我能不能先假装全是其中一种？"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

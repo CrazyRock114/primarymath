@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支柱五 · 规则 —— 凭什么保证对？</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="number.html">数</a><a href="quantity.html">量</a>
+    <a href="shape.html">形</a><a href="relation.html">关系</a><a href="rule.html">规则</a><a href="structure.html">结构</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱五</span>
+  <h1>规则<br>回答的问题是：凭什么保证对？</h1>
+</header>
+
+<div class="toc">
+  <div class="toc-h">本节内容</div>
+  <ol>
+    <li><a href="#l1">01 孩子背的是步骤，我们该给的是理由</a></li>
+    <li><a href="#l2">02 同质规则：单位不统一，什么都别想加</a></li>
+    <li><a href="#l3">03 平衡规则：天平两边必须等价</a></li>
+    <li><a href="#l4">04 化归守恒：把陌生的变成熟悉的</a></li>
+    <li><a href="#quiz">练一练</a></li>
+  </ol>
+</div>
+
+<h2 id="l1"><span class="num">01</span>孩子背的是步骤，我们该给的是理由</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子能背出「小数点对齐」「异分母先通分」「乘法分配律」……
+    可你问「<strong>为什么</strong>要对齐小数点？」，他答不上来。
+    一旦遇到没背过的题型，整条规则链就全断了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">公式是规则<strong>推导出来的结果</strong>，规则才是操作协议。</p>
+  <p>
+    孩子记的是「结论层」：什么情况用哪一步。
+    但真正支撑数学不塌的是「原理层」：<em class="hl">为什么这一步一定成立</em>。<br>
+    小学阶段所有看起来毫不相关的运算规则，背后其实只站着<strong>三条铁律</strong>。
+    记住这三条，规则就不需要背了 —— 它们是可以<strong>现场推导</strong>的。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:14px"><strong>小学数学的三条底层法则：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>同质规则</strong> —— 唯有<strong>计数单位统一</strong>，方能执行合并。<br>
+      <span style="color:var(--ink-soft);font-size:15px">→ 解释：小数点对齐、单位换算、通分</span></li>
+    <li><strong>平衡规则</strong> —— 一切等价变形都来自<strong>天平</strong>。<br>
+      <span style="color:var(--ink-soft);font-size:15px">→ 解释：等式性质、移项、去分母</span></li>
+    <li><strong>转化守恒</strong> —— 把未知的死局，换成熟悉的坦途。<br>
+      <span style="color:var(--ink-soft);font-size:15px">→ 解释：割补、数形结合、化归</span></li>
+  </ol>
+</div>
+
+<h2 id="l2"><span class="num">02</span>同质规则：单位不统一，什么都别想加</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    <span class="m">3.21 + 4.5</span>，孩子写成 <span class="m">7.71</span> —— 他把末位对齐了。
+    问为什么不能这么加，他说「老师说要对齐小数点」。<strong>「老师说」不是理由。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">末位对齐在整数里是对的，在小数里就错了。差别不在小数，在<strong>单位</strong>。</p>
+  <p>
+    整数相加末位对齐，为什么对？因为个位对个位，<strong>天然就是同一个数量单位</strong>。
+    小数如果也末位对齐，比如 <span class="m">3.21</span> 的 <strong>1</strong> 百分位
+    和 <span class="m">4.5</span> 的 <strong>5</strong> 十位被推到了一列 —— <em class="hl">一个是百分之一，一个是十分之一，单位根本不同</em>。<br>
+    <strong>不同的单位不能直接相加。</strong>这就是全部理由。
+  </p>
+</div>
+
+<div class="demo" id="align-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：切换对齐方式</div>
+  <p class="demo-hint">把 <span class="m">3.215</span> 和 <span class="m">1.4</span> 竖起来。拖动滑块切换对齐方式，看每一列的单位是不是一样。</p>
+  <div class="demo-stage"><div id="align-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>对齐方式</label><input type="range" id="align-r" min="0" max="1" value="0"><span class="val" id="align-rv"></span>
+  </div>
+  <div class="demo-out" id="align-out"></div>
+</div>
+
+<div class="note">
+  <b>同质规则还解释了「异分母为什么要通分」：</b>
+  <span class="m">1/2 + 1/3</span> 直接加，是把「二分之一」和「三分之一」硬凑在一起 —— 单位不同。
+  <strong>通分不是技巧，是把两个单位换成同一个单位</strong>，
+  换成二分之六和三分之六，才能合并。
+</div>
+
+<h2 id="l3"><span class="num">03</span>平衡规则：天平两边必须等价</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">方程的所有变形，本质只有一句：<strong>两边做同样的事，天平不能歪。</strong></p>
+  <p>
+    <span class="m">2x + 3 = 11</span> 为什么可以两边同时减 3？
+    因为减完之后<strong>天平还是平的</strong>。<br>
+    为什么可以两边同时乘 2？因为乘完之后<strong>还是平的</strong>。<br>
+    <em class="hl">只要两边做的是同一个操作，等式就永远成立。</em><br>
+    所谓「等式性质」「移项法则」「去分母」，都只是这一句话的不同说法。
+    理解了它，初中的一整块代数不再需要额外记忆。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「为什么能移项？因为两边同时拿掉一样的，天平还平。」</p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>转化守恒：把陌生的变成熟悉的</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子学了一堆方法：数形结合、转化思想、假设法、倒推法……
+    题目一变就不知道用哪个。问题不是方法学得少，是<strong>没学会「什么时候该转化」</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">所有好方法都在做同一件事：<strong>把没见过的，换成见过的</strong>。</p>
+  <p>
+    · <strong>数形结合</strong>：把看不懂的文字关系，换成看得见的线段图<br>
+    · <strong>割补转化</strong>：把不会算的图形，换成会算的规则图形<br>
+    · <strong>倒推法</strong>：把正着推算不了的，换成从结果往回走<br>
+    · <strong>假设法</strong>：把不确定的，换成一个确定的假设去试<br><br>
+    <em class="hl">它们是同一招的四种用法：熟悉化。</em>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 套路型理解</div>
+    <p>「看到「相遇」就用速度和」「看到「相遇」就用速度和」。</p>
+    <p>结果：题目一变形（比如爷爷匀速、奶奶变速），孩子<strong>就不会了</strong>，
+      因为他认的是题型，不是结构。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 原理型理解</div>
+    <p>「我先问自己：<strong>这道题里，哪些量之间有等量关系？</strong>」</p>
+    <p>结果：先找关系，再选形式。题型变了没关系，<strong>关系还在</strong>。</p>
+  </div>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    四条规则不是四条规矩，是<strong>同一件事的四个侧面：等量</strong>。<br>
+    <strong>同质</strong>说的是「单位得一样」——根源在
+    <a href="number.html">支柱一</a>的位值制：末位对齐之所以对，是因为末位本来就是同一个单位。<br>
+    <strong>平衡</strong>说的是「两边得等价」——这就是
+    <a href="relation.html">支柱四</a>里等号的本意：等号是关系，不是箭头。<br>
+    <strong>守恒</strong>说的是「总量不变」——和
+    <a href="quantity.html">支柱二</a>说的「换了单位总量不变」是同一件事。<br>
+    所以孩子只要认清<strong>「等量」</strong>这一个模型，同质、平衡、守恒都能自己推出来，用不着背。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「这题能不能变成你会的？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子卡住时不要直接给方法，先问这一句。
+    孩子自己想到「我可以画成线段图」，<strong>方法就变成他的了</strong>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="pillar-rule">
+  <h3 style="margin-top:0">支柱五 · 规则 —— 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创重写，教学思路参考自微信公众号「<a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU0NjAxOTQ2Mw%3D%3D&action=getalbum&album_id=4402543889857855491&subscene=1" target="_blank" rel="noopener">青木数学陪学手册 · 小学数学底层逻辑</a>」专栏中
+  《小学数学的底层逻辑5：规则，是数学运行的法则》《数学如何把复杂问题变简单？》等篇目的论证路径。交互图示为本站自制。
+</div>
+
+<footer class="foot">
+  <p style="margin:0">小学数学底层逻辑 · 支柱五「规则」　|　<a href="../index.html">回到首页</a>　|　下一站：<a href="structure.html">支柱六 · 结构</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES = window.QUIZES || {};
+window.QUIZES["pillar-rule"] = {
+  title: "支柱五 · 规则 —— 5 题",
+  qs: [
+    { stem: "为什么小数加减法必须<strong>对齐小数点</strong>，而不能末位对齐？", opts: ["老师规定", "末位对齐会让不同数量单位（百分之一、十分之一）落到同一列，单位不同不能相加", "小数点比个位重要", "为了写得整齐"],
+      answer: "B", why: "整数末位对齐是对的，因为个位对个位<strong>天然同单位</strong>。小数末位对齐会<strong>错位</strong>，把百分之一和十分之一凑到一起。",
+      miss: "「老师说」不是理由。<b>理由是：单位必须一致才能相加。</b>让孩子看看对齐前后每一列的单位标签。",
+      kidSay: "对齐的时候，每一列的单位要一样。这一列是百分之一，下一列也得是百分之一。" },
+    { stem: "方程两边可以同时加减乘除，主要因为：", opts: ["这是规定", "两边做同一个操作，天平依然平衡", "为了让计算简单", "因为结果好看"],
+      answer: "B", why: "天平两边做<strong>同样的事</strong>，平衡关系不变。移项、去分母都只是这一句话的不同说法。",
+      miss: "别背「等式性质」。<b>只要两边做的是同一个操作，天平就还是平的</b> —— 这一句能推导出初中所有代数变形。",
+      kidSay: "天平两边同时拿掉一样的东西，还平不平？——平。所以移项不是规矩，是天平的性质。" },
+    { stem: "异分母分数相加要先通分，最本质的原因是：", opts: ["通分能让数字变大", "通分把两个不同的计数单位换成了同一个单位", "不通分会算错", "老师要求"],
+      answer: "B", why: "<span class='m'>1/2 + 1/3</span> 里，两个分数的<strong>单位不同</strong>。通分不是技巧，是<strong>统一单位</strong>。",
+      miss: "通分不是「技巧」，是<strong>同质规则</strong>：单位不同不能合并，先换算成同一个单位。",
+      kidSay: "二分之一和三分之一，单位都不一样，怎么能直接加？先都换成六分之一，再加。" },
+    { stem: "孩子背了一堆方法（数形结合、倒推、假设），题目一变就不会用。<b>最可能缺的是：</b>", opts: ["方法还没学够", "不知道什么时候该「把陌生的转成熟悉的」", "计算速度不够", "题目做得太少"],
+      answer: "B", why: "数形结合、割补、倒推、假设 —— <strong>本质都是同一招：熟悉化</strong>。缺的是「问自己：这题能不能变成我会的」这个意识。",
+      miss: "方法不缺，<strong>缺的是选择方法的判断力</strong>。教他一句：卡住时先问「能不能变成我会的」。",
+      kidSay: "这题能不能变成你会的那种？如果不能，先想办法把它变成会的。" },
+    { stem: "小学数学所有运算规则背后，真正支撑它们的是下面几条？", opts: ["口诀和公式", "同质规则、平衡规则、转化守恒", "老师的经验", "多做题"],
+      answer: "B", why: "<strong>同质</strong>（单位统一才能合并）、<strong>平衡</strong>（两边等价才成立）、<strong>守恒</strong>（转化不改变本质）—— 三条就够推出几乎所有小学运算规则。",
+      miss: "别一条条背规则。<b>记住这三条，它们能推导出你几乎所有没背过的规则。</b>",
+      kidSay: "以后遇到没背过的算法别慌，先想：这题是单位不一样？是天平要平？还是要做个不改变本质的转换？" }
+  ]
+};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

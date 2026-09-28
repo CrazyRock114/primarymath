@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支柱二 · 量 —— 究竟有多大？</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="number.html">数</a><a href="quantity.html">量</a>
+    <a href="shape.html">形</a><a href="relation.html">关系</a><a href="rule.html">规则</a><a href="structure.html">结构</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱二</span>
+  <h1>量<br>回答的问题是：究竟有多大？</h1>
+</header>
+
+<div class="toc">
+  <div class="toc-h">本节内容</div>
+  <ol>
+    <li><a href="#l1">01 光知道「有多少」为什么不够</a></li>
+    <li><a href="#l2">02 单位：人类发明的公共约定</a></li>
+    <li><a href="#l3">03 离散量和连续量：数不清的怎么办</a></li>
+    <li><a href="#l4">04 面积的真相：数格子，不是背公式</a></li>
+    <li><a href="#quiz">练一练</a></li>
+  </ol>
+</div>
+
+<h2 id="l1"><span class="num">01</span>光知道「有多少」为什么不够</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子会数 100 个苹果。可你问他：「这两堆苹果，哪堆多？」
+    他看了半天，说：「都很多。」
+    再问：「这根筷子和那根铅笔，哪根长？」他愣住了 —— <strong>苹果能数，长度不能数</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">世界上很多重要的东西，<strong>数不清，只能量</strong>。</p>
+  <p>
+    苹果、书本、椅子 —— 这些一个一个数得清，数学上叫<strong>离散量</strong>。
+    但高度、长度、重量、时间、温度 —— 这些是<em class="hl">连着变的</em>，
+    你没法把一根筷子断成「一根半」，数学上叫<strong>连续量</strong>。<br>
+    对连续量，光有「数」是没有用的，必须再发明一套东西 —— 那就是<strong>量</strong>。
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>单位：人类发明的公共约定</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    单位换算是小学最容易反复错的地方。孩子记住了「1 米 = 100 厘米」，
+    却解释不了<strong>为什么是 100 而不是 10</strong>。一换到面积单位就彻底乱。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">换算不是背口诀，是<strong>换一把尺子</strong>。</p>
+  <p>
+    单位<strong>不是自然长出来的，是人类商量出来的</strong>。为什么米要取 100 厘米？
+    因为人类早期用的是<strong>十进位</strong>——手掌是五指，两只手十指。
+    数东西习惯十个数一组，量东西也就习惯十份一档，再往下细分十档。
+    <em class="hl">十进制不是数学的规定，是人类身体给的起点。</em>
+  </p>
+</div>
+
+<div class="demo" id="unit-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：同一段长度，用不同单位怎么说</div>
+  <p class="demo-hint">拖动改变长度。注意看：不管换成哪个单位，<b>换算都只是「乘进率」或「除进率」</b>——相邻两级之间是 ×10，跨到千米就是 ×1000。</p>
+  <div class="demo-stage"><div id="unit-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>这段长度</label><input type="range" id="unit-range" min="0" max="6" value="2"><span class="val" id="unit-rv"></span>
+  </div>
+  <div class="demo-out" id="unit-out"></div>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    想象一个没有单位的远古市集。布摊主喊：「算你三肘长！」
+    你问：「一肘多长？」他比了比胳膊。你买了，回家发现和同伴的「三肘」差了一截 —— <strong>没法比</strong>。<br>
+    于是人类做了两件事：<strong>用身体当最初的尺子</strong>（肘、掌、指），
+    再<strong>把个人的尺子变成大家公认的尺子</strong>。这一步，就是「单位」诞生的全部过程。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>离散量和连续量：数不清的怎么办</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">数不清的时候，不是「数」，是「量」。</p>
+  <p>
+    数苹果要一个个点，点到最后是<strong>整数</strong>。
+    量身高不能一个个点，只能拿尺子靠上去，得到的<strong>可以是小数</strong>。
+    这就是为什么<em class="hl">「数」用整数，「量」用小数</em> —— 不是规定，是被现实逼出来的。
+  </p>
+</div>
+
+<div class="note">
+  <b>顺带解决一个高频困惑：</b>孩子问「1.5 个苹果是什么意思？」
+  答：<b>1.5 个苹果是「量」的答案，不是「数」的答案。</b>
+  苹果能数（1 个、2 个），切开的半个苹果要量（半个 = 0.5 个）。
+  能数的时候用数，数不了的时候用量 —— 这是孩子分不清「数」和「量」的真正原因。
+</div>
+
+<h2 id="l4"><span class="num">04</span>面积的真相：数格子，不是背公式</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子把「长 × 宽」背得滚瓜烂熟，可你问「<strong>为什么</strong>是长乘宽？」
+    他答不上来。换个图形（平行四边形、三角形、梯形），公式全忘。
+    因为他背的是<strong>结论</strong>，不是<strong>过程</strong>。
+  </p>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    面积公式的起点是一个非常朴素的问题：<strong>谁分这块地，分得公平？</strong><br>
+    尼罗河年年泛滥，退水后田界全毁了。重新分配土地时，大家达成的共识是 ——
+    <em class="hl">按「格子数」分</em>。每块地有几格，就该分几份。
+    <strong>所以面积最原始的定义就是「数格子」。</strong>公式只是数格子的快捷方式。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「这个长方形有多少个 1 平方厘米的小方格？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    数得出来，再问一句：「你是一格一格数，还是横着数几行、竖着数几列？」
+    孩子自己就会发现<strong>「几行 × 几列」</strong>，公式是他<em class="hl">推出来的</em>，不是背来的。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="pillar-quantity">
+  <h3 style="margin-top:0">支柱二 · 量 —— 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创重写，教学思路参考自微信公众号「<a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU0NjAxOTQ2Mw%3D%3D&action=getalbum&album_id=4402543889857855491&subscene=1" target="_blank" rel="noopener">青木数学陪学手册 · 小学数学底层逻辑</a>」专栏中
+  《小学数学的底层逻辑2：量，是连接数学与现实的桥梁》《面积，人类为了公平分土地总结出的规则》等篇目的论证路径。交互图示为本站自制。
+</div>
+
+<footer class="foot">
+  <p style="margin:0">小学数学底层逻辑 · 支柱二「量」　|　<a href="../index.html">回到首页</a>　|　下一站：<a href="shape.html">支柱三 · 形</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES = window.QUIZES || {};
+window.QUIZES["pillar-quantity"] = {
+  title: "支柱二 · 量 —— 5 题",
+  qs: [
+    { stem: "下面哪一组是<strong>连续量</strong>（数不清，只能量）？", opts: ["书、铅笔、橡皮", "长度、重量、时间", "苹果、橘子、香蕉", "学生、椅子、桌子"],
+      answer: "B", why: "连续量是<strong>连着变</strong>的，断不成整数份。书和苹果都能一个一个点清楚，属于离散量。",
+      miss: "关键判据：<b>能不能一个一个点清楚、点完刚好是整数</b>。能点是离散，不能点是连续。",
+      kidSay: "你能把一根筷子断成「一根半」吗？不能，所以长度只能量，不能数。" },
+    { stem: "1 米为什么等于 100 厘米？<b>最准确的解释是：</b>", opts: ["因为米比厘米长", "因为十进制是人类用十指发明的计数习惯", "法律规定必须是 100", "因为 1 里有 100 个十"],
+      answer: "B", why: "十进制的根源是<strong>两只手十根指头</strong>。计数习惯十进制，量也自然十份一档。",
+      miss: "不是「规定」，是<strong>身体给了起点</strong>。五指成十，两手十指 —— 人类的计数习惯直接决定了长度单位。",
+      kidSay: "伸出你的两只手，一共有几根手指？十个。那我们数东西是不是天然的喜欢十个一组？" },
+    { stem: "爸爸问：「1.5 个苹果是什么意思？」孩子说「半个苹果」。<b>爸爸该怎么纠正？</b>", opts: ["直接告诉他 1.5 个苹果就是半个", "告诉他这题超纲了，不用管", "指出他说的「半个」指的是 0.5，加上原来的 1 个才是 1.5", "让他重新背一遍小数的定义"],
+      answer: "C", why: "孩子不是错在<strong>数值</strong>，是错在<strong>没说清是哪一个 0.5</strong>。1.5 = 1 + 0.5。",
+      miss: "孩子答「半个」方向是对的，只是<strong>漏掉了完整的那一个</strong>。1.5 个 = 1 个完整的 + 半个。",
+      kidSay: "你有 1 个苹果，再拿半个，一共几个？——1 加 0.5，才是 1.5 呀。" },
+    { stem: "孩子把 <span class='m'>长×宽</span> 背得很熟，但问「为什么」答不上。换个图形公式就全忘。<b>根本原因是：</b>", opts: ["他记性不好", "他背的是结论，没经历「数格子」这个过程", "公式本来就太多记不住", "他做题太少"],
+      answer: "B", why: "面积最原始的定义是<strong>数格子</strong>。「几行 × 几列」是孩子自己数出来的经验，公式只是这个经验的缩写。",
+      miss: "死记公式只能覆盖见过的那几个图形。<b>让孩子真的数一次格子</b>，他自己就会发现「行×列」。",
+      kidSay: "别背了。我们拿方格纸画出来，横着数几行、竖着数几列，你看看结果是不是行乘列。" },
+    { stem: "面积公式的起点，和下面哪个问题最相关？", opts: ["怎样算得又快又准", "土地怎么分才公平", "怎么记住公式", "怎么画得好看"],
+      answer: "B", why: "面积源于<strong>分配</strong>：土地要重新丈量，大家约定「按格子数分」。公式是为了快速数格子才发明的。",
+      miss: "想公式为什么成立，就回到它的用途：<b>它是为了「公平」而生的</b>，不是为了让小孩好背。",
+      kidSay: "如果这块地重新分给两家，公平的标准是什么？——格子有几块，就该分几份。" }
+  ]
+};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

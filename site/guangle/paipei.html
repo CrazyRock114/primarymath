@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>搭配 · 乘法原理</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 二年级 / 三年级下册</span>
+  <h1>搭配<br>你不需要配六次，<strong style="color:var(--brand);font-weight:inherit">乘一次就够了</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子真的配了六遍</a></li>
+<li><a href="#l2">02 溯源：乘法原理只干一件事</a></li>
+<li><a href="#l3">03 有序性：换个顺序，答案就变</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子真的配了六遍</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「3 件上衣和 2 条裤子，一共有多少种搭配？」
+    孩子老老实实配了 6 遍，得出答案 6。答案是对的。<br>
+    可一旦变成「<strong>4 件上衣 3 条裤子 2 双鞋</strong>」，他配到崩溃，
+    而且<strong>还不知道自己配漏了没有</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">答案不是数出来的，是<strong>看出来的</strong>。</p>
+  <p>
+    孩子用「一个一个配」的办法，是因为他还没意识到一件事：
+    <em class="hl">每一件上衣能配的裤子数量<strong>都一样</strong>。</em><br>
+    3 件上衣，每件都能配 2 条 → <strong>3 × 2 = 6</strong>。<br>
+    4 件上衣、3 条裤子、2 双鞋 → <strong>4 × 3 × 2 = 24</strong>。<br>
+    <strong>从头到尾，配一次都不用做。</strong>
+  </p>
+</div>
+
+<div class="demo" id="pp-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：亲手配一遍，然后发现你可以不配</div>
+  <p class="demo-hint">选一件上衣 → 选一条裤子 → 点「配上这套」。配满 6 次之后再想：<b>你其实不需要配。</b></p>
+  <div class="demo-stage"><div id="pp-grid"></div></div>
+  <div class="demo-out" id="pp-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：乘法原理只干一件事</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    乘法原理的完整说法是：<br><br>
+    <em class="hl">如果第一步有 <b>m</b> 种可能，第二步每种都有 <b>n</b> 种可能，两步必须连着做，那么一共有 <b>m × n</b> 种。</em><br><br>
+    注意「<strong>每种都有 n 种</strong>」这个前提 —— 这正是孩子最容易忽略的地方。
+    <strong>只要每一步的可选数量都一样，就用乘法；不一样，就老老实数。</strong>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 枚举型理解</div>
+    <p>「配一遍、数一遍，答案就是数出来的。」</p>
+    <p>后果：数量一大就崩溃，而且<strong>无法自检有没有漏</strong>。题一变形就废了。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 结构型理解</div>
+    <p>「第一步 <b>3</b> 种，第二步每种都 <b>2</b> 种，所以 3×2。」</p>
+    <p>结果：<strong>数量再大也是一步算完</strong>，而且他知道自己为什么对。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「第一步有几种？<strong>第二步每种都几种？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子配到手酸时，别让他停。问这一句。答得出 <strong>m 和 n</strong>，乘法就自然出来了。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>有序性：换个顺序，答案就变</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    同样是「3 个人的排队和 2 个人的握手」，
+    孩子算出两个不同的答案，然后困惑：「到底哪个对？」
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">算式的顺序，<strong>要跟事情的先后顺序一致</strong>。</p>
+  <p>
+    · <strong>3 人排队</strong>：先定第一个位置 3 种，再第二个 2 种，最后第三个 1 种 → <span class="m">3×2×1 = 6</span><br>
+    · <strong>2 人握手</strong>：一次只涉及 2 个人，<em class="hl">谁先谁后没有区别</em> → <span class="m">2÷2 = 1</span> 种
+  </p>
+</div>
+
+<div class="note">
+  <b>这就是「排列」和「组合」的区别：</b>
+  <strong>顺序有分别</strong>的叫排列（排队、密码），<strong>顺序没分别</strong>的叫组合（握手、搭配）。
+  小学阶段不用记这两个词，但<strong>「换顺序算不算新的」这个问题一定要会问</strong>。
+</div>
+
+<div class="quiz" data-quiz="gl-paipei">
+  <h3 style="margin-top:0">搭配 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「搭配」是人教版二年级上册及三年级下册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="tuili.html">推理</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-paipei"]={title:"搭配 · 5 题",qs:[
+{stem:"3 件上衣、2 条裤子，一共有多少种不同的搭配？",
+ opts:["5 种","6 种","8 种","9 种"],
+ answer:"B",why:"第一步选上衣有 <strong>3</strong> 种，第二步每种上衣都能配 <strong>2</strong> 条裤子，3 × 2 = <strong>6 种</strong>。",
+ miss:"不用真的一件件配。<b>看「每件上衣都配 2 条」这个不变的关系</b>，3×2=6。",
+ kidSay:"你有 3 件上衣，每件都能配 2 条裤子，所以是 3 乘 2，不用一个个配。"},
+{stem:"4 件上衣、3 条裤子、2 双鞋，一共多少种搭配？",
+ opts:["9 种","18 种","24 种","27 种"],
+ answer:"C",why:"三步分别有 4、3、2 种可能，而且<strong>每一步的选择数量都是固定的</strong>，所以 4 × 3 × 2 = <strong>24 种</strong>。",
+ miss:"这是<strong>三步</strong>，不是两步。4×3×2 = 24。别只乘前两个。",
+ kidSay:"先选上衣 4 种，再选裤子每种都有 3 种，再选鞋每种都有 2 种，4 乘 3 乘 2。"},
+{stem:"3 个小朋友排队，有多少种排法？3 个小朋友两两握手呢？",
+ opts:["都是 6 种","排队 6 种，握手 3 种","排队 3 种，握手 6 种","都是 3 种"],
+ answer:"B",why:"排队时<strong>位置有顺序</strong>（甲乙丙 和 丙乙甲 不同），3×2×1 = <strong>6 种</strong>。握手时<strong>两人交换左右手没有区别</strong>，所以 6÷2 = <strong>3 种</strong>。",
+ miss:"关键问一句：<b>换个顺序算不算新的？</b>排队算，握手不算——两个人谁先谁后是一样的。",
+ kidSay:"排队的时候，甲乙丙和丙乙甲不一样，算新的。可握手的时候，A和B握，跟B和A握，是同一件事啊。"},
+{stem:"密码是用 3 个数字（1-9，可以重复使用）组成的三位数，一共能组成多少个？",
+ opts:["27 个","729 个","24 个","81 个"],
+ answer:"B",why:"每一位都可以从 1-9 里任选一个，共 9 种可能，三位都是 9 种。<strong>每一位的选择数量都一样</strong>，所以 9 × 9 × 9 = <strong>729 个</strong>。",
+ miss:"<b>每一位都是 9 种可能</b>，包括重复。所以是 9×9×9，不是 9×8×7。",
+ kidSay:"第一位能从 1 到 9 选，第二位也是 1 到 9，第三位还是。三个都是 9 种，就乘三次。"},
+{stem:"什么时候可以用「m × n」代替一个个去数？",
+ opts:["只要题目里有「几种」两个字","当第一步有 m 种选择、且第二步每种都恰好有 n 种选择时","只要数字小于 10","永远都可以"],
+ answer:"B",why:"乘法原理的前提是<strong>「每一步的可选数量都一样」</strong>。如果第二步的可选数量会随第一步变，就必须老实枚举。",
+ miss:"关键是<b>「每种都一样」</b>这个前提。如果第二步的选择数量会跟着第一步变，就不能直接乘。",
+ kidSay:"先问一句：不管第一步选了什么，第二步是不是都一样多？如果是，就能乘。"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

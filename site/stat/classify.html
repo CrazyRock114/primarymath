@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>统计启蒙 · 从给东西分类到给数据分类</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">统计与概率</a><a href="classify.html">统计启蒙</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱四 · 关系 · 数据关系层 · 一上/一下/二上/二下/三下</span>
+  <h1>统计启蒙<br>「<strong style="color:var(--warn);font-weight:inherit">分类</strong>」是统计的第一步</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子会说「数一数」，但数不清</a></li>
+<li><a href="#l2">02 溯源：统计是对已发生事实的归纳</a></li>
+<li><a href="#l3">03 分类 → 计数 → 统计表</a></li>
+<li><a href="#l4">04 复式统计表：同时看两个维度</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子会说「数一数」，但数不清</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师问「这堆东西里有几个苹果？」<br>
+    孩子一眼看到 4 个苹果，<strong>不需要数</strong>。<br>
+    但问「有多少个是红色的？」他就<strong>数了两遍还在漏</strong>——因为<strong>混在一起没法数</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">统计的第一步不是「数」，是<strong>「分」</strong>。</p>
+  <p>
+    <span class="m">1、2、3、4</span> 这种数，<strong>不用数，看一眼就知道</strong>——因为它们<strong>排成了一排</strong>。<br>
+    可一堆散落的苹果，<strong>你得先分类，才数得动</strong>。<br><br>
+    <em class="hl"><strong>分类不是统计的前置步骤，分类本身就是统计的核心动作</strong>——数据整理的第一步就是「归类」。</em>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：统计是对已发生事实的归纳</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    前面六个支柱都在<strong>描述世界本身</strong>（数、量、形、关系、规则、结构）。<br>
+    <strong>统计不一样</strong>——它<em class="hl">不描述世界，而是回头看「已经发生的事」</em>。<br><br>
+    · 数「有多少」→ 描述<strong>现在</strong>的世界<br>
+    · 统计「多少人戴眼镜」→ 归纳<strong>已经收集的事实</strong><br><br>
+    <strong>这就是统计和前面所有支柱的根本区别，也是它容易被忽略的原因：</strong><br>
+    <em class="hl">统计的对象<strong>不是数</strong>，而是<strong>一组数</strong>。</em>一组数要先整理，才有意义。
+  </p>
+</div>
+
+<div class="demo" id="cl-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：分类前后对比</div>
+  <p class="demo-hint">切换视角，看「分好类」之后统计表是怎么填出来的。</p>
+  <div class="demo-stage"><div id="cl-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>视角</label>
+    <select id="cl-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 混在一起（数不清）</option>
+      <option value="1">② 分好类 + 统计表</option>
+    </select>
+  </div>
+  <div class="demo-out" id="cl-out"></div>
+</div>
+
+<div class="note">
+  <b>低年级到高年级的关键跃迁：</b><br>
+  低年级是「<strong>给东西分类</strong>」——你手里有一堆实物，分成几堆。<br>
+  高年级是「<strong>给数据分类</strong>」——你手里没有实物，只有<strong>一堆数</strong>，<br>
+  你要<em class="hl">决定按什么标准把数分组</em>（按分数段？按身高段？按时间段？）。<br>
+  <strong>这一步是「数据意识」真正开始的地方</strong>——<strong>分类标准选得好不好，决定了后面结论有没有用</strong>。
+</div>
+
+<h2 id="l3"><span class="num">03</span>分类 → 计数 → 统计表</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>统计的三个基本动作：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>收集</strong>：通过调查、测量、观察，得到<strong>原始数据</strong></li>
+    <li><strong>整理</strong>：<strong>分类</strong>，把散乱的数据归到若干类</li>
+    <li><strong>描述</strong>：用<strong>统计表 / 统计图</strong>把结果表达清楚</li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>孩子最常卡在第 2 步</strong>——<em>不是不会数，是不知道「按什么分」</em>。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 数完就算完</div>
+    <p>「数出来的数字，就是答案。」</p>
+    <p>后果：<strong>数据乱七八糟</strong>，别人看不懂，也不能比较。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 整理型理解</div>
+    <p>「<strong>先按标准分成几类，每类数一数，填进表里。</strong>」</p>
+    <p>结果：<strong>数据别人也能看懂</strong>，这才是「统计」。</p>
+  </div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>复式统计表：同时看两个维度</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「男生 12 人、女生 10 人；喜欢篮球 15 人、喜欢足球 7 人。」<br>
+    两组数据摆在一起，孩子问：<strong>喜欢篮球的男生有几个？</strong><br>
+    <strong>答不出来</strong>——单看哪一组都不够。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">复式统计表 = <strong>用「行」和「列」同时表达两个维度</strong>。</p>
+  <p>
+    普通的统计表只有<strong>一行表头</strong>（一类数据）。<br>
+    复式统计表有<strong>左上角的「双向表头」</strong>——<br>
+    <em class="hl">行看「性别」，列看「爱好」，交叉处就是「喜欢篮球的男生」。</em><br><br>
+    <strong>为什么非要这么麻烦？</strong>因为<strong>只用一个维度看，会丢掉信息</strong>。
+    「男生 12 人」和「喜欢篮球 15 人」都没错，<strong>但合起来才能回答新问题</strong>。
+  </p>
+</div>
+
+<div class="card" style="padding:0;overflow:hidden">
+<table style="width:100%;border-collapse:collapse;font-size:15px">
+<thead><tr style="background:var(--bg-tint)">
+<th style="padding:11px 16px;font-size:13px;color:var(--ink-soft)"></th>
+<th style="padding:11px 16px;font-size:13px;color:var(--brand)">喜欢篮球</th>
+<th style="padding:11px 16px;font-size:13px;color:#4a5b8c">喜欢足球</th>
+<th style="padding:11px 16px;font-size:13px;color:var(--ink-soft)">合计</th>
+</tr></thead>
+<tbody>
+<tr><td style="padding:10px 16px;background:#f3efe7;font-weight:700">男生</td>
+  <td style="padding:10px 16px;text-align:center;font-weight:700;color:#c4622d">9</td>
+  <td style="padding:10px 16px;text-align:center">3</td>
+  <td style="padding:10px 16px;text-align:center;background:#f3efe7;font-weight:700">12</td></tr>
+<tr><td style="padding:10px 16px;background:#f3efe7;font-weight:700">女生</td>
+  <td style="padding:10px 16px;text-align:center;font-weight:700;color:#c4622d">6</td>
+  <td style="padding:10px 16px;text-align:center">4</td>
+  <td style="padding:10px 16px;text-align:center;background:#f3efe7;font-weight:700">10</td></tr>
+<tr><td style="padding:10px 16px;background:#f3efe7;font-weight:700">合计</td>
+  <td style="padding:10px 16px;text-align:center;background:#f3efe7;font-weight:700">15</td>
+  <td style="padding:10px 16px;text-align:center;background:#f3efe7;font-weight:700">7</td>
+  <td style="padding:10px 16px;text-align:center;background:#f3efe7;font-weight:700;color:#2f6b52;font-size:17px">22</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <b>左上角那个空格为什么重要：</b><br>
+  复式统计表最难懂的就是<strong>左上角那一格</strong>——它既是行标题的表头，又是列标题的表头。<br>
+  孩子常在这里迷路。<strong>教法：先指着它说「这一列说的是上面这行，这一行说的是左边这列」，绕两遍就懂了。</strong>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>先想清楚按什么分类，再数。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做统计题时别急着数。先问：<strong>「这堆数据要分成几类？按什么标准分？」</strong>
+    分对了，统计就是数数；分错了，数得再准也没用。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b10-classify">
+  <h3 style="margin-top:0">统计启蒙 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版一年级上册/下册、二年级上册/下册、三年级下册「统计」共 5 个单元。
+  复式统计表部分对应四年级下册「复式统计表」的原理铺垫。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="chart.html">三种统计图</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b10-classify"]={title:"统计启蒙 · 5 题",qs:[
+{stem:"一堆苹果、香蕉、葡萄混在一起，孩子要「数一数每种有几个」。<b>他第一步该做什么？</b>",
+ opts:["直接一个一个数","先分类，再分类别数","把最大的那个先数","随便挑几个数"],
+ answer:"B",why:"<strong>分类是统计的第一步</strong>。散着数容易漏、容易重复；<strong>按类别分开数，每一类单独数</strong>，又快又准。",
+ miss:"<strong>先分类，再分着数。</strong>混在一起数最容易漏，分开数才不会。",
+ kidSay:"先分成三堆：苹果一堆、香蕉一堆、葡萄一堆。然后一堆一堆数。"},
+{stem:"「给东西分类」和「给数据分类」的主要区别是：",
+ opts:["给东西分类更难","给数据分类时，你手里没有实物，只有数，你要决定「按什么标准分组」",
+  "两者完全一样","给数据分类不需要分类"],
+ answer:"B",why:"低年级手里有实物，<strong>分类标准是现成的</strong>（按外观就能分）。高年级只有数据，<strong>标准要自己定</strong>（按分数？身高？时间？）。<strong>这一步是数据意识的进阶</strong>。",
+ miss:"低年级分的是<strong>实物</strong>，标准现成。高年级分的是<strong>数据</strong>，得自己决定按什么分——这就是「数据意识」真正开始的地方。",
+ kidSay:"低年级是分东西，看得见。高年级是分数字，看不见，所以标准要你自己想。"},
+{stem:"已知「男生 12 人、女生 10 人」「喜欢篮球 15 人、喜欢足球 7 人」。<b>为什么这两组数据还不够？</b>",
+ opts:["数据太少了","因为想知道「喜欢篮球的男生有几个」，需要同时知道两个维度","数字不好看","应该用条形图"],
+ answer:"B",why:"<strong>单看一个维度答不了新问题</strong>。「喜欢篮球的男生」需要<strong>同时</strong>用到性别和爱好两个信息，这就是<strong>复式统计表</strong>存在的理由。",
+ miss:"<strong>想知道「喜欢篮球的男生」，得同时用到两组数据。</strong>各看一半，拼不出这个答案，所以要用复式统计表。",
+ kidSay:"单说男生、单说喜欢篮球，都答不出「喜欢篮球的男生」。得把两个放一张表里看。"},
+{stem:"复式统计表<strong>左上角那一格</strong>（既是行表头又是列表头）容易让孩子迷路。<b>怎么教？</b>",
+ opts:["先不管，那格不重要","指着它说「这一列说的是上面这行，这一行说的是左边这列」，绕两遍就懂","背下来","考一次就会了"],
+ answer:"B",why:"<strong>那一格是双重表头</strong>——列标题和行标题在这里交汇。教法是<strong>指着说两遍</strong>：先「这一列说的是上面这行」，再「这一行说的是左边这列」，<strong>两句话交叉，学生立刻通</strong>。",
+ miss:"<strong>指着那格说两遍</strong>：这一列说的是上面这行，这一行说的是左边这列。孩子就懂了。",
+ kidSay:"看这个角。这一列的名字在上面那行，这一行的名字在左边这列。这样交叉着看，就知道每个格子是什么了。"},
+{stem:"某班统计「喜欢篮球的占 15/25」。<b>如果换成另一个班「喜欢篮球的占 15/30」，为什么不能直接说「这个班更喜欢篮球」？</b>",
+ opts:["数据不对","因为两个班的「整体」不同，分母变了，百分比要重新算才可比",
+  "因为 15 不是整数","因为人数要一样多"],
+ answer:"B",why:"<strong>百分数是「部分 ÷ 整体」</strong>，<strong>整体一变，比值就要重算</strong>。<br>15/25 = 60%，15/30 = 50%——<strong>虽然都是 15 人，但占比完全不同</strong>。<strong>所以比较不同整体时，一定要换算成百分比。</strong>",
+ miss:"<strong>分母不一样，比值就不能直接比。</strong>15÷25=60%，15÷30=50%，要换成百分比才可比。",
+ kidSay:"同样是 15 个人，一个班 25 人一个班 30 人，占的比例不一样。得先算百分比才能比。"}
+]};
+</script>
+<script src="../assets/js/stats.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

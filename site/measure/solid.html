@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>立体：表面积与体积 · 展开图</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">图形的测量</a><a href="solid.html">立体：表面积与体积</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三 · 形 · 五下「长方体和正方体」+ 六下「圆柱与圆锥」</span>
+  <h1>表面积与体积<br><strong style="color:var(--brand);font-weight:inherit">展开图</strong>解决一切</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 包了多少纸 vs 能装多少水</a></li>
+<li><a href="#l2">02 溯源：立体 = 展开成平面</a></li>
+<li><a href="#l3">03 长方体：6 个面加起来</a></li>
+<li><a href="#l4">04 圆柱：剪开侧面是个长方形</a></li>
+<li><a href="#l5">05 圆锥：为什么没有侧面积</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>包了多少纸 vs 能装多少水</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「做一个 4×3×2 的无盖纸盒，要多少纸板？」<br>
+    孩子翻到「长方体表面积」公式，算出 <strong>52 平方厘米</strong>——错了（有盖子的问题）。<br>
+    他不是公式不会，<strong>是不知道「这道题到底要算哪个面」</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">立体只有两个量，而且<strong>它们问的问题完全不同</strong>。</p>
+  <p>
+    <strong>表面积</strong>：<em class="hl">外面包了多少纸</em>——算的是<strong>皮</strong><br>
+    <strong>体积</strong>：<em class="hl">里面能装多少水</em>——算的是<strong>容量</strong><br><br>
+    <strong>动手前先问一句：「我要包纸，还是要装水？」</strong><br>
+    无盖纸盒 = 要包纸，但<strong>少一个面</strong>；游泳池 = 要装水，用体积。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 套公式型</div>
+    <p>「看到立体就用表面积公式。」</p>
+    <p>后果：<strong>该用体积的题用了表面积，该少一个面的题算了 6 个面</strong>——方向性错误。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model model-good" style="display:none"></div>
+    <div class="model model-good">
+      <div class="model-h">✓ 问句型</div>
+      <p>「<strong>包纸（表面积）还是装水（体积）？哪几个面？</strong>」</p>
+      <p>结果：<strong>先定位再计算</strong>，几乎不会用错公式。</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：立体 = 展开成平面</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    立体图形不能直接算面积——因为它是<strong>弯的、卷着的</strong>。<br>
+    但如果<strong>把它剪开、摊平</strong>，它就变成了<strong>已经学过的平面图形</strong>。<br><br>
+    <em class="hl"><strong>所有立体表面积公式，都是「展开图 + 平面面积」的结果。</strong></em><br>
+    · 长方体展开 = <strong>6 个长方形</strong><br>
+    · 圆柱展开 = <strong>1 个长方形 + 2 个圆</strong><br>
+    · 圆锥展开 = <strong>1 个扇形 + 1 个圆</strong><br><br>
+    <strong>不会算立体？把它剪开摊平，就变回你会的平面了。</strong>这是几何最实用的思维。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>长方体：6 个面加起来</h2>
+
+<div class="demo" id="bx-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动三个边长，看展开图和公式</div>
+  <p class="demo-hint">把长宽高调成<strong>一样</strong>，看看它变成什么。</p>
+  <div class="demo-stage"><div id="bx-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>长</label><input type="range" id="bx-a" min="1" max="6" value="4"><span class="val" id="bx-av"></span>
+    <label>宽</label><input type="range" id="bx-b" min="1" max="6" value="3"><span class="val" id="bx-bv"></span>
+    <label>高</label><input type="range" id="bx-c" min="1" max="6" value="2"><span class="val" id="bx-cv"></span>
+  </div>
+  <div class="demo-out" id="bx-out"></div>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>记住这一句就够了：</strong></p>
+  <p style="margin-bottom:0;font-size:16px;text-align:center;padding:12px;background:var(--brand-lt);border-radius:9px">
+    <strong>表面积 = （长×宽 + 长×高 + 宽×高）× 2</strong><br>
+    <span style="font-size:14px;color:var(--ink-soft)">体积 = 长 × 宽 × 高</span>
+  </p>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>正方体是长方体的特例</strong>（长=宽=高），公式不用另记：<br>
+    <span class="m">表面积 = 6a²</span>　<span class="m">体积 = a³</span>
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>圆柱：剪开侧面是个长方形</h2>
+
+<div class="demo" id="cy-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖半径和高，看展开图的变化</div>
+  <p class="demo-hint">切换视角：看「侧面积从哪来」和「表面积怎么加」。</p>
+  <div class="demo-stage"><div id="cy-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>半径</label><input type="range" id="cy-r" min="1" max="6" value="3"><span class="val">3</span>
+    <label>高</label><input type="range" id="cy-h" min="1" max="6" value="4"><span class="val">4</span>
+    <label>视角</label>
+    <select id="cy-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 侧面积从哪来</option>
+      <option value="1">② 表面积 = 侧面 + 2 个底面</option>
+    </select>
+  </div>
+  <div class="demo-out" id="cy-out"></div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>把它剪开摊平，就变回你会的图形了。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子被立体图形难住时，这句话能让他自己去想「怎么展开」。
+    <strong>展开是立体题的唯一钥匙。</strong>
+  </p>
+</div>
+
+<h2 id="l5"><span class="num">05</span>圆锥：为什么没有侧面积</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>圆柱能展开成长方形，圆锥不能。</strong></p>
+  <p style="margin-bottom:14px;color:var(--ink-soft)">
+    圆柱的侧面是<strong>可以「抹平」的曲面</strong>——剪一刀就摊成矩形（长=底面周长）。<br>
+    圆锥的侧面<strong>是收尖的曲面</strong>，抹不平，<strong>剪开了是一张扇形</strong>。<br>
+    <strong>扇形面积小学不要求计算</strong>，所以六年级只学圆锥的<strong>底面积</strong>和<strong>体积</strong>。
+  </p>
+  <p style="margin:0;color:var(--ink-soft)">
+    <strong>圆锥体积 = 底面积 × 高 ÷ 3</strong>（等底等高的圆锥是圆柱的 1/3，这个 1/3 是实验+推导的结论）。
+  </p>
+</div>
+
+<div class="note">
+  <b>常见错误清单（提前告诉孩子）：</b>
+  <br>
+  ❌ 圆柱表面积<strong>只加 1 个底面</strong>（它有上下两个）<br>
+  ❌ 求<strong>无盖</strong>盒子时算了 6 个面<br>
+  ❌ 算体积时<strong>用了棱长总和</strong>当边长<br>
+  ❌ 长方体体积<strong>忘乘两三次</strong>（3 条棱要乘 3 次）
+</div>
+
+<div class="quiz" data-quiz="b7-solid">
+  <h3 style="margin-top:0">立体：表面积与体积 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版五年级下册「长方体和正方体」、
+  六年级下册「圆柱与圆锥」两个单元。承接本站<a href="../pillar/shape.html">形柱</a>的「割补转化」主线。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="combo.html">上一节：组合图形的面积</a>　|　<a href="../index.html">回到首页</a>　|　B7 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b7-solid"]={title:"立体：表面积与体积 · 5 题",qs:[
+{stem:"做一个 4×3×2 的<b>无盖</b>纸盒，要多少纸板？",
+ opts:["2×(4×3+4×2+3×2) = 52 平方厘米（有盖）","4×3 + 2×(4×2) + 2×(3×2) = 40 平方厘米","4×3×2 = 24 平方厘米","6×4×3 = 72 平方厘米"],
+ answer:"B",why:"<strong>无盖 = 少一个「长×宽」的面</strong>。底面 1 个 4×3 + 前后 2 个 4×2 + 左右 2 个 3×2 = 12+16+12 = <strong>40</strong>。<strong>关键是先问「要几个面」</strong>。",
+ miss:"<strong>无盖，少一个 4×3 的面</strong>。底面 12，前后两面各 8 共 16，左右两面各 6 共 12，一共 40。",
+ kidSay:"这题是无盖的，少一个 4×3 的面。先数要几个面，再加。"},
+{stem:"<b>表面积</b>和<b>体积</b>的区别是：",
+ opts:["表面积大，体积小","表面积算外面的「皮」（包多少纸），体积算里面的「容量」（装多少水）","表面积算长宽高，体积算面积","没有区别"],
+ answer:"B",why:"<strong>表面积 = 外面包了多少纸（皮）；体积 = 里面能装多少（容量）</strong>。所以<strong>动手前要先问「包纸还是装水」</strong>，用错公式方向就错了。",
+ miss:"<strong>表面积是「皮」，体积是「容量」。</strong>做纸盒要皮，量水池要容量。",
+ kidSay:"你想包多少纸，还是要装多少水？问清楚就不会用错公式。"},
+{stem:"圆柱的<b>侧面积</b>为什么等于「底面周长 × 高」？",
+ opts:["这是公式规定","把圆柱的侧面剪开、抹平，正好是一个长方形，长等于底面周长、宽等于高",
+  "因为圆柱有两底面","因为底面是圆的"],
+ answer:"B",why:"<strong>圆柱的侧面是能抹平的曲面</strong>，沿一条高剪开就摊成<strong>长方形</strong>，长 = 底面周长 2πr，宽 = 高。所以侧面积 = 2πrh。<strong>不是规定，是展开图的结果。</strong>",
+ miss:"<strong>把圆柱侧面剪开摊平</strong>，就是个长方形。长的那条正好是底面一圈的周长。",
+ kidSay:"把圆柱的侧面剪开、抹平，就摊成一个长方形了。长的那条边，正好是绕着底面一圈的长度；宽就是高。"},
+{stem:"圆柱的表面积公式里，底面积要算几个？",
+ opts:["1 个（只有下面）","2 个（上面和下面都有）","3 个","看高和半径哪个大"],
+ answer:"B",why:"<strong>圆柱有上下两个底面</strong>，表面积 = 侧面积 + 2 × 底面积 = 2πrh + 2πr²。<strong>只加 1 个是最常见的错误。</strong>",
+ miss:"<strong>圆柱上下都有底面</strong>，表面积要加 2 个 πr²，不是 1 个。",
+ kidSay:"圆柱有上和下两个圆形的面，都得包上。"},
+{stem:"为什么圆锥的侧面积小学<b>不要求</b>计算？",
+ opts:["因为圆锥不重要","因为圆锥的侧面展开是扇形，扇形面积小学不要求计算","因为圆锥没有侧面","因为太难了"],
+ answer:"B",why:"<strong>圆柱侧面能抹平成矩形，圆锥侧面收尖、抹不平，剪开是扇形</strong>。<strong>扇形面积超出小学要求范围</strong>，所以只学圆锥的底面积和体积。",
+ miss:"<strong>圆锥侧面剪开是扇形</strong>，扇形面积小学不算。所以只学底面积和体积。",
+ kidSay:"圆锥的侧面是收尖的，抹不平，剪开是扇形。扇形面积小学不学，所以不算侧面积。"}
+]};
+</script>
+<script src="../assets/js/measure.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

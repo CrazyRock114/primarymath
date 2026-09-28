@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>鸽巢问题 · 抽屉原理</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 六年级下册</span>
+  <h1>鸽巢问题<br>多一个，就一定撞上</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 一道很「弱」的结论，为什么这么值钱</a></li>
+<li><a href="#l2">02 溯源：抽屉原理两句话</a></li>
+<li><a href="#l3">03 反过来用：怎样保证「互不相同」</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>一道很「弱」的结论，为什么这么值钱</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「一个盒子里有红、黄、蓝三种颜色的球，<strong>至少</strong>要摸出几个，才能保证有两个同色？」
+    孩子想半天，答「4 个」。<br>
+    「13 个小朋友里，<strong>至少有</strong>几个是同一个月出生的？」——他更懵了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">这个结论「弱」得几乎不像数学，但它<strong>永远成立，一个例外都没有</strong>。</p>
+  <p>
+    <strong>抽屉原理：n 个抽屉，放进 n+1 个物体，必定有一个抽屉里至少 2 个。</strong><br><br>
+    第一题：3 种颜色 = 3 个抽屉。3+1 = <strong>4 个球</strong>，必有 2 个同色。<br>
+    第二题：12 个月 = 12 个抽屉。13 个小朋友，<strong>必有 2 个同月</strong>。<br><br>
+    看清了吗？<em class="hl">「至少有 2 个」不是「最多有多少个不同」，而是「最少能错到什么程度」。</em><br>
+    孩子的思路方向反了 —— 他在想「怎么让它们都不同」，而题目问的是「<strong>最少撞上几个</strong>」。
+  </p>
+</div>
+
+<div class="demo" id="gz-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：拖动抽屉数，看球怎么必然撞上</div>
+  <p class="demo-hint">球数永远比抽屉多。<b>不管怎么放，一定有一个抽屉挤着两个以上。</b></p>
+  <div class="demo-stage"><div id="gz-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>抽屉数</label><input type="range" id="gz-n" min="2" max="10" value="4"><span class="val">4</span>个抽屉
+  </div>
+  <div class="demo-out" id="gz-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：抽屉原理两句话</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    原理本身只有两句：<br><br>
+    <strong>① </strong>n 个抽屉放 n+1 个物体，<strong>至少</strong>有一个抽屉里 ≥ 2 个。<br>
+    <strong>② </strong>n 个抽屉放 kn+1 个物体，<strong>至少</strong>有一个抽屉里 ≥ k+1 个。<br><br>
+    名字叫「鸽巢原理」，因为它像鸽子回到窝里：<em class="hl">窝就那么几个，鸽子比窝多，撞上同一个窝是必然的</em>。<br>
+    难的不是记住它，是<strong>把题目翻译成「几个抽屉、几个物体」</strong>。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>翻译三问：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>抽屉是什么？</strong>（= 可以「分类」的维度：颜色、月份、班级、形状）</li>
+    <li><strong>物体是什么？</strong>（= 要装进去的那些东西）</li>
+    <li><strong>要保证什么？</strong>（= 至少有 2 个同「抽屉」，还是至少 3 个？）</li>
+  </ol>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 「最多能怎样」型</div>
+    <p>「怎么放才能让它们<strong>都不同</strong>？」</p>
+    <p>后果：方向完全反了。题目问「<strong>至少</strong>」，他在想「最多」。越想越乱。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 「最少撞上」型</div>
+    <p>「<strong>最倒霉</strong>的情况是什么？」</p>
+    <p>结果：先假设「全都不同」能撑到第几个，第几个+1 就是答案。</p>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>反过来用：怎样保证「互不相同」</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「一个班至少要<strong>有多少人</strong>，才能保证有两个同月生日？」——孩子又反过来了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">同一个原理，正着反着都能用。</p>
+  <p>
+    <strong>要保证「至少 2 个同月」</strong>：先算「全都不同」最多能有几个人 = 12，再 <strong>+1 = 13</strong>。<br>
+    <em class="hl">n 个抽屉放 n+1 个 → 必有重复。倒过来：要让「可能重复」，就得放 n+1 个。</em>
+  </p>
+</div>
+
+<div class="note">
+  <b>生活里的应用（孩子能立刻用上）：</b>
+  · 抽屉里摸球，至少摸 <strong>4</strong> 个才能保证 2 个同色<br>
+  · 13 人里必有 2 人同月生日（12 个月，13 个人 pigeonhole）<br>· <strong>「同一天生日」是另一回事</strong>：一年 365 天，要<strong>保证</strong>至少 2 人同一天生日，得有 366 人；而「23 人」只是<strong>概率超过一半</strong>的分界，<strong>不是保证</strong>——这正是「必然」和「可能」的区别<br>
+  · 袜子：<strong>n+1 只</strong>必有两只同色 —— 这就是为什么家里袜子总是「成双」的问题
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「先假设它们<strong>全都不同</strong>，最多能撑到第几个？再加 1。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    这句话是<strong>反证法的原型</strong>——先假设结论不成立，看看能撑到什么时候就撑不住了。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="gl-gz">
+  <h3 style="margin-top:0">鸽巢问题 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「鸽巢问题」是人教版六年级下册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="shuxing.html">上一节：数与形</a>　|　<a href="../index.html">回到首页</a>　|　B12 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-gz"]={title:"鸽巢问题 · 5 题",qs:[
+{stem:"盒子里有红、黄、蓝三种颜色的球。至少摸出几个，才能保证有两个同色？",
+ opts:["2 个","3 个","4 个","6 个"],
+ answer:"C",why:"3 种颜色 = 3 个抽屉。最坏情况是<strong>前 3 个球颜色都不同</strong>，这时还拿不到同色。所以要 <strong>3+1 = 4 个</strong>。",
+ miss:"想想最倒霉的情况：前 3 个球<strong>刚好是红黄蓝，各不相同</strong>。再摸第 4 个，就一定会跟其中一个撞上。",
+ kidSay:"最坏的情况是前 3 个刚好颜色都不同，那第 4 个不管什么颜色，一定能配上一个。"},
+{stem:"13 个小朋友中，至少有几个是同一个月出生的？",
+ opts:["1 个","2 个","12 个","13 个"],
+ answer:"B",why:"12 个月 = 12 个抽屉。13 个小朋友 > 12，所以<strong>至少 2 个同月</strong>。注意题目问的是「<strong>至少</strong>有几个」，答案不是 12 而是 2。",
+ miss:"「至少有几个」问的是<strong>最少撞上几个</strong>，不是「有多少人同月」。抽屉只有 12 个，人有 13 个，<b>必有一对</b>。",
+ kidSay:"12 个月只有 12 个「抽屉」，你有 13 个人，肯定有两个人落在同一个月里。"},
+{stem:"一个抽屉里有 4 种颜色的袜子，要保证摸出两只颜色相同的，至少要摸几只？",
+ opts:["2 只","4 只","5 只","8 只"],
+ answer:"C",why:"4 种颜色 = 4 个抽屉。最坏情况是前 <strong>4 只颜色都不同</strong>，第 5 只必然与其中一只同色。所以是 <strong>4+1 = 5 只</strong>。",
+ miss:"最坏情况下前 <b>4 只颜色都不一样</b>，所以要摸到第 5 只才能保证配上。",
+ kidSay:"要是你运气特别差，前 4 只刚好 4 种颜色都不同呢？那第 5 只就一定能配上了。"},
+{stem:"一个班至少要有多少人，才能保证有两个同月生日的人？",
+ opts:["12 人","13 人","23 人","24 人"],
+ answer:"B",why:"「保证有重复」<strong>倒过来用</strong>抽屉原理：12 个月最多容纳 <strong>12 个互不相同</strong>的生日，要制造重复，就必须 <strong>12+1 = 13 人</strong>。",
+ miss:"先想「全都不同」最多能有 12 个人。那要<strong>制造出重复</strong>，就得再来一个人，13 人。",
+ kidSay:"如果班里 12 个人，月份刚好全不一样。只要再来第 13 个人，就一定会跟某个人撞月份。"},
+{stem:"「鸽巢原理」的核心思路，可以概括为：",
+ opts:["要保证什么，就先假设它不成立，看能撑到什么时候","多试几次总会试到","把东西分类放好就行","算出总数就行"],
+ answer:"A",why:"这是<strong>反证法</strong>的典型形式：<strong>先假设结论不成立（全都不同），推出最多能放几个，再加 1</strong>。这个「先假设最坏情况」的动作，数学里到处都在用。",
+ miss:"关键是<strong>先假设「它们都不一样」，看能撑到第几个</strong>，撑不住了就说明一定会重复。",
+ kidSay:"先假装它们全都不一样，看看最多能塞几个。塞到第几个就塞不下了，那就是答案。"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

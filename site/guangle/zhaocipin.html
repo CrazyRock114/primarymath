@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>找次品 · 二分法</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 五年级下册</span>
+  <h1>找次品<br>一次称量，砍掉三分之二</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 27 个球，怎么称最少</a></li>
+<li><a href="#l2">02 溯源：天平天然就是二分</a></li>
+<li><a href="#l3">03 分成三份，不是两份</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>27 个球，怎么称最少</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「27 个球里有 1 个稍轻，用天平称，至少称几次一定能找出来？」
+    孩子的第一反应是 <strong>27 次</strong>——一个一个称。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">天平一次称量能同时判断<strong>三个</strong>答案，不是一个。</p>
+  <p>
+    把 27 个分成 <strong>9、9、9</strong> 三份：<br>
+    · <strong>左边轻</strong> → 轻的在左边 9 个里<br>
+    · <strong>右边轻</strong> → 轻的在右边 9 个里<br>
+    · <strong>平衡</strong> → 轻的在<strong>没上天平的那 9 个里</strong><br><br>
+    一次称量，<em class="hl">27 个的可能直接缩到 9 个</em>。再分 3、3、3 → 3 个。再分 1、1、1 → 1 个。<br>
+    <strong>一共 3 次。</strong>3³ = 27。
+  </p>
+</div>
+
+<div class="demo" id="zc-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：亲手称一次</div>
+  <p class="demo-hint">换不同数量的球，点「称一次」看怎么分。<b>注意：分的是三份，不是两份。</b></p>
+  <div class="demo-stage"><div id="zc-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>球的数量</label>
+    <select id="zc-n" class="btn" style="padding:7px 12px">
+      <option value="3">3 个</option><option value="8">8 个</option>
+      <option value="9" selected>9 个</option><option value="10">10 个</option>
+      <option value="12">12 个</option><option value="13">13 个</option>
+      <option value="27">27 个</option><option value="8">8 个（最优例）</option>
+    </select>
+    <button class="btn btn-primary" id="zc-go">称一次</button>
+  </div>
+  <div class="demo-out" id="zc-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：天平天然就是二分</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    人类发明「二分」的方式非常朴素：<strong>把一堆东西对半分</strong>。<br>
+    猜数字游戏、查字典、找故障代码，用的都是这一招。<br>
+    <em class="hl">天平只是把它变成了物理的——左右各放一半，平衡就说明「不在这一半里」。</em><br>
+    但天平比普通的「对半分」更强：<strong>它有第三个篮子</strong>。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 逐个型</div>
+    <p>「一个一个称，直到找出轻的那个。」</p>
+    <p>后果：<strong>n 次</strong>。27 个就要称 27 次，而且<strong>无法自检</strong>是不是漏了。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 二分型</div>
+    <p>「每次把范围缩到<strong>原来的三分之一</strong>。」</p>
+    <p>结果：<strong>次数 = 3 的多少次方能超过 n</strong>。27 个只要 3 次。</p>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>分成三份，不是两份</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">很多人本能地对半分，但<strong>天平给了你三个选项，不是两个</strong>。</p>
+  <p>
+    对半分：左 13、右 14。平衡了 → 坏的<strong>不在这 27 个里</strong>（但它们都在天平上啊，矛盾）——所以坏的一定在某一边，
+    剩 <strong>14 个</strong>。砍掉一半。<br>
+    分三份：9、9、9。坏的必然在其中<strong>一份</strong>里，剩 <strong>9 个</strong>。砍掉三分之二。<br>
+    <em class="hl">三份法永远优于对半分</em>，因为它用满了天平的三种结果（轻、重、平）。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>最坏情况对照表（经典结论）：</strong></p>
+  <table style="width:100%;border-collapse:collapse;font-size:15px">
+    <tbody>
+      <tr><td style="padding:9px 10px;border-bottom:1px solid var(--line-soft)">3³ = 27 ≥ 球数</td><td style="padding:9px 10px;border-bottom:1px solid var(--line-soft)">称 <strong>3</strong> 次能找出（共 27 个以内）</td></tr>
+      <tr><td style="padding:9px 10px;border-bottom:1px solid var(--line-soft)">3² = 9 ≥ 球数</td><td style="padding:9px 10px;border-bottom:1px solid var(--line-soft)">称 <strong>2</strong> 次（共 9 个以内）</td></tr>
+      <tr><td style="padding:9px 10px">3⁴ = 81 ≥ 球数</td><td style="padding:9px 10px">称 <strong>4</strong> 次（共 81 个以内）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「分<strong>三</strong>份，不是两份。平衡是最有价值的那条线索。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子最容易忽略「平衡」这一支——它恰恰是最强的线索，因为它能<strong>把范围缩到最小</strong>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="gl-zc">
+  <h3 style="margin-top:0">找次品 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「找次品」是人教版五年级下册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="zhishu.html">上一节：植树问题</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="shuxing.html">数与形</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-zc"]={title:"找次品 · 5 题",qs:[
+{stem:"27 个球中有 1 个稍轻，用天平称，至少称几次一定能找出来？",
+ opts:["1 次","2 次","3 次","27 次"],
+ answer:"C",why:"每次分成 <strong>3 份</strong>（9、9、9），称一次范围缩到 9 个；再分 3、3、3 缩到 3 个；再分 1、1、1 缩到 1 个。<strong>共 3 次</strong>，因为 3³ = 27。",
+ miss:"别一个一个称。<b>分成三份</b>，一次称完 27 个的可能就缩到 9 个。3 次就够了。",
+ kidSay:"27 个球，9 个、9 个、9 个分三份。天平一称，就知道坏的在哪一份。反复三次就找出来了。"},
+{stem:"8 个球中有 1 个稍轻，至少称几次？",
+ opts:["2 次","3 次","4 次","8 次"],
+ answer:"A",why:"3¹ = 3 < 8，3² = 9 ≥ 8，所以 <strong>2 次</strong>。分法：3、3、2，坏的缩到 3 个里；再分 1、1、1，1 次定下来。共 2 次。",
+ miss:"第一次分三份 3、3、2，范围缩到 3 个；再分 1、1、1 就定下来了。<b>一共 2 次</b>。",
+ kidSay:"8 个球分成 3、3、2 三份。称一次剩 3 个可能的，再称一次就定下来了。"},
+{stem:"把 27 个分成 9、9、9 三份称一次，天平平衡了，说明什么？",
+ opts:["坏的球在左边 9 个里","坏的球在右边 9 个里","坏的球在没上天平的那 9 个里","天平坏了"],
+ answer:"C",why:"因为左盘和右盘<strong>一样重</strong>，说明坏球<strong>不在这两边任何一边</strong>。它必然在<strong>没放上天平的那份</strong>里。",
+ miss:"天平<strong>平衡</strong>，说明坏球<strong>哪边都没在天平上</strong>——它在被放下的那一份里。",
+ kidSay:"天平平了，说明两边都没问题。那问题一定在没放上去的那一份里。"},
+{stem:"为什么「分成三份」比「对半分」更好？",
+ opts:["三份看起来更公平","天平有三种结果：左边轻、右边轻、平衡。三份法把三种都用上了，范围缩得最小","三份更好数","没有区别"],
+ answer:"B",why:"对半分只用到 <strong>2 种</strong>结果（轻/重），因为两边都在天平上，平衡无法排除任何一边。三份法把「平衡」也用上，<strong>一次砍掉三分之二</strong>，而不是一半。",
+ miss:"关键在于<strong>天平有三种结果</strong>，对半分只用了两种。分三份才能把「平衡」这个线索利用起来。",
+ kidSay:"天平会告诉你三种情况：左边轻、右边轻、还有平的。对半分只用到两种，浪费了「平」这个信息。"},
+{stem:"「找次品」的思路，和下面哪个最接近？",
+ opts:["在字典里查一个字","电脑在很大的文件里找错误时的「二分查找」","把水烧开","数一数有几个"],
+ answer:"B",why:"都是<strong>「每次把范围缩小一半（甚至更多），用最少的次数定位目标」</strong>。二分查找是编程里最基础也最重要的算法之一，今天学的就是它的原型。",
+ miss:"这就是<strong>二分查找</strong>。电脑在几百万个文件里找一个，也是这样一次砍一半。",
+ kidSay:"电脑找一个文件，也是把范围砍一半、再砍一半。你刚才做的就是它。"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

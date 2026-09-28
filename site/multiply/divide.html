@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>除法是乘法的解构 · 余数</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">乘除的结构</a><a href="divide.html">除法是乘法的解构</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱四 · 关系 · 表内除法 / 有余数的除法</span>
+  <h1>除法是乘法的解构<br>余数必须比除数小，<strong style="color:var(--warn);font-weight:inherit">不是规定</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 「余数比除数小」，为什么</a></li>
+<li><a href="#l2">02 溯源：除法是打包的反过来</a></li>
+<li><a href="#l3">03 除法的两种意思：平均分 vs 包含除</a></li>
+<li><a href="#l4">04 有余数时，商要怎么取</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>「余数比除数小」，为什么</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师强调「<strong>余数一定比除数小</strong>」。孩子记住了，写作业也对。
+    可你问：<span class="m">17 ÷ 5 = 3 …… 2</span>，如果<strong>把 2 放到十位呢</strong>？（即 32 ÷ 5）
+    他说不清楚这和前者有什么本质区别。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">余数不是「算剩下多少」，是<strong>「再分一份够不够」</strong>。</p>
+  <p>
+    17 个球，每份装 5 个：装 <strong>3 份</strong>用了 15 个，<strong>剩 2 个</strong>。<br>
+    剩下的 2 个<strong>够不够再装一份？</strong>不够（要 5 个）。<br>
+    所以商只能是 3，<em class="hl">不能再往下分</em>。<br>
+    <strong>如果剩 7 个呢？</strong>够不够再装 5 个？<strong>够</strong> → 那就该装第 4 份，商是 4，剩 2。<br>
+    <span class="m">32 ÷ 5 = 6 …… 2</span> 和 <span class="m">17 ÷ 5 = 3 …… 2</span> 的区别，
+    <strong>不在余数，在商</strong>——因为从 17 变到 32 多出来 15 个，又够多装 3 份。
+  </p>
+</div>
+
+<div class="demo" id="rm-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动看还能不能再分一份</div>
+  <p class="demo-hint">故意把被除数拖大，<b>看橙色提示什么时候跳出来</b>。</p>
+  <div class="demo-stage"><div id="rm-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>每份装</label><input type="range" id="rm-d" min="2" max="9" value="5"><span class="val" id="rm-dv"></span>个
+    <label>一共</label><input type="range" id="rm-b" min="3" max="30" value="17"><span class="val" id="rm-bv"></span>个
+  </div>
+  <div class="demo-out" id="rm-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：除法是打包的反过来</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    乘法把 4 个 3 <strong>打包</strong>成「4 份每份 3 个」。<br>
+    除法就是<strong>把包拆开</strong>——问「里面有几份」。<br>
+    <em class="hl">所以除法不是一种独立的运算，它是乘法的<strong>逆运算</strong>。</em><br><br>
+    乘法的四个意思，除法就对应四个反问：<br>
+    · 重复加法 <span class="m">3×4=12</span> → <strong>「12 里面有几个 3？」</strong><br>
+    · 面积 <span class="m">3×4=12</span> → <strong>「长 3 的长方形里能装几个宽 4 的？」</strong><br>
+    · 倍数 → <strong>「3 倍量里装着几个 1 倍量？」</strong><br>
+    · 缩放 → <strong>「实际距离里装着几个 1:100 的长度？」</strong>
+  </p>
+</div>
+
+<div class="note">
+  <b>为什么要分清「平均分」和「包含除」：</b><br>
+  <span class="m">18 ÷ 3</span> 可以读成「18 平均分成 3 份，每份几」，
+  也可以读成「18 里面装着几个 3」。<br>
+  分数除法（<span class="m">3/4</span> 是什么的几分之几）必须用<strong>包含除</strong>，用平均分就讲不通了。<br>
+  <strong>这正是本站<a href="../pillar/relation.html">关系柱</a>说的「倍」的延续。</strong>
+</div>
+
+<h2 id="l3"><span class="num">03</span>商和余数，是同一次分堆的两面</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">商回答「装了几份」，余数回答「还差多少才够一份」。</p>
+  <p>
+    17 ÷ 5 = 3 …… 2：<br>
+    · <strong>商 3</strong>：装满了 3 份<br>
+    · <strong>余数 2</strong>：<strong>再差 3 个</strong>就能装满第 4 份<br><br>
+    <em class="hl">余数 +（除数 − 余数）= 除数</em>。这告诉我们：<strong>再拿一个除数过来，余数就翻篇了</strong>。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 试商型理解</div>
+    <p>「商一位一位地试，试出来大于除数就调小。」</p>
+    <p>后果：<strong>慢、依赖口诀、题型一变就卡住</strong>。而且孩子不知道自己「在干什么」。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 装填型理解</div>
+    <p>「先看被除数前面几位，够装几个除数。」</p>
+    <p>结果：<strong>除法就是「往袋子里装东西」</strong>。商的每一位，都在数「这一段能装几个」。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「剩下的够不够再装<strong>一整份</strong>？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子写出不合法的余数时，不要直接说「错了」。就问这一句。答「够」或「不够」，他立刻知道该怎么改。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b2-divide">
+  <h3 style="margin-top:0">除法是乘法的解构 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版二年级下册「表内除法（一）（二）」「解决问题」，
+  三年级上册「有余数的除法」三个单元。交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="place.html">上一节：数位表里的算理</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="longdivision.html">竖式与试商</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b2-divide"]={title:"除法是乘法的解构 · 5 题",qs:[
+{stem:"为什么<strong>余数一定比除数小</strong>？",
+ opts:["数学规定","如果余数比除数大或相等，说明还能再分出一份，商应该再加 1","为了计算方便","因为余数要小一点好看"],
+ answer:"B",why:"余数是「再分一份都不够」的那部分。若余数 ≥ 除数，说明<strong>还能再分出一份</strong>，那商就偏小了。这不是规定，是<strong>分堆的自然结果</strong>。",
+ miss:"问一句：<b>剩下的够不够再装一整份？</b>够的话，商就该再加 1。",
+ kidSay:"剩下的 2 个，够不够再装 5 个的一份？不够，所以商只能是 3。"},
+{stem:"<span class='m'>32 ÷ 5 = 6 …… 2</span> 和 <span class='m'>17 ÷ 5 = 3 …… 2</span>，余数相同，商不同，原因是：",
+ opts:["算错了","32 比 17 多出来的 5 个又够装一整份，所以商能多 1","32 的数字更大","除法有多种算法"],
+ answer:"B",why:"<strong>17 → 32 多了 5 个，正好等于一个除数</strong>，够再装一份，所以商从 3 变成 6。这正好印证了<strong>余数必须小于除数</strong>——多出的 5 个全部拿去当商。",
+ miss:"从 17 变到 32，<b>多出来整整 15 个</b>，15÷5=3，又能多装 3 份，所以商从 3 变成 6。",
+ kidSay:"多出来的 15 个，又能装 3 份 5 个的，所以商才从 3 变成 6。"},
+{stem:"<span class='m'>3/4</span> 表示「3 除以 4」，这属于哪种除法？",
+ opts:["平均分","包含除（18 里面装着几个 3）","随便哪种都行","加法"],
+ answer:"B",why:"<span class='m'>3 ÷ 4</span> 问的是「<strong>3 里面装着几个 4</strong>」，答案是「装不下，还剩 3」→ 这就是<strong>包含除</strong>。用「平均分」解释会说不通（没法把 3 平均分给 4 份）。",
+ miss:"<b>包含除</b>。18 里面装着 3 个 6，这就是包含除。平均分是「把一堆平均切成几份」，方向不一样。",
+ kidSay:"18 里面能装下几个 3？装 6 个试试——这叫包含除，跟平均分不是一回事。"},
+{stem:"除法竖式中，商是「一位一位试出来」的。这样做真正的道理是：",
+ opts:["因为竖式格式要求","因为要看被除数当前这一段能装几个除数，商就是在数「装了几份」","因为商必须一位一位写","因为除数是位数决定的"],
+ answer:"B",why:"除法竖式的本质是<strong>「一段一段地装」</strong>。先看被除数最前面，够装几个除数，商写几；减掉，再落下一位继续装。商的每一位，都是「这一段能装几份」的答案。",
+ miss:"试商不是试，是<strong>「这一段能装几个」</strong>。把除法想成往袋子里装东西，就不用试了。",
+ kidSay:"你别一个一个试。就看前面这一段，够装几个 5，装得下几个就是商的最高位。"},
+{stem:"孩子算出 <span class='m'>29 ÷ 4 = 6 …… 5</span>，问题出在哪？",
+ opts:["算错了","余数 5 比除数 4 大，说明还能再分一份，商应该是 7 余 1","被除数看错了","答案就是 6……5"],
+ answer:"B",why:"余数 5 ≥ 除数 4，<strong>还能再装一份</strong>（4 个），所以商应改成 7，余数 1（5 − 4 = 1）。",
+ miss:"余数<b>不能大于等于除数</b>。5 比 4 大，说明还够分一份，商要加 1，余数变成 1。",
+ kidSay:"你剩了 5 个，可每份只要 4 个——这 5 个里还能再拿出 4 个装一份呢！再分一次试试。"}
+]};
+</script>
+<script src="../assets/js/multiply.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

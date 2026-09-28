@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>集合 · 重叠的部分，只能算一次</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 三年级上册</span>
+  <h1>集合<br>重叠的那部分，被你数了两次</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 直接相加，天差地别</a></li>
+<li><a href="#l2">02 溯源：容斥的两种数法</a></li>
+<li><a href="#l3">03 三句必问</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>直接相加，天差地别</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「篮球社 8 人，合唱社 6 人，两个社都参加的有 3 人。一共有多少人参加社团？」
+    孩子脱口而出 <strong>8 + 6 = 14</strong>。<br>
+    可那 3 个两边都参加的人，<em class="hl">被数了两遍</em>。真实答案是 <strong>11 人</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">「加法」天然允许重复；<strong>数「一共多少个人」不允许</strong>。</p>
+  <p>
+    孩子对 <span class="m">8+6=14</span> 的正确性没有怀疑，因为加法本身没错。
+    错在<strong>问题换了，加法没跟着换</strong>。<br>
+    「总人数」是一个人一个人数出来的，<em class="hl">一个人只能算一次</em>。
+    加法之所以能用，是因为<strong>两部分没有交集</strong>；一旦有交集，加法就会多算。
+  </p>
+</div>
+
+<div class="demo" id="jh-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：拖动看重叠部分怎么被算两次</div>
+  <p class="demo-hint">把两个圆调大调小，注意中间那块<strong>被两个圆都盖住</strong>的区域。</p>
+  <div class="demo-stage"><div id="jh-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>篮球社</label><input type="range" id="jh-a" min="3" max="20" value="8"><span class="val">8</span>人
+    <label>合唱社</label><input type="range" id="jh-b" min="3" max="20" value="6"><span class="val">6</span>人
+    <label>都参加</label><input type="range" id="jh-both" min="0" max="6" value="3"><span class="val">3</span>人
+  </div>
+  <div class="demo-out" id="jh-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：容斥的两种数法</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    把人<strong>按「参加哪个社」分成互不重叠的几堆</strong>，相加就不会重复：<br><br>
+    <em class="hl">只参加篮球社 + 只参加合唱社 + 两个都参加 = 总人数</em><br><br>
+    只参加篮球社 = 8 − 3 = 5 人　　只参加合唱社 = 6 − 3 = 3 人　　都参加 = 3 人<br>
+    5 + 3 + 3 = <strong>11 人</strong>。<br><br>
+    这就是<strong>容斥原理</strong>：<span class="m">总数 = A + B − A与B的重叠部分</span>。
+    两种数法殊途同归，但<em class="hl">「先分类再相加」更不容易错</em>。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>两类「一共多少」要分清：</strong></p>
+  <p style="margin-bottom:0;color:var(--ink-soft)">
+    · <strong>「一共印了多少次」</strong> → 可以重复，直接加。<span class="m">8+6=14</span> ✔<br>
+    · <strong>「一共有多少人 / 多少种」</strong> → 不能重复，要减重叠。<span class="m">8+6−3=11</span> ✔
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 无条件相加</div>
+    <p>「一共」就等于相加。</p>
+    <p>后果：只要题目里有「<strong>两个都</strong>」四个字，必错。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 先分类再相加</div>
+    <p>「有没有重叠？重叠的算了几次？」</p>
+    <p>后果：先判断能不能重，再决定加还是减。习惯一旦形成，<strong>几乎不会错</strong>。</p>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>三句必问</h2>
+
+<div class="card">
+  <ol style="padding-left:22px;line-height:2.2;margin:0">
+    <li><strong>这两样东西，有没有可能同时属于一个人？</strong>——能，就可能有重叠</li>
+    <li><strong>如果有重叠，重叠了多少？</strong>——这个数字<strong>必须直接给</strong>，不能靠猜</li>
+    <li><strong>我要的是「人次」还是「人数」？</strong>——人次可以重复，人数不能</li>
+  </ol>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「有没有人<strong>两边都算</strong>？算了<strong>几次</strong>？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    这句话以后会一路用到初中：<strong>分母相加要通分</strong>、<strong>统计图叠加</strong>、<strong>概率加法</strong>，全都要先问这一句。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="gl-jihe">
+  <h3 style="margin-top:0">集合（重叠问题）· 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「集合」是人教版三年级上册「数学广角」单元内容。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="tuili.html">上一节：推理</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="youhua.html">优化</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-jihe"]={title:"集合 · 5 题",qs:[
+{stem:"篮球社 8 人，合唱社 6 人，两个社都参加的有 3 人。一共有多少人？",
+ opts:["14 人","11 人","8 人","6 人"],
+ answer:"B",why:"8+6=14 会把<strong>两样都参加的那 3 人算两次</strong>。正确答案是 8+6−3 = <strong>11 人</strong>。",
+ miss:"看看那 3 个「都参加」的人——<b>你是不是数了两次？</b>要减掉。",
+ kidSay:"有 3 个人两个社都参加了，他们被你数了两遍，要减掉一次。"},
+{stem:"「全班 40 人，参加数学小组的 15 人，参加英语小组的 12 人，两个都参加的有 3 人」。只参加数学小组的有几人？",
+ opts:["15 人","12 人","3 人","18 人"],
+ answer:"B",why:"只参加数学 = 参加数学的总人数 − 两个都参加的 = 15 − 3 = <strong>12 人</strong>。",
+ miss:"「只参加」的意思是<strong>排除了两边都参加的</strong>。15 里面包含了那 3 人。",
+ kidSay:"15 个人里有 3 个是两边都参加的，你把他们去掉试试。"},
+{stem:"下面哪种情况可以直接相加，不用减？",
+ opts:["男生 20 人，女生 18 人","喜欢苹果 15 人，喜欢香蕉 12 人，其中 5 人都喜欢","一班 30 人，二班 28 人","红球 8 个，黄球 6 个"],
+ answer:"D",why:"红球和黄球是<strong>互斥的两类</strong>，不可能同一颗球既是红又是黄，所以直接相加。苹果香蕉那题有 5 人重叠，必须减。",
+ miss:"关键判断：<b>这两类会不会有同一个东西？</b>红球和黄球绝不会重叠，男生女生也绝不会。苹果香蕉会。",
+ kidSay:"先问一句：有没有人既是男的又是女的？或者同一颗球既是红的又是黄的？没有，才能直接加。"},
+{stem:"「两班共 60 人，其中 10 人同时参加了两个社团，每人参加 1-2 个社团」。至少有多少人只参加一个社团？",
+ opts:["40 人","50 人","60 人","不知道"],
+ answer:"B",why:"<strong>60 是人数，不是人次。</strong>10 个人各多参加 1 个社团，但<strong>他们还是那 10 个人</strong>，人数没变。只参加一个社团的 = 60 − 10 = <strong>50 人</strong>。",
+ miss:"先分清<strong>人数和人次</strong>。60 个人里有 10 个人报了 2 个社团，这 10 个人只算一次。只参加 1 个社团的 = 60 − 10 = 50 人。",
+ kidSay:"60 个人里有 10 个人报了 2 个社团，他们只算 1 个人。所以只参加 1 个社团的是 50 个人。"},
+{stem:"「容斥」这个方法，除了集合题，还可以用在哪里？",
+ opts:["只能用于画圆","统计图叠加、分数加法通分、概率的加法都要先问「有没有重叠」","与数学无关","只是小学技巧"],
+ answer:"B",why:"「<strong>能不能直接相加</strong>」是所有「总数」问题的通用第一问。分母相加要通分、统计图叠加去重，都是同一个判断。",
+ miss:"这不是一道题的技巧，<b>是所有「求总数」问题的第一问</b>。通分、统计叠加都在用它。",
+ kidSay:"以后看到「一共」，先问一句：有没有东西被算了两遍？"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

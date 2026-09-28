@@ -1,0 +1,18 @@
+# 原始抓取素材：39MB 微信公众号图片与原文 HTML。
+# 站点零引用（site/ 内无任何指向 data/ 的链接），按"最小原则"不入库。
+# 如需重新生成站点内容，用 _tools/wechat_fetch.py 重新抓取即可。
+data/
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.log
+*.tmp
+/tmp/
+/tmp_*
+
+# Python 缓存
+__pycache__/
+*.pyc

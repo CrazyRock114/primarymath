@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>进位与退位 · 满十进一的真正理由</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav><a href="../index.html">首页</a><a href="index.html">数的认识</a><a href="carry.html">进位与退位</a></nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 一上「20 以内进位加法」+ 一下/二上/二下/三上「加减法」</span>
+  <h1>进位与退位<br>它们是<strong style="color:var(--brand);font-weight:inherit">同一件事的正反两面</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子把「满十进一」当口诀背</a></li>
+<li><a href="#l2">02 溯源：为什么个位不能放 10</a></li>
+<li><a href="#l3">03 进位：满十送一个到左边</a></li>
+<li><a href="#l4">04 退位：从左边拆一个下来</a></li>
+<li><a href="#l5">05 连续进位退位：最容易崩的地方</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子把「满十进一」当口诀背</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师强调「满十进一」，孩子记住了。<br>
+    但换到 <span class="m">99 + 1</span>，他<strong>数出 10 个 1，忘了「这个 1 是十位上的 1」</strong>，写成 190。<br>
+    <strong>他背的是「看到 10 就进 1」这个动作，不知道「进」到哪里去。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">进位<strong>不是「数够 10 就进」，是「个位放不下了，往左边送」。</strong></p>
+  <p>
+    为什么个位放不下？<em class="hl">因为个位只能表示 0~9</em>。<br>
+    那第 10 个 1 是什么？<strong>它本质上是「1 个十」</strong>（10 个一是 1 个十）。<br>
+    「1 个十」只能记在<strong>十位</strong>上——<strong>因为十位就是记「几个十」的地方</strong>。<br><br>
+    <strong>所以「进位」= 换位值。不是计数习惯，是表示方法决定的。</strong>
+  </p>
+</div>
+
+<div class="demo" id="cr-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：看小棒怎么合并</div>
+  <p class="demo-hint">拖动两个加数。盯住<strong>个位那一列</strong>——满 10 的时候会发生什么。</p>
+  <div class="demo-stage"><div id="cr-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>第一个加数</label><input type="range" id="cr-a" min="10" max="99" value="47"><span class="val" id="cr-av"></span>
+    <label>第二个加数</label><input type="range" id="cr-b" min="10" max="99" value="28"><span class="val" id="cr-bv"></span>
+  </div>
+  <div class="demo-out" id="cr-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：为什么个位不能放 10</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    因为<strong>每一位只记「一个单位」</strong>。个位记「几个 1」，最多到 9。<br>
+    如果个位能放 10，那<strong>「个位」这个名字就废了</strong>——它就不代表「一」了。<br><br>
+    <em class="hl">所以每一位的取值只能是 0~9，这是定义，不是规定。</em><br>
+    <strong>10 个「一」必须换成「1 个十」来记</strong>——因为「十」这个单位需要一个单独的位置。<br>
+    <strong>进位，是位值制在正常工作。</strong>
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>进位：满十送一个到左边</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>进位的完整动作（两步）：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>先合并</strong>：把同一位的小棒<strong>全部加起来</strong></li>
+    <li><strong>再看够不够 10</strong>：够了就把 10 根捆成 1 捆，<strong>送到左边</strong>，本<strong>只写剩下的零头</strong></li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>顺序不能反</strong>——<em class="hl">必须「先合再看」，不能「先拆再合」</em>。
+    孩子把 4+3 先写成 7 再拆，是对的；<strong>先拆开反而容易乱</strong>。
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>退位：从左边拆一个下来</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    <span class="m">52 − 27</span>，孩子退位后个位算对了，<em class="hl">但十位忘了减掉那个「1」</em>，写成 35。<br>
+    <strong>这是退位最高频的错误</strong>——比不会算严重得多，因为过程看起来是对的。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">退位是<strong>「借」，借了就要还</strong>。</p>
+  <p>
+    个位 <span class="m">2</span> 不够减 <span class="m">7</span> → 从十位<strong>借 1 个十</strong>。<br>
+    1 个十<strong>拆成 10 个一</strong> → 个位变成 <span class="m">2 + 10 = 12</span>。<br>
+    <em class="hl">但十位那个「1」已经借走了，十位必须少 1。</em><br><br>
+    <strong>「借了要还」是退位的全部难点。</strong>
+  </p>
+</div>
+
+<div class="demo" id="bw-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：看什么时候需要退位</div>
+  <p class="demo-hint">试试<b>个位够减</b>和<b>个位不够减</b>两种情形，观察区别。</p>
+  <div class="demo-stage"><div id="bw-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>被减数</label><input type="range" id="bw-a" min="20" max="99" value="52"><span class="val" id="bw-av"></span>
+    <label>减数</label><input type="range" id="bw-b" min="10" max="48" value="27"><span class="val" id="bw-bv"></span>
+  </div>
+  <div class="demo-out" id="bw-out"></div>
+</div>
+
+<h2 id="l5"><span class="num">05</span>连续进位退位：最容易崩的地方</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>连续进位：</strong></p>
+  <p style="margin:0;color:var(--ink-soft)">
+    <span class="m">47 + 28 = 75</span>：个位 <span class="m">7+8=15</span> → 进 1，个位写 5；
+    十位 <span class="m">4+2+1（进位的）=7</span>。<br>
+    <em class="hl">关键：十位要「+1（进位的）」——这一步漏了就是 74。</em>
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>连续退位：</strong></p>
+  <p style="margin:0;color:var(--ink-soft)">
+    <span class="m">100 − 38 = 62</span>：个位 <span class="m">0−8</span> 不够，十位 <span class="m">0</span> 也不够，
+    <strong>要一直退到百位</strong>——百位借 1 个百，十位和个位各分 10。<br>
+    <em class="hl">关键：借了 1 个百，十位变成 10，个位也变成 10，两个位置都要 +10。</em>
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 孤立型理解</div>
+    <p>「进位就是加 1，退位就是减 1。」</p>
+    <p>后果：<strong>连续进退位一崩就全错</strong>，因为借的那个数<strong>没有真的还回去</strong>。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 交换型理解</div>
+    <p>「<strong>10 个一 = 1 个十</strong>。进位就是<strong>把 10 捆成 1 捆送到左边</strong>，
+      退位就是<strong>把左边那捆拆成 10 个送到右边</strong>。」</p>
+    <p>结果：<strong>连续操作时，每一步的「送/拆」都看得见</strong>，不会漏。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>借的那个十，你扣掉了吗？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子退位算错时，不要帮他重算。就问这一句。
+    <strong>十位那栏，他多半还写着原来的数——那就找到原因了。</strong>
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b1-carry">
+  <h3 style="margin-top:0">进位与退位 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版一年级上册「20 以内进位加法」、
+  一年级下册「100 以内加法和减法」、二年级上册「100 以内加法和减法(二)」、二年级下册「万以内加法和减法(一)」、
+  三年级上册「万以内加法和减法(二)」共 5 个单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="recognize.html">上一节：数的认识</a>　|　<a href="../index.html">回到首页</a>　|　B1 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b1-carry"]={title:"进位与退位 · 5 题",qs:[
+{stem:"为什么<strong>个位不能表示 10</strong>？",
+ opts:["因为规定","因为每一位只记「一个单位」，个位记「几个 1」，取值只能是 0~9，10 必须换算成「1 个十」记到十位",
+  "因为 10 太大","因为个位最不重要"],
+ answer:"B",why:"<strong>每一位只记「一个单位」</strong>。个位记「几个 1」，最多到 9。<strong>10 个一是 1 个十</strong>，必须换单位记在十位。<strong>这是定义，不是规定。</strong>",
+ miss:"<strong>个位是记「几个 1」的位置，最多到 9。</strong>第 10 个 1 本质上是「1 个十」，要记到十位去。",
+ kidSay:"个位只能放 9 个。放到第 10 个的时候，它其实是「1 个十」，得搬到十位去。"},
+{stem:"<span class='m'>47 + 28</span>，个位 7+8=15 进 1 之后，<strong>十位要算什么？</strong>",
+ opts:["4+2=6","4+2+1（进位的那个 1）=7","5+2=7","4+3=7"],
+ answer:"B",why:"<strong>十位要加上「进位的那个 1」</strong>：4+2+1=7，所以答案是 75。<em class='hl'>漏掉这个 +1 是连续进位最高频的错误</em>，会算成 74。",
+ miss:"<strong>十位别忘了加上进位的 1。</strong>4+2+1=7，所以是 75，不是 74。",
+ kidSay:"个位进了 1 上去，十位要把这个 1 算进去：4+2+1 等于 7。"},
+{stem:"<span class='m'>52 − 27</span> 退位后，<b>最容易错在哪？",
+ opts:["个位算错","个位退位后算对了，但十位忘了减掉「借走的那 1」","横线没画","十位数字写错"],
+ answer:"B",why:"<strong>退位的关键是「借了要还」</strong>。个位从十位借 1 个十（拆成 10 个一）， <em class='hl'>十位就少了一个，必须减掉</em>：5−1−2=2，答案 25 而不是 35。",
+ miss:"<strong>借了十位那个 1，十位就得少 1。</strong>5-1-2=2，别忘了这一步。",
+ kidSay:"你从十位借了一个 1 下来，那十位就少了一个，得扣掉。"},
+{stem:"<span class='m'>100 − 38</span> 为什么要「一直退到百位」？",
+ opts:["因为难算","因为个位和十位都是 0 都不够减，必须从百位借 1 个百，再拆成 10 个十和 10 个一",
+  "因为规则要求","因为 100 更大"],
+ answer:"B",why:"<strong>个位 0 减 8、十位 0 减 3，两个位置都不够。</strong>只能从<strong>百位</strong>借 1 个百， <em class='hl'>拆成 10 个十给十位、再由十位拆 10 个一给个位</em>。这一步想通了，100−38 就不难了。",
+ miss:"<strong>十位也是 0，减不了</strong>。只能找百位借 1，再一级一级拆下来。",
+ kidSay:"十位也是 0，不够减。所以要找百位借 1 个百，拆成 10 个十，再拆出 10 个一给个位。"},
+{stem:"「进位」和「退位」的关系，最准确的说法是：",
+ opts:["两个完全不同的规则","同一件事的正反两面：进位是 10 个一换成 1 个十，退位是 1 个十换成 10 个一",
+  "进位是加法专用，退位是减法专用","都是凑整"],
+ answer:"B",why:"<strong>进位 = 10 个一 → 1 个十（往左送）；退位 = 1 个十 → 10 个一（从左拆）。</strong> <em class='hl'>它们都是「10 个一 = 1 个十」这个等式在用</em>，只是一个正着用、一个反着用。",
+ miss:"<strong>它们是同一件事的两个方向。</strong>都是「10 个一 = 1 个十」，进位是往左送，退位是从左拆。",
+ kidSay:"进位是把 10 个 1 打包成 1 个十送上去，退位是把 1 个十拆成 10 个 1 拿下来。同一件事。"}
+]};
+</script>
+<script src="../assets/js/final.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

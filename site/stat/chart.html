@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三种统计图 · 同一份数据的三种看法</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">统计与概率</a><a href="chart.html">三种统计图</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱四 · 关系 · 数据关系层 · 三下/四上/四下/五下/六上/六下</span>
+  <h1>三种统计图<br>同一份数据，<strong style="color:var(--brand);font-weight:inherit">选哪张取决于你想看什么</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子学了三张图，却不知道什么时候用哪张</a></li>
+<li><a href="#l2">02 溯源：图是为了回答问题</a></li>
+<li><a href="#l3">03 三张图，三种问题</a></li>
+<li><a href="#l4">04 扇形图为什么只算到 1%</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子学了三张图，却不知道什么时候用哪张</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师教了条形图、折线图、扇形图，孩子<strong>都会画</strong>。<br>
+    可给他一份数据问「你打算画什么图？」他说不出理由，<strong>随便挑一个</strong>。<br>
+    考试不会错，做<strong>真实的调查</strong>时就用错了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">统计图不是「三种画法」，是<strong>「三种问问题的角度」</strong>。</p>
+  <p>
+    每张图只擅长回答<strong>一种问题</strong>：<br>
+    · <strong>条形图</strong> → 「<strong>谁多谁少</strong>？」（比大小）<br>
+    · <strong>折线图</strong> → 「<strong>怎么变的</strong>？」（看趋势）<br>
+    · <strong>扇形图</strong> → 「<strong>各占几分之几</strong>？」（看占比）<br><br>
+    <em class="hl">选错图，<strong>数据本身没错，但表达会误导人</strong>——这是比算错更严重的问题。</em>
+  </p>
+</div>
+
+<div class="demo" id="ch-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：同一份数据，换三种图</div>
+  <p class="demo-hint">四个学期的人数（一班 23、二班 31、三班 28、四班 38）。<b>切换图类型，看每张图突出什么。</b></p>
+  <div class="demo-stage"><div id="ch-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>图类型</label>
+    <select id="ch-type" class="btn" style="padding:7px 12px">
+      <option value="0">条形图 —— 比大小</option>
+      <option value="1" selected>折线图 —— 看趋势</option>
+      <option value="2">扇形图 —— 看占比</option>
+    </select>
+  </div>
+  <div class="demo-out" id="ch-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 画法型理解</div>
+    <p>「条形图是这样画的，折线图是那样画的。」</p>
+    <p>后果：<strong>会画但不会选</strong>。一遇到「你想表达什么」就懵。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 问题型理解</div>
+    <p>「<strong>我想让别人看出<em>谁多</em></strong> → 条形；看出<em>变化</em> → 折线；看出<em>占比</em> → 扇形。」</p>
+    <p>结果：<strong>先有问题，再选图</strong>。这是数据意识的真本事。</p>
+  </div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：图是为了回答问题</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    人类为什么要「画图」而不是「列数字」？<br><br>
+    因为<em class="hl">人眼<strong>比较「长度」和「角度」比比较「数字」快得多</strong></em>。<br>
+    · <strong>条形图</strong>：把数量变成<strong>长短</strong> → 眼睛能瞬间比出高低<br>
+    · <strong>折线图</strong>：把变化变成<strong>斜率和转折</strong> → 眼睛能瞬间看出趋势<br>
+    · <strong>扇形图</strong>：把比例变成<strong>角度</strong> → 眼睛能瞬间看出谁占大头<br><br>
+    <strong>每张图都是把「数字」翻译成眼睛最容易处理的形式。</strong>所以选图 = 选「你想让眼睛看到什么」。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>三张图，三种问题</h2>
+
+<div class="card" style="padding:0;overflow:hidden">
+<table style="width:100%;border-collapse:collapse;font-size:15px">
+<thead><tr style="background:var(--bg-tint)">
+<th style="text-align:left;padding:11px 16px;font-size:13px;color:var(--ink-soft)">图类型</th>
+<th style="text-align:left;padding:11px 16px;font-size:13px;color:var(--ink-soft)">回答什么问题</th>
+<th style="text-align:left;padding:11px 16px;font-size:13px;color:var(--ink-soft)">什么时候选它</th>
+</tr></thead>
+<tbody>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 16px"><strong>条形图</strong></td><td style="padding:10px 16px;color:var(--ink-soft)">谁多谁少？差多少？</td><td style="padding:10px 16px">比较<strong>不同类别</strong>之间的大小</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 16px"><strong>折线图</strong></td><td style="padding:10px 16px;color:var(--ink-soft)">怎么变的？涨了还是跌了？</td><td style="padding:10px 16px">看<strong>同一个量随时间的变化</strong></td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:10px 16px"><strong>扇形图</strong></td><td style="padding:10px 16px;color:var(--ink-soft)">各类占总体的百分之几？</td><td style="padding:10px 16px">看<strong>部分与整体</strong>的比例关系</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <b>关键区别：折线图必须有「时间顺序」。</b><br>
+  上面那份数据是四个<strong>班</strong>的人数（23、31、28、38）——<strong>这是「不同类别」，不是「时间变化」</strong>。<br>
+  <strong>严格说，这组数据画折线图是不合适的</strong>——因为班级之间没有先后顺序，连起来没有意义。<br>
+  <em class="hl">折线图的横轴必须是「时间」或「有顺序的过程」。</em><br>
+  <strong>我这里用它只是为了对比三种图的视觉差异</strong>；孩子真要画，<strong>这组数据应该用条形图或扇形图</strong>。
+</div>
+
+<h2 id="l4"><span class="num">04</span>扇形图为什么只算到 1%</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">扇形图靠的是<strong>圆心角</strong>，而圆只有 360°。</p>
+  <p>
+    每一类占的角度 = <span class="m">该类数量 ÷ 总数 × 360°</span><br>
+    如果某一类占比<strong>不到 1%</strong>，它分到的角度<strong>不到 3.6°</strong> —— <em class="hl">几乎画不出来</em>。<br><br>
+    <strong>所以扇形图不适合表示「很细小的差异」</strong>——<br>
+    两个只差 0.5% 的类别，画成扇形<strong>看起来完全一样</strong>。<strong>这时该用条形图。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>你想让别人看出什么？</strong>——看谁多用条形，看变化用折线，看占比用扇形。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子画错图时，别直接说「这里该用折线图」。问这一句，
+    <strong>他自己就能判断该画哪种</strong>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b10-chart">
+  <h3 style="margin-top:0">三种统计图 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版三年级下册至六年级下册各册「统计」单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="classify.html">上一节：统计启蒙</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="average.html">平均数、可能性、百分数（三上/五上/六上）</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b10-chart"]={title:"三种统计图 · 5 题",qs:[
+{stem:"想表现「一班、二班、三班、四班各有多少人」，应该用哪张图？",
+ opts:["条形图","折线图","扇形图","表格"],
+ answer:"A",why:"<strong>看「各有多少」用条形图</strong>——一根条形比一个数，谁多谁少一眼就清楚。<strong>折线图必须有「时间或先后顺序」才能连</strong>；四个班之间没有先后，<strong>连起来是假趋势</strong>。",
+ miss:"<strong>四个班之间没有先后顺序，不能连成线</strong>。要表达「各有多少」，用条形图。",
+ kidSay: "看谁多谁少用条形，看怎么随时间变化才用折线。班级之间没有先后，用条形。"},
+{stem:"要表现「班里男生、女生各占多少」，最合适的图是：",
+ opts:["条形图","折线图","扇形图","不用图，列出来就行"],
+ answer:"C",why:"<strong>「各占多少」是部分与整体的比例问题</strong>，扇形图把比例变成角度，一眼看出谁占大头。<strong>条形图是比大小，扇形图才是看占比。</strong>",
+ miss:"<strong>问「各占多少」就是看占比，用扇形图。</strong>条形图只能告诉你「男生比女生多」，不能告诉你「男生占了百分之几」。",
+ kidSay:"想看谁占的比例大，就画扇形。条形图只能比多少，不能看占比。"},
+{stem:"如果某类数据的占比不到 1%，画成扇形图会有什么问题？",
+ opts:["完全没问题","分到的角度不到 3.6°，几乎画不出来，看起来和别的类一样，差异被抹掉了",
+  "数据会丢失","扇形图不能用于小数"],
+ answer:"B",why:"<strong>圆只有 360°</strong>，占比不到 1% 的类别分到的角度<strong>不到 3.6°</strong>，视觉上几乎看不出来。<strong>所以细小的差异该用条形图，而不是扇形图。</strong>",
+ miss:"<strong>不到 1% 的占比，分到的角度不到 3.6 度</strong>，画出来看不出区别。这种情况要用条形图。",
+ kidSay:"占比太小，扇形图就分不出角度了。要看细微差别，得用条形图。"},
+{stem:"「统计图是为了回答问题」这个理解，最重要的价值是：",
+ opts:["画得更快","先明确「我想让别人看出什么」，再选对应的图，而不是随手挑一个",
+  "考试分数更高","图看起来更漂亮"],
+ answer:"B",why:"<strong>先有问题、再选图</strong>，这才是数据意识。随手挑图可能<strong>数据没错但表达误导人</strong>——<em class='hl'>这比算错更严重，因为它让人得出错误结论</em>。",
+ miss:"<strong>关键是「先明确要看什么，再选图」。</strong>挑错图，数据没错，但可能误导别人。",
+ kidSay:"先想清楚你想让别人看出什么，再决定画哪种图。挑错了，图会骗人。"},
+{stem:"上面例子里「四个班的人数 23、31、28、38」，<b>最合适的其实是：</b>",
+ opts:["折线图（能看出趋势）","条形图或扇形图，因为班级之间没有时间先后，画折线图没有意义",
+  "三张图都完全等价","必须用扇形图"],
+ answer:"B",why:"<strong>折线图的前提是横轴有「时间或先后顺序」</strong>。四个班只是<strong>不同类别</strong>，没有先后，连起来<strong>没有意义</strong>。<strong>所以用条形图比大小最合适。</strong>",
+ miss:"<strong>折线图要有「时间顺序」。</strong>四个班是不同类别，不是时间变化，所以不该用折线图。",
+ kidSay:"折线图是画随时间变化的。四个班之间没有先后，画成线连起来没意义。"}
+]};
+</script>
+<script src="../assets/js/stats.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

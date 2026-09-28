@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>方程与比例 · 天平与两个一起变的量</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">分数乘除与方程</a><a href="equation.html">方程与比例</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 五上「简易方程」+ 六下「比例」</span>
+  <h1>方程是<strong style="color:var(--warn);font-weight:inherit">天平</strong>，比例是<strong style="color:var(--warn);font-weight:inherit">不变的纽带</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 方程：等号是关系，不是箭头</a></li>
+<li><a href="#l2">02 解方程只有一条规则</a></li>
+<li><a href="#l3">03 比例：两个量一起变，关系不变</a></li>
+<li><a href="#l4">04 正比例反比例（衔接初中）</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>方程：等号是关系，不是箭头</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    孩子会解 <span class="m">3x + 5 = 14</span>，但你问「<strong>为什么两边同时减 5？</strong>」他说「解方程的步骤」。<br>
+    「移项」在他眼里是<strong>一条口诀</strong>，不是<strong>一个必然</strong>。所以<strong>换成任何变式，他都要重新背一遍</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">解方程只有一条规则：<strong>两边做同样的操作，天平不能歪。</strong></p>
+  <p>
+    想象一架<strong>天平</strong>，左右两边一样重（这就是等号）。<br>
+    · 两边<strong>同时</strong>减 5 → 还是平的 → <span class="m">3x = 9</span><br>
+    · 两边<strong>同时</strong>除以 3 → 还是平的 → <span class="m">x = 3</span><br><br>
+    <em class="hl">「移项」不是特殊规则，就是「两边同时减」——因为减 5 和加 −5 是同一件事。</em><br>
+    <strong>知道这一条，任何形式的方程都能解，不需要记步骤。</strong>
+  </p>
+</div>
+
+<div class="demo" id="scale-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：把天平调平</div>
+  <p class="demo-hint">拖动左右重量。注意看：天平歪的时候，等号是<b>不成立</b>的。</p>
+  <div class="demo-stage"><div id="scale-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>左边</label><input type="range" id="sc-a" min="0" max="10" value="6"><span class="val" id="sc-av"></span>
+    <label>右边</label><input type="range" id="sc-b" min="0" max="10" value="4"><span class="val" id="sc-bv"></span>
+  </div>
+  <div class="demo-out" id="scale-out"></div>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    方程和比例看起来是两件事，<strong>根子是同一个：守恒</strong>。<br>
+    等号说的是「<strong>两边一样多</strong>」——这是天平给的模型，见
+    <a href="../pillar/relation.html">关系柱</a>。<br>
+    而「两边同时加减乘除，天平不歪」，用的是
+    <a href="../pillar/structure.html">结构柱</a>讲的那条链：
+    <strong>同一个操作作用在两边，两边的关系不会被破坏</strong>。<br>
+    所以孩子只要真正理解了<strong>「等号是关系，不是箭头」</strong>，
+    解方程和判断比例都不用再背步骤——它们是同一条规则的两个长相。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>两边同时做一样的事，天平就不会歪。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做移项时别让他背口诀，问一句：<strong>「在做什么样的操作让两边都动一样多？」</strong>他理解了，移项就是自然结果。
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>解方程只有一条规则</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>解方程的完整逻辑（只有两步）：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>消掉常数</strong>：两边同时加减同一个数，把不含 x 的项挪走（= 移项）</li>
+    <li><strong>消掉系数</strong>：两边同时除以 x 的系数，让 x 单独一边（= 系数化 1）</li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>「移项」和「系数化 1」不是两条特殊规则</strong>，
+    <em class="hl">只是「两边同时加减乘除」这条唯一规则的两个应用</em>。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model model-bad" style="display:none"></div>
+    <div class="model model-bad">
+      <div class="model-h">✕ 步骤型理解</div>
+      <p>「去分母 → 移项 → 合并 → 系数化 1」——<strong>四个步骤当口诀背</strong>。</p>
+      <p>后果：题型一变（分母含 x、未知数在分母上）就<strong>整套失效</strong>。</p>
+    </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 天平型理解</div>
+      <p>「<strong>永远让天平保持平</strong>，直到 x 自己站在一边。」</p>
+      <p>结果：<strong>任何形式都通吃</strong>，因为他知道自己在干什么（让两边做同样的事）。</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>比例：两个量一起变，关系不变</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「<strong>比例</strong>」这个词孩子很熟（比例尺、调配、浓度），但问「<strong>到底什么是比例？</strong>」他说「两个数的关系」。
+    什么关系？说不清。变式一考就懵。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">比例的本质是：<strong>两个量一起变，但「倍数」不变。</strong></p>
+  <p>
+    每份 3 个：3 份 = 9，6 份 = 18，9 份 = 27。<br>
+    「3 份 : 9 个」= 1/3，「6 份 : 18 个」= 1/3，「9 份 : 27 个」= 1/3。<br>
+    <em class="hl">份数和数量都变了，但它们的<b>比值</b>一直不变</em>——这个「不变的比」就是比例。<br><br>
+    <strong>所以「按比例分配」不需要新概念：就是<strong>把总量按同一个比值拆开</strong>。</strong>
+  </p>
+</div>
+
+<div class="demo" id="rt-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动「每份多少」</div>
+  <p class="demo-hint">看左边份数变了，右边数量跟着变，但<b>比值那一列始终相同</b>。</p>
+  <div class="demo-stage"><div id="rt-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>每份</label><input type="range" id="rt-q" min="2" max="10" value="3"><span class="val">3</span>个
+  </div>
+  <div class="demo-out" id="rt-out"></div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>两个量一起变，比值不变——这就是比例。</strong>」</p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>正比例反比例（衔接初中）</h2>
+
+<div class="note">
+  <b>本节只点到为止：</b>小学只要求<strong>比例的意义</strong>和<strong>按比例分配</strong>，<strong>正比例反比例的图像在初中才系统学</strong>。<br>
+  <span style="color:var(--ink-faint)">孩子现在知道「比值不变」就够了，<strong>不必提前灌图像</strong>——那反而会让他把「比例」和「一条直线」绑死，到了初中再解绑更麻烦。</span>
+</div>
+
+<div class="quiz" data-quiz="b5-equation">
+  <h3 style="margin-top:0">方程与比例 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版五年级上册「简易方程」、
+  六年级下册「比例」两个单元。承接本站<a href="../pillar/relation.html">关系柱</a>的「等号 = 天平」主线。
+  交互图示为本站自制（天平图示复用本站关系柱组件）。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="divide.html">上一节：分数除法</a>　|　<a href="../index.html">回到首页</a>　|　B5 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b5-equation"]={title:"方程与比例 · 5 题",qs:[
+{stem:"<span class='m'>3x + 5 = 14</span>，两边可以同时减 5，根本原因是：",
+ opts:["这是解方程的固定步骤","两边同时做同样的操作，天平（等式）依然平衡","为了把 x 单独留在一边","移项的规则"],
+ answer:"B",why:"<strong>等式两边做同一个操作，等式依然成立</strong>。这就是天平的性质，不需要额外规定。<strong>「移项」只是「两边同时减」的一种写法</strong>。",
+ miss:"<strong>天平两边同时拿掉 5，还是平的。</strong>移项不是特殊规则，就是这个平衡性质。",
+ kidSay:"天平两边同时拿掉 5，还是平的。这就叫移项——不是规矩，是天平的性质。"},
+{stem:"解方程的完整逻辑，其实只有：",
+ opts:["去分母→移项→合并→系数化1（四个步骤背）","消掉常数（两边同时加减）+ 消掉系数（两边同时乘除），让 x 单独一边","先合并同类项，再验算","列方程、解方程、答"],
+ answer:"B",why:"<strong>只有「两边做同样的操作」这一条规则</strong>。消常数、化系数 1，都只是它的两个应用。<strong>步骤型记忆在变式前会失效，天平型理解则通吃所有形式</strong>。",
+ miss:"<strong>只有一条规则：两边做同样的事。</strong>消常数、化系数都是它的应用，不用背步骤。",
+ kidSay:"解方程就是一直让天平保持平，直到 x 自己站在一边。方法只有一个：两边做一样的事。"},
+{stem:"每份 3 个糖：3 份=9，6 份=18，9 份=27。这种关系叫：",
+ opts:["反比例","正比例（两个量一起变，但比值 1/3 始终不变）","变量","函数"],
+ answer:"B",why:"<span class='m'>3:9=1/3</span>，<span class='m'>6:18=1/3</span>，<span class='m'>9:27=1/3</span>。<strong>份数和数量都变，但比值始终不变</strong>——这个「不变的比」就是比例关系。",
+ miss:"<strong>比值一直没变，都是 1/3</strong>。两个量一起变、关系不变，这就是比例。",
+ kidSay:"3 份 9 个、6 份 18 个，份数和个数都变了，可比值一直是 1/3。这就是比例。"},
+{stem:"孩子会按比例分配，但说不清「比例」到底是什么。<b>最该补的是：</b>",
+ opts:["多背公式","抓住「两个量一起变，比值不变」这个本质，用「按比拆总量」去理解所有比例问题","多做难题","用计算器"],
+ answer:"B",why:"<strong>比例的本质是「比值不变」</strong>。抓住这一句，「按比例分配」「浓度」「比例尺」都变成<strong>同一件事：把总量按同一个比值拆开</strong>。",
+ miss:"<strong>抓住「比值不变」这四个字</strong>。所有比例问题都是「按同一个比拆总量」，不用背公式。",
+ kidSay:"比例就是「两个一起变，比值不变」。知道这一句，分配、浓度、比例尺都通了。"},
+{stem:"关于小学阶段的「正比例/反比例图像」，<b>更合适的做法是：</b>",
+ opts:["现在就把图像全讲透","只讲「比例的意义」和「按比例分配」，图像留到初中系统学","完全不讲","让孩子刷图像题"],
+ answer:"B",why:"小学只要求<strong>比例的意义</strong>和<strong>按比例分配</strong>，<strong>正反比例图像是初中内容</strong>。现在灌图像反而会把「比例」和「一条直线」绑死，到了初中再解绑更麻烦。",
+ miss:"<strong>知道「比值不变」就够了。</strong>图像是初中才系统学的，现在讲太早反而会绑死概念。",
+ kidSay:"现在先搞懂「两个一起变、比值不变」。画图像的事，等你上初中再学，那会儿更清楚。"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/frac2.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

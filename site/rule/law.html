@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>运算定律 · 全部来自「小棒合并」</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">运算规则</a><a href="law.html">五条运算定律</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱五 · 规则 · 运算规则层 · 四年级下册</span>
+  <h1>五条运算定律<br>全部来自<strong style="color:var(--brand);font-weight:inherit">同一件事：小棒合并</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 简便计算背了一堆口诀，孩子还是不会用</a></li>
+<li><a href="#l2">02 溯源：定律不是「技巧」，是事实</a></li>
+<li><a href="#l3">03 逐条看它们为什么成立</a></li>
+<li><a href="#l4">04 分配律是「打包」的定义</a></li>
+<li><a href="#l5">05 什么时候该用、什么时候不该用</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>简便计算背了一堆口诀，孩子还是不会用</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师教「<span class="m">25 × 4 = 100</span>」「<span class="m">125 × 8 = 1000</span>」「<span class="m">99 × 47 = 100×47 − 47</span>」……<br>
+    孩子背了一堆简便算法。<strong>可题目一变形，套不上去就乱套</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">简便算法不是「技巧」，是<strong>定律的实例</strong>。不理解定律，只能背实例。</p>
+  <p>
+    <span class="m">25 × 4 = 100</span> 看起来像巧合，其实来自
+    <strong>乘法结合律</strong>：<span class="m">25 × 4 = 25 × 2 × 2 = (25 × 2) × 2 = 50 × 2 = 100</span>。<br>
+    <span class="m">99 × 47</span> 看起来像魔法，其实来自<strong>分配律</strong>：
+    <span class="m">(100 − 1) × 47 = 100×47 − 1×47</span>。<br>
+    <em class="hl">一旦孩子知道定律有<strong>五条</strong>、每条都能自己<strong>推导新算法</strong>，就不用背了。</em>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：定律不是「技巧」，是事实</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    回到<a href="../multiply/dive.html">数位表里的算理</a>：<strong>加法是合并小棒，乘法是打包小棒</strong>。<br><br>
+    合并和打包，会发生什么？<br>
+    · <strong>先合哪一批？</strong>——总小棒数一样（交换律）<br>
+    · <strong>分几批合？</strong>——总小棒数一样（结合律）<br>
+    · <strong>整块打包 vs 分开打包？</strong>——打的总份数一样（分配律）<br><br>
+    <em class="hl">五条运算定律，全部是这一句话的不同侧面。</em><br>
+    <strong>它们不是「规定可以用这种方式算」，而是「算成什么样是客观事实」。</strong>
+  </p>
+</div>
+
+<div class="demo" id="lw-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换五条定律，看小棒怎么合并</div>
+  <p class="demo-hint">看左右两边<strong>总数为什么一样</strong>——这就是定律成立的原因。</p>
+  <div class="demo-stage"><div id="lw-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>定律</label>
+    <select id="lw-mode" class="btn" style="padding:7px 12px">
+      <option value="0">加法交换律 a + b = b + a</option>
+      <option value="1">加法结合律 (a+b)+c = a+(b+c)</option>
+      <option value="2">乘法交换律 a × b = b × a</option>
+      <option value="3">乘法结合律 (a×b)×c = a×(b×c)</option>
+      <option value="4" selected>乘法分配律 (a+b)×c = a×c + b×c</option>
+    </select>
+  </div>
+  <div class="demo-out" id="lw-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>逐条看它们为什么成立</h2>
+
+<div class="card">
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>加法交换律</strong> <span class="m">a + b = b + a</span><br>
+      <span style="color:var(--ink-soft);font-size:14.5px">合并小棒时，<strong>先合左边还是先合右边，小棒总数不变</strong></span></li>
+    <li><strong>加法结合律</strong> <span class="m">(a+b)+c = a+(b+c)</span><br>
+      <span style="color:var(--ink-soft);font-size:14.5px">合并只关心「<strong>合了多少根</strong>」，不关心分成几批合</span></li>
+    <li><strong>乘法交换律</strong> <span class="m">a × b = b × a</span><br>
+      <span style="color:var(--ink-soft);font-size:14.5px">同一个长方形，<strong>从长边数还是从宽边数，格数一样</strong></span></li>
+    <li><strong>乘法结合律</strong> <span class="m">(a×b)×c = a×(b×c)</span><br>
+      <span style="color:var(--ink-soft);font-size:14.5px">打包的<strong>先后顺序不影响总包数</strong></span></li>
+    <li><strong>乘法分配律</strong> <span class="m">(a+b)×c = a×c + b×c</span><br>
+      <span style="color:var(--ink-soft);font-size:14.5px">整块打包 = 分别打包再合起来，<strong>总份数必然相等</strong></span></li>
+  </ol>
+</div>
+
+<h2 id="l4"><span class="num">04</span>分配律是「打包」的定义</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">分配律是本批最重要的一条，它是<a href="../multiply/dive.html">乘法的定义</a>本身。</p>
+  <p>
+    乘法 <span class="m">c × 8</span> 的定义是「<strong>8 份，每份 c 个</strong>」。<br>
+    如果这 8 份里，<em class="hl">3 份给甲、5 份给乙</em>，那总量当然等于「3 份的量 + 5 份的量」。<br>
+    <span class="m">(3+5) × c = 3×c + 5×c</span><br><br>
+    <strong>所以分配律不是「一条可以用的规则」，它就是乘法这件事本身必然成立的性质。</strong>
+  </p>
+</div>
+
+<div class="note">
+  <b>为什么分配律如此重要：</b>它是<strong>所有简便算法的源头</strong>。<br>
+  <span class="m">25×4 = 100</span> 靠结合律；<span class="m">99×47 = 100×47−47</span> 靠分配律；<span class="m">36+24 = 6×(6+4)</span> 靠分配律；<span class="m">102−45 = 102−40−5</span> 靠减法的分配律。<br>
+  <strong>孩子只要真正理解分配律，就能自己造出简便算法。</strong>
+</div>
+
+<h2 id="l5"><span class="num">05</span>什么时候该用、什么时候不该用</h2>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 简算僵化</div>
+    <p>「简便的一定更好，所以每题都要找简算。」</p>
+    <p>后果：<span class="m">3 × 17 + 17 × 7</span> 硬凑简算，反而绕远路。<strong>为了简而简</strong>，是另一种错。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 看结构型</div>
+    <p>「这几个数<strong>凑得成整十整百</strong>吗？凑得上再动。」</p>
+    <p>结果：<strong>有结构才简算，没结构老实算</strong>。简算是手段，不是目的。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「这几个数<strong>能不能凑成整十整百</strong>？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子做题时问这一句。凑得上，用定律；凑不上，别硬凑。
+    <strong>这一步判断，比记住十个简便公式有用得多。</strong>
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b4-law">
+  <h3 style="margin-top:0">五条运算定律 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版四年级下册「运算定律与简便计算」单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　下一节：<a href="decimal.html">小数的加减乘除</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b4-law"]={title:"五条运算定律 · 5 题",qs:[
+{stem:"乘法分配律 <span class='m'>(a+b)×c = a×c + b×c</span> 之所以成立，根本原因是：",
+ opts:["老师规定的","乘法就是「c 份、每份一个」，8 份里分给甲 3 份、乙 5 份，总量当然等于 3×c + 5×c","凑整十的技巧","为了让计算简单"],
+ answer:"B",why:"<strong>分配律就是乘法定义本身必然成立的性质</strong>。整块打包 = 分别打包再合起来，总份数必然相等。它不是「可以用的规则」，而是事实。",
+ miss:"想想<strong>「8 份给甲 3 份、给乙 5 份」</strong>——总量当然等于两边之和。这是乘法本身的意思，不是额外规定。",
+ kidSay:"8 份里有 3 份给甲、5 份给乙，那总量当然就是甲那份加乙那份。分配律就是这么回事。"},
+{stem:"<span class='m'>25 × 4 = 100</span> 这个简便算法，实际用到了哪条定律？",
+ opts:["乘法分配律","乘法结合律：25×4 = 25×2×2 = (25×2)×2 = 50×2 = 100","加法结合律","加法交换律"],
+ answer:"B",why:"<strong>乘法结合律</strong>：4 = 2 × 2，把 <span class='m'>25×(2×2)</span> 重新结合成 <span class='m'>(25×2)×2</span>，每一步都凑整。<strong>简便算法 = 定律的实例</strong>。",
+ miss:"<b>4 可以拆成 2×2</b>。然后用结合律把 25 先和 2 配对，得 50，再乘 2 得 100。",
+ kidSay:"4 是 2 乘 2。换成 25 乘 2 再乘 2，然后让 25 先跟 2 结婚，得 50。"},
+{stem:"孩子背了一堆简便算法（25×4=100、99×47=…），题目一变就乱用。<b>最该补的是：</b>",
+ opts:["更多简便口诀","理解定律的含义，让孩子自己能推导新算法","多刷简便题","背分配律五个公式"],
+ answer:"B",why:"只会背<strong>实例</strong>，题目一变就套不上。理解<strong>定律</strong>之后，孩子能<strong>现场推导</strong>该用哪条、怎么用——不必背任何具体算法。",
+ miss:"问题不在算法背得少，在于<strong>不知道定律是什么</strong>。学会了定律，算法自己会推导出来。",
+ kidSay:"这些简便算法都是定律的例子。你懂了定律，就能自己造出新的算法。"},
+{stem:"关于简便计算，下面哪种做法是对的？",
+ opts:["每道题都要找简便算法，越简越好","看这几个数能不能凑成整十整百，凑得上再用定律","老师说要简便就简便","简便的一定不会错，所以随便用"],
+ answer:"B",why:"简算<strong>是手段不是目的</strong>。<span class='m'>3×17 + 17×7</span> 硬凑反而绕远路。<strong>有结构才简算</strong>，这是判断的第一步。",
+ miss:"<strong>不是每题都该简算</strong>。先看能不能凑成整十整百，凑不上就老实算。",
+ kidSay:"先别急着简算。看看这几个数能不能凑成整十整百，凑得上才动。"},
+{stem:"<span class='m'>99 × 47</span> 用分配律简算，正确做法是：",
+ opts:["99 × 47 = 99 × 40 + 99 × 7","99 × 47 = (100−1) × 47 = 100×47 − 1×47 = 4700 − 47 = 4653","用竖式更快","没有简便方法"],
+ answer:"B",why:"把 99 看成 <strong>100 − 1</strong>，用分配律拆开：<span class='m'>(100−1)×47 = 100×47 − 1×47</span>。<strong>关键是把「接近整百的数」拆成「整百 ± 几」</strong>。",
+ miss:"<b>99 = 100 − 1</b>。用分配律：(100−1)×47 = 100×47 − 47 = 4653。",
+ kidSay:"99 离整百只差 1，把它拆成 100 减 1，再用分配律分开算。"}
+]};
+</script>
+<script src="../assets/js/rule.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

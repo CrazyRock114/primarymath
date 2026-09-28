@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>除法竖式与试商</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">乘除的结构</a><a href="longdivision.html">除法竖式与试商</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱四 · 关系 · 除数是一位数的除法 / 除数是两位数的除法</span>
+  <h1>竖式除法<br>是把袋子<strong style="color:var(--brand);font-weight:inherit">一段一段装满</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 「商要写在什么位置」是最容易错的地方</a></li>
+<li><a href="#l2">02 溯源：从高位开始，因为商也该从高位写起</a></li>
+<li><a href="#l3">03 试商的两步检验</a></li>
+<li><a href="#l4">04 除数是两位数：把除数「变小」</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>「商要写在什么位置」是最容易错的地方</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    <span class="m">342 ÷ 6</span>，孩子算出 57，答案对。
+    可你问「为什么商要写在 6 的上面、而不是 4 的上面」？他说「老师说要写那里」。
+    换一道 <span class="m">428 ÷ 7</span>，<strong>商的位置写错，答案全错</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">商的位置不是规定，是<strong>「这几个字代表多少」</strong>决定的。</p>
+  <p>
+    竖式里，被除数的每一位<strong>大小不同</strong>：342 的 3 是<strong>三百</strong>，4 是<strong>四十</strong>，2 是<strong>二</strong>。<br>
+    所以商写在十位上，表示的是「<em class="hl">几个十</em>」；写在个位上，表示「<em class="hl">几个一</em>」。<br>
+    <strong>商的位置 = 它代表的那个计数单位。</strong> 搞错位置，就等于把「几个十」当「几个一」，数量差 10 倍。
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：从高位开始，因为商也该从高位写起</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    想象 342 个苹果，每箱装 6 个。<br>
+    你会怎么做？<strong>先看最大的那批</strong>——300 多个先装，能装 50 箱，还剩 42 个。
+    然后剩下的 42 再装，能装 7 箱。<br><br>
+    <em class="hl">商 = 57</em>，而且你<strong>不可能先算个位再算十位</strong>，
+    因为你还不知道有几十箱（后面可能会多出几十箱）。<br>
+    <strong>所以竖式除法必须从高位起——因为除法要「先看总量够装几份」。</strong>
+  </p>
+</div>
+
+<div class="demo" id="ts-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：换几道题看竖式的每一步</div>
+  <p class="demo-hint">盯住商的位置，它<strong>始终对准它代表的那个计数单位</strong>。</p>
+  <div class="demo-stage"><div id="ts-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>题目</label>
+    <select id="ts-r" class="btn" style="padding:7px 12px">
+      <option value="0">24 ÷ 3</option><option value="1">42 ÷ 6</option>
+      <option value="2" selected>58 ÷ 5</option><option value="3">63 ÷ 7</option>
+      <option value="4">39 ÷ 4</option><option value="5">87 ÷ 9</option>
+    </select>
+    <span class="val" id="ts-rv"></span>
+  </div>
+  <div class="demo-out" id="ts-out"></div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>试商的两步检验</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>商写上去之后，必须检验两件事：</strong></p>
+  <ol style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>乘：</strong>商 × 除数 = ？（<em class="hl">这一步用的是乘法，正好和除法互逆</em>）</li>
+    <li><strong>减：</strong>被除数 − 乘积 = 余数，余数<strong>必须比除数小</strong>（见<a href="divide.html">上一节</a>）</li>
+  </ol>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>两步检验缺一不可。</strong>只做第一步可能余数过大（商试小了），
+    只凭感觉不检验可能商过大（乘积超过被除数）。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 试到对为止</div>
+    <p>「先试一个商，不对就加一（或减一）再试。」</p>
+    <p>后果：<strong>慢</strong>，而且孩子<strong>不知道检验的是哪两件事</strong>。除数大时试商试到崩溃。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 装填型理解</div>
+    <p>「这一段够装几份，就写几。」然后<strong>乘一次检验</strong>。</p>
+    <p>结果：<strong>试商范围极小</strong>（除数是 6，商的这一位只可能是 1-5），且<strong>每一步都可检验</strong>。</p>
+  </div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>除数是两位数：把除数「变小」看</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    <span class="m">96 ÷ 24</span>，除数是两位数。孩子的口诀表里<strong>根本没有 24</strong>，试商直接卡死。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">试商不用新口诀，用<strong>乘法口诀倒着查</strong>。</p>
+  <p>
+    商的个位可能是几？<strong>看 24 的乘法口诀里，哪些接近 96</strong>：<br>
+    <span class="m">24×2=48，24×3=72，24×4=96</span> —— 正好！商是 4。<br><br>
+    <em class="hl">除数是两位数，试商时用「乘法口诀 + 估算」就够了。</em><br>
+    口诀表里没有 24，就把 24 <strong>看成整十数 20</strong>：<span class="m">20×4 = 80</span>，而 96 落在 80~100 之间，所以商只能是 4；再回到 24 验算——<span class="m">24×4 = 96</span>，正好。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「商写上去，<strong>先乘一遍验一验</strong>。」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子试商后别急着往下算。用乘法<strong>反验</strong>一次，这是除法与乘法<strong>互逆</strong>的直接体现，
+    也是他自己能执行的检验。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b2-longdiv">
+  <h3 style="margin-top:0">除法竖式与试商 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版三年级下册「除数是一位数的除法」、
+  四年级上册「除数是两位数的除法」两个单元。交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="divide.html">上一节：除法是乘法的解构</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="wordproblem.html">乘除解决问题</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b2-longdiv"]={title:"除法竖式与试商 · 5 题",qs:[
+{stem:"<span class='m'>342 ÷ 6</span>，为什么商要从十位开始写？",
+ opts:["因为商比被除数短","因为要先看被除数的高位够装几份，而商的高位对应的也是较大的计数单位","因为个位太小","因为老师规定"],
+ answer:"B",why:"商是「<strong>几个十</strong>」加上「<strong>几个一</strong>」。高位（3 个百）决定了几十箱，所以<strong>商的十位必须先确定</strong>。商的每一位对准它代表的计数单位。",
+ miss:"商的位置<strong>不是随便定的</strong>。它写在哪一位，表示的就是「几个十」还是「几个一」，差 10 倍。",
+ kidSay:"342 里面先装 300 多，能装 50 箱多。所以商的十位先定下来，个位后面再说。"},
+{stem:"试商后检验的两个步骤是：",
+ opts:["加一次、减一次","商×除数是否等于或小于被除数；余数是否小于除数","再试一次","口诀背一遍"],
+ answer:"B",why:"<strong>乘</strong>：验证商的大小（商×除数 ≤ 被除数）；<strong>减</strong>：验证余数合法（余数 &lt; 除数）。两步都过，商才确定。",
+ miss:"<b>先乘一遍</b>看会不会超过被除数，<b>再减一遍</b>看剩下的比除数小不小。两步都过才行。",
+ kidSay:"商写上去，先乘一遍看会不会太大，再看剩下的有没有比除数还多。"},
+{stem:"<span class='m'>96 ÷ 24</span> 的商是多少？试商时应该用什么？",
+ opts:["用 24 的乘法口诀查","用两位数除法口诀","靠猜","用除法口诀"],
+ answer:"A",why:"<span class='m'>24×4 = 96</span>，正好整除，商是 <strong>4</strong>。试商时<strong>把 24 的乘法口诀倒着查</strong>，找出最接近 96 的那个商即可。不需要新的两位数除法口诀。",
+ miss:"用<strong>乘法倒查</b>。24×2=48，24×3=72，24×4=96——正好，商是 4。",
+ kidSay:"别背两位数除法口诀。用乘法反过来查：几乘 24 最接近 96？"},
+{stem:"除法竖式为什么<strong>从高位</strong>开始，而乘法竖式从低位开始？",
+ opts:["随便定的","因为除法要「先看总量够装几份」，商的高位也由高位决定；乘法是逐位合并，进位只能右到左","因为除法比较重要","因为除数位数少"],
+ answer:"B",why:"<strong>依赖方向不同</strong>。乘法是<strong>合并</strong>，进位往左传，所以必须右到左；除法是<strong>分配</strong>，要先看总量，所以左到右。两者都是依赖顺序决定的，不是规定。",
+ miss:"乘法是<strong>合并</strong>，进位往左走；除法是<strong>分配</strong>，要看总量。<b>方向相反是有道理的</b>。",
+ kidSay:"乘法是往一起凑，所以从右边开始。除法是往分开，看总量才知道商多大，所以从左边开始。"},
+{stem:"如果试商后余数比除数还大，说明什么？",
+ opts:["商试小了，还能再分一份，商要加 1","算错了重做","余数可以比除数大","除数写错了"],
+ answer:"A",why:"余数 &gt; 除数，意味着<strong>还能再分出一整份</strong>，所以商偏小了，要把商加 1（同时余数减去一个除数）。",
+ miss:"余数<strong>不能比除数大</strong>。大了说明还能再分一份，商要加 1，余数减掉一个除数。",
+ kidSay:"你剩的比一份还多，说明还能再分一次，商要加 1。"}
+]};
+</script>
+<script src="../assets/js/multiply.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

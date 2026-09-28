@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>找规律 · 找到动作才算会</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav><a href="../index.html">首页</a><a href="index.html">找规律</a><a href="rule.html">找到动作才算会</a></nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱六 · 结构 · 一上/一下/二下「找规律」</span>
+  <h1>找规律<br>关键是<strong style="color:var(--brand);font-weight:inherit">「怎么来的」</strong>，不是「是什么」</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子说「下一个是 6」，他真的懂了吗</a></li>
+<li><a href="#l2">02 溯源：找规律是人类的「预测本能」</a></li>
+<li><a href="#l3">03 图形规律和数列规律</a></li>
+<li><a href="#l4">04 什么情况「没有规律」</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子说「下一个是 6」，他真的懂了吗</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    题目：<span class="m">1, 2, 3, 4, 5, ___</span><br>
+    孩子答「6」，对。<strong>但这可能只是因为 1~5 他背过。</strong><br>
+    换成 <span class="m">1, 3, 5, 7, ___</span> 他也答「9」——<strong>这个才是真找到规律了。</strong><br>
+    再换成 <span class="m">1, 2, 3, 4, ___</span> 后面接图形，他就完全不会了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">找到规律 = 找到<strong>「这个数是怎么来的」</strong>，不是记住「下一个是什么」。</p>
+  <p>
+    <span class="m">1, 2, 3, 4, 5</span> 的规律不是「下一个是 6」，<br>
+    <em class="hl">规律是「每一个都比前一个多 1」</em>。<br><br>
+    <strong>这个区别很实际</strong>：<br>
+    · 只会「下一个是 6」→ 换个起点就废（<span class="m">11, 12, 13, 14, __</span> 呢？）<br>
+    · 懂「每次 +1」→ <strong>任何起点、任何长度都能推</strong>
+  </p>
+</div>
+
+<div class="demo" id="pt-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：找出那个「动作」</div>
+  <p class="demo-hint">拖动改变「每次加几」。看第 7 个之后能不能<strong>无限推下去</strong>。</p>
+  <div class="demo-stage"><div id="pt-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>每次加</label><input type="range" id="pt-r" min="1" max="6" value="2"><span class="val" id="pt-rv"></span>
+    <label>形式</label>
+    <select id="pt-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>点阵（数量）</option>
+      <option value="1">正多边形（边数）</option>
+    </select>
+  </div>
+  <div class="demo-out" id="pt-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：找规律是人类的「预测本能」</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    为什么要让孩子学找规律？因为<strong>数学的定义就是「从已知推出未知」</strong>。<br><br>
+    你知道 1、2、3、4、5，就<em class="hl">能预测 6、7、8</em>——<br>
+    <strong>这个「从已知推出未知」的能力，比任何具体知识都重要。</strong><br><br>
+    所以<strong>找规律不是一种题型，是一个思维习惯</strong>：<br>
+    <strong>看到一串东西，先问「它是怎么来的」，而不是「下一个是什么」。</strong>
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>图形规律和数列规律</h2>
+
+<div class="models">
+  <div class="model model-good">
+    <div class="model-h">图形规律</div>
+    <p><strong>看形状怎么变</strong>：<br>
+      · <span class="m">○△○△</span> → 动作是「<strong>交替</strong>」<br>
+      · <span class="m">○○△○○△</span> → 动作是「<strong>两个一换</strong>」<br>
+      · <span class="m">○○△△○○△△</span> → 动作是「<strong>两个一换</strong>」<br><br>
+    <strong>孩子最容易错：<span class="m">○○△</span> 和 <span class="m">○○△△</span> 看成同一种。</strong><br>
+    前者动作是「1 换 1」，后者是「<strong>2 换 2</strong>」——<strong>动作不同，延续不同。</strong></p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">数列规律</div>
+    <p><strong>看数怎么变</strong>：<br>
+      · <span class="m">1,2,3,4</span> → 每次 <strong>+1</strong><br>
+      · <span class="m">1,3,5,7</span> → 每次 <strong>+2</strong><br>
+      · <span class="m">1,2,4,8</span> → 每次 <strong>×2</strong><br>
+      · <span class="m">1,1,2,3,5,8</span> → 每次 <strong>=前两个之和</strong><br><br>
+    <strong>「怎么来的」比「是什么」重要</strong>——<span class="m">1,2,4,8</span> 的动作是「每次翻倍」，<span class="m">2,4,8,16</span> 也是。</p>
+  </div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>这个数<strong>是怎么来的</strong>？</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子答完「下一个是几」之后，<strong>一定要追这一句</strong>。
+    答「加 1」而不是「加 1、2、3、4 加到 5」——<em class="hl">这才是真找到规律了</em>。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b13-rule">
+  <h3 style="margin-top:0">找规律 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版一年级上册/下册、二年级下册「找规律」共 3 个课标单元（B13 批次）。
+  承接本站<a href="../pillar/structure.html">结构柱</a>「找的是结构不是结果」的主张。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="../index.html">回到首页</a>　|　B13 批次完　|　B13 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b13-rule"]={title:"找规律 · 5 题",qs:[
+{stem:"<span class='m'>1, 2, 3, 4, 5, ___</span> 孩子答「6」。<b>怎么判断他是真懂还是背下来了？</b>",
+ opts:["看他算得快不快","问他「这个数是怎么来的」，答「每次 +1」才是真懂",
+  "再出几道题试他","看他有没有在本子上写"],
+ answer:"B",why:"<strong>1~5 孩子早就会数了，答 6 可能只是背</strong>。真正的规律是「<strong>每一个都比前一个多 1</strong>」——<em class='hl'>找到「动作」才能推无限项，只背「结果」换个起点就废</em>。",
+ miss:"<strong>要问他「怎么来的」。</strong>答「每次 +1」才是找到规律；只答「6」可能只是背过 1 到 5。",
+ kidSay:"1 到 5 你早就背过了。告诉我：这些数<strong>是怎么一个变一个</strong>的？"},
+{stem:"<span class='m'>1, 2, 4, 8, ___</span> 下一个是：", opts:["10","12","16","9"],
+ answer:"C",why:"<strong>动作是「每次 ×2」</strong>：1×2=2，2×2=4，4×2=8，所以 8×2=<strong>16</strong>。<strong>找到动作，一步就出答案。</strong>",
+ miss:"<strong>看的是「动作」：每次乘 2</strong>。所以 8 乘 2 等于 16。",
+ kidSay:"别一个一个试。看每个数是怎么从上一个变出来的 —— 是乘 2，所以 8 乘 2。"},
+{stem:"图形规律 <span class='m'>○ △ △ ○ ○ △ △</span> 的动作是：",
+ opts:["一个一换","两个一换（○○△△ 循环）","三个一换","没有规律"],
+ answer:"B",why:"<strong>动作是「两个圆换两个三角」</strong>，即 <span class='m'>○○△△</span> 循环。<em class='hl'>孩子最容易把 ○○△ 和 ○○△△ 看成同一种</em>，但前者是「1 换 1」，后者是「2 换 2」，延续方式完全不同。",
+ miss:"<strong>数一数：两个圆、两个三角，循环</strong>。○○△ 是 1 个换 1 个，○○△△ 是 2 个换 2 个，不一样。",
+ kidSay:"别只看有没有圆有三角。<strong>数一数有几个换几个</strong> —— 这里每次是两个换两个。"},
+{stem:"数列 <span class='m'>1, 1, 2, 3, 5, 8, ___</span> 的「动作」是：", opts:["每次 +1","每次 +2","每一个数等于前两个数的和","每次 ×2"],
+ answer:"C",why:"<strong>动作是「每个数 = 前两个数的和」</strong>：1+1=2，1+2=3，2+3=5，3+5=<strong>8</strong>。这叫<strong>斐波那契数列</strong>。<strong>找到动作，一次就能推出任意一项。</strong>",
+ miss:"<strong>动作是「等于前两个数之和」</strong>。1+1=2，1+2=3，2+3=5，所以 3+5=8。",
+ kidSay:"每个数都是<strong>前两个数加起来</strong>。3 加 5 就等于 8。"},
+{stem:"数学为什么把「找规律」放得很重要？因为：",
+ opts:["这是考试常考","因为数学的本质就是「从已知推出未知」，找规律练的就是这个能力",
+  "因为规律很有趣","因为能记住很多数"],
+ answer:"B",why:"<strong>数学的定义就是从已知推出未知。</strong>「看到一串东西，先问它是怎么来的」——<em class='hl'>这个思维习惯比任何具体知识都重要，而且会一直用到初中甚至以后。</em>",
+ miss:"<strong>因为数学就是「从已知推出未知」。</strong>找规律练的是「怎么预测还没看见的」，这是数学的核心能力。",
+ kidSay:"数学最厉害的地方，就是能<strong>根据前面几个，推出后面还没看到的</strong>。找规律练的就是这个。"}
+]};
+</script>
+<script src="../assets/js/final.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

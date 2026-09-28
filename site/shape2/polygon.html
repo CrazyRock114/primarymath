@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三角形与四边形 · 分类看内角和</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">图形的认识</a><a href="polygon.html">三角形与四边形</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱三 · 形 · 三上「四边形」+ 四下「三角形」</span>
+  <h1>三角形与四边形<br>分类的<strong style="color:var(--brand);font-weight:inherit">依据是内角，不是「长得像」</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 孩子按「长得像不像」分图形</a></li>
+<li><a href="#l2">02 溯源：多边形内角和的来历</a></li>
+<li><a href="#l3">03 三角形：最稳定的图形</a></li>
+<li><a href="#l4">04 四边形：为什么长方形、正方形是特例</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>孩子按「长得像不像」分图形</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师问「哪些是三角形？」孩子指着一堆图：<strong>歪着的是、斜着的是、小的不是</strong>。<br>
+    他<strong>按「长相」分类</strong>，不按<strong>「边和角的关系」</strong>分类。<br>
+    结果题目一变（画个很扁的三角形、把正方形斜着放），他就不认得了。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">图形的分类<strong>不靠「长得像」，靠「边和角的关系」</strong>。</p>
+  <p>
+    <strong>三角形：3 条边、3 个角、3 个顶点，而且任意两边之和大于第三边。</strong><br>
+    不管多扁、多斜、多小，<strong>只要 3 条边 3 个角，就是三角形</strong>。<br>
+    <em class="hl">分类靠定义（结构），不靠长相（表象）。</em><br>
+    这正是<a href="../pillar/shape.html">「形」柱</a>的核心主张：<strong>空间结构一旦建立，长相骗不了人。</strong>
+  </p>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：多边形内角和的来历</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    为什么内角和是 <strong>(n − 2) × 180°</strong>？<br><br>
+    从 n 边形的任意一个顶点，<strong>向不相邻的顶点画对角线</strong>，<br>
+    图形就被<strong>切成了 (n − 2) 个三角形</strong>。<br>
+    每个三角形内角和都是 180°，加起来：<br>
+    <em class="hl">(n − 2) × 180°</em><br><br>
+    <strong>所以这不是一个规定，是「n 边形 = (n−2) 个三角形」的直接结果。</strong>
+  </p>
+</div>
+
+<div class="demo" id="pg-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖边数，看内角和怎么变</div>
+  <p class="demo-hint">切换视角：标出内角 / 画对角线看它怎么拆成三角形。</p>
+  <div class="demo-stage"><div id="pg-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>边数</label><input type="range" id="pg-r" min="3" max="9" value="4"><span class="val" id="pg-rv"></span>
+    <label>视角</label>
+    <select id="pg-type" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 内角和是多少</option>
+      <option value="1">② 画对角线怎么拆</option>
+    </select>
+  </div>
+  <div class="demo-out" id="pg-out"></div>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>多一条边，内角和就多 180°。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子记不住三角形 180°、四边形 360° 时，别死记。记住<strong>「每多一条边加 180°」</strong>就行。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>三角形：最稳定的图形</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>三角形的「稳定」来自一个硬约束：</strong></p>
+  <p style="margin-bottom:14px;color:var(--ink-soft)">
+    三角形是<strong>唯一「三边定形」的多边形</strong>——只要三边长度定了，整个形状就<strong>唯一确定，无法变形</strong>。<br>
+    其他多边形（比如四边形）<strong>四边不定形</strong>：同样的边长，可以拉成好几种样子（这就是四边形「不倒」的原因，见下方）。
+  </p>
+  <p style="margin:0;color:var(--ink-soft)">
+    <strong>这个「稳定」是生活中一切「三角形结构」的基础</strong>：自行车三角架、屋顶支架、起重机的吊臂——都用三角形，因为<strong>它不会变形</strong>。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 长相型理解</div>
+    <p>「这个是三角形，因为它<strong>看起来像</strong>三角形。」</p>
+    <p>后果：<strong>画扁、画斜、画小就不认</strong>，分类题全错。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 定义型理解</div>
+    <p>「<strong>3 条边 3 个角 3 个顶点</strong>，就是三角形。」</p>
+    <p>结果：<strong>任何长相都认得</strong>，因为认的是结构不是长相。</p>
+  </div>
+</div>
+
+<h2 id="l4"><span class="num">04</span>四边形：为什么长方形、正方形是特例</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">四边形家族<strong>不是并列的，是一层层加条件收窄出来的</strong>。</p>
+  <p>
+    从「四边形」（最宽）出发，<strong>每加一个条件，就缩小一类</strong>：<br>
+    四边形（4 边）→ 加「两组对边平行」→ <strong>平行四边形</strong><br>
+    平行四边形 → 加「有一个直角」→ <strong>长方形</strong><br>
+    长方形 → 加「邻边相等」→ <strong>正方形</strong><br><br>
+    <em class="hl"><strong>正方形是最「窄」的一个——条件最严，形状最特殊。</strong></em><br>
+    这和「形」柱说的「空间结构逐层加约束」是<strong>同一个思路</strong>。
+  </p>
+</div>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>四边形家族的「包含关系」：</strong></p>
+  <p style="margin:0;color:var(--ink-soft)">
+    <span style="color:var(--brand)"><strong>正方形 ⊂ 长方形 ⊂ 平行四边形 ⊂ 四边形</strong></span><br>
+    每一层都是上一层里<strong>「条件更严」</strong>的一部分。梯形<strong>不是</strong>平行四边形（它只有一组对边平行），它们是<strong>并列</strong>的。
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b6-polygon">
+  <h3 style="margin-top:0">三角形与四边形 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版三年级上册「四边形」、四年级下册「三角形」两个单元。
+  「平行四边形和梯形」已建于<a href="../pillar/shape.html">形柱</a>。交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="angle.html">上一节：角</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="circle.html">圆与立体图形</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b6-polygon"]={title:"三角形与四边形 · 5 题",qs:[
+{stem:"一个三角形画得很扁、很斜，孩子说「它太扁了，不算三角形」。<b>对吗？</b>",
+ opts:["对，太扁就不像","对，必须像标准三角形","不对，只要 3 条边 3 个角 3 个顶点就是三角形","要看他怎么画的"],
+ answer:"C",why:"<strong>三角形按定义分类，不按长相</strong>。只要 3 条边 3 个角 3 个顶点，<strong>再扁再斜也是三角形</strong>。分类靠结构，不靠长相。",
+ miss:"<strong>分类靠定义</strong>。3 条边 3 个角就是三角形，不管它画得多扁、多斜。",
+ kidSay:"扁的也是三角形。只要 3 条边、3 个角、3 个顶点就是。"},
+{stem:"四边形的内角和是多少？为什么？",
+ opts:["360°，因为四条边","360°，因为可以拆成 2 个三角形（(4−2)×180°）","180°，和三角形一样","不定，看图形"],
+ answer:"B",why:"<strong>从任意顶点画对角线，拆成 2 个三角形</strong>，2×180°=360°。<strong>这不是规定，是「拆三角形」的结果</strong>。",
+ miss:"<strong>从顶点画对角线，拆成 2 个三角形</strong>。每个三角形 180°，加起来 360°。",
+ kidSay:"四边形可以从一个顶点画对角线，拆成 2 个三角形。2 乘 180 等于 360。"},
+{stem:"每多一条边，内角和增加多少度？",
+ opts:["90°","180°","360°","不变"],
+ answer:"B",why:"<strong>每多一条边，内角和 +180°</strong>。因为多一个顶点，就<strong>多出两个角</strong>（相邻的两个角合成原来的一个），而三角形内角和恒为 180°。",
+ miss:"<strong>每多一条边，内角和就多 180°</strong>。三角形 180°，四边形 360°，五边形 540°……",
+ kidSay:"记住这一句：多一条边，内角和多 180 度。这样就不用死记每个图形了。"},
+{stem:"正方形、长方形、平行四边形、四边形，正确的包含关系是：",
+ opts:["四边形 ⊂ 平行四边形 ⊂ 长方形 ⊂ 正方形","正方形 ⊂ 长方形 ⊂ 平行四边形 ⊂ 四边形","它们互相平行，没有包含关系","正方形 ⊂ 四边形，直接包含"],
+ answer:"B",why:"<strong>条件越严，图形越特殊</strong>：正方形（最严）⊂ 长方形 ⊂ 平行四边形 ⊂ 四边形（最宽）。<strong>每往里一层，加一个条件</strong>。",
+ miss:"<strong>条件越严范围越小</strong>。正方形条件最严，所以在最里面；四边形条件最宽，在最外面。",
+ kidSay:"正方形是正方形，长方形包含正方形，平行四边形包含长方形，四边形包含平行四边形。条件越严越小。"},
+{stem:"三角形的「稳定」在实际生活中被大量使用（自行车架、屋顶支架）。<b>稳定性来自：</b>",
+ opts:["三角形比较牢固","三角形是唯一「三边定形」的多边形，边长定了就无法变形","三角形边数少","三角形是几何的基础图形"],
+ answer:"B",why:"<strong>三边定形</strong>：三条边的长度一旦确定，三角形的形状就<strong>唯一确定，无法变形</strong>。而四边形「四边不定形」，同样的边长可以拉成很多样子，所以会「倒」。",
+ miss:"<strong>三角形是「三边定形」</strong>——边长一定，形状就定了，动不了。所以它最稳。",
+ kidSay:"三角形边长一定，形状就定死了，动不了。所以自行车架都用三角形。"}
+]};
+</script>
+<script src="../assets/js/geometry.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

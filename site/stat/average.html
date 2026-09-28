@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平均数 · 可能性 · 百分数</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">统计与概率</a><a href="average.html">平均数·可能性·百分数</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱四 · 关系 · 数据关系层 · 三上/五上/六上</span>
+  <h1>平均数、可能性、百分数<br>都只是在问<strong style="color:var(--warn);font-weight:inherit">同一个问题</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 平均数：没有一个孩子这么高</a></li>
+<li><a href="#l2">02 溯源：平均数是「等效替代」</a></li>
+<li><a href="#l3">03 可能性：把「可能」说成「一定」</a></li>
+<li><a href="#l4">04 百分数：整体变了，比值就变</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>平均数：没有一个孩子这么高</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师问「你们班同学的平均身高是多少？」<br>
+    孩子举手 150 厘米，然后<strong>困惑</strong>：「可是我们班没有 150 厘米的人啊！」<br>
+    <strong>他不是不会算，是没想到「平均数」可以是一个谁都不是的数。</strong>
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">平均数不是「谁的身高」，是<strong>「保持总量不变的替代值」</strong>。</p>
+  <p>
+    四个人 140、150、145、155，总和 <strong>590</strong>。<br>
+    平均数 = 590 ÷ 4 = <strong>147.5</strong> —— <em class="hl">确实一个都不是</em>。<br>
+    可它有<strong>一个硬保证</strong>：<br>
+    <em class="hl">如果这 <strong>4 个人</strong>每个人都用 147.5 代替，总和<strong>还是 590，一点没少</strong>。</em><br><br>
+    <strong>这才是平均数的全部意义</strong>——不是描述谁，是<strong>代表整体</strong>。
+  </p>
+</div>
+
+<div class="demo" id="av-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：动一个人，看平均数怎么变</div>
+  <p class="demo-hint">拖动滑块改变第一个人的身高。盯住<b>红色虚线（平均数）</b>和<b>下方总数</b>。</p>
+  <div class="demo-stage"><div id="av-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>第一个同学</label><input type="range" id="av-r" min="0" max="40" value="10"><span class="val" id="av-rv"></span>
+  </div>
+  <div class="demo-out" id="av-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 代表型理解</div>
+    <p>「平均数就是<strong>典型</strong>的那个数。」</p>
+    <p>后果：孩子老问「我比平均高还是矮」，<strong>把统计量当成了个人评价</strong>。平均数<strong>描述的是群体</strong>，不是个人。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model model-h" style="display:none"></div>
+    <div class="model model-good">
+      <div class="model-h">✓ 守恒型理解</div>
+      <p>「<strong>平均数让总量保持不变</strong>。」</p>
+      <p>结果：知道它<strong>保证什么</strong>，就不会再问「我是不是平均」这种问题。</p>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  <b>一个高频应用：平均速度。</b><br>
+  「往返各 5 千米，去时 4 km/h、回时 6 km/h，平均速度是 5 km/h 吗？」<strong>不是。</strong><br>
+  <strong>因为「平均速度」不是「两个速度的平均」，而是「总路程 ÷ 总时间」</strong>——<br>
+  慢的时候待的时间长，所以<strong>整体速度更靠近慢的那个</strong>。<br>
+  <span style="color:var(--brand)"><strong>这就是平均数「守恒」的直接后果</strong>：总量守恒，权重就会偏向占比大的那个。</span>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：平均数是「等效替代」</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    人类为什么需要平均数？<strong>因为数量太多了，没法一个个看</strong>。<br>
+    40 个身高，写出来是 40 个数，<strong>看不出「整体水平」</strong>。<br>
+    压成<strong>一个数</strong>，立刻能比较：<strong>我们班 147.5，一班 145.2，三班 150</strong>。<br><br>
+    <em class="hl">平均数是<strong>用「一个数」代替「一组数」</strong>的压缩技术</strong>，<br>
+    而它<strong>唯一被保证的性质就是「压缩后总量不变」</strong>。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>可能性：把「可能」说成「一定」</h2>
+
+<div class="demo" id="ps-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：切换两种情况</div>
+  <p class="demo-hint">对比「日常生活判断」和「摸球」，体会「一定 / 可能 / 不可能」。</p>
+  <div class="demo-stage"><div id="ps-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>场景</label>
+    <select id="ps-mode" class="btn" style="padding:7px 12px">
+      <option value="0" selected>① 一定 / 可能 / 不可能</option>
+      <option value="1">② 摸球：可能性大小</option>
+    </select>
+  </div>
+  <div class="demo-out" id="ps-out"></div>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">判断可能性，只问一句：<strong>「有没有可能不这样？」</strong></p>
+  <p>
+    · 有可能不这样 → <strong>可能</strong><br>
+    · 绝不可能不这样 → <strong>一定</strong><br>
+    · 根本不可能这样 → <strong>不可能</strong><br><br>
+    <em class="hl">孩子的典型错误是：把「大多数情况会这样」当成「一定」。</em><br>
+    「这题我十次有八次对」<strong>不等于一定</strong>——还有两次不对的可能。
+  </p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>百分数：整体变了，比值就变</h2>
+
+<div class="demo" id="pc-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动人数，看百分数怎么变</div>
+  <p class="demo-hint">总共 50 人。拖动看<b>绿格子</b>（戴眼镜的人数）和<b>百分数</b>的关系。</p>
+  <div class="demo-stage"><div id="pc-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>戴眼镜</label><input type="range" id="pc-r" min="0" max="50" value="15"><span class="val" id="pc-rv"></span>
+  </div>
+  <div class="demo-out" id="pc-out"></div>
+</div>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    为什么会出现百分数？因为<strong>「整体」会变</strong>。<br>
+    「15 人戴眼镜」在 30 人的班是 <strong>50%</strong>，在 50 人的班是 <strong>30%</strong>。<br><br>
+    <em class="hl">百分数是<strong>唯一能让不同大小的整体之间可比</strong>的工具</em>——<br>
+    因为它<strong>把「多少」换算成了「每 100 份里占几份」</strong>，<strong>整体的大小被消掉了</strong>。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「<strong>换算成每 100 份，就跟班级大小没关系了。</strong>」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    孩子不明白为什么两个班的百分比能直接比，就讲这一句：
+    <strong>百分数就是「按 100 份统一了口径」，比较的是比例，不是绝对数量。</strong>
+  </p>
+</div>
+
+<div class="quiz" data-quiz="b11-average">
+  <h3 style="margin-top:0">平均数·可能性·百分数 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版三年级上册「可能性」、五年级上册「统计与可能性」、
+  六年级上册「百分数」共 3 个单元。
+  平均数对应四年级下册「平均数与条形统计表」。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="chart.html">上一节：三种统计图</a>　|　<a href="../index.html">回到首页</a>　|　B10+B11 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b11-average"]={title:"平均数·可能性·百分数 · 5 题",qs:[
+{stem:"四个人身高 140、150、145、155，平均身高 147.5，但<strong>没有一个人是 147.5</strong>。<b>这说明平均数是什么？</b>",
+ opts:["算错了","平均数是「保持总量不变的等效替代」，不代表任何一个人",
+  "平均数就是中间那个人","平均数是最高和最低的平均"],
+ answer:"B",why:"<strong>平均数是压缩技术</strong>：把一组数换成一个数，唯一<strong>被保证的性质是「总量不变」</strong>（4×147.5=590）。<strong>它描述整体水平，不代表任何个人。</strong>",
+ miss:"<strong>平均数谁都不是，但总量对得上。</strong>4 个人都按 147.5 算，加起来还是 590。它代表整体，不是个人。",
+ kidSay:"平均数不用是任何一个人的身高，只要 4 个人都按它算，加起来还是 590，就对了。"},
+{stem:"甲乙两地往返各 5 千米，去时 4 km/h，回时 6 km/h。<b>全程平均速度是：</b>",
+ opts:["5 km/h","小于 5 km/h（更接近 4）","大于 5 km/h（更接近 6）","无法计算"],
+ answer:"B",why:"<strong>平均速度 = 总路程 ÷ 总时间</strong>，不是「两个速度取平均」。<em class='hl'>慢的时候待的时间长</em>，所以整体速度<strong>更靠近慢的那个（4）</strong>，结果小于 5。",
+ miss:"<strong>慢的时候待的时间长</strong>，所以整体速度更靠近慢的那一边。算一下：10 千米 ÷ (1.25+0.83) 小时 ≈ 4.8，小于 5。",
+ kidSay:"不能直接把两个速度一平均。慢的时候待的时间长，所以平均速度更靠近慢的那个。"},
+{stem:"盒子里有 10 个球，8 红 2 蓝。摸一个，<b>最可能摸到什么？</b>",
+ opts:["一定是红球","最可能是红球，但不是一定——还有可能摸到蓝球",
+  "一定是蓝球","红蓝各一半"],
+ answer:"B",why:"<strong>可能性最大 ≠ 一定</strong>。红球 8/10 概率最高，但<strong>还有 2/10 的可能摸到蓝球</strong>。<em class='hl'>「一定」只有一个条件：全是它。</em>",
+ miss:"<strong>最可能不是一定</strong>。还有 2 个蓝球在盒子里，所以有可能摸到蓝的。",
+ kidSay:"红球最多，所以最可能是红球。但盒子里还有蓝球，所以<strong>不是一定</strong>。"},
+{stem:"判断一件事「一定会发生」还是「可能发生」，<b>最该问的一句话是：</b>",
+ opts:["这种事常见吗？","有没有可能不这样？","我以前遇到过吗？","大人怎么说？"],
+ answer:"B",why:"<strong>「有没有可能不这样」</strong>是判断可能性的<strong>唯一标准</strong>：<br>有可能不这样 → <strong>可能</strong>；绝不可能不这样 → <strong>一定</strong>。<br>「常见吗」是<strong>频率</strong>，<strong>频率高不等于必然</strong>（抛硬币正面概率 50%，但不是一定）。",
+ miss:"<strong>只问「有没有可能不这样」。</strong>「常见吗」是频率高不高，跟「一定」是两回事。",
+ kidSay:"别管它常不常见。只问一句：<strong>有没有可能不这样？</strong>有可能，就只是「可能」。"},
+{stem:"甲班 15/30 人戴眼镜，乙班 20/50 人戴眼镜。<b>哪班戴眼镜的比例更高？</b>",
+ opts:["甲班（15/30=50% > 40%）","乙班（20/50=40% > 50%）","一样，都是 20 人","无法比较"],
+ answer:"A",why:"<strong>甲班 15/30 = 50%</strong>，<strong>乙班 20/50 = 40%</strong>。<em class='hl'>绝对数量多不等于比例高</em>——<strong>必须换算成百分数才能比较</strong>。",
+ miss:"<strong>要换算成百分数再比。</strong>甲 15÷30=50%，乙 20÷50=40%，所以甲班比例更高。",
+ kidSay:"人数不能直接比，要看占比。15÷30 是 50%，20÷50 是 40%，甲班高。"}
+]};
+</script>
+<script src="../assets/js/stats.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

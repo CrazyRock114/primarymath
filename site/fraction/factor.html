@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>因数与倍数 · 一个数能被平分成几份</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="index.html">分数与小数</a><a href="factor.html">因数与倍数</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">支柱一 · 数 · 分数与小数层 · 五年级下册</span>
+  <h1>因数与倍数<br>同一个数的<strong style="color:var(--brand);font-weight:inherit">两个方向</strong></h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 「因数」到底是几的倍数</a></li>
+<li><a href="#l2">02 溯源：除法里长出来的概念</a></li>
+<li><a href="#l3">03 质数与合数：只能拆成 1×自己</a></li>
+<li><a href="#l4">04 2、3、5 的倍数有什么特别</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>「因数」到底是几的倍数</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    老师问「12 的因数有哪些？」孩子答「1、2、3、4、6、12」——对的，但<strong>他不知道自己在干什么</strong>。<br>
+    换问「那 12 是几的倍数？」他愣住了——<strong>其实是同一批数字，只是方向反了</strong>。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">因数和倍数是<strong>同一件事的两个方向</strong>，不是两个概念。</p>
+  <p>
+    <strong>「a 是 b 的因数」</strong> ⇔ <strong>「b 是 a 的倍数」</strong><br><br>
+    12 的因数：1、2、3、4、6、12 —— 这些是<strong>能把它平分成几份的份数</strong>。<br>
+    换个方向读：12 是 <strong>1、2、3、4、6、12</strong> 的倍数。<em class="hl">同一批数字，一个正着一个倒着。</em><br>
+    <strong>孩子学成两个概念，是因为课本分开写了，他没看到它们是一件事。</strong>
+  </p>
+</div>
+
+<div class="demo" id="ft-demo">
+  <div class="demo-h"><span class="dot"></span>动手试：拖动数字，看因数怎么变</div>
+  <p class="demo-hint">试试 <b>7</b>（质数）和 <b>8</b>（合数），因数个数差别很大。</p>
+  <div class="demo-stage"><div id="ft-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>这个数</label><input type="range" id="ft-n" min="2" max="20" value="12"><span class="val" id="ft-nv"></span>
+  </div>
+  <div class="demo-out" id="ft-out"></div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：除法里长出来的概念</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    为什么人类要发明「因数」这个概念？<strong>因为要判断「能不能平分」。</strong><br><br>
+    12 颗糖，要<strong>平均分给 3 个人</strong>，能不能分？<strong>能</strong>，因为 12 ÷ 3 = 4 没有余数。<br>
+    要平均分给 5 个人？<strong>不能</strong>，12 ÷ 5 有余数。<br><br>
+    <em class="hl">「能不能被平分」这件事，正是因数的本质。</em><br>
+    所以<strong>因数和倍数是除法算得整时留下的痕迹</strong>——它们天然属于<a href="../multiply/">乘除结构</a>那一层。
+  </p>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 背定义型</div>
+    <p>「如果 a × b = c（且 a、b、c 都是非 0 自然数），那么 a 和 b 是 c 的因数，c 是 a 和 b 的倍数。」</p>
+    <p>后果：<strong>能背不会用</strong>。求最大公因数、最小公倍数时全靠套公式。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 平分型</div>
+    <p>「<strong>这些数字，能把它平分成几份？</strong>」</p>
+    <p>结果：<strong>找因数就是找「能平分成几份」</strong>。约分、通分、求公因数公倍数，全都顺下来了。</p>
+  </div>
+</div>
+
+<h2 id="l3"><span class="num">03</span>质数与合数：只能拆成 1×自己</h2>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">质数的因数<strong>只有 2 个</strong>：1 和它自己。</p>
+  <p>
+    <strong>质数</strong>：因数只有 1 和自己 → 7 = 1 × 7，<em class="hl">拆不开</em><br>
+    <strong>合数</strong>：因数超过 2 个 → 8 = 2 × 4，<em class="hl">能拆开</em><br>
+    <strong>1</strong>：只有 1 个因数 → <em class="hl">既不是质数也不是合数</em><br><br>
+    <strong>「拆不开」才是质数的本质</strong>，不是「它是质数」。
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「这个数<strong>能不能拆开</strong>？拆不开就是质数。」</p>
+</div>
+
+<h2 id="l4"><span class="num">04</span>2、3、5 的倍数有什么特别</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>为什么单独拎出 2、3、5？因为它们的倍数有规律，能一眼看出来。</strong></p>
+  <ul style="padding-left:22px;line-height:2.1;margin:0">
+    <li><strong>2 的倍数</strong>：个位是 0、2、4、6、8（<em class="hl">都是偶数</em>）</li>
+    <li><strong>5 的倍数</strong>：个位是 0 或 5（很容易认）</li>
+    <li><strong>3 的倍数</strong>：<em class="hl">各位数字加起来是 3 的倍数</em> —— 123 → 1+2+3=6，是 3 的倍数</li>
+  </ul>
+  <p style="margin-top:14px;margin-bottom:0;font-size:14.5px;color:var(--ink-soft)">
+    <strong>为什么 3 要靠各位相加？</strong>因为 <span class="m">10、100、1000</span> 除以 3 都<strong>除不尽</strong>
+    （10÷3=3…1，100÷3=33…1），<strong>只有个位那个 1 会「漏」下余数</strong>。
+    每漏一次就欠 1，加起来刚好补回。<strong>这不是巧合，是 10 ≡ 1 (mod 3) 的必然。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「各位<strong>加起来</strong>，是不是 3 的倍数？」</p>
+</div>
+
+<div class="quiz" data-quiz="b3-factor">
+  <h3 style="margin-top:0">因数与倍数 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写，覆盖人教版五年级下册「因数与倍数」单元。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="decimal.html">上一节：小数的意义</a>　|　<a href="../index.html">回到首页</a>　|　B3 批次完</p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["b3-factor"]={title:"因数与倍数 · 5 题",qs:[
+{stem:"「因数」和「倍数」是什么关系？",
+ opts:["两个不同的概念","同一件事的两个方向：a 是 b 的因数，就等于 b 是 a 的倍数","倍数比因数多","没有必然联系"],
+ answer:"B",why:"<strong>同一批数字，正着读是因数，倒着读是倍数</strong>。12 的因数 1、2、3、4、6、12，倒过来就是 12 是这些数的倍数。",
+ miss:"<strong>方向反了就是另一个词</strong>。a 是 b 的因数 ↔ b 是 a 的倍数，说的是同一件事。",
+ kidSay:"你说 2 是 12 的因数，反过来说就是 12 是 2 的倍数。一回事。"},
+{stem:"「因数」这个概念，本质上在问什么？",
+ opts:["这个数有多大","这个数能被平分成几份","它是不是偶数","它的位数"],
+ answer:"B",why:"因数来自<strong>「能不能平分」</strong>。12 颗糖平均分给 3 个人能分尽 → 3 是 12 的因数；分给 5 个人分不尽 → 5 不是。<strong>因数是除法算得整时留下的痕迹</strong>。",
+ miss:"想想<strong>分糖</strong>：12 颗能平均分给 1、2、3、4、6、12 个人，分不进去的就不是因数。",
+ kidSay:"12 个糖能平均分给几个人？能分尽的那些人数，就是 12 的因数。"},
+{stem:"关于 1，下面说法正确的是：",
+ opts:["1 是质数","1 是合数","1 既不是质数也不是合数","1 没有因数"],
+ answer:"C",why:"1 <strong>只有一个因数（就是它自己）</strong>。质数要求「只有 1 和自己两个因数」，合数要求「超过两个」——1 都不符合，<strong>所以两者都不是</strong>。",
+ miss:"数一数 1 有<strong>几个</strong>因数？只有 1 个。质数要 2 个，合数要 2 个以上，1 都不算。",
+ kidSay:"1 只有一个因数，就是它自己。质数得有 1 和自己两个，所以 1 也不算质数。"},
+{stem:"判断一个数是不是 3 的倍数，最快的方法是：",
+ opts:["除以 3 试一试","把各位数字加起来，看是不是 3 的倍数","看个位数字","看是不是偶数"],
+ answer:"B",why:"<strong>各位数字相加</strong>是判断 3 的倍数的最快方法。因为 <span class='m'>10 ≡ 1 (mod 3)</span>，<strong>只有个位会「漏」余数，每一位漏的 1 加起来刚好补回</strong>。",
+ miss:"<strong>各位加起来</strong>。123 → 1+2+3 = 6，6 是 3 的倍数，所以 123 也是。这不是巧合。",
+ kidSay:"别除。各位数字加起来就行——因为 10 除以 3 会漏 1，每位漏的 1 加起来正好补上。"},
+{stem:"<span class='m'>27</span> 的因数有哪些？它是什么数？",
+ opts:["1、3、9、27；是合数（能拆成 3×9）","1、3、27；是质数","只有 1 和 27","是奇数所以是质数"],
+ answer:"A",why:"<span class='m'>27 = 1×27 = 3×9</span>，因数有 <strong>1、3、9、27</strong> 共 4 个，超过 2 个 → <strong>合数</strong>。它能拆成两个大于 1 的数相乘。",
+ miss:"<strong>拿因数的个数来判断</strong>。质数正好 2 个，合数超过 2 个。27 有 4 个因数，所以是合数。",
+ kidSay:"列出 27 能拆成哪几个数的乘积：1×27、3×9。拆得开，就是合数。"}
+]};
+</script>
+<script src="../assets/js/fraction.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>

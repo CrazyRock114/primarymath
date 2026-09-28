@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>优化 · 统筹安排</title>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <a class="brand" href="../index.html">数学<em>底层逻辑</em></a>
+  <nav>
+    <a href="../index.html">首页</a><a href="../pillar/structure.html">结构柱</a><a href="index.html">数学广角</a>
+  </nav>
+</div></div>
+<div class="wrap">
+<header class="hero" style="padding-bottom:20px">
+  <span class="eyebrow">数学广角 · 四年级上册</span>
+  <h1>优化<br>洗锅那 20 秒，能不能不白等？</h1>
+</header>
+
+<div class="toc"><div class="toc-h">本节内容</div><ol>
+<li><a href="#l1">01 妈妈沏茶，8 分钟；爸爸沏茶，8 分钟</a></li>
+<li><a href="#l2">02 溯源：等待时间就是浪费</a></li>
+<li><a href="#l3">03 烙饼问题：同一套思路</a></li>
+<li><a href="#quiz">练一练</a></li>
+</ol></div>
+
+<h2 id="l1"><span class="num">01</span>妈妈沏茶，8 分钟；爸爸沏茶，8 分钟</h2>
+
+<div class="stage stage-pain">
+  <span class="stage-tag">先看痛点</span>
+  <p style="margin:0">
+    「洗水壶 1 分钟，烧开水 8 分钟，洗茶杯 1 分钟，找茶叶 1 分钟，沏茶 1 分钟。怎样最快？」
+    孩子算出 <strong>1+8+1+1+1 = 12 分钟</strong>，很确定地说「就得 12 分钟」。
+  </p>
+</div>
+
+<div class="stage stage-fix">
+  <span class="stage-tag">再纠一个偏</span>
+  <p class="claim">没有一道「算术」是错的，错的是<strong>把能同时做的事，排成了队</strong>。</p>
+  <p>
+    洗水壶的这 1 分钟里，水壶一直在加热 —— <em class="hl">烧水本来就可以「搭便车」</em>。<br>
+    洗茶杯、找茶叶这两件事，<strong>不需要等水</strong>。<br>
+    真正的安排：洗壶（1 分）→ 烧水（8 分，<strong>同时</strong>洗杯找茶叶）→ 沏茶（1 分）<br>
+    <strong>只要 1 + 8 + 1 = 10 分钟。</strong>省下的 2 分钟不是算出来的，是<strong>安排</strong>出来的。
+  </p>
+</div>
+
+<div class="demo" id="yh-demo">
+  <div class="demo-h"><span class="dot"></span>动手试试：改变洗锅时间，看两种安排的差距</div>
+  <p class="demo-hint">拖动洗锅时间。仔细看<strong>两条时间条</strong>——串行的和统筹后的，哪一段被重叠掉了？</p>
+  <div class="demo-stage"><div id="yh-vis"></div></div>
+  <div class="demo-ctrl">
+    <label>洗锅</label><input type="range" id="yh-r" min="1" max="6" value="2"><span class="val">2</span>分钟
+  </div>
+  <div class="demo-out" id="yh-out"></div>
+</div>
+
+<div class="models">
+  <div class="model model-bad">
+    <div class="model-h">✕ 排队型</div>
+    <p>「一件事做完才能做下一件，所以相加。」</p>
+    <p>后果：孩子<strong>看不见时间里的空白</strong>。烧水的 8 分钟，他以为是「8 分钟在睡觉」。</p>
+  </div>
+  <div class="model model-good">
+    <div class="model-h">✓ 统筹型</div>
+    <p>「<strong>哪些事必须等，哪些事不用等？</strong>」</p>
+    <p>结果：先排<strong>有依赖</strong>的，再把<strong>没依赖</strong>的塞进等待的缝隙里。</p>
+  </div>
+</div>
+
+<h2 id="l2"><span class="num">02</span>溯源：等待时间就是浪费</h2>
+
+<div class="stage stage-origin">
+  <span class="stage-tag">回到源头</span>
+  <p style="margin:0">
+    「优化」这个词听起来像是在追求「更快的算法」，其实它追求的是
+    <em class="hl">把「什么都不发生」的时间压到最短</em>。<br><br>
+    一件事的完成时间 = 它自己花的时间 + <strong>等别人的时间</strong>。<br>
+    优化的本质就一句：<strong>别让人干等。</strong><br>
+    烧水那 8 分钟，锅在干活，但人呢？<strong>完全可以去洗杯子。</strong>
+  </p>
+</div>
+
+<div class="stage stage-act">
+  <span class="stage-tag">今晚就能用的一句话</span>
+  <p class="line">「等的时候，能不能<strong>顺手做点别的</strong>？」</p>
+  <p style="margin-top:12px;font-size:14.5px;color:var(--ink-soft)">
+    这一句不只用于数学题。做作业时让孩子想想：<strong>等待的时间里能干什么？</strong>——这是同一种思维。
+  </p>
+</div>
+
+<h2 id="l3"><span class="num">03</span>烙饼问题：同一套思路</h2>
+
+<div class="card">
+  <p style="margin-bottom:12px"><strong>问题：一次最多烙 2 张饼，每面要烙 3 分钟。3 张饼最少几分钟？</strong></p>
+  <p style="margin:0;color:var(--ink-soft)">
+    很多人以为 3 张 × 2 面 × 3 分 = 18 分钟。错。<br>
+    <strong>关键：烙饼时锅不能空，也不能一面焦一面生。</strong><br>
+    <strong>正确安排：</strong>① 烙 A 正 + B 正（3 分）→ ② A 负 + C 正（3 分）→ ③ B 负 + C 负（3 分）<br>
+    <strong>共 9 分钟。</strong>而且注意——<em class="hl">每 3 分钟就有一张饼可以出锅</em>，锅从没空过。
+  </p>
+</div>
+
+<div class="note">
+  <b>两道题的共同结构：</b>
+  沏茶是「<strong>把没依赖的事塞进等待的缝隙</strong>」，
+  烙饼是「<strong>始终让锅满负荷，不让它空着</strong>」。<br>
+  <strong>都是一句话：不要让资源闲置。</strong>
+</div>
+
+<div class="quiz" data-quiz="gl-youhua">
+  <h3 style="margin-top:0">优化 · 5 题</h3>
+</div>
+
+<div class="src">
+  <b>出处说明。</b>本页为本站原创编写。「优化」是人教版四年级上册「数学广角」单元内容（含沏茶、烙饼等）。
+  交互图示为本站自制，未复用任何第三方内容。
+</div>
+
+<footer class="foot">
+  <p style="margin:0"><a href="jihe.html">上一节：集合</a>　|　<a href="../index.html">回到首页</a>　|　下一节：<a href="jitu.html">鸡兔同笼</a></p>
+</footer>
+</div>
+
+<script>
+window.QUIZES=window.QUIZES||{};
+window.QUIZES["gl-youhua"]={title:"优化 · 5 题",qs:[
+{stem:"洗壶 1 分、烧水 8 分、洗杯 1 分、找茶叶 1 分、沏茶 1 分。最少几分钟？",
+ opts:["8 分钟","10 分钟","11 分钟","12 分钟"],
+ answer:"B",why:"洗壶和烧水之间，烧水的 8 分钟里可以<strong>同时洗杯和找茶叶</strong>。所以是 洗壶 1 + 烧水 8 + 沏茶 1 = <strong>10 分钟</strong>。",
+ miss:"别把五件事全加起来。<b>烧水的那 8 分钟里，手是空着的</b>——顺手把杯子洗了、茶叶找了。",
+ kidSay:"烧水要 8 分钟，那这 8 分钟你就在旁边站着吗？把洗杯子、找茶叶挪到这 8 分钟里做。"},
+{stem:"烙 3 张饼，每面 3 分钟，锅一次最多放 2 张。最少几分钟？",
+ opts:["9 分钟","12 分钟","15 分钟","18 分钟"],
+ answer:"A",why:"<strong>关键是让锅始终不空</strong>。9 分钟里每个 3 分钟都烙 2 面：AB 正 → A 负 + C 正 → B 负 + C 负。共 3 个回合 = <strong>9 分钟</strong>。",
+ miss:"别按 3 张 × 2 面 × 3 分算。<b>锅可以同时烙两张饼的两面</b>，要算「回合」而不是「每张饼的次数」。",
+ kidSay:"3 张饼要 6 面，锅一次能烙 2 面，那就是 3 个回合，每个回合 3 分钟，9 分钟。"},
+{stem:"「优化」问题的核心是什么？",
+ opts:["找到一个更快的计算方法","让「等待」的时间尽可能短，不让人和资源闲置","把数字算得更大","少做几步"],
+ answer:"B",why:"优化的对象<strong>不是算得慢，是空等</strong>。烧水时锅在干活但人闲着——那 8 秒就是被浪费的。统筹的本质是<strong>压缩空白</strong>。",
+ miss:"优化不是算得快，是<strong>不浪费时间</strong>。重点看哪段时间里，人和锅都闲着。",
+ kidSay:"做这件事的时候，有没有哪段时间你和锅都在发呆？把那段填满。"},
+{stem:"4 个人去打乒乓，甲乙一组，丙丁一组。场地只有一个。最少要打几场才能让每人都跟另外 3 人打过？",
+ opts:["3 场","4 场","6 场","2 场"],
+ answer:"D",why:"这是<strong>双打（2 对 2）</strong>：一场里 4 个人两两交手，同时产生 4 次交手。<strong>只要 2 场</strong>：第一场甲乙 vs 丙丁，第二场甲丙 vs 乙丁——每个人都跟其余 3 人各打过一次了。",
+ miss:"先看清是<strong>双打</strong>：一场里 4 个人两两交手，一次就产生 4 次「人对人」。每人要和其余 3 人打过，一共 12 次，12÷4 = <strong>3 场</strong>够用，而 <strong>2 场</strong>（换一次搭档）就已经让每人都打到了全部 3 人。",
+ kidSay:"这是双打，一场里 4 个人两两都打到了。第一场甲乙对丙丁，第二场甲丙对乙丁——这样每个人就已经跟其余 3 个人各打过一次了。"},
+{stem:"下面哪种做法是真正「优化」？",
+ opts:["做题时先做简单的，难的留到最后","等热水烧开的 5 分钟里，去把碗筷摆好","多买一个更贵的锅","做题速度提快 20%"],
+ answer:"B",why:"A 是<strong>排序</strong>（也可能有用，但跟「等待」无关）；C 是<strong>换设备</strong>；D 是<strong>提速</strong>。<br>只有 B 是<strong>压缩了空白时间</strong>——用等待的缝隙做别的事，这才是统筹优化的定义。",
+ miss:"提速是「做得更快」，统筹是「<strong>不空等</strong>」。这两个是不同的事，B 才是真的优化。",
+ kidSay:"不用买更贵的锅，也不用跑得更快。等着的时候顺手干点别的，这才是优化。"}
+]};
+</script>
+<script src="../assets/js/demos.js"></script>
+<script src="../assets/js/guangle.js"></script>
+<script src="../assets/js/quiz.js"></script>
+</body>
+</html>
