@@ -4,6 +4,5 @@
   "framework": null,
   "buildCommand": null,
   "outputDirectory": "site",
-  "cleanUrls": true,
   "trailingSlash": false
 }
