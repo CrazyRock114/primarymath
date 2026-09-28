@@ -1,0 +1,8 @@
+# Vercel 只发布 site/ 里的静态产物，仓库其余内容一律不参与上传。
+# data/ 有 39MB 原始抓取素材，与站点零引用——上传只会拖慢部署。
+
+data/
+_tools/
+*.md
+.gitignore
+.github/
