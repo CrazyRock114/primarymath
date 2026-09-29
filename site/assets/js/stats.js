@@ -228,7 +228,7 @@
       rv.textContent = part + " 人";
       const pct = (part / total) * 100;
       vis.innerHTML = "";
-      const svg = E("svg", { viewBox: "0 0 640 200", width: "100%" });
+      const svg = E("svg", { viewBox: "0 0 640 320", width: "100%" });
       // 百格图
       const x0 = 40, y0 = 40, cs = 22;
       for (let i = 0; i < total; i++) {

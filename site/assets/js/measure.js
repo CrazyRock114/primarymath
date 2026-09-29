@@ -164,6 +164,12 @@
         svg.appendChild(T(60 + f.x * u + f.w * u / 2, 20 + f.y * u + f.h * u / 2, f.lab, { "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: f.c }));
         svg.appendChild(T(60 + f.x * u + f.w * u / 2, 20 + f.y * u + f.h * u / 2 + 15, f.w + "×" + f.h, { "text-anchor": "middle", "font-size": 11, fill: "#5c554d" }));
       });
+      // viewBox 必须按实际展开范围计算：原先固定 260 高，
+      // 「上」「后」两面落在 y=360 以上，6 个面只有第 1 排可见。
+      // 先量出包围盒，再重设 viewBox（SVG 宽度自适应，高度随之等比缩放）。
+      const maxX = Math.max(...faces.map((f) => (f.x + f.w) * u)) + 60 + 30;
+      const maxY = Math.max(...faces.map((f) => (f.y + f.h) * u)) + 20 + 30;
+      svg.setAttribute("viewBox", "0 0 " + maxX + " " + maxY);
       vis.appendChild(svg);
 
       const S = 2 * (A * B + A * C + B * C);

@@ -86,7 +86,12 @@
     const d = $("ax-d"), m = $("ax-m");
 
     function go() {
-      const D = +d.value, M = +m.value;   // 分母、分子
+      const D = +d.value;
+      // 分子必须 <= 分母，否则 v>1 会把红点画到数轴右端之外（viewBox 宽度之外），
+      // 画面上根本看不到点，文案却还在讲这个分数。联动钳制。
+      m.max = D;
+      if (+m.value > D) m.value = D;
+      const M = +m.value;   // 分母、分子
       const v = M / D;
       vis.innerHTML = "";
       const W = 640, x0 = 50, x1 = 590, y = 74;
