@@ -131,6 +131,18 @@ em.hl { font-style: normal; background: linear-gradient(transparent 62%, #ffe9b8
   color: var(--ink);
 }
 
+/* 故意示错的教材反例：加删除线 + 警示色，避免家长把它当成正确陈述照搬。
+   同时被 _tools/audit_math.py 与 check_decimal_shift.py 识别为「非站点断言」。 */
+.err-ex {
+  color: var(--warn);
+  text-decoration: line-through;
+  text-decoration-color: rgba(196, 98, 45, .55);
+  background: var(--warn-lt);
+  border-radius: 4px;
+  padding: 0 4px;
+  font-style: normal;
+}
+
 /* ---------- 卡片 ---------- */
 .card {
   background: var(--bg-card); border: 1px solid var(--line);

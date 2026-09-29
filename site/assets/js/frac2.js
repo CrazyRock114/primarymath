@@ -99,14 +99,14 @@
         bar(svg, x0, 114, bw, 44, comm, a * d, "#6aa287");
         svg.appendChild(T(x0, 176, "3/4 = " + (a * d) + "/" + comm, { "font-size": 14, "font-weight": 700, fill: "#2f6b52" }));
         svg.appendChild(T(x0, 200, "1/2 = " + (c * (comm / d)) + "/" + comm + " = " + (c * (comm / d)) + "/" + comm + " = " + (c * (comm / d)) + " 格", { "font-size": 13, "font-weight": 700, fill: "#4a5b8c" }));
-        svg.appendChild(T(x0, 226, "问：这里装着 <b>几个 1/2</b>？→ " + (a * d) + " ÷ " + (c * (comm / d)) + " = <b>" + q + "</b>", { "font-size": 14, fill: "#c4622d" }));
+        svg.appendChild(T(x0, 226, "问：这里装着 几个 1/2 ？→ " + (a * d) + " ÷ " + (c * (comm / d)) + " = <b>" + q + "</b>", { "font-size": 14, fill: "#c4622d" }));
       } else {
         // 验算：为什么乘倒数
-        svg.appendChild(T(x0, 26, "用乘法验算：<b>" + q + " × 1/2 = 0.75 = 3/4 ✓</b>", { "font-size": 14, fill: "#2f6b52" }));
-        svg.appendChild(T(x0, 58, "那 <b>3/4 × ? = 3/4</b> —— 问号该填几？", { "font-size": 13.5, fill: "#5c554d" }));
+        svg.appendChild(T(x0, 26, "用乘法验算： " + q + " × 1/2 = 0.75 = 3/4 ✓", { "font-size": 14, fill: "#2f6b52" }));
+        svg.appendChild(T(x0, 58, "那 3/4 × ? = 3/4 —— 问号该填几？", { "font-size": 13.5, fill: "#5c554d" }));
         svg.appendChild(T(x0, 86, "要让「原来的 3/4」保持不变，", { "font-size": 13.5, fill: "#5c554d" }));
-        svg.appendChild(T(x0, 112, "多乘的 <b>" + c + "/" + d + "</b> 就必须被 <b>除以同样的 " + c + "/" + d + "</b> 抵消掉", { "font-size": 13.5, fill: "#c4622d" }));
-        svg.appendChild(T(x0, 142, "除以 " + c + "/" + d + " = 乘 1 ÷ " + c + "/" + d + " = 乘 <b>" + d + "/" + c + "</b>（倒数）", { "font-size": 15, "font-weight": 700, fill: "#2f6b52" }));
+        svg.appendChild(T(x0, 112, "多乘的 " + c + "/" + d + " 就必须被 除以同样的 " + c + "/" + d + " 抵消掉", { "font-size": 13.5, fill: "#c4622d" }));
+        svg.appendChild(T(x0, 142, "除以 " + c + "/" + d + " = 乘 1 ÷ " + c + "/" + d + " = 乘 " + d + "/" + c + "（倒数）", { "font-size": 15, "font-weight": 700, fill: "#2f6b52" }));
         svg.appendChild(T(x0, 176, "所以  " + a + "/" + b + " ÷ " + c + "/" + d + " = " + a + "/" + b + " × <b>" + d + "/" + c + "</b>", { "font-size": 16, "font-weight": 700, fill: "#2b2723" }));
         svg.appendChild(T(x0, 206, "= " + (a * d) + "/" + (b * c) + " = <b>" + ((a * d) / (b * c)).toFixed(4) + "</b>  （换算成带分数 = 1 又 " + (((a * d) % (b * c)) / (b * c)).toFixed(4) + "）", { "font-size": 13.5, fill: "#5c554d" }));
       }

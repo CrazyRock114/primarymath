@@ -230,17 +230,44 @@
       const H = +headIn.value, F = +footIn.value;
       if (guess > H) { guess = H; guessIn.value = H; }
       // 全是鸡时的脚
-      const allChicken = H * 2;
+      const allChicken = H * 2, allRabbit = H * 4;
+      // 无解守卫：腿数必须落在 2×头数 与 4×头数 之间，否则会算出「兔=30只」这种荒谬结果
+      if (F < allChicken || F > allRabbit) {
+        return { H, F, allChicken, allRabbit, unsolvable: true };
+      }
       const diff = F - allChicken;
       const rabbit = Math.round(diff / 2);
       const chicken = H - rabbit;
-      return { H, F, allChicken, diff, rabbit, chicken };
+      return { H, F, allChicken, diff, rabbit, chicken, unsolvable: false };
     }
 
     function go() {
       guess = +guessIn.value;
       const s = solve();
       vis.innerHTML = "";
+
+      // 无解组合：先拦下来，别让「兔 = 30 只」这种结果出现
+      if (s.unsolvable) {
+        const svg = el("svg", { viewBox: "0 0 640 200", width: "100%" });
+        const t1 = el("text", { x: 320, y: 86, "text-anchor": "middle", "font-size": 17, "font-weight": 700, fill: "#c4622d" });
+        t1.textContent = "这组数搭不出来 —— 没有解";
+        const t2 = el("text", { x: 320, y: 116, "text-anchor": "middle", "font-size": 14, fill: "#5c554d" });
+        t2.textContent = s.H + " 个头却有 " + s.F + " 条腿，这组数据搭不出来。";
+        const t3 = el("text", { x: 320, y: 140, "text-anchor": "middle", "font-size": 14, fill: "#5c554d" });
+        t3.textContent = s.H + " 个头，腿数只能在 " + s.allChicken + " 条（全是鸡）到 " + s.allRabbit + " 条（全是兔）之间。";
+        const t4 = el("text", { x: 320, y: 164, "text-anchor": "middle", "font-size": 13.5, fill: "#8d857a" });
+        t4.textContent = "你的 " + s.F + " 条腿已经超出范围，把滑块拉回这个区间试试。";
+        [t1, t2, t3, t4].forEach((t) => svg.appendChild(t));
+        vis.appendChild(svg);
+        out.innerHTML =
+          "<b>这组数据无解。</b><br>" +
+          "<strong>" + s.H + " 个头</strong>时，腿数最少 " + s.allChicken + " 条（全是鸡），最多 " + s.allRabbit + " 条（全是兔）。<br>" +
+          "<strong>" + s.F + " 条腿</strong>" + (s.F < s.allChicken ? "少于 " + s.allChicken + " 条，连全是鸡都不够。" : "多于 " + s.allRabbit + " 条，连全是兔都不够。") +
+          "<br><span style='color:#c4622d'><strong>假设法第一步就该检查这一步</strong>——不然会算出「兔 = " +
+          Math.round((s.F - s.allChicken) / 2) + " 只」这种超过头数的荒谬结果。</span>";
+        return;
+      }
+
       const svg = el("svg", { viewBox: "0 0 640 200", width: "100%" });
       // 头
       for (let i = 0; i < s.H; i++) {

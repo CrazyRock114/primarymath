@@ -23,7 +23,7 @@
 </header>
 
 <div class="toc"><div class="toc-h">本节内容</div><ol>
-<li><a href="#l1">01 12.3 和 123，差 100 倍</a></li>
+<li><a href="#l1">01 12.3 和 123，差 10 倍</a></li>
 <li><a href="#l2">02 溯源：小数是分数的另一扇门</a></li>
 <li><a href="#l3">03 小数与分数：同一条数轴</a></li>
 <li><a href="#l4">04 移动小数点 = 换计数单位</a></li>
@@ -57,11 +57,11 @@
   <p class="demo-hint">同样的 1、2、3，换个小数点位置，值就变了。盯住<strong>每个数字下面的位值标签</strong>。</p>
   <div class="demo-stage"><div id="pt-vis"></div></div>
   <div class="demo-ctrl">
-    <label>小数点位置</label><input type="range" id="pt-d" min="0" max="3" value="1"><span class="val">2</span>
-    <label>数字</label>
+    <label>小数点位置</label><input type="range" id="pt-d" min="0" max="3" value="2"><span class="val" id="pt-dv">2</span>
+    <label>看法</label>
     <select id="pt-mode" class="btn" style="padding:7px 12px">
-      <option value="1" selected>12.3</option>
-      <option value="0">123</option>
+      <option value="0" selected>看位值标签</option>
+      <option value="1">看各位贡献</option>
     </select>
   </div>
   <div class="demo-out" id="pt-out"></div>

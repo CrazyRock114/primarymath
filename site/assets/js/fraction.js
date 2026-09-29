@@ -238,60 +238,80 @@
   function pointDemo() {
     const host = $("pt-demo"); if (!host) return;
     const vis = $("pt-vis"), out = $("pt-out");
-    const d = $("pt-d"), mode = $("pt-mode");
-    const DV = [0.1, 0.01, 0.001, 0.0001];
+    const d = $("pt-d"), mode = $("pt-mode"), dv = $("pt-dv");
+    // 位值用**字符串**写死，不做浮点乘法——否则 0.1*0.1 会渲染成 0.010000000000000002
+    const INT_NAME = ["个", "十", "百", "千", "万"];
+    const INT_VAL = ["1", "10", "100", "1000", "10000"];
+    const FRAC_NAME = ["十分位", "百分位", "千分位", "万分位"];
+    const FRAC_VAL = ["0.1", "0.01", "0.001", "0.0001"];
+    const DIGITS = "123";
 
     function go() {
-      const k = +d.value;
-      const digits = [["1","2","3"],["0.1","2","3"],["0.01","2","3"],["0.001","2","3"]][k];
+      const dp = +d.value;                     // 小数点前有几位
+      const showContrib = mode.value === "1";  // 位值标签 ↔ 贡献合计
+      if (dv) dv.textContent = dp;
+
+      // 组装版式：从右往左数位，确定每个数字站在哪一位
+      const cells = [];                        // {ch, name, val}
+      const intCount = dp;
+      // 整数部分：最高位是 intCount-1（1 位=个位，2 位=十位…）
+      for (let i = 0; i < intCount; i++) {
+        const place = intCount - 1 - i;        // 0=个位
+        cells.push({ ch: DIGITS[i % 3] || "0", name: INT_NAME[place] || "?", val: INT_VAL[place] || "?" });
+      }
+      if (intCount === 0) cells.push({ ch: "0", name: INT_NAME[0], val: INT_VAL[0] });
+      // 小数点只在有小数位时才画，否则 123 会多出一个尾点
+      if (intCount < 3) cells.push({ dot: true });
+      // 小数部分：从十分位往右
+      for (let i = intCount; i < 3; i++) {
+        const place = i - intCount;            // 0=十分位
+        cells.push({ ch: DIGITS[i % 3] || "0", name: FRAC_NAME[place] || "?", val: FRAC_VAL[place] || "?" });
+      }
+
       vis.innerHTML = "";
-      const W = 640, H = 180;
+      const W = 640, cw = 54, y0 = 58;
+      const H = 190;
       const svg = E("svg", { viewBox: "0 0 " + W + " " + H, width: "100%" });
-      // 位置标注
-      const labels = [["个","十","百"],["个","十","百","十","个"],["个","十","百","十","个"]][k];
-      const shown = mode.value === "1";
-      const num = shown ? "12.3" : "123";
-      const ch = num.split("");
-      const x0 = 200, cw = 52, y0 = 56;
-      let idx = 0;
-      ch.forEach((c, i) => {
-        if (c === ".") {
-          svg.appendChild(T(x0 + i * cw + 12, y0 + 30, ".", { "font-size": 30, "font-weight": 700, fill: "#c4622d", "font-family": "ui-monospace, monospace" }));
-          return;
-        }
-        svg.appendChild(E("rect", { x: x0 + i * cw, y: y0, width: cw, height: 42, fill: "#f3efe7", stroke: "#cfc7ba" }));
-        svg.appendChild(T(x0 + i * cw + cw / 2, y0 + 30, c, { "text-anchor": "middle", "font-size": 24, "font-weight": 700, "font-family": "ui-monospace, monospace" }));
-        const lab = labels[idx] || "";
-        idx += c === "0" && k > 0 ? 0 : 0;
-        idx = (function (c2) { return c2; })(idx);
-      });
-      // 单独标位值
-      const seq = k === 0 ? [[0, "123"], [1, "个"], [2, "十"], [3, "百"]]
-        : k === 1 ? [[0, "个"], [1, "."], [2, "十"], [3, "百"], [4, "十"], [5, "个"]]
-          : k === 2 ? [[0, "个"], [1, "十"], [2, "百"], [3, "."], [4, "十"], [5, "个"]]
-            : [[0, "个"], [1, "十"], [2, "百"], [3, "十"], [4, "."], [5, "个"]];
-      svg.innerHTML = "";
-      seq.forEach(([i, lab], n) => {
+      const x0 = Math.max(24, (W - cells.length * cw) / 2);
+
+      // 顶部：每位代表的数量（位值）
+      cells.forEach((c, n) => {
         const x = x0 + n * cw;
-        if (lab === ".") {
-          svg.appendChild(T(x + 14, y0 + 32, ".", { "font-size": 30, "font-weight": 700, fill: "#c4622d" }));
-          svg.appendChild(E("line", { x1: x + 14, y1: y0 - 12, x2: x + 14, y2: y0 + 46, stroke: "#c4622d", "stroke-width": 2 }));
-          svg.appendChild(T(x + 14, y0 - 18, "小数点", { "text-anchor": "middle", "font-size": 11, fill: "#c4622d" }));
+        if (c.dot) {
+          svg.appendChild(T(x + cw / 2, y0 + 30, ".", { "text-anchor": "middle", "font-size": 30, "font-weight": 700, fill: "#c4622d" }));
+          svg.appendChild(E("line", { x1: x + cw / 2, y1: y0 - 14, x2: x + cw / 2, y2: y0 + 44, stroke: "#c4622d", "stroke-width": 2 }));
+          svg.appendChild(T(x + cw / 2, y0 - 20, "小数点", { "text-anchor": "middle", "font-size": 11, fill: "#c4622d" }));
           return;
         }
-        const ch2 = (shown ? "12.3" : "123").replace(".", "")[i] || "";
-        svg.appendChild(E("rect", { x, y: y0, width: cw, height: 42, fill: "#f3efe7", stroke: "#cfc7ba" }));
-        if (ch2) svg.appendChild(T(x + cw / 2, y0 + 30, ch2, { "text-anchor": "middle", "font-size": 24, "font-weight": 700, "font-family": "ui-monospace, monospace" }));
-        svg.appendChild(T(x + cw / 2, y0 + 62, lab, { "text-anchor": "middle", "font-size": 12, fill: "#5c554d" }));
-        svg.appendChild(T(x + cw / 2, y0 - 16, ch2 ? DV[Math.min(3, Math.abs(3 - i) - 1)] * (i >= 3 ? 1 : Math.pow(10, 3 - i - 2)) : "", { "text-anchor": "middle", "font-size": 10, fill: "#2f6b52" }));
+        svg.appendChild(T(x + cw / 2, y0 - 20, showContrib ? (c.ch + " × " + c.val) : c.val,
+          { "text-anchor": "middle", "font-size": 11, fill: "#2f6b52" }));
+      });
+
+      // 中间：数字格
+      cells.forEach((c, n) => {
+        const x = x0 + n * cw;
+        if (c.dot) return;
+        svg.appendChild(E("rect", { x, y: y0, width: cw - 4, height: 42, rx: 5, fill: "#f3efe7", stroke: "#cfc7ba" }));
+        svg.appendChild(T(x + (cw - 4) / 2, y0 + 30, c.ch,
+          { "text-anchor": "middle", "font-size": 24, "font-weight": 700, "font-family": "ui-monospace, monospace" }));
+        svg.appendChild(T(x + (cw - 4) / 2, y0 + 64, c.name, { "text-anchor": "middle", "font-size": 12, fill: "#5c554d" }));
       });
       vis.appendChild(svg);
 
+      // 数值：用字符串拼接，不做浮点累加
+      const numText = cells.map((c) => (c.dot ? "." : c.ch)).join("");
+      const contrib = cells.filter((c) => !c.dot)
+        .map((c) => c.ch + " × " + c.val).join(" + ");
       out.innerHTML =
-        "<b>" + (shown ? "12.3" : "123") + "</b> —— 同样的三个数字 1、2、3，<strong>只因小数点位置不同，值差了 10 倍</strong>。<br>" +
-        "小数点<strong>左边</strong>是「几个十、几个一」，<strong>右边</strong>是「几个十分之一、几个百分之一」。<br>" +
-        "<span style='color:#c4622d'><strong>小数点移动一位，值就差 10 倍</strong>——向右移变大，向左移变小。<br>" +
-        "这和<a href='../pillar/number.html'>支柱一</a>的位值制<strong>完全是同一条规则</strong>，只是继续往右细分。</span>";
+        "<b>" + numText + "</b> —— 同样的三个数字 1、2、3，只因小数点位置不同，值就变了。<br>" +
+        (showContrib
+          ? "每一位的贡献：<strong>" + contrib + "</strong>。<br>"
+          : "盯住每位数字<strong>下面的位值标签</strong>：整数部分是「几个十、几个一」，"
+            + "小数部分是「几个十分之一、几个百分之一」。<br>") +
+        "<span style='color:#c4622d'><strong>小数点移动一位，值就差 10 倍</strong>——"
+        + "向右移变大，向左移变小。<br>"
+        + "这和<a href='../pillar/number.html'>支柱一</a>的位值制<strong>完全是同一条规则</strong>，"
+        + "只是继续往右细分。</span>";
     }
     on("pt-d", "input", go); on("pt-mode", "input", go);
     go();
@@ -329,8 +349,8 @@
         svg.appendChild(T(x + 22, y + 24, f, { "text-anchor": "middle", "font-size": 18, "font-weight": 700, fill: "#2f6b52", "font-family": "ui-monospace, monospace" }));
         if (i) svg.appendChild(T(x - 8, y + 24, "×", { "font-size": 15, fill: "#8d857a" }));
       });
-      // 质因数配对
-      svg.appendChild(T(20, 120, "质因数配对：", { "font-size": 14, "font-weight": 700, fill: "#2b2723" }));
+      // 因数配对
+      svg.appendChild(T(20, 120, "因数配对：", { "font-size": 14, "font-weight": 700, fill: "#2b2723" }));
       pairs.forEach((p, i) => {
         const x = 150 + i * 96;
         svg.appendChild(T(x, 124, p[0] + " × " + p[1], { "font-size": 16, "font-weight": 600, fill: "#c4622d", "font-family": "ui-monospace, monospace" }));
