@@ -108,13 +108,19 @@
         svg.appendChild(T(cx, yBot + 20, "下底 " + b1, { "text-anchor": "middle", "font-size": 12.5, fill: "#5c554d" }));
         svg.appendChild(T(xR + 8, (yTop + yBot) / 2, "高 " + h, { "font-size": 12.5, fill: "#c4622d" }));
       } else {
-        // 复制一个，拼成平行四边形
+        // 复制一个，拼成平行四边形。
+        // 正确切法：从上下底的中点 cx 竖切，第二块 = (cx,yBot)-(xR,yBot)-(xRt,yTop)-(cx,yTop)。
+        // 原先第二块从 xR 起又右移 b1*unit，顶边变成 10 个单位而原图只有 4，
+        // 两块根本不全等，拼出来是错位的梯形而不是平行四边形。
+        const copy = [[cx, yBot], [xR, yBot], [xRt, yTop], [cx, yTop]];
         svg.appendChild(E("polygon", {
-          points: [[xR, yBot], [xR + b1 * unit, yBot], [xRt + b1 * unit, yTop], [xR, yTop]].map((p) => p.join(",")).join(" "),
-          fill: "#f3efe7", stroke: "#6aa287", "stroke-width": 2, opacity: .85,
+          points: copy.map((p) => p.join(",")).join(" "),
+          fill: "#f3efe7", stroke: "#6aa287", "stroke-width": 2, opacity: .9,
         }));
-        svg.appendChild(E("line", { x1: xR, y1: yBot, x2: xR, y2: yTop, stroke: "#c4622d", "stroke-width": 1.6, "stroke-dasharray": "4 3" }));
-        svg.appendChild(T(xR + 6, yBot - 10, "← 复制一个", { "font-size": 12, fill: "#6aa287", "font-weight": 600 }));
+        // 切割线：两块的全等靠它
+        svg.appendChild(E("line", { x1: cx, y1: yTop - 8, x2: cx, y2: yBot + 8, stroke: "#c4622d", "stroke-width": 2, "stroke-dasharray": "5 3" }));
+        svg.appendChild(T(cx + 6, yTop - 12, "沿中线竖切", { "font-size": 11.5, "font-weight": 700, fill: "#c4622d" }));
+        svg.appendChild(T(cx + b1 / 2 * unit - 4, yBot - 10, "← 旋转 180° 贴上来", { "text-anchor": "middle", "font-size": 11.5, fill: "#6aa287" }));
         svg.appendChild(T(cx, yBot + 46, "拼成平行四边形：底 = " + b1 + " + " + b2 + " = " + (b1 + b2), { "text-anchor": "middle", "font-size": 13.5, "font-weight": 700, fill: "#2f6b52" }));
         svg.appendChild(T(xL - 14, (yTop + yBot) / 2, "h", { "font-size": 13, fill: "#c4622d", "font-weight": 700 }));
       }

@@ -203,7 +203,18 @@
 
       vis.innerHTML = "";
       const svg = E("svg", { viewBox: "0 0 640 250", width: "100%" });
-      const bx = 80, bw = 20, gap = 5, y0 = 45;
+      const bx = 80, gap = 5, y0 = 45;
+      const TEXT_W = 214;                     // 右侧说明区宽度
+      // 按实际最大行宽自适应小棒宽度：99+99 时小棒原本会伸到 x=441，
+      // 而说明文字固定从 x=400 开始，直接压在一起。
+      const maxRow = Math.max(
+        Math.floor(x / 10) + (x % 10 ? 1 : 0),
+        Math.floor(y / 10) + (y % 10 ? 1 : 0),
+        Math.floor(res / 10) % 10 + (res % 10 ? 1 : 0) + (res >= 100 ? 1 : 0),
+        tens + 1
+      );
+      const avail = 640 - bx - TEXT_W - 14;
+      const bw = Math.max(9, Math.min(20, Math.floor(avail / Math.max(maxRow, 1))));
 
       // 第一行 x
       for (let i = 0; i < Math.floor(x / 10); i++)
@@ -225,17 +236,26 @@
       const lineY = 132;
       svg.appendChild(E("line", { x1: bx - 46, y1: lineY, x2: bx + 300, y2: lineY, stroke: "#2b2723", "stroke-width": 2.4 }));
 
-      // 结果
+      // 结果：三位数要补上百位，否则 198 画成「19 个十 + 8 个一」，百位凭空消失
       const res0 = y0 + 152;
-      const rT = Math.floor(res / 10), rO = res % 10;
+      const rH = Math.floor(res / 100), rT = Math.floor(res / 10) % 10, rO = res % 10;
+      let rbx = bx;
+      if (rH) {
+        for (let i = 0; i < rH; i++)
+          svg.appendChild(E("rect", { x: rbx + i * bw, y: res0, width: bw - 4, height: 26, fill: "#6b4a7a", rx: 3 }));
+        rbx += rH * bw + gap;
+        svg.appendChild(T(rbx - gap / 2, res0 + 19, "百", { "text-anchor": "middle", "font-size": 11, fill: "#8d857a" }));
+      }
       for (let i = 0; i < rT; i++)
-        svg.appendChild(E("rect", { x: bx + i * bw, y: res0, width: bw - 4, height: 26, fill: "#6b4a7a", rx: 3 }));
+        svg.appendChild(E("rect", { x: rbx + i * bw, y: res0, width: bw - 4, height: 26, fill: "#6b4a7a", rx: 3 }));
+      rbx += rT * bw + gap;
       for (let i = 0; i < rO; i++)
-        svg.appendChild(E("rect", { x: bx + rT * bw + gap + i * bw, y: res0, width: bw - 4, height: 26, fill: "#6b4a7a", rx: 3 }));
+        svg.appendChild(E("rect", { x: rbx + i * bw, y: res0, width: bw - 4, height: 26, fill: "#6b4a7a", rx: 3 }));
       svg.appendChild(T(bx - 12, res0 + 19, res, { "text-anchor": "end", "font-size": 19, "font-weight": 700, fill: "#6b4a7a", "font-family": "ui-monospace, monospace" }));
 
-      // 说明
-      const sx = 400;
+      // 说明（位置跟随小棒实际右缘，不再写死 400）
+      const right = bx + maxRow * bw + 8;
+      const sx = Math.min(Math.max(right, 360), 640 - TEXT_W + 40);
       svg.appendChild(T(sx, 60, "① 个位先合：", { "font-size": 13.5, "font-weight": 700, fill: "#5c554d" }));
       svg.appendChild(T(sx, 82, (x % 10) + " + " + (y % 10) + " = " + units, { "font-size": 15, "font-weight": 700, fill: "#c4622d" }));
       if (carry) {
@@ -246,6 +266,10 @@
       }
       svg.appendChild(T(sx, 164, "② 十位再合：", { "font-size": 13.5, "font-weight": 700, fill: "#5c554d" }));
       svg.appendChild(T(sx, 186, Math.floor(x / 10) + " + " + Math.floor(y / 10) + (carry ? " + 1（进位的）" : ""), { "font-size": 14, fill: "#2b2723" }));
+      // 和超过 99 时十位还会再满 10，得再进一次位到百位——这是第 ③ 步
+      if (tens >= 10) {
+        svg.appendChild(T(sx, 212, "③ 十位又满 10 → 向百位进 1", { "font-size": 12.5, "font-weight": 700, fill: "#c4622d" }));
+      }
       vis.appendChild(svg);
 
       out.innerHTML =

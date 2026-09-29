@@ -184,8 +184,14 @@
         drawTri(480, 140, 0.7 + A / 100, 0, false);
         svg.appendChild(T(480, 235, "放大到 " + (0.7 + A / 100).toFixed(2) + " 倍", { "text-anchor": "middle", "font-size": 12, fill: "#c4622d" }));
       } else {
-        svg.appendChild(E("line", { x1: 380, y1: 60, x2: 380, y2: 220, stroke: "#c4622d", "stroke-width": 2, "stroke-dasharray": "6 4" }));
-        svg.appendChild(T(372, 54, "对称轴", { "text-anchor": "end", "font-size": 11.5, fill: "#c4622d" }));
+        // 对称轴必须是两图形的实际镜像线：两个三角形中心分别在 150 与 480+A，
+        // 形状大小相同且左右翻转，镜像轴就是两者中点 (150 + 480 + A) / 2。
+        // 原先写死 x=380，A=0 时真实轴在 315，图根本不关于所画轴对称。
+        const axisX = (150 + (480 + A)) / 2;
+        svg.appendChild(E("line", { x1: axisX, y1: 60, x2: axisX, y2: 220, stroke: "#c4622d", "stroke-width": 2, "stroke-dasharray": "6 4" }));
+        svg.appendChild(T(axisX - 8, 54, "对称轴", { "text-anchor": "end", "font-size": 11.5, fill: "#c4622d" }));
+        // 左右两端各连一条引导线，肉眼可验「到轴距离相等」
+        svg.appendChild(E("line", { x1: 195, y1: 102, x2: 480 + A - 45, y2: 102, stroke: "#c4622d", "stroke-width": 1, "stroke-dasharray": "3 3", opacity: .6 }));
         drawTri(480 + A, 140, 1, 0, true);
       }
       vis.appendChild(svg);

@@ -187,23 +187,25 @@ function run() {
     // 统计渲染出内容的关键容器（-vis / -out）
     for (const [id, el] of byId) {
       if (!/-vis$|-out$/.test(id)) continue;
+      // SVG 文字不体现在 innerHTML，必须遍历节点收集；
+      // 这段放在 has 判定之外，否则 vis 结构一变就整条被跳过
+      if (/-vis$/.test(id)) {
+        const texts = [];
+        (function walk(n) {
+          for (const c of n.children || []) {
+            const tn = String(c.tagName || c.tag || "").toLowerCase();
+            if (tn === "text") texts.push(String(c.textContent || ""));
+            else walk(c);
+          }
+        })(el);
+        const seq = texts.filter(Boolean).join(" | ");
+        if (seq) dump.push([rel + " :: " + id + " [SVG文字]", seq]);
+      }
       const has = el.children.length > 0 || String(el.innerHTML || "").length > 2 || String(el.textContent || "").trim().length > 1;
       if (has) { rendered++; hosts.add(id.replace(/-vis$|-out$/, "")); }
       if (/-out$/.test(id)) {
         const t = (el.innerHTML || el.textContent || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
         if (t) dump.push([rel + " :: " + id, t]);
-      }
-      // SVG 里的文字（刻度数字、标签）不体现在 innerHTML，必须遍历节点收集
-      if (/-vis$/.test(id)) {
-        const texts = [];
-        (function walk(n) {
-          for (const c of n.children || []) {
-            if (c.tagName === "text" || c.tag === "text") texts.push(String(c.textContent || ""));
-            else walk(c);
-          }
-        })(el);
-        const seq = texts.filter(Boolean).join(" ");
-        if (seq) dump.push([rel + " :: " + id + " [SVG文字]", seq]);
       }
     }
   }
