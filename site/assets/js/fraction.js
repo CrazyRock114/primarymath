@@ -290,7 +290,7 @@
       out.innerHTML =
         "<b>" + (shown ? "12.3" : "123") + "</b> —— 同样的三个数字 1、2、3，<strong>只因小数点位置不同，值差了 10 倍</strong>。<br>" +
         "小数点<strong>左边</strong>是「几个十、几个一」，<strong>右边</strong>是「几个十分之一、几个百分之一」。<br>" +
-        "<span style='color:#c4622d'><strong>小数点移动一位，值就差 10 倍</strong>——向右移变小，向左移变大。<br>" +
+        "<span style='color:#c4622d'><strong>小数点移动一位，值就差 10 倍</strong>——向右移变大，向左移变小。<br>" +
         "这和<a href='../pillar/number.html'>支柱一</a>的位值制<strong>完全是同一条规则</strong>，只是继续往右细分。</span>";
     }
     on("pt-d", "input", go); on("pt-mode", "input", go);

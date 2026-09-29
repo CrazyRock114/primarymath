@@ -120,8 +120,8 @@
   <p class="claim">小数点移动一位，值就差 10 倍。这不是规定，是<strong>换了一位计数单位</strong>。</p>
   <p>
     <span class="m">0.35</span> 的 3 在<strong>十分位</strong>，表示 3 个 0.1（5 才在百分位）。<br>
-    小数点<strong>左移</strong>一位 → 3 跑到<strong>十分位</strong>，变成 3 个 0.1 → <strong>变大 10 倍</strong>。<br>
-    小数点<strong>右移</strong>一位 → 3 跑到<strong>千分位</strong>，变成 3 个 0.001 → <strong>变小 10 倍</strong>。<br>
+    小数点<strong>右移</strong>一位 → 0.35 变成 3.5，3 跑到<strong>个位</strong>，变成 3 个 1 → <strong>变大 10 倍</strong>。<br>
+    小数点<strong>左移</strong>一位 → 0.35 变成 0.035，3 跑到<strong>百分位</strong>，变成 3 个 0.01 → <strong>变小 10 倍</strong>。<br>
     <em class="hl">一个数字没变，只是「站在哪一位」变了。</em>
   </p>
 </div>
@@ -129,7 +129,7 @@
 <div class="models">
   <div class="model model-bad">
     <div class="model-h">✕ 记号型理解</div>
-    <p>「小数点往左移，数变大。」</p>
+    <p><span class="err-ex">「小数点往左移，数变大。」</span></p>
     <p>后果：<strong>遇到带单位的算就错</strong>——单位没跟着变，值就全错了。孩子不知道自己漏了哪一步。</p>
   </div>
   <div class="model model-good">
@@ -171,9 +171,9 @@ window.QUIZES["b3-decimal"]={title:"小数的意义 · 5 题",qs:[
  kidSay:"小数点后面第一位是十分位。这个 3 站在十分位上，所以是 3 个十分之一。"},
 {stem:"小数点向右移动一位，数值会：",
  opts:["变大 10 倍","变小 10 倍","不变","变成原来的 100 倍"],
- answer:"B",why:"<span class='m'>0.35</span> 的 3 在<strong>十分位</strong>；小数点右移一位后，3 到了<strong>千分位</strong>，从「3 个 0.1」变成「3 个 0.001」→ <strong>变小 10 倍</strong>。数字没变，只是站的位置变了。",
- miss:"小数点<strong>往右 = 单位变得更小 = 值变小</strong>。往左才变大。",
- kidSay:"往右移，单位从十分位变千分位，每份更小了，所以总数也变小。"},
+ answer:"A",why:"<span class='m'>0.35</span> 的 3 在<strong>十分位</strong>（表示 3 个 0.1）；小数点<strong>右移</strong>一位后 0.35 变成 3.5，3 到了<strong>个位</strong>，从「3 个 0.1」变成「3 个 1」→ <strong>变大 10 倍</strong>。数字没变，只是站的位置变了。",
+ miss:"<strong>往右移 = 单位变得更大 = 值变大</strong>。0.35 的点往右挪一格就是 3.5，正好大 10 倍。往左才变小。",
+ kidSay:"0.35 把小数点往右挪一格，变成 3.5。每个 0.1 升级成 1 个一，所以总数大 10 倍。"},
 {stem:"<span class='m'>1/3</span> 化成小数是多少？为什么化不尽？",
  opts:["0.3","0.333…（循环），因为分母含 3，不是 2 和 5 的倍数","0.34","无法化"],
  answer:"B",why:"<strong>10 = 2 × 5</strong>。分母只由 2 和 5 构成，才能化成有限小数。<span class='m'>1/3</span> 的分母是 3，含其他质因数，所以<strong>除不尽，会循环</strong>。",
