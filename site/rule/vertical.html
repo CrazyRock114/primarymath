@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>大数竖式进阶 · 三位数乘两位数与除数是两位数</title>
+<meta name="description" content="大数竖式难点只有两处。小学数学底层逻辑：10">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
@@ -55,7 +57,7 @@
     <span class="m">45 = 4 个十 + 5 个一</span>。所以 <span class="m">234 × 45</span> 要拆成<strong>两块</strong>：<br>
     <em class="hl"><span class="m">234×5 + 234×4×10</span></em><br><br>
     <span class="m">234 × 4 = 936</span> 表示「<strong>40 个 234</strong>」，
-    而 <strong>40 个 234 的末位落在十位</strong> —— 因为 10 × 234 = 2340。<br>
+    而 <strong>40 个 234 的末位落在十位</strong> —— 因为 40 × 234 = 9360，正好比 234 多一位。<br>
     <strong>所以第二个部分积要左移一位。不是「好看」，是它代表的数量决定的。</strong>
   </p>
 </div>
@@ -138,7 +140,7 @@
   <p class="line">「<strong>先算范围，再试商，最后乘一次验一验。</strong>」</p>
 </div>
 
-<div class="quiz" data-quiz="b4-vertical">
+<div class="quiz" id="quiz" data-quiz="b4-vertical">
   <h3 style="margin-top:0">大数竖式 · 5 题</h3>
 </div>
 
@@ -157,10 +159,10 @@
 window.QUIZES=window.QUIZES||{};
 window.QUIZES["b4-vertical"]={title:"大数竖式 · 5 题",qs:[
 {stem:"<span class='m'>234 × 45</span> 的竖式中，第二个部分积 <span class='m'>234×4=936</span> 为什么要末位对齐十位？",
- opts:["为了好看","因为 4 在十位上，它表示 40 个 234，而 40×234=2340，末位落在十位","因为 936 比 1170 小","因为要留进位的位置"],
- answer:"B",why:"<strong>部分积要对齐它代表的计数单位</strong>。用十位 4 去乘，表示「40 个 234」= 2340，末位在十位。<strong>对齐的是位置，不是排版</strong>。",
- miss:"<strong>4 在十位，代表的是 40 个 234</strong>。40×234=2340，所以末位要对十位。",
- kidSay:"你用十位的 4 去除，表示 40 个 234。40 个 234 是 2340，它的末位就在十位上。"},
+ opts:["为了好看","因为 4 在十位上，它表示 40 个 234，而 40×234=9360，末位落在十位","因为 936 比 1170 小","因为要留进位的位置"],
+ answer:"B",why:"<strong>部分积要对齐它代表的计数单位</strong>。用十位 4 去乘，表示「40 个 234」= 9360，末位在十位。<strong>对齐的是位置，不是排版</strong>。",
+ miss:"<strong>4 在十位，代表的是 40 个 234</strong>。40×234=9360，所以末位要对十位。",
+ kidSay:"你用十位的 4 去除，表示 40 个 234。40 个 234 是 9360，它的末位就在十位上。"},
 {stem:"<span class='m'>96 ÷ 24</span> 试商时，商的个位可能的取值范围是：",
  opts:["0 到 9","1 到 4（因为 5×24=120 已经超过 96）","只能是 4","可以是任何一位数"],
  answer:"B",why:"<strong>试商要满足「乘积不超过被除数」</strong>：5×24=120 > 96，所以商不能 ≥5。范围缩小到 <strong>1~4</strong>，<strong>再逐一试</strong>，试商就变成了 4。",

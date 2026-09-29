@@ -99,10 +99,11 @@
         svg.appendChild(T(330, 99, "两块之和", { "font-size": 12, "font-weight": 700, fill: "#2f6b52" }));
       } else if (mode.value === "2" || mode.value === "3") {
         // 乘法定律画的是「a 排、每排 b 个」的阵列，不是相加的小棒
+        // 行距收到 18px、高度 13px：7 排（结合律）才不会超出 viewBox 高度被裁掉
         const grid = (x0, rows, per, color) => {
           for (let r = 0; r < rows; r++)
             for (let i = 0; i < per; i++)
-              svg.appendChild(E("rect", { x: x0 + i * 16, y: 40 + r * 22, width: 11, height: 16, rx: 2, fill: color, opacity: .82 }));
+              svg.appendChild(E("rect", { x: x0 + i * 16, y: 40 + r * 18, width: 11, height: 13, rx: 2, fill: color, opacity: .82 }));
         };
         if (mode.value === "2") {
           // 交换律：3 排每排 5 个  vs  5 排每排 3 个
@@ -112,12 +113,13 @@
           svg.appendChild(T(280, 150, "5 排 × 每排 3 个", { "text-anchor": "middle", "font-size": 12, fill: "#5c554d" }));
           svg.appendChild(T(400, 90, "格数一样：3 × 5 = 5 × 3 = 15", { "font-size": 14, "font-weight": 700, fill: "#2f6b52" }));
         } else {
-          // 结合律：先 3 排每排 5 个（15 个），再打包成 7 份每份 15
+          // 结合律：先 3 排每排 5 个（15 个），再打包成 7 份每份 15 个（105 个）
           grid(60, a, b, "#6aa287");
           svg.appendChild(T(100, 150, "先打包：3 排 × 每排 5 个 = 15 个", { "text-anchor": "middle", "font-size": 12, fill: "#5c554d" }));
-          grid(240, c, a * b > 14 ? 14 : a * b, "#c4622d");
-          svg.appendChild(T(320, 150, "再打包：7 份 × 每份 15 个 = 105 个", { "text-anchor": "middle", "font-size": 12, fill: "#5c554d" }));
-          svg.appendChild(T(500, 90, "总数不变：(3×5)×7 = 3×(5×7)", { "font-size": 13, "font-weight": 700, fill: "#2f6b52" }));
+          grid(240, c, a * b, "#c4622d");
+          svg.appendChild(T(350, 150, "再打包：7 份 × 每份 15 个 = 105 个", { "text-anchor": "middle", "font-size": 12, fill: "#5c554d" }));
+          svg.appendChild(T(520, 90, "总数不变", { "font-size": 13, "font-weight": 700, fill: "#2f6b52" }));
+          svg.appendChild(T(520, 110, "(3×5)×7 = 3×(5×7)", { "font-size": 12, fill: "#2f6b52" }));
         }
       } else {
         drawRows(70, "A", [a], "#6aa287");

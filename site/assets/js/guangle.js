@@ -125,14 +125,15 @@
   function jiheDemo() {
     const host = $("jh-demo"); if (!host) return;
     const out = $("jh-out"), vis = $("jh-vis");
-    const aIn = $("jh-a"), bIn = $("jh-b");
+    const aIn = $("jh-a"), bIn = $("jh-b"), bothIn = $("jh-both");
     let A = 5, B = 4, both = 2;
 
     function go() {
       A = +aIn.value; B = +bIn.value;
-      // 保证 both 合法
-      if (both > Math.min(A, B)) both = Math.min(A, B);
-      bIn.max = Math.min(A, B);
+      // 重叠数必须读滑块：原先写死 both=2，拖动「重叠」滑块毫无反应
+      both = Math.max(0, Math.min(+bothIn.value, A, B));
+      bothIn.value = both;
+      bothIn.max = Math.min(A, B);
       vis.innerHTML = "";
       const svg = el("svg", { viewBox: "0 0 640 260", width: "100%" });
       const onlyA = A - both, onlyB = B - both;
@@ -291,7 +292,7 @@
     function go() {
       const L = +lenIn.value, g = +gapIn.value;
       const gaps = Math.floor(L / g);
-      const modes = { "0": gaps + 1, "1": gaps, "2": gaps > 0 ? gaps - 1 : 0, "3": gaps > 1 ? gaps * 2 : 0 };
+      const modes = { "0": gaps + 1, "1": gaps, "2": gaps > 0 ? gaps - 1 : 0, "3": gaps };
       const m = r.value, n = modes[m];
       vis.innerHTML = "";
       const svg = el("svg", { viewBox: "0 0 640 160", width: "100%" });
@@ -331,7 +332,7 @@
         (m === "0" ? "关键：<b>棵数 = 间隔数 + 1</b>。因为每一个坑旁边都有树，但<strong>两个端点的坑也各有一棵</strong>——数间隔时会漏掉最后那棵。"
           : m === "1" ? "<b>棵数 = 间隔数</b>。种一端，就是每个坑上站一棵树。"
           : m === "2" ? "<b>棵数 = 间隔数 − 1</b>。两端都不种，端点那两个坑是空的。"
-          : "<b>棵数 = 间隔数 × 2</b>。围成一圈时，<strong>最后一个坑和第一个坑挨着</strong>，每个坑都能站两棵。") +
+          : "<b>棵数 = 间隔数</b>。围成一圈时<strong>没有首尾之分</strong>——最后一个间隔的终点就是第一个坑，转一圈正好一坑一树。") +
         "<br><span style='color:#c4622d'><strong>先问「两端种不种」，再决定用哪个式子」——90% 的错都出在没问这一句。</span>";
     }
     [lenIn, gapIn, r].forEach(e => e && e.addEventListener("input", () => { rv.textContent = r.value ? r.options[r.selectedIndex].text : ""; go(); }));

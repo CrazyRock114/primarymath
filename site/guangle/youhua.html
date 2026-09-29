@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>优化 · 统筹安排</title>
+<meta name="description" content="优化洗锅那 20 秒，能不能不白等？。小学数学底层逻辑：18">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
@@ -52,7 +54,7 @@
   <p class="demo-hint">拖动洗锅时间。仔细看<strong>两条时间条</strong>——串行的和统筹后的，哪一段被重叠掉了？</p>
   <div class="demo-stage"><div id="yh-vis"></div></div>
   <div class="demo-ctrl">
-    <label>洗锅</label><input type="range" id="yh-r" min="1" max="6" value="2"><span class="val">2</span>分钟
+    <label>洗锅</label><input type="range" id="yh-r" min="1" max="6" value="2"><span class="val" id="yh-rv">2</span>分钟
   </div>
   <div class="demo-out" id="yh-out"></div>
 </div>
@@ -110,7 +112,7 @@
   <strong>都是一句话：不要让资源闲置。</strong>
 </div>
 
-<div class="quiz" data-quiz="gl-youhua">
+<div class="quiz" id="quiz" data-quiz="gl-youhua">
   <h3 style="margin-top:0">优化 · 5 题</h3>
 </div>
 

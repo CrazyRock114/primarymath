@@ -193,6 +193,18 @@ function run() {
         const t = (el.innerHTML || el.textContent || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
         if (t) dump.push([rel + " :: " + id, t]);
       }
+      // SVG 里的文字（刻度数字、标签）不体现在 innerHTML，必须遍历节点收集
+      if (/-vis$/.test(id)) {
+        const texts = [];
+        (function walk(n) {
+          for (const c of n.children || []) {
+            if (c.tagName === "text" || c.tag === "text") texts.push(String(c.textContent || ""));
+            else walk(c);
+          }
+        })(el);
+        const seq = texts.filter(Boolean).join(" ");
+        if (seq) dump.push([rel + " :: " + id + " [SVG文字]", seq]);
+      }
     }
   }
   return { errors, hosts: hosts.size, pages, rendered, dump };

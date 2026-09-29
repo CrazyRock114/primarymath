@@ -27,6 +27,8 @@
     function go() {
       const D = +d.value, N = +n.value;
       dv.textContent = CN[D] || D; nv.textContent = CN[N] || N;
+      // 每次重绘前清空，否则拖动滑块 SVG 节点会无限叠加
+      vis.innerHTML = "";
       const W = 640, H = 190;
       const svg = E("svg", { viewBox: "0 0 " + W + " " + H, width: "100%" });
       const shape = +($("bd-shape").value);

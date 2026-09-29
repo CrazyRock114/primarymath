@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://primarymath.vercel.app/sitemap.xml

@@ -75,6 +75,9 @@
     const id = host.getAttribute("data-quiz");
     const def = (window.QUIZES || {})[id];
     if (!def) { host.innerHTML = '<p class="note">题目未定义：' + id + "</p>"; return; }
+    // 各页目录都有 <a href="#quiz">练一练</a>，容器却没声明 id，点击是死锚。
+    // 在这里统一补上，比逐页改 45 个 HTML 更可靠。
+    if (!host.id) host.id = "quiz";
 
     const saved = loadProgress()[id];
     let answered = 0, right = 0;
@@ -129,9 +132,10 @@
       host.querySelector('[data-score]').textContent = saved.right;
     }
 
-    bind(host, def, id, function (n, r) {
-      answered = n; right = r;
-      host.querySelector('[data-score]').textContent = r;
+    bind(host, def, id, function (ok, done) {
+      answered = done; right = ok;
+      // 计分条必须显示「答对数」——原先写的是 done(已作答数)，做错题也照样 +1
+      host.querySelector('[data-score]').textContent = ok;
     });
   }
 

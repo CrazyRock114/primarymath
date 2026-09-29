@@ -35,8 +35,15 @@ for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
     s = open(p, encoding="utf-8").read(); base = os.path.dirname(p)
     for m2 in re.finditer(r'(?:href|src)="([^"#][^"]*)"', s):
         u = m2.group(1)
-        if u.startswith(("http", "mailto", "data:")): continue
-        if not os.path.exists(os.path.normpath(os.path.join(base, u.split("#")[0]))):
+        if u.startswith(("http", "mailto:", "data:", "//")): continue
+        target = u.split("#")[0]
+        if not target: continue
+        # 以 / 开头的是站点根绝对路径：站点部署在域名根，/favicon.svg 就是 site/favicon.svg
+        if target.startswith("/"):
+            resolved = os.path.join(SITE, target.lstrip("/"))
+        else:
+            resolved = os.path.join(base, target)
+        if not os.path.exists(os.path.normpath(resolved)):
             print(f"  ✗ {os.path.relpath(p, SITE)} -> {u}"); bad += 1
 print("  ✅ 无断链" if bad == n0 else "")
 
@@ -59,6 +66,18 @@ for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
             print(f"  ✗ {rel} 第{i+1}题 缺 {','.join(lost)}  | {txt}")
             bad += 1
 print("  ✅ 每题字段齐全" if bad == n0 else "")
+
+print("\n" + "=" * 60); print("5) 目录死锚（TOC 的 #锚点必须有对应 id）"); print("=" * 60)
+n0 = bad
+for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
+    s = open(p, encoding="utf-8").read()
+    toc = re.search(r'<div class="toc"[\s\S]*?</ol>', s)
+    if not toc: continue
+    ids = set(re.findall(r'id="([^"]+)"', s))
+    for a in sorted(set(re.findall(r'href="#([^"]+)"', toc.group(0)))):
+        if a not in ids:
+            print(f"  ✗ {os.path.relpath(p, SITE)} 目录 #{a} 无对应 id"); bad += 1
+print("  ✅ 无死锚" if bad == n0 else "")
 
 print("\n" + "=" * 60)
 print(f"结论: {'✅ 全部通过' if bad == 0 else f'✗ {bad} 处问题'}")

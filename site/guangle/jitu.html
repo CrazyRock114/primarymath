@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>鸡兔同笼 · 假设法</title>
+<meta name="description" content="鸡兔同笼不是算术题，是假设法的第一课。小学数学底层逻辑：18">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
@@ -105,8 +107,8 @@
 <div class="stage stage-pain">
   <span class="stage-tag">先看痛点</span>
   <p style="margin:0">
-    孩子学会了「假设全是鸡」，遇到「20 个头，100 条腿」照样懵——
-    因为假设全是鸡算出 40 条，比实际的 100 条<strong>少</strong>，越调越不够。
+    孩子学会了「假设全是鸡」，遇到「20 个头，76 条腿」照样懵——
+    因为假设全是鸡算出 40 条，比实际的 76 条<strong>少</strong>，要换成兔才够。
   </p>
 </div>
 
@@ -116,7 +118,7 @@
   <p>
     如果实际腿数<strong>比全鸡还多</strong>（鸡不可能有那么多腿），
     那就反着来：<strong>假设全是兔</strong>。<br>
-    20 × 4 = 80 条腿，比 100 少 20 条。每换 1 只兔成鸡，<strong>少 2 条</strong>，20÷2 = 10 只鸡。<br>
+    20 × 4 = 80 条腿，比 76 多 4 条。每换 1 只兔成鸡，<strong>少 2 条</strong>，4÷2 = 2 只鸡。<br>
     <strong>无论哪边好算，就假设哪边。</strong>
   </p>
 </div>
@@ -130,7 +132,7 @@
   </p>
 </div>
 
-<div class="quiz" data-quiz="gl-jitu">
+<div class="quiz" id="quiz" data-quiz="gl-jitu">
   <h3 style="margin-top:0">鸡兔同笼 · 5 题</h3>
 </div>
 
@@ -157,9 +159,9 @@ window.QUIZES["gl-jitu"]={title:"鸡兔同笼 · 5 题",qs:[
  answer:"B",why:"假设全鸡：20×2=40 条，比实际<strong>少 16 条</strong>。每换 1 只鸡成兔多 2 条腿，所以兔 = 16÷2 = <strong>8 只</strong>，鸡 = 20−8 = <strong>12 只</strong>。",
  miss:"兔是 8 只，鸡是 <b>20 − 8 = 12 只</b>。别把两个数搞反了。",
  kidSay:"兔算出来是 8 只，那鸡呢？总共 20 只，鸡就是 20 减 8 等于 12 只。"},
-{stem:"「20 个头、100 条腿」用假设法应该怎么开始？",
+{stem:"「20 个头、76 条腿」用假设法应该怎么开始？",
  opts:["假设全是鸡","假设全是兔","随便假设","这题无解"],
- answer:"B",why:"假设全鸡得 20×2=40 条，比实际 100 <strong>少很多</strong>，说明鸡不可能这么多腿。这时该反着假设<strong>全是兔</strong>：20×4=80，比 100 少 20，每只兔换鸡少 2 条腿，20÷2=10 只鸡。",
+ answer:"B",why:"假设全鸡得 20×2=40 条，比实际 76 <strong>少 36 条</strong>，腿不够。这时该反着假设<strong>全是兔</strong>：20×4=80，比 76 多 4，每换 1 只兔成鸡少 2 条腿，4÷2=2 只鸡，兔 = 18 只。",
  miss:"关键是<strong>方向</strong>。实际腿比全鸡还多，说明该往「腿多」那边假设——<b>假设全是兔</b>。",
  kidSay:"如果假装全是鸡，腿只有 40 条，比实际少太多了。这说明假设的方向反了，应该假装全是兔。"},
 {stem:"为什么假设法只换算一次就够了，不像试算要反复试很多次？",

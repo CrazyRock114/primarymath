@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>植树问题 · 边界条件</title>
+<meta name="description" content="植树问题整条马路只差一棵树。小学数学底层逻辑：13">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
@@ -106,7 +108,7 @@
 <tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>两端都种</strong></td><td style="padding:11px 16px">间隔数 + 1</td><td style="padding:11px 16px;color:var(--ink-soft)">每段起点有树，末尾多一棵树</td></tr>
 <tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>只种一端</strong></td><td style="padding:11px 16px">间隔数</td><td style="padding:11px 16px;color:var(--ink-soft)">一端种，另一端不种</td></tr>
 <tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>两端都不种</strong></td><td style="padding:11px 16px">间隔数 − 1</td><td style="padding:11px 16px;color:var(--ink-soft)">两头空着，少了两棵</td></tr>
-<tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>围成一圈</strong></td><td style="padding:11px 16px">间隔数 × 2</td><td style="padding:11px 16px;color:var(--ink-soft)">每个坑两侧各站一棵</td></tr>
+<tr style="border-top:1px solid var(--line-soft)"><td style="padding:11px 16px"><strong>围成一圈</strong></td><td style="padding:11px 16px">间隔数</td><td style="padding:11px 16px;color:var(--ink-soft)">围成一圈没有首尾，最后一个间隔的终点就是第一个坑，一坑一树</td></tr>
 </tbody>
 </table>
 </div>
@@ -154,7 +156,7 @@
   </p>
 </div>
 
-<div class="quiz" data-quiz="gl-zhishu">
+<div class="quiz" id="quiz" data-quiz="gl-zhishu">
   <h3 style="margin-top:0">植树问题 · 5 题</h3>
 </div>
 

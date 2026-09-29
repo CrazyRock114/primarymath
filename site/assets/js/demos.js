@@ -130,23 +130,25 @@ var el = function (n, a) {
 
       const n = L.n;
       const step = n === 1 ? 0 : Lw / (n - (n === 2 ? 1 : 1));
-      // 均匀刻度
+      // 均匀刻度：n 等分对应 n+1 个刻度点（0, 1/n, 2/n, ..., 1）
+      // 原先循环 i < parts 且除以 (parts-1)：10 等分只画 10 个点、中点算成 5/9≈0.6，
+      // 且 n=1 时分母为 0 直接产生 NaN
       const parts = n;
-      for (let i = 0; i < parts; i++) {
-        const x = x0 + (Lw * i) / (parts - 1);
-        const isEnd = i === 0 || i === parts - 1;
-        const key = (i === 0) ? 0 : (i === parts - 1) ? 1 : null;
+      for (let i = 0; i <= parts; i++) {
+        const x = x0 + (Lw * i) / parts;
+        const isEnd = i === 0 || i === parts;
         svg.appendChild(el("line", {
           x1: x, y1: y - (isEnd ? 11 : 6), x2: x, y2: y + (isEnd ? 11 : 6),
           stroke: isEnd ? "#2b2723" : "#6aa287", "stroke-width": isEnd ? 2.5 : 1.5,
         }));
         if (parts <= 10 || isEnd) {
-          const v = key !== null ? key : (i / (parts - 1)).toFixed(k >= 3 ? (k === 3 ? 1 : 2) : 1);
+          const frac = i / parts;
+          const v = isEnd ? String(frac) : frac.toFixed(k >= 3 ? (k === 3 ? 1 : 2) : 2).replace(/0+$/, "").replace(/\.$/, "");
           const t = el("text", {
             x: x, y: y - 18, "text-anchor": "middle", "font-size": isEnd ? 15 : 11.5,
             fill: isEnd ? "#2b2723" : "#6aa287", "font-weight": isEnd ? 700 : 400,
           });
-          t.textContent = isEnd ? v : (k >= 3 ? v.replace(/0+$/, "") : v);
+          t.textContent = v;
           svg.appendChild(t);
         }
       }
@@ -179,9 +181,11 @@ var el = function (n, a) {
     const r = document.getElementById("temp-range");
     const out = document.getElementById("temp-out");
     const vis = document.getElementById("temp-vis");
+    const rv = document.getElementById("temp-val");   // 滑块旁的读数，原先没接线恒为空
 
     function go() {
       const t = +r.value;
+      if (rv) rv.textContent = t + "℃";
       const H = 220, cx = 130, top = 16, bot = H - 16, mid = (top + bot) / 2;
       const sc = (bot - top) / 44; // -22..22
       const y = mid - t * sc;
@@ -346,8 +350,10 @@ function unitDemo() {
       svg.appendChild(sym);
       // 级间关系标注
       if (i > 0) {
+        // 进率不能写死：千米→米 是 1000，其余相邻级才是 10
+        const rate = U[i - 1].f / U[i].f;
         const rel = el("text", { x: W / 2 + 40, y: y + 12, "text-anchor": "middle", "font-size": 12, fill: "#c4622d", "font-weight": 600 });
-        rel.textContent = "↓ 上一级 ÷ 10";
+        rel.textContent = "↓ 上一级 ÷ " + (Number.isInteger(rate) ? rate : rate.toFixed(3).replace(/0+$/, "").replace(/\.$/, ""));
         svg.appendChild(rel);
       }
     });
