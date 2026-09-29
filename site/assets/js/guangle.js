@@ -87,18 +87,23 @@
 
     // 枚举全部 4!=24 种分配，保留满足「已勾线索」的解。
     // 某个人在所有存活解里颜色一致 → 这个人被确定了。
-    function analyze(idxs) {
-      const alive = [];
-      for (let p = 0; p < 24; p++) {
-        const a = [];
-        let rest = p, used = 0;
-        for (let i = 0; i < 4; i++) {
-          let bit = rest % 4; rest = (rest - bit) / 4;
-          while (used & (1 << bit)) bit = (bit + 1) % 4;
-          used |= 1 << bit; a.push(bit);
+    //
+    // 排列生成必须用标准算法：早先用 `p % 4` 取四进制位，
+    // 0~23 的四进制里会出现 4/5 这类非法下标，补位后又产生重复，
+    // 24 条里只有 15 个不同排列、漏掉 9 个真实排列，所有计数都是错的。
+    const ALL_PERMS = (() => {
+      const out = [];
+      (function perm(arr, cur) {
+        if (!arr.length) { out.push(cur.slice()); return; }
+        for (let i = 0; i < arr.length; i++) {
+          perm(arr.slice(0, i).concat(arr.slice(i + 1)), cur.concat(arr[i]));
         }
-        if (a.every((v, i) => new Set(a).size === 4) && idxs.every((k) => CLUES[k].ok(a))) alive.push(a);
-      }
+      })([0, 1, 2, 3], []);
+      return out;
+    })();
+
+    function analyze(idxs) {
+      const alive = ALL_PERMS.filter((a) => idxs.every((k) => CLUES[k].ok(a)));
       const fixed = NAMES.map((_, i) => {
         const set = new Set(alive.map((a) => a[i]));
         return set.size === 1 ? [...set][0] : null;
@@ -140,6 +145,9 @@
       btn.addEventListener("click", () => { solved = true; build(); });
       box.appendChild(btn);
       vis.appendChild(box);
+      // 关键：重建面板后必须重算结论文字。原先只调 build() 不调 show()，
+      // 勾选框会变 ☑/☐ 但「已勾 N 条」永远停在 0。
+      show();
     }
 
     function show() {
@@ -185,7 +193,6 @@
     }
 
     build();
-    show();
   }
   function jiheDemo() {
     const host = $("jh-demo"); if (!host) return;

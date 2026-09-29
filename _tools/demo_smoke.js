@@ -83,6 +83,13 @@ function buildDoc(html) {
     const [, tag, a1, id, a2] = m;
     const el = new El(tag);
     const attrs = a1 + a2;
+    // 捕获元素内文本，供 --click 按按钮文字匹配（HTML 里的 <button>文字不���属性）
+    {
+      const close = html.indexOf("</" + tag + ">", m.index);
+      const inner = close > 0 ? html.slice(m.index, close) : "";
+      const txt = inner.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+      if (txt) el._htmlText = txt;
+    }
     for (const am of attrs.matchAll(/([\w-]+)="([^"]*)"/g)) {
       el.attrs[am[1]] = am[2];
       if (am[1] === "value") el.value = am[2];
@@ -184,6 +191,28 @@ function run() {
       catch (e) { errors.push({ rel, where: s, msg: e.message }); }
     }
 
+    // 派发 click：浏览器工具的滚动/点击不稳时，用它验证交互接线
+    if (process.argv.includes("--click")) {
+      const want = process.argv[process.argv.indexOf("--click") + 1] || "";
+      const times = +(process.argv[process.argv.indexOf("--click") + 2] || 1);
+      let hits = 0;
+      const tryFire = (c) => {
+        if (!c || !c.listeners || !c.listeners.click) return false;
+        const probe = String(c.textContent || "") + " " + String(c.innerHTML || "") + " " + String(c._htmlText || "");
+        if (want && probe.indexOf(want) < 0) return false;
+        for (let k = 0; k < times; k++) (c.listeners.click || []).forEach((f) => f.call(c, { target: c }));
+        return true;
+      };
+      for (const [, root] of byId) {
+        // byId 是 Map 不是 DOM 树，按钮本身要单独试，再递归子节点
+        if (tryFire(root)) hits++;
+        (function walk(n) {
+          for (const c of n.children || []) { if (tryFire(c)) hits++; walk(c); }
+        })(root);
+      }
+      dump.push([rel + " :: CLICK", `点击「${want}」×${times} → 命中 ${hits} 个元素`]);
+    }
+
     // 统计渲染出内容的关键容器（-vis / -out）
     for (const [id, el] of byId) {
       if (!/-vis$|-out$/.test(id)) continue;
@@ -257,7 +286,7 @@ function runAllModes() {
 const ALL = process.argv.includes("--all-modes");
 const res = ALL ? runAllModes() : run();
 const { errors, hosts, pages, rendered, dump, modeCount } = res;
-if (process.argv[3] === "--dump") {
+  if (process.argv[3] === "--dump") {
   for (const [k, v] of [...dump].sort()) console.log(`@@ ${k}\n${v}\n`);
   process.exit(0);
 }
