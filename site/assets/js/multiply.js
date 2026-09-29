@@ -250,12 +250,14 @@
           svg.appendChild(E("circle", { cx: x + (k % 2) * 22 + 10, cy: 60 + Math.floor(k / 2) * 24 + 10, r: 9, fill: "#6aa287", stroke: "#fff", "stroke-width": 1.5 }));
         svg.appendChild(T(x + 21, 60 + each * 24 + 34, "第" + (i + 1) + " 份", { "text-anchor": "middle", "font-size": 11, fill: "#8d857a" }));
       }
-      // 剩余
+      // 剩余：圆个数必须等于实际余数，原先固定画 2 个，rem=3 时图文矛盾
       if (rem > 0) {
         const x = outX + n * (boxW + gap);
-        svg.appendChild(E("circle", { cx: x + 10, cy: 70, r: 9, fill: "#c4622d" }));
-        svg.appendChild(E("circle", { cx: x + 32, cy: 70, r: 9, fill: "#c4622d" }));
-        svg.appendChild(T(x + 21, 60 + each * 24 + 34, "剩 " + rem, { "text-anchor": "middle", "font-size": 12, fill: "#c4622d", "font-weight": 700 }));
+        for (let k = 0; k < rem; k++)
+          svg.appendChild(E("circle", { cx: x + 10 + (k % 3) * 22, cy: 70 + Math.floor(k / 3) * 24, r: 9, fill: "#c4622d" }));
+        const cols = Math.min(rem, 3);
+        svg.appendChild(T(x + 10 + ((cols - 1) * 22) / 2, 60 + each * 24 + 34, "剩 " + rem,
+          { "text-anchor": "middle", "font-size": 12, fill: "#c4622d", "font-weight": 700 }));
       }
       vis.appendChild(svg);
 

@@ -275,9 +275,28 @@
     function go() {
       const x = +a.value, y = +b.value;
       av.textContent = x; bv.textContent = y;
+      vis.innerHTML = "";
+
+      // 退位是「不够减时向高位借」，前提是被减数 >= 减数。
+      // 少了这道守卫，20 − 48 会画出「十位 1 − 4 = −3」——小学阶段不该出现负数借位。
+      if (x < y) {
+        const svg0 = E("svg", { viewBox: "0 0 640 250", width: "100%" });
+        const t1 = T(320, 96, "这组数还不用退位", { "text-anchor": "middle", "font-size": 18, "font-weight": 700, fill: "#c4622d" });
+        const t2 = T(320, 128, "被减数 " + x + " 比减数 " + y + " 小", { "text-anchor": "middle", "font-size": 14, fill: "#5c554d" });
+        const t3 = T(320, 152, "退位是「个位不够减，向十位借一个十」——只有够减的时候才用得上", { "text-anchor": "middle", "font-size": 13.5, fill: "#8d857a" });
+        const t4 = T(320, 176, "把被减数调大到 " + y + " 以上再来试", { "text-anchor": "middle", "font-size": 13, fill: "#8d857a" });
+        [t1, t2, t3, t4].forEach((t) => svg0.appendChild(t));
+        vis.appendChild(svg0);
+        out.innerHTML =
+          "<b>" + x + " − " + y + "</b> 暂时不用退位。<br>" +
+          "<strong>被减数（" + x + "）比减数（" + y + "）小</strong>，这不是退位能解决的。<br>" +
+          "<span style='color:#c4622d'><strong>退位的定义是「个位不够减，从十位借 1 个十」。</strong>" +
+          "够减才需要退位；不够减属于「不够减就换更大的被减数」，两回事。</span>";
+        return;
+      }
+
       const need = x % 10 < y % 10;
       const res = x - y;
-      vis.innerHTML = "";
       const svg = E("svg", { viewBox: "0 0 640 250", width: "100%" });
       const bx = 80, bw = 20, gap = 5, y0 = 45;
 

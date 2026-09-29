@@ -20,14 +20,21 @@
     const host = $("or-demo"); if (!host) return;
     const vis = $("or-vis"), out = $("or-out");
     const mode = $("or-mode");
+    // 步骤结构由表达式本身推导，不再手写标志位——
+    // 原先手写的 tree 把「36 + 24 × 2」标成没有乘除，文案与题目自相矛盾。
     const CASES = {
-      0: { e: "36 + 24 × 2", ans: 84, tree: [1, 0, 1] },
-      1: { e: "(36 + 24) × 2", ans: 120, tree: [0, 1, 1] },
-      2: { e: "36 ÷ 2 + 24", ans: 42, tree: [1, 0, 1] },
-      3: { e: "[(36 + 24) × 2] ÷ 5", ans: 24, tree: [0, 0, 1] },
+      0: { e: "36 + 24 × 2", ans: 84 },
+      1: { e: "(36 + 24) × 2", ans: 120 },
+      2: { e: "36 ÷ 2 + 24", ans: 42 },
+      3: { e: "[(36 + 24) × 2] ÷ 5", ans: 24 },
     };
+    const hasParens = (e) => /[(\[]/.test(e);
+    const hasMulDiv = (e) => /[×÷*/]/.test(e);
+    const hasAddSub = (e) => /[+\-]/.test(e);
     function go() {
       const c = CASES[mode.value];
+      // 步骤条用的层级结构，同样从表达式推导，避免与文案各说各话
+      c.tree = [hasParens(c.e) ? 0 : 1, hasMulDiv(c.e) ? 1 : 0, hasAddSub(c.e) ? 1 : 0];
       vis.innerHTML = "";
       const W = 640, H = 200;
       const svg = E("svg", { viewBox: "0 0 " + W + " " + H, width: "100%" });
@@ -45,12 +52,14 @@
       vis.appendChild(svg);
       out.innerHTML =
         "<b>" + c.e + " = " + c.ans + "</b><br>" +
-        (c.tree[0] === 0
+        (hasParens(c.e)
           ? "这一题<strong>有括号</strong>，所以<strong>第一步是括号里的</strong>，哪怕里面是加减也要先算。<br>"
           : "这一题<strong>没有括号</strong>，直接进入第二步：<strong>先乘除，后加减</strong>。<br>") +
-        (c.tree[1] === 1
-          ? "有乘除 → <strong>先算乘除</strong>。<br>"
+        (hasMulDiv(c.e)
+          ? "有乘除 → <strong>先算乘除</strong>。本题的 <span class='m'>" +
+            (c.e.match(/[×÷]/g) || []).join("、") + "</span> 就要先解决。<br>"
           : "没有乘除 → <strong>直接算加减</strong>。<br>") +
+        (hasAddSub(c.e) ? "有加减 → 最后合并。<br>" : "") +
         "<span style='color:#c4622d'><strong>顺序只有三层：括号 → 乘除 → 加减。</strong><br>" +
         "孩子记不住，根因是<strong>不知道每一层在干什么</strong>——其实每层都是「先做更紧的」。</span>";
     }
@@ -86,8 +95,33 @@
         });
         svg.appendChild(T(x0 - 12, 40 + rows.length * 13, label, { "text-anchor": "end", "font-size": 13, fill: "#5c554d" }));
       };
-      if (mode.value === "4") {
-        // 分配律：两个长方形拼成一个大长方形
+      if (mode.value === "1") {
+        // 加法结合律：(3+5)+8 与 3+(5+8) —— 同样是 16 根小棒，只是「先合哪两堆」不同。
+        // 原先没有 mode 1 分支，会掉进通用加法分支，把结合律画成交换律。
+        const bar = (x0, y, rows, color, label) => {
+          for (let r = 0; r < rows; r++)
+            for (let i = 0; i < rows; i++)
+              svg.appendChild(E("rect", { x: x0 + i * 16, y: y + r * 26, width: 11, height: 20, rx: 2, fill: color, opacity: .82 }));
+          svg.appendChild(T(x0 - 10, y + rows * 13, label, { "text-anchor": "end", "font-size": 12, fill: "#5c554d" }));
+        };
+        const total = a + b + c;
+        svg.appendChild(T(70, 26, "① 先合左边两堆：(3+5)+8", { "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: "#2f6b52" }));
+        bar(110, 40, a, "#6aa287", "3");
+        svg.appendChild(T(180, 66, "+", { "text-anchor": "middle", "font-size": 15, fill: "#8d857a" }));
+        bar(210, 40, b, "#c4622d", "5");
+        svg.appendChild(T(280, 66, "+", { "text-anchor": "middle", "font-size": 15, fill: "#8d857a" }));
+        bar(310, 40, c, "#8a5a2b", "8");
+        svg.appendChild(T(400, 66, "= " + total, { "text-anchor": "middle", "font-size": 15, "font-weight": 700, fill: "#2f6b52" }));
+        svg.appendChild(T(240, 126, "② 先合右边两堆：3+(5+8)", { "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: "#2f6b52" }));
+        bar(110, 140, a, "#6aa287", "3");
+        svg.appendChild(T(180, 166, "+", { "text-anchor": "middle", "font-size": 15, fill: "#8d857a" }));
+        bar(210, 140, b, "#c4622d", "5");
+        svg.appendChild(T(280, 166, "+", { "text-anchor": "middle", "font-size": 15, fill: "#8d857a" }));
+        bar(310, 140, c, "#8a5a2b", "8");
+        svg.appendChild(T(400, 166, "= " + total, { "text-anchor": "middle", "font-size": 15, "font-weight": 700, fill: "#2f6b52" }));
+        svg.appendChild(T(510, 110, "合的顺序不同", { "font-size": 12.5, fill: "#8d857a" }));
+        svg.appendChild(T(510, 128, "总数一样：" + total, { "font-size": 13.5, "font-weight": 700, fill: "#2f6b52" }));
+      } else if (mode.value === "4") {
         svg.appendChild(E("rect", { x: 60, y: 40, width: 200, height: 60, fill: "#e8f1ec", stroke: "#2f6b52", "stroke-width": 2 }));
         svg.appendChild(E("rect", { x: 60, y: 100, width: 120, height: 40, fill: "#f3efe7", stroke: "#cfc7ba", "stroke-width": 2 }));
         svg.appendChild(E("rect", { x: 180, y: 100, width: 80, height: 40, fill: "#c4622d", opacity: .55, stroke: "#c4622d", "stroke-width": 2 }));
@@ -231,8 +265,8 @@
       vis.appendChild(svg);
       out.innerHTML =
         "<b>" + A + " × " + B + " = " + (A * B) + "</b><br>" +
-        (step < 1 ? "第一步：<strong>用第二个因数的个位 5 去除</strong> → " + A + " × 5 = " + p0 + "<br>"
-          : step < 2 ? "<b>① 已写出：" + A + " × 5 = " + p0 + "</b>（" + A + " 个一乘 5）<br>下一步：用十位 4 去除。<br>"
+        (step < 1 ? "第一步：<strong>用第二个因数的个位 5 去乘</strong> → " + A + " × 5 = " + p0 + "<br>"
+          : step < 2 ? "<b>① 已写出：" + A + " × 5 = " + p0 + "</b>（" + A + " 个一乘 5）<br>下一步：用十位 4 去乘。<br>"
             : step < 3 ? "<b>② 已写出：" + A + " × 4 = " + p1 + "</b>，但它<strong>表示 40 个 " + A + "</strong>，<br>所以<strong>末位要和十位对齐</strong>（左移一位）。<br>下一步：两行相加。<br>"
               : "<b>两行相加：</b>" + p0 + " + " + (p1 * 10) + " = <b>" + (A * B) + "</b><br>" +
                 "<span style='color:#c4622d'><strong>为什么末位对齐十位？</strong><br>因为 4 在<strong>十位</strong>上，它代表 40 个 234，<br>而 40 个 234 的末位就是<strong>十位</strong>。<strong>对齐的是位置，不是好看。</strong></span>");
