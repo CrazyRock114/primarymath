@@ -61,9 +61,15 @@
       <option value="3">3 个</option><option value="8">8 个</option>
       <option value="9" selected>9 个</option><option value="10">10 个</option>
       <option value="12">12 个</option><option value="13">13 个</option>
-      <option value="27">27 个</option><option value="8">8 个（最优例）</option>
+      <option value="27">27 个</option>
     </select>
-    <button class="btn btn-primary" id="zc-go">称一次</button>
+    <button class="btn btn-primary" id="zc-reset">重新开始</button>
+  </div>
+  <div class="demo-ctrl" id="zc-choose" style="display:none">
+    <span class="label">天平结果（点你看到的那一边）</span>
+    <button class="btn" id="zc-left">左盘翘起来</button>
+    <button class="btn" id="zc-right">右盘翘起来</button>
+    <button class="btn" id="zc-same">两边都平</button>
   </div>
   <div class="demo-out" id="zc-out"></div>
 </div>

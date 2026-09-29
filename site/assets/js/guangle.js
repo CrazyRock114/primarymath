@@ -75,53 +75,118 @@
     const host = $("tl-demo"); if (!host) return;
     const out = $("tl-out"), vis = $("tl-vis");
     const NAMES = ["小明", "小红", "小华", "小强"], COL = ["红", "黄", "蓝", "绿"];
-    let clues = [0, 1, 2, 3];           // 名字 → 颜色下标
-    const ORDER = [
-      { txt: "小明的球<strong>不是</strong>红色，也不是黄色。", chk: (n) => COL[n] === "蓝" || COL[n] === "绿" },
-      { txt: "小红的球是黄色。", chk: (n) => n === 1 },
-      { txt: "小华的球<strong>不是</strong>绿色。", chk: (n) => n === 2 ? COL[n] !== "绿" : true },
-      { txt: "小强拿的是剩下的那一个。", chk: () => true },
-    ];
-    let step = 0;
 
-    function go() {
+    const CLUES = [
+      { txt: "小明的球<strong>不是</strong>红色，也不是黄色。", ok: (a) => a[0] !== 0 && a[0] !== 1 },
+      { txt: "小红的球是黄色。", ok: (a) => a[1] === 1 },
+      { txt: "小华的球<strong>不是</strong>绿色。", ok: (a) => a[2] !== 3 },
+      { txt: "小强拿的是<strong>剩下的那一个</strong>。", ok: () => true, trivial: true },
+    ];
+    let picked = [];   // 孩子勾选的线索下标
+    let solved = false;
+
+    // 枚举全部 4!=24 种分配，保留满足「已勾线索」的解。
+    // 某个人在所有存活解里颜色一致 → 这个人被确定了。
+    function analyze(idxs) {
+      const alive = [];
+      for (let p = 0; p < 24; p++) {
+        const a = [];
+        let rest = p, used = 0;
+        for (let i = 0; i < 4; i++) {
+          let bit = rest % 4; rest = (rest - bit) / 4;
+          while (used & (1 << bit)) bit = (bit + 1) % 4;
+          used |= 1 << bit; a.push(bit);
+        }
+        if (a.every((v, i) => new Set(a).size === 4) && idxs.every((k) => CLUES[k].ok(a))) alive.push(a);
+      }
+      const fixed = NAMES.map((_, i) => {
+        const set = new Set(alive.map((a) => a[i]));
+        return set.size === 1 ? [...set][0] : null;
+      });
+      return { alive, fixed };
+    }
+
+    function build() {
       vis.innerHTML = "";
       const box = document.createElement("div");
-      box.style.cssText = "display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:460px";
-      NAMES.forEach((nm, i) => {
-        const d = document.createElement("div");
-        const done = clues.every((c, j) => ORDER[j].chk(c));
-        d.style.cssText = "padding:12px 6px;border-radius:9px;text-align:center;font-size:14px;" +
-          "border:1.5px solid " + (done ? "#2f6b52" : "#e5ded2") + ";background:" + (done ? "#e8f1ec" : "#fff");
-        d.innerHTML = "<div style='font-size:15px;font-weight:600'>" + nm + "</div>" +
-          "<div style='color:#2f6b52;font-weight:700;margin-top:4px'>" + (done ? COL[clues[i]] + "球" : "？") + "</div>";
-        box.appendChild(d);
+      box.style.cssText = "max-width:560px";
+
+      const title = document.createElement("div");
+      title.style.cssText = "font-size:13px;color:var(--ink-faint);margin-bottom:8px";
+      title.innerHTML = "① 勾出你<strong>用上了</strong>的线索：";
+      box.appendChild(title);
+
+      const list = document.createElement("div");
+      list.style.cssText = "display:flex;flex-direction:column;gap:6px;margin-bottom:12px";
+      CLUES.forEach((cl, i) => {
+        const row = document.createElement("div");
+        const on2 = picked.includes(i);
+        row.style.cssText = "display:flex;gap:9px;align-items:flex-start;padding:8px 11px;border-radius:9px;cursor:pointer;font-size:14px;line-height:1.6;" +
+          "border:1.5px solid " + (on2 ? "#2f6b52" : "#e5ded2") + ";background:" + (on2 ? "#e8f1ec" : "#fff");
+        row.innerHTML = "<span style='font-weight:700;color:" + (on2 ? "#2f6b52" : "#c9c1b4") + "'>" + (on2 ? "☑" : "☐") + "</span><span>" + cl.txt + "</span>";
+        row.addEventListener("click", () => {
+          const k = picked.indexOf(i);
+          if (k >= 0) picked.splice(k, 1); else picked.push(i);
+          solved = false;
+          build();
+        });
+        list.appendChild(row);
       });
+      box.appendChild(list);
+
+      const btn = document.createElement("button");
+      btn.className = "btn btn-primary";
+      btn.textContent = solved ? "再算一次" : "看结论";
+      btn.addEventListener("click", () => { solved = true; build(); });
+      box.appendChild(btn);
       vis.appendChild(box);
     }
 
-    function apply(n) {
-      let s = 0;
-      if (clues.every((c, j) => ORDER[j].chk(c))) { s = -1; }
-      else if (!ORDER[0].chk(clues[0])) { s = 0; }
-      else if (clues[0] === 3) { s = 1; }
-      else if (clues[0] === 2 && !ORDER[2].chk(2)) { s = 2; }
-      else { s = 3; }
-      // 强制满足线索
-      if (clues[0] === 3) { clues[1] = 1; clues[3] = 2; }
-      else if (clues[0] === 2) { clues[1] = 1; }
-      out.innerHTML = "<b>当前线索进度：" + (s >= 0 ? s + 1 : 4) + "/4</b><br>" +
-        ORDER.map((o, i) =>
-          "<div style='margin-top:4px'>" + (clues.every((c, j) => ORDER[j].chk(c)) || (i <= s) ? "✅ " : "⬜ ") +
-          o.txt + "</div>").join("");
-      go();
-    }
-    apply(0);
-  }
+    function show() {
+      const { alive, fixed } = analyze(picked);
+      const n = fixed.filter((v) => v !== null).length;
+      const cards = document.createElement("div");
+      cards.style.cssText = "display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:460px;margin-top:14px";
+      NAMES.forEach((nm, i) => {
+        const d = document.createElement("div");
+        const got = fixed[i] !== null;
+        d.style.cssText = "padding:12px 6px;border-radius:9px;text-align:center;font-size:14px;" +
+          "border:1.5px solid " + (got ? "#2f6b52" : "#e5ded2") + ";background:" + (got ? "#e8f1ec" : "#fff");
+        d.innerHTML = "<div style='font-size:15px;font-weight:600'>" + nm + "</div>" +
+          "<div style='color:" + (got ? "#2f6b52" : "#c9c1b4") + ";font-weight:700;margin-top:4px'>" +
+          (got ? COL[fixed[i]] + "球" : "还定不了") + "</div>";
+        cards.appendChild(d);
+      });
+      vis.appendChild(cards);
 
-  /* ======================================================================
-     ③ 集合（重叠问题）—— 重复的部分只能算一次
-     ====================================================================== */
+      if (!solved) {
+        out.innerHTML = "<b>已勾 " + picked.length + " 条线索</b>，还剩 <b>" + alive.length + "</b> 种可能没被排除。<br>" +
+          "能确定 <b>" + n + "/4</b> 个人。" +
+          (picked.length === 0 ? "<br><span style='color:#8d857a'>先勾一条试试——<strong>优先勾「直接说死」的那条</strong>，比如「小红的球是黄色」。</span>" : "") +
+          (alive.length === 0 ? "<br><span style='color:#c4622d'>没有解，说明线索之间矛盾了。</span>" : "");
+        return;
+      }
+
+      const useless = CLUES[3].trivial;
+      out.innerHTML =
+        "<b>勾了 " + picked.length + " 条线索 → 剩 " + alive.length + " 种可能，确定 " + n + " 个人。</b><br>" +
+        (picked.length === 0
+          ? "一条没勾时，4 个人谁拿什么颜色都不确定——<strong>这就是「多知道一点 = 少一种可能」的反面：不知道，就全都可能</strong>。"
+          : "") +
+        (picked.indexOf(1) >= 0 && picked.indexOf(0) < 0
+          ? "<span style='color:#c4622d'>注意：你勾了「小红的球是黄色」这条<strong>确定的</strong>线索，效果比勾前两条都大。" +
+            "<strong>从最确定的那句入手</strong>，这是本页最重要的一句。</span><br>"
+          : "") +
+        "<span style='color:#c4622d'><strong>为什么小强那条线索没用？</strong>" +
+        "「剩下的那一个」是<strong>废话</strong>——球只有 4 个颜色 4 个人，本来就必然剩下一个。" +
+        "它<strong>不排除任何可能</strong>，所以一条也没砍掉。<br>" +
+        "这就是本题真正要教的事：<strong>不是线索越多越好，是「能砍掉可能」的线索才有用。</strong></span>";
+      void useless;
+    }
+
+    build();
+    show();
+  }
   function jiheDemo() {
     const host = $("jh-demo"); if (!host) return;
     const out = $("jh-out"), vis = $("jh-vis");
@@ -374,80 +439,106 @@
     const host = $("zc-demo"); if (!host) return;
     const out = $("zc-out"), vis = $("zc-vis");
     const nIn = $("zc-n");
-    const MATH = { 3: 1, 8: 2, 9: 2, 27: 3, 12: 3, 10: 3, 13: 3 };
-    let step = 0, bad = -1, left = [], right = [], mid = [];
+    const choose = $("zc-choose");
+    const MATH = { 3: 1, 8: 2, 9: 2, 10: 3, 12: 3, 13: 3, 27: 3 };
+
+    // cands 才是真相：坏品必在其中，每次称完按天平结果收缩。
+    // 原实现虽然也用 left 收窄，但文字始终按「最初 n 个」叙述，
+    // 出现「画面已剩 3 个、说明还在说分 9 个」的脱节。
+    let cands = [], bad = -1, groups = [], used = 0, log = [];
 
     function reset() {
       const n = +nIn.value;
-      step = 0; left = []; right = []; mid = [];
-      // 坏品位置：取中间（最难找的情况）
-      bad = Math.floor(n / 2);
-      vis.innerHTML = "";
-      out.innerHTML = "有 <b>" + n + "</b> 个球，其中 <b>1 个稍轻</b>。用天平称，最坏情况要称几次？<br>" +
-        "先点下面的按钮开始称。";
+      bad = Math.floor(n / 2);                 // 取中间，最难的情况
+      cands = Array.from({ length: n }, (_, i) => i);
+      groups = []; used = 0; log = [];
+      if (choose) choose.style.display = "none";
+      draw();
     }
 
-    function go() {
+    function split(list) {
+      const m = Math.max(1, Math.ceil(list.length / 3));
+      return [list.slice(0, m), list.slice(m, 2 * m), list.slice(2 * m)];
+    }
+
+    function draw(note) {
       const n = +nIn.value;
-      if (!left.length) { left = Array.from({ length: n }, (_, i) => i); }
-      const m = Math.ceil(left.length / 3);
-      const a = left.slice(0, m), b = left.slice(m, 2 * m), c = left.slice(2 * m);
-      mid = [a, b, c];
-      step++;
+      if (!groups.length) groups = split(cands);
+      const [a, b, c] = groups;
+      if (choose) choose.style.display = cands.length > 1 ? "" : "none";
+
       vis.innerHTML = "";
-      const svg = el("svg", { viewBox: "0 0 640 190", width: "100%" });
+      const svg = el("svg", { viewBox: "0 0 640 200", width: "100%" });
       const names = ["① 左盘", "② 右盘", "③ 放在旁边"];
       [a, b, c].forEach((g, i) => {
+        if (!g.length) return;
         const X = 40 + i * 200;
-        // 盘子
         svg.appendChild(el("path", {
-          d: `M${X - 60} 90 h120 a60 26 0 0 1 -120 0 z`,
+          d: `M${X - 62} 96 h124 a62 26 0 0 1 -124 0 z`,
           fill: i === 2 ? "#f3efe7" : "#e8f1ec", stroke: "#8d857a", "stroke-width": 2,
         }));
-        const t = el("text", { x: X, y: 88, "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: "#5c554d" });
+        const t = el("text", { x: X, y: 94, "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: "#5c554d" });
         t.textContent = names[i] + "（" + g.length + " 个）";
         svg.appendChild(t);
+        const perRow = 9;
         g.forEach((id, j) => {
-          const cx = X - ((g.length - 1) * 20) / 2 + j * 20;
+          const row = Math.floor(j / perRow), col = j % perRow;
+          const rowN = Math.min(perRow, g.length - row * perRow);
+          const cx = X - ((rowN - 1) * 21) / 2 + col * 21;
+          const cy = 72 - row * 21;
           const isBad = id === bad;
           svg.appendChild(el("circle", {
-            cx, cy: 70, r: 9,
-            fill: isBad ? "#c4622d" : "#6aa287", opacity: isBad ? .35 : .9,
+            cx, cy, r: 9, fill: isBad ? "#c4622d" : "#6aa287", opacity: isBad ? .35 : .9,
             stroke: isBad ? "#c4622d" : "#4f7d68", "stroke-width": isBad ? 2.5 : 1,
           }));
         });
       });
       // 天平
-      svg.appendChild(el("line", { x1: 320, y1: 130, x2: 320, y2: 168, stroke: "#8d857a", "stroke-width": 5 }));
-      svg.appendChild(el("line", { x1: 270, y1: 130, x2: 370, y2: 130, stroke: "#2f6b52", "stroke-width": 4 }));
+      svg.appendChild(el("line", { x1: 320, y1: 136, x2: 320, y2: 176, stroke: "#8d857a", "stroke-width": 5 }));
+      svg.appendChild(el("line", { x1: 268, y1: 136, x2: 372, y2: 136, stroke: "#8d857a", "stroke-width": 5 }));
+      const t2 = el("text", { x: 320, y: 30, "text-anchor": "middle", "font-size": 14, "font-weight": 700, fill: "#2f6b52" });
+      t2.textContent = "第 " + used + " 称　候选 " + cands.length + " 个（最初 " + n + " 个）";
+      svg.appendChild(t2);
       vis.appendChild(svg);
 
-      const worst = Math.ceil(Math.log(n) / Math.log(3));
+      const worst = Math.max(1, Math.ceil(Math.log(n) / Math.log(3)));
+      const per = Math.max(1, Math.ceil(cands.length / 3));
       out.innerHTML =
-        "第 " + step + " 称：把 <b>" + Math.ceil(n / 3) + "</b> 个一组分三份：" +
-        "① 放左盘，② 放右盘，③ 放旁边。<br>" +
+        (note ? "<b>" + note + "</b><br>" : "") +
+        "把候选的 <b>" + cands.length + "</b> 个，每 <b>" + per + "</b> 个一组，分成三份上秤。<br>" +
         "因为坏的<strong>只有 1 个</strong>，左盘和右盘<strong>最多只有一边会翘</strong>。" +
-        "翘的那边就是坏的；<strong>如果都平，坏的在第三份里</strong>。<br>" +
-        "每称一次，<b>" + n + " 个的可能缩小到约 " + Math.ceil(n / 3) + " 个</b>。" +
-        "重复几次直到只剩 1 个 —— 这就是<strong>二分法</strong>。<br>" +
-        (left.length === 1 && step >= worst
-          ? "✅ <b>" + n + " 个最坏情况要称 " + worst + " 次</b>（因为 3²=9，3³=27）。"
-          : "继续称。");
-      if (left.length > 1) {
-        left = (bad < Math.ceil(n / 3)) ? a : (bad < Math.ceil(n / 3) * 2) ? b : c;
-        if (!left.length) left = c;
-      }
+        "翘的那一边里就有坏球；<strong>如果都平，坏的在第三份里</strong>。<br>" +
+        "所以每次称完，<b>" + cands.length + " 个的可能缩小到 " + Math.min(cands.length, per) + " 个</b>——" +
+        "<strong>范围是在缩小的，这正是三分法比两分法快的原因</strong>。<br>" +
+        (cands.length === 1
+          ? "✅ 找到了：<b>第 " + cands.length + " 号球</b>是次品，一共称了 <b>" + used + "</b> 次" +
+            "。" + (used <= worst
+              ? "<strong>这已经是最优解了</strong>——" + n + " 个最坏情况只需 " + worst + " 次。"
+              : "还能再省：最优只要 " + worst + " 次，下次注意三份要尽量均分。")
+          : (used > 0 ? "现在<strong>点下面的按钮</strong>，告诉我天平翘的是哪一边。<br>" : "") +
+            "继续称，最坏情况要称 <b>" + worst + "</b> 次（" + n + " 个 → 3²=" + (3 * 3) + "，" + n + " 个在 3² 与 3³ 之间）。") +
+        (log.length ? "<br><span style='color:#8d857a;font-size:13px'>过程：" + log.join(" → ") + "</span>" : "");
     }
 
-    const btn = $("zc-go");
-    if (btn) btn.addEventListener("click", go);
-    on("zc-n", "input", reset);
+    function answer(which) {
+      const [a, b, c] = groups;
+      if (!a.length) return;
+      const was = cands.length;
+      if (which === 2) { cands = c; log.push("第" + used + "称平→" + cands.length); }
+      else { cands = (which === 0 ? a : b); log.push("第" + used + "称" + (which === 0 ? "左" : "右") + "翘→" + cands.length); }
+      used++;
+      groups = [];
+      draw("候选从 " + was + " 个缩到 " + cands.length + " 个。");
+    }
+
+    const on = (id, fn) => { const e = $(id); if (e) e.addEventListener("click", fn); };
+    on("zc-left", () => answer(0));
+    on("zc-right", () => answer(1));
+    on("zc-same", () => answer(2));
+    on("zc-reset", reset);
+    if (nIn) nIn.addEventListener("input", reset);
     reset();
   }
-
-  /* ======================================================================
-     ⑧ 数与形 —— 用小方格把「数」和「形」互相翻译
-     ====================================================================== */
   function shuxingDemo() {
     const host = $("sx-demo"); if (!host) return;
     const out = $("sx-out"), vis = $("sx-vis");
